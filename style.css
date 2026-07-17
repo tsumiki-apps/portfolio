@@ -1,0 +1,744 @@
+/* ===========================================================
+   つみき ポートフォリオ 共通デザイン（紙×墨・Zen Maru Gothic）
+   1か所で全ページの見た目を管理する。
+   =========================================================== */
+
+:root{
+  --paper:#F4F2EE;   /* 背景（紙） */
+  --card:#FBFAF7;    /* カード面 */
+  --surface:#ECE9E3; /* 一段沈んだ面 */
+  --ink:#242321;     /* 文字（墨） */
+  --sub:#77736B;     /* 補助文字 */
+  --line:#D8D4CC;    /* 罫線 */
+  --ghost:#BEB9B0;   /* いちばん淡い線 */
+  --radius:20px;
+  --wrap:760px;
+}
+
+*{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent;}
+
+html{-webkit-text-size-adjust:100%; height:100%;}
+
+body{
+  font-family:'Zen Maru Gothic',-apple-system,BlinkMacSystemFont,
+    "Hiragino Maru Gothic ProN","Hiragino Sans","Helvetica Neue",Arial,sans-serif;
+  background:var(--paper); color:var(--ink);
+  line-height:1.85; height:100%; overflow:hidden;   /* 縦スクロールしない */
+  -webkit-font-smoothing:antialiased;
+}
+
+.wrap{max-width:var(--wrap); margin:0 auto;}
+
+/* ---------- タイポグラフィ ---------- */
+.kicker{color:var(--sub); font-size:12px; letter-spacing:.2em; text-transform:uppercase;}
+.lead{color:#3a3833; font-size:15.5px; line-height:1.9;}
+.muted{color:var(--sub);}
+
+/* セクション見出し（小さく・字間広め） */
+.sec-label{
+  font-size:12px; font-weight:700; letter-spacing:.16em; color:var(--sub);
+  text-transform:uppercase; display:flex; align-items:center; gap:10px;
+}
+.sec-label .em{font-size:17px;}
+.sec-label .badge{
+  margin-left:auto; font-size:12px; font-weight:500; color:var(--sub);
+  letter-spacing:.04em; background:var(--card); border:1px solid var(--line);
+  border-radius:999px; padding:3px 11px;
+}
+
+/* 区切り */
+.section{margin-top:64px;}
+@media(max-width:420px){ .section{margin-top:52px;} }
+
+/* ---------- 墨の流体：全画面固定の背景 ---------- */
+.ink-fluid{
+  position:fixed; inset:0; width:100%; height:100%;
+  z-index:1; pointer-events:none; display:block;
+  transition:opacity .8s ease;   /* 画面のフェード（.screen）と歩調を合わせる */
+}
+/* シート（読み物）では墨を薄く。0.4 は「最も濃い墨が乗っても本文が読める」上限：
+   墨#242321 が紙#F4F2EE に 0.4 で乗ると実効≒RGB160 → 本文とのコントラスト比 約5.7:1（WCAG AA=4.5:1 をクリア）。
+   0.5 まで上げると約4.4:1 で AA を割るため、ここは上げないこと。 */
+body.on-sheet .ink-fluid{opacity:.4;}
+/* アプリ詳細（看板の各ページ）は動く墨を止め、落ち着いた紙色に（チカチカ防止） */
+body.calm .ink-fluid{opacity:0;}
+@media(prefers-reduced-motion:reduce){ .ink-fluid{display:none;} }
+
+/* ---------- トップバー（入口では隠す） ---------- */
+.topbar{
+  position:fixed; top:0; left:0; right:0; z-index:5;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:calc(env(safe-area-inset-top) + 15px) 20px 14px;
+  transition:opacity .5s ease, transform .5s ease;
+}
+body.chrome-hidden .topbar{opacity:0; transform:translateY(-8px); pointer-events:none;}
+.tb-brand{display:flex; align-items:center; gap:9px; text-decoration:none;
+  color:var(--ink); font-weight:700; font-size:15px; letter-spacing:.08em;
+  transition:color .5s ease;}
+.tb-mark{width:30px; height:30px; display:block;}
+/* 戻る（子シートのみ表示・左上・線画シェブロン） */
+.tb-back{
+  -webkit-appearance:none; appearance:none; background:none; border:none; cursor:pointer;
+  display:none; align-items:center; justify-content:center;
+  width:44px; height:44px; margin:-9px 0 -9px -12px; padding:0 0 4px;
+  font-family:inherit; font-size:30px; font-weight:400; line-height:1; color:var(--ink);
+  transition:transform .2s ease, color .5s ease;
+}
+.tb-back:active{transform:translateX(-3px);}
+body.on-sheet .tb-back{display:flex;}   /* 子シートでは戻るを出し、ブランドは隠す */
+body.on-sheet .tb-brand{display:none;}
+/* 墨背景の画面（メニュー）ではトップバーも白に */
+body.on-dark .tb-brand{color:#F4F2EE;
+  text-shadow:0 0 8px rgba(23,20,15,.8), 0 0 18px rgba(23,20,15,.6);}
+
+/* ---------- ステージ＆画面（フェード切替） ---------- */
+#stage{position:fixed; inset:0; z-index:2;}
+.screen{
+  position:absolute; inset:0; overflow:hidden;
+  opacity:0; visibility:hidden; transition:opacity .8s ease, visibility .8s ease;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:0 20px;
+}
+.screen.is-active{opacity:1; visibility:visible;}
+/* 墨を指でなぞる画面では文字選択を無効に（sheet 内の本文は選択可のまま） */
+#s-intro, #s-brand, #s-menu{-webkit-user-select:none; user-select:none;}
+
+/* 画面1・2：Tsumiki の文字 */
+.wordmark{
+  font-size:30px; font-weight:500; letter-spacing:.14em; color:var(--ink);
+  transition:color .8s ease;
+}
+@media(max-width:420px){ .wordmark{font-size:26px; letter-spacing:.1em;} }
+.wordmark.on-ink{
+  color:#F4F2EE;   /* 墨背景では白文字 */
+  /* 暗転なしでも読めるよう、墨色のにじみを文字の後ろに */
+  text-shadow:0 0 8px rgba(23,20,15,.85), 0 0 18px rgba(23,20,15,.7), 0 0 34px rgba(23,20,15,.55);
+}
+
+/* 入口（旧ロゴ様式・未使用でも保持） */
+#s-intro .kicker{margin-bottom:30px;}
+.brand{display:flex; align-items:center; justify-content:center; gap:16px;}
+.mark{width:54px; height:54px; flex:0 0 auto; display:block;
+  border-radius:15px; box-shadow:0 4px 14px rgba(36,35,33,.16);}
+.brand h1{font-size:42px; font-weight:700; letter-spacing:.04em;}
+@media(max-width:420px){ .brand h1{font-size:38px;} .mark{width:50px; height:50px;} }
+
+/* スクロール誘導（墨の雫が線を伝って昇る） */
+.scrollcue{
+  position:absolute; left:50%; bottom:34px; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:12px;
+  background:none; border:none; cursor:pointer; font-family:inherit;
+}
+.scrollcue .sc-text{font-size:11px; letter-spacing:.32em; color:var(--sub);}
+.scrollcue .sc-line{
+  position:relative; width:1px; height:46px; overflow:hidden;
+  background:linear-gradient(rgba(190,185,176,0), var(--ghost));
+}
+.scrollcue .sc-line::after{
+  content:""; position:absolute; left:0; top:0; width:1px; height:40%;
+  background:var(--ink); animation:sc-rise 2.4s ease-in-out infinite;
+}
+@keyframes sc-rise{
+  0%{transform:translateY(300%); opacity:0;}
+  25%{opacity:1;} 80%{opacity:1;}
+  100%{transform:translateY(-110%); opacity:0;}
+}
+/* 墨背景（画面2）では白い誘導に */
+.scrollcue.on-ink .sc-text{color:rgba(244,242,238,.72);
+  text-shadow:0 0 8px rgba(23,20,15,.8), 0 0 18px rgba(23,20,15,.6);}
+.scrollcue.on-ink .sc-line{background:linear-gradient(rgba(244,242,238,0), rgba(244,242,238,.6));}
+.scrollcue.on-ink .sc-line::after{background:#F4F2EE;}
+
+/* ---------- メニュー（墨背景のまま・白文字） ---------- */
+.menu-list{display:flex; flex-direction:column; align-items:flex-start; gap:10px;
+  width:100%; max-width:var(--wrap); margin:0 auto; padding-left:8px;}
+.menu-item{
+  display:inline-grid; grid-template-columns:auto auto; grid-template-rows:auto auto;
+  grid-template-areas:"jp ar" "en ar"; align-items:center; column-gap:18px;
+  text-decoration:none; color:#F4F2EE; padding:16px 6px; text-align:left;
+}
+.mi-jp{grid-area:jp; font-size:30px; font-weight:700; letter-spacing:.06em; line-height:1.12;}
+.mi-en{grid-area:en; font-size:10.5px; letter-spacing:.26em; color:rgba(244,242,238,.66); margin-top:4px;}
+.mi-ar{grid-area:ar; font-size:22px; color:rgba(244,242,238,.45); transition:transform .2s ease, color .2s ease;}
+/* 墨が満ちる前でも読めるよう、白文字に墨色のにじみを控えめに */
+.menu-item .mi-jp, .menu-item .mi-en, .menu-item .mi-ar,
+.menu-foot{
+  text-shadow:0 0 8px rgba(23,20,15,.8), 0 0 18px rgba(23,20,15,.6);
+}
+/* シート見出しは紙背景なので、やわらかな白のシャドウ */
+.sheet-label .sl-jp, .sheet-label .sl-en{
+  text-shadow:
+    0 0 10px var(--paper),
+    0 0 26px rgba(244,242,238,.55);
+}
+.menu-item:active .mi-ar{transform:translateX(4px); color:rgba(244,242,238,.85);}
+@media(hover:hover){ .menu-item:hover .mi-ar{transform:translateX(5px); color:rgba(244,242,238,.85);} }
+@media(max-width:420px){ .mi-jp{font-size:27px;} }
+.menu-foot{position:absolute; left:0; right:0; bottom:34px; text-align:center;
+  font-size:11px; letter-spacing:.18em; color:rgba(244,242,238,.6);}
+
+/* ---------- メニュー：親カテゴリー＋分岐アコーディオン ---------- */
+.menu-group{width:100%; text-align:left;}
+.menu-group + .menu-group{margin-top:4px;}
+/* 親カテゴリー：既存 menu-item を <button> に流用 */
+.menu-item.is-parent{
+  -webkit-appearance:none; appearance:none; background:none; border:none;
+  cursor:pointer; font-family:inherit; width:auto;
+}
+.menu-item.is-parent .mi-ar{transition:transform .35s ease, color .2s ease;}
+.menu-group.open .menu-item.is-parent .mi-ar{transform:rotate(90deg); color:rgba(244,242,238,.85);}
+
+/* 分岐（子項目）：一段小さく・控えめ・インデントで階層を表現 */
+.submenu{
+  overflow:hidden; max-height:0;
+  transition:max-height .8s cubic-bezier(.22,.61,.36,1);
+  margin:2px 0 2px 10px; padding-left:16px;
+  border-left:1px solid rgba(244,242,238,.22);
+}
+.menu-group.open .submenu{max-height:400px;}
+.sub-item{
+  display:inline-grid; grid-template-columns:auto auto;
+  grid-template-areas:"jp ar" "en ar"; align-items:center; column-gap:14px;
+  text-decoration:none; color:#F4F2EE; padding:10px 4px; text-align:left;
+  /* じんわりフェード：各項目が少しずつ遅れて浮かび上がる */
+  opacity:0; transform:translateY(-6px);
+  transition:opacity .7s ease, transform .7s ease;
+}
+.menu-group.open .sub-item{opacity:1; transform:translateY(0);}
+.menu-group.open .sub-item:nth-child(1){transition-delay:.14s;}
+.menu-group.open .sub-item:nth-child(2){transition-delay:.26s;}
+.menu-group.open .sub-item:nth-child(3){transition-delay:.38s;}
+.menu-group.open .sub-item:nth-child(4){transition-delay:.50s;}
+.su-jp{grid-area:jp; font-size:16.5px; font-weight:500; letter-spacing:.04em; line-height:1.28;}
+.su-en{grid-area:en; font-size:9px; letter-spacing:.24em; color:rgba(244,242,238,.55); margin-top:3px;}
+.su-ar{grid-area:ar; font-size:16px; color:rgba(244,242,238,.4);
+  transition:transform .2s ease, color .2s ease;}
+.su-jp, .su-en, .su-ar{text-shadow:0 0 8px rgba(23,20,15,.8), 0 0 18px rgba(23,20,15,.6);}
+.sub-item:active .su-ar{transform:translateX(4px); color:rgba(244,242,238,.85);}
+@media(hover:hover){ .sub-item:hover .su-ar{transform:translateX(4px); color:rgba(244,242,238,.85);} }
+@media(max-width:420px){ .su-jp{font-size:16px;} }
+
+/* ---------- メニュー直下のCTA（墨背景なので紙色のピルで反転） ---------- */
+/* 左端は「カテゴリーの文字」に光学的に揃える。
+   .menu-item は padding:16px 6px なので文字の枠は 8+6=14px。
+   ただし文字はグリフの余白ぶん実際のインクが 1〜3px 内側から始まる（サービス+1.0/実績+1.05/お問い合わせ+2.9）
+   のに対し、ピルの塗りは端ちょうどから始まるため、14px だと塗りだけが文字の線より先に出て見える。
+   +2px 詰めて塗りの端を文字のインク線に合わせる（数値上の一致より見た目の一致を優先）。 */
+/* CTA を包む枠。メニュー項目と同じ 760px の中央寄せブロックに合わせ、
+   広い画面（MacBook/iPad）でも項目の左端とピルの左端がそろうようにする。
+   .menu-list は padding-left:8px、.menu-item は padding-left:6px なので
+   文字の枠は 8+6=14px。ピルはさらに +2px 詰めて塗りの端を文字のインク線に合わせる
+   （枠 padding-left:8px ＋ ピル margin-left:8px ＝ 16px）。 */
+.menu-cta-wrap{
+  width:100%; max-width:var(--wrap); margin:0 auto;
+  padding-left:8px; text-align:left;
+}
+.menu-cta{
+  display:inline-flex; align-items:center; gap:12px;
+  margin:22px 0 0 8px;
+  background:var(--paper); color:var(--ink); text-decoration:none;
+  border-radius:999px; padding:15px 26px;
+  font-size:15px; font-weight:700; letter-spacing:.04em;
+  /* 影は横に広げない（左へにじむと突出して見えるため blur を控えめに） */
+  box-shadow:0 3px 10px rgba(23,20,15,.4);
+}
+.menu-cta .mc-ar{font-size:15px; transition:transform .2s ease;}
+.menu-cta:active{opacity:.9;}
+.menu-cta:active .mc-ar{transform:translateX(4px);}
+@media(hover:hover){ .menu-cta:hover .mc-ar{transform:translateX(4px);} }
+
+/* ---------- シート：近日追加のプレースホルダ ---------- */
+.soon{
+  margin-top:18px; display:flex; align-items:center; justify-content:center;
+  min-height:120px; border:1px dashed var(--line); border-radius:var(--radius);
+  background:var(--card); color:var(--ghost); font-size:13px; letter-spacing:.14em;
+}
+
+/* ---------- 線画アイコン（スプライトを currentColor で着色） ---------- */
+.ico{width:34px; height:34px; flex:0 0 auto; display:block; color:var(--ink); overflow:visible;}
+.ico.is-soft{color:var(--ghost);}   /* 既製ツール側＝淡墨で「主役ではない」ことを示す */
+.ico.is-lg{width:42px; height:42px;}
+
+/* ---------- サービス各ページ 共通パーツ ---------- */
+.panel{background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:20px 18px; margin-top:14px;}
+.h3{font-size:16px; font-weight:700; letter-spacing:.02em; line-height:1.6; margin:36px 0 0;}
+.h3-en{display:block; font-size:10px; letter-spacing:.22em; color:var(--sub); margin-top:4px;}
+
+/* 価値提案（ファーストビューの1行） */
+.vp{font-size:21px; font-weight:700; line-height:1.75; letter-spacing:.01em; margin-top:4px;}
+.vp .hl{border-bottom:2px solid var(--ghost); padding-bottom:1px;}
+@media(max-width:420px){ .vp{font-size:19px;} }
+.vp-sub{font-size:14px; color:#3a3833; line-height:1.9; margin-top:14px;}
+
+/* 比較（既製ツール／オーダーメイド） */
+.vs{display:grid; grid-template-columns:1fr; gap:12px; margin-top:14px;}
+@media(min-width:560px){ .vs{grid-template-columns:1fr 1fr;} }
+.vs-card{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:18px;}
+.vs-card.is-ours{border-color:var(--ink);}
+.vs-head{display:flex; align-items:center; gap:12px;}
+.vs-ttl{font-size:13px; font-weight:700; letter-spacing:.04em; color:var(--sub);}
+.vs-card.is-ours .vs-ttl{color:var(--ink);}
+.vs-list{list-style:none; margin-top:14px; display:flex; flex-direction:column; gap:8px;}
+.vs-list li{font-size:13px; line-height:1.7; color:#3a3833; padding-left:16px; position:relative;}
+.vs-list li::before{content:""; position:absolute; left:0; top:10px; width:8px; height:1.5px;
+  background:var(--ghost); border-radius:1px;}
+.vs-card.is-ours .vs-list li::before{background:var(--ink);}
+
+/* Before → After */
+.ba{display:flex; flex-direction:column; gap:10px; margin-top:14px;}
+.ba-row{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:16px 18px;}
+.ba-tag{display:block; font-size:10px; letter-spacing:.16em; color:var(--ghost); margin-bottom:4px;}
+.ba-b{font-size:13px; color:var(--sub); line-height:1.7;}
+.ba-a{font-size:14.5px; font-weight:700; line-height:1.7; margin-top:10px; padding-top:10px;
+  border-top:1px dashed var(--line);}
+
+/* 課題リスト */
+.issues{display:flex; flex-direction:column; gap:12px; margin-top:14px;}
+.issue{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:16px 18px;
+  display:grid; grid-template-columns:34px minmax(0,1fr); gap:14px; align-items:start;}
+.issue .ico{margin-top:2px;}
+.issue-q{font-size:15px; font-weight:700; line-height:1.65;}
+.issue-r{font-size:12.5px; color:var(--sub); line-height:1.75; margin-top:8px;}
+
+/* 定義リスト（料金・進行イメージ） */
+.dl{display:flex; flex-direction:column;}
+.dl-row{display:grid; grid-template-columns:96px 1fr; gap:12px; padding:13px 0;
+  border-top:1px solid var(--line);}
+.dl-row:first-child{border-top:none; padding-top:0;}
+.dl-k{font-size:12.5px; color:var(--sub); letter-spacing:.02em; padding-top:2px;}
+.dl-v{font-size:13.5px; line-height:1.8; color:#3a3833;}
+.dl-v strong{font-weight:700; color:var(--ink);}
+.dl-v a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ghost);}
+
+/* できる／できない */
+.can{display:flex; flex-direction:column; gap:8px; list-style:none;}
+.can + .can{margin-top:14px; padding-top:14px; border-top:1px solid var(--line);}
+.can li{font-size:13.5px; line-height:1.75; color:#3a3833; padding-left:20px; position:relative;}
+.can li::before{position:absolute; left:0; top:5px; font-size:11px; font-weight:700; line-height:1;}
+.can.yes li::before{content:"○"; color:var(--ink);}
+.can.no li::before{content:"×"; color:var(--ghost);}
+.can.no li{color:var(--sub);}
+
+/* 進行イメージ（タイムライン帯）。0〜8週の線形スケール＝2週25% / 4週50% / 8週100% */
+.tl-row + .tl-row{margin-top:18px;}
+.tl-lbl{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:8px;}
+.tl-name{font-size:13.5px; font-weight:700;}
+.tl-dur{font-size:11.5px; color:var(--sub);}
+.tl-track{position:relative; height:10px; background:var(--surface); border-radius:999px;}
+.tl-bar{position:absolute; top:0; bottom:0; background:var(--ink); border-radius:999px 0 0 999px;}
+/* 斜線＝内容によって前後する幅 */
+.tl-bar.is-range{border-radius:0 999px 999px 0;
+  background:repeating-linear-gradient(45deg, var(--ghost) 0 2px, rgba(0,0,0,0) 2px 5px);}
+.tl-axis{display:flex; justify-content:space-between; margin-top:7px;
+  font-size:10.5px; color:var(--ghost); letter-spacing:.04em;}
+.tl-note{font-size:11.5px; color:var(--sub); line-height:1.75; margin-top:16px;}
+.tl-key{display:inline-block; width:22px; height:7px; border-radius:999px; vertical-align:middle;
+  background:repeating-linear-gradient(45deg, var(--ghost) 0 2px, rgba(0,0,0,0) 2px 5px);}
+
+/* 3つのお約束 */
+.promises{display:flex; flex-direction:column; gap:12px; margin-top:14px;}
+.promise{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:16px 18px;
+  display:grid; grid-template-columns:34px minmax(0,1fr); gap:14px; align-items:start;}
+.promise .ico{margin-top:1px;}
+.pr-ttl{font-size:14.5px; font-weight:700; line-height:1.55;}
+.pr-desc{font-size:12.5px; color:var(--sub); line-height:1.75; margin-top:5px;}
+.pr-desc strong{color:var(--ink); font-weight:700;}
+
+/* 料金の目安（From価格） */
+.price-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px;}
+.price-card{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:16px 14px; text-align:center;}
+.pc-name{font-size:13px; font-weight:700; letter-spacing:.04em;}
+.pc-sub{font-size:11px; color:var(--sub); margin-top:3px; line-height:1.5;}
+.pc-amt{margin-top:12px; font-size:13px; font-weight:700; color:var(--ink); letter-spacing:.02em;}
+.pc-num{font-size:30px; font-weight:700; letter-spacing:.01em; margin-right:1px;}
+.pc-from{font-size:15px; margin-left:2px;}
+.pc-term{font-size:11.5px; color:var(--sub); margin-top:8px; padding-top:9px; border-top:1px solid var(--line);}
+
+/* FAQ */
+.faq-row{padding:14px 0; border-top:1px solid var(--line);}
+.faq-row:first-child{border-top:none; padding-top:0;}
+.faq-q{font-size:14px; font-weight:700; line-height:1.65;}
+.faq-a{font-size:13px; color:#3a3833; line-height:1.8; margin-top:7px;}
+
+/* 補足メモ（注記・秘密保持） */
+.note{margin-top:14px; border-left:2px solid var(--ghost); padding:2px 0 2px 13px;
+  font-size:12.5px; color:var(--sub); line-height:1.8;}
+.note a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ghost);}
+.panel .note{margin-top:16px;}
+
+/* ブロック末のCTA */
+.cta-wrap{margin-top:34px; padding-top:24px; border-top:1px solid var(--line);}
+.cta-lead{font-size:13px; color:var(--sub); line-height:1.8; margin-bottom:14px;}
+.cta-wrap .cta{margin-top:0;}
+
+/* ---------- シート：制作フロー（進め方） ---------- */
+.flow{list-style:none; margin-top:22px; display:flex; flex-direction:column; gap:12px;}
+.flow-step{
+  position:relative;
+  display:grid; grid-template-columns:auto minmax(0,1fr); align-items:start; gap:16px;
+  background:var(--card); border:1px solid var(--line); border-radius:18px; padding:16px 18px;
+}
+/* カード間をつなぐ流れの線（最後のステップには出さない） */
+.flow-step:not(:last-child)::after{
+  content:""; position:absolute; left:27px; bottom:-13px; width:1px; height:13px; background:var(--line);
+}
+.flow-step .fs-no{font-size:15px; font-weight:700; letter-spacing:.08em; color:var(--ghost); padding-top:9px;}
+.fs-head{display:flex; align-items:center; gap:11px; margin-bottom:7px;}
+/* 各ステップの「期間／お願いすること」 */
+.fs-meta{margin-top:10px; padding-top:10px; border-top:1px dashed var(--line);
+  display:flex; flex-direction:column; gap:7px;}
+.fs-item{display:flex; align-items:flex-start; gap:9px; font-size:12.5px; line-height:1.7;}
+.fs-k{flex:0 0 auto; font-size:10.5px; letter-spacing:.06em; color:var(--sub);
+  background:var(--surface); border-radius:6px; padding:2px 8px; margin-top:2px;}
+.fs-v{flex:1 1 auto; min-width:0; color:#3a3833;}
+.flow-step .fs-jp{font-size:16px; font-weight:700; letter-spacing:.02em;}
+.flow-step .fs-desc{font-size:12.5px; color:var(--sub); line-height:1.7; margin-top:2px;}
+
+/* ---------- シート：CTA（無料ヒアリング） ---------- */
+.cta{
+  display:inline-flex; align-items:center; gap:10px; margin-top:20px;
+  background:var(--ink); color:var(--paper); text-decoration:none;
+  border-radius:999px; padding:14px 24px; font-size:14.5px; font-weight:700; letter-spacing:.04em;
+}
+.cta .cta-ar{transition:transform .2s ease;}
+.cta:active{opacity:.9;}
+.cta:active .cta-ar{transform:translateX(4px);}
+@media(hover:hover){ .cta:hover .cta-ar{transform:translateX(4px);} }
+
+/* ---------- セクション（この画面だけ内部スクロール） ---------- */
+.screen.sheet{justify-content:flex-start; align-items:stretch; text-align:left;}
+.screen.sheet.is-active{overflow-y:auto; -webkit-overflow-scrolling:touch;}
+.sheet-inner{
+  width:100%; max-width:var(--wrap); margin:0 auto;
+  padding:calc(env(safe-area-inset-top) + 82px) 0 96px;
+}
+.sheet-label{display:flex; align-items:baseline; gap:12px; margin-bottom:12px;}
+.sl-jp{font-size:24px; font-weight:700; letter-spacing:.05em;}
+.sl-en{font-size:11px; letter-spacing:.22em; color:var(--sub);}
+.sheet-lead{color:#3a3833; font-size:14px; line-height:1.9; margin-bottom:26px; max-width:34em;}
+
+/* ---------- 看板プロダクト（索引：タップで各詳細へ） ---------- */
+.flagship{
+  display:flex; flex-direction:column; gap:20px;
+}
+.flag-card{
+  display:grid; grid-template-columns:112px minmax(0,1fr) auto; gap:22px; align-items:center;
+  color:var(--ink); text-decoration:none;
+  background:var(--card); border:1px solid var(--line); border-radius:24px;
+  padding:22px 24px;
+  transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.flag-card:active{transform:scale(.985);}
+@media(hover:hover){ .flag-card:hover{transform:translateY(-3px); border-color:var(--ghost); box-shadow:0 14px 34px rgba(36,35,33,.11);} }
+@media(max-width:480px){
+  .flag-card{grid-template-columns:88px minmax(0,1fr) auto; gap:16px; padding:18px 18px;}
+}
+.flag-icon{
+  width:112px; height:112px; justify-self:center; border-radius:24px;
+  border:1px solid var(--line); box-shadow:0 6px 18px rgba(36,35,33,.10); display:block;
+}
+@media(max-width:480px){ .flag-icon{width:88px; height:88px; border-radius:20px;} }
+.flag-body{min-width:0;}
+.flag-name{font-size:20px; font-weight:700; letter-spacing:.02em;}
+.flag-catch{font-size:14px; color:var(--sub); margin-top:2px;}
+.flag-desc{font-size:13.5px; color:#3a3833; line-height:1.8; margin-top:10px;}
+@media(max-width:480px){ .flag-desc{display:none;} }
+.flag-tag{
+  display:inline-block; margin-top:12px; font-size:11px; letter-spacing:.08em;
+  color:var(--sub); background:var(--surface); border-radius:999px; padding:4px 11px;
+}
+@media(max-width:480px){ .flag-tag{margin-top:9px;} }
+.flag-ar{font-size:20px; color:var(--ghost); transition:transform .2s ease, color .2s ease;}
+.flag-card:active .flag-ar{transform:translateX(4px); color:var(--ink);}
+@media(hover:hover){ .flag-card:hover .flag-ar{transform:translateX(4px); color:var(--ink);} }
+
+/* ---------- 看板詳細（App Store 風・つみき配色） ---------- */
+/* ヘッド：アイコン＋名前＋メタ */
+.as-head{display:grid; grid-template-columns:112px minmax(0,1fr); gap:20px; align-items:center;}
+@media(max-width:480px){ .as-head{grid-template-columns:88px minmax(0,1fr); gap:16px;} }
+.as-icon{width:112px; height:112px; border-radius:24px; border:1px solid var(--line);
+  box-shadow:0 8px 22px rgba(36,35,33,.12); display:block;}
+@media(max-width:480px){ .as-icon{width:88px; height:88px; border-radius:20px;} }
+.as-name{font-size:26px; font-weight:700; letter-spacing:.04em; line-height:1.2;}
+@media(max-width:480px){ .as-name{font-size:23px;} }
+.as-sub{font-size:13px; color:var(--sub); margin-top:4px; letter-spacing:.02em;}
+.as-headrow{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:14px;}
+.as-badge{font-size:11.5px; font-weight:700; letter-spacing:.04em; color:var(--paper);
+  background:var(--ink); border-radius:999px; padding:7px 15px;}
+.as-lp{display:inline-flex; align-items:center; gap:5px; font-size:12.5px; color:var(--ink);
+  text-decoration:none; border:1px solid var(--line); border-radius:999px; padding:6px 14px;}
+.as-lp-ar{transition:transform .2s ease;}
+.as-lp:active .as-lp-ar{transform:translateX(3px);}
+@media(hover:hover){ .as-lp:hover{border-color:var(--ghost);} .as-lp:hover .as-lp-ar{transform:translateX(3px);} }
+
+/* メトリクス帯（App Store の評価行・横スクロール） */
+.as-metrics{
+  display:flex; gap:0; margin-top:22px; overflow-x:auto; -webkit-overflow-scrolling:touch;
+  border:1px solid var(--line); border-radius:18px; background:var(--card);
+  scrollbar-width:none;
+}
+.as-metrics::-webkit-scrollbar{display:none;}
+.as-metric{
+  flex:1 0 auto; min-width:96px; padding:14px 16px; text-align:center;
+  display:flex; flex-direction:column; align-items:center; gap:3px;
+  border-left:1px solid var(--line);
+}
+.as-metric:first-child{border-left:none;}
+.am-k{font-size:10px; letter-spacing:.1em; color:var(--sub); text-transform:uppercase; white-space:nowrap;}
+.am-v{font-size:16px; font-weight:700; letter-spacing:.01em; white-space:nowrap;}
+.am-cap{font-size:10px; color:var(--ghost); white-space:nowrap;}
+
+/* 詳細ページの小見出し */
+.as-h{font-size:15px; font-weight:700; letter-spacing:.02em; margin:34px 0 0;
+  display:flex; align-items:baseline; gap:10px;}
+.as-h-en{font-size:10px; letter-spacing:.22em; color:var(--sub); font-weight:500;}
+
+/* プレビュー帯（実画面の再現モックを横スクロール） */
+.as-shots{
+  display:flex; gap:16px; margin-top:14px; padding-bottom:4px;
+  overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;
+  scroll-snap-type:x mandatory;
+}
+.as-shots::-webkit-scrollbar{display:none;}
+.as-shot{
+  flex:0 0 auto; width:156px; scroll-snap-align:start;
+  display:flex; flex-direction:column; gap:10px; align-items:center;
+}
+.as-shot figcaption{font-size:12px; color:var(--sub); letter-spacing:.02em; text-align:center;}
+
+/* スマホ枠（画面はこの中に敷く） */
+.pv{
+  position:relative; width:156px; height:330px; border-radius:26px; overflow:hidden;
+  background:var(--paper); border:1px solid var(--line);
+  box-shadow:0 10px 26px rgba(36,35,33,.12); isolation:isolate;
+}
+.pv svg:not(.pv-scene){fill:none; stroke:currentColor; stroke-width:1.8;
+  stroke-linecap:round; stroke-linejoin:round; display:block;}
+/* 画面上部のインジケータ（ダイナミックアイランド風の黒点） */
+.pv::before{content:""; position:absolute; top:9px; left:50%; transform:translateX(-50%);
+  width:34px; height:6px; border-radius:999px; background:rgba(36,35,33,.22); z-index:6;}
+
+/* 風景（撮った映像は色そのまま。UIの下に敷く） */
+.pv-scene{position:absolute; inset:0; width:100%; height:100%; display:block; z-index:0;}
+/* カメラUIを風景の上でも読めるよう、上下だけそっと暗くする薄幕 */
+.pv-scrim{position:absolute; inset:0; pointer-events:none; z-index:1;
+  background:linear-gradient(180deg, rgba(20,18,15,.30), rgba(20,18,15,0) 24%,
+             rgba(20,18,15,0) 68%, rgba(20,18,15,.30));}
+.pv-filmscrim{position:absolute; inset:0; pointer-events:none; z-index:1;
+  background:linear-gradient(180deg, rgba(20,18,15,.20), rgba(20,18,15,0) 42%, rgba(20,18,15,.34));}
+
+/* --- 共通グリフボタン（丸に線画） --- */
+.pv-glyph{position:absolute; width:26px; height:26px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center; color:var(--ink);
+  background:var(--control); box-shadow:0 1px 3px rgba(36,35,33,.14);}
+.pv-glyph svg{width:15px; height:15px;}
+
+/* ===== いつつ：カメラ画面 ===== */
+.pv-cam{
+  background:
+    radial-gradient(120% 90% at 68% 0%, rgba(244,242,238,.14), rgba(244,242,238,0) 58%),
+    linear-gradient(180deg,#BDB6AC,#AAA399 48%,#8E877D);
+}
+.pv-cam .pv-grid{position:absolute; inset:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.14) 1px, transparent 1px);
+  background-size:33.33% 33.33%;}
+.pv-cam .pv-level{position:absolute; top:50%; left:50%; width:34px; height:1.5px;
+  border-radius:1px; background:rgba(255,255,255,.6); transform:translate(-50%,-50%);}
+.pv-top{position:absolute; top:24px; left:16px; right:16px; z-index:3;
+  display:flex; align-items:center; justify-content:space-between;}
+.pv-slots{display:flex; gap:7px;}
+.pv-slots i{width:7px; height:7px; border-radius:50%; background:rgba(248,247,244,.45);
+  box-shadow:0 0 4px rgba(20,18,15,.35);}
+.pv-slots i.on{background:rgba(248,247,244,.98); box-shadow:0 1px 3px rgba(20,18,15,.4);}
+.pv-cam .pv-flip{position:static; color:rgba(248,247,244,.98);
+  background:rgba(36,35,33,.34); box-shadow:none;}
+.pv-rec{position:absolute; bottom:26px; left:50%; transform:translateX(-50%); z-index:3;
+  width:46px; height:46px; border-radius:50%; background:var(--control);
+  box-shadow:0 3px 10px rgba(20,18,15,.32);}
+.pv-rec.is-rec::after{content:""; position:absolute; inset:-6px; border-radius:50%;
+  background:conic-gradient(#F8F7F4 0 62%, rgba(248,247,244,0) 62%);
+  -webkit-mask:radial-gradient(closest-side, transparent 72%, #000 74%);
+          mask:radial-gradient(closest-side, transparent 72%, #000 74%);}
+.pv-see{position:absolute; bottom:33px; left:22px; z-index:3; width:17px; height:26px; border-radius:4px;
+  background:rgba(248,247,244,.92); display:flex; align-items:center; justify-content:center;
+  box-shadow:0 2px 6px rgba(20,18,15,.24);}
+.pv-see b{width:0; height:0; margin-left:2px;
+  border-left:6px solid rgba(36,35,33,.78); border-top:4px solid transparent; border-bottom:4px solid transparent;}
+
+/* ===== いつつ：今日プレビュー ===== */
+.pv-day{background:var(--paper);}
+.pv-daytop{position:absolute; top:22px; left:16px; right:16px; z-index:5;
+  display:flex; align-items:center; justify-content:space-between;}
+.pv-daytop .pv-glyph{position:static;}
+.pv-film{position:absolute; inset:34px 16px; border-radius:12px;
+  background:#2A2824; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 8px 20px rgba(36,35,33,.22);}
+.pv-time{position:relative; z-index:2; font-size:22px; font-weight:500; letter-spacing:.06em;
+  color:#fff; text-shadow:0 1px 6px rgba(20,18,15,.5);}
+.pv-check{position:absolute; bottom:20px; right:18px; width:38px; height:38px; z-index:5;}
+.pv-check svg{width:20px; height:20px;}
+.pv-saved .pv-film{inset:26px 16px;}
+.pv-savebadge{position:absolute; left:50%; bottom:22px; transform:translateX(-50%); z-index:5;
+  display:inline-flex; align-items:center; gap:6px; white-space:nowrap;
+  background:var(--ink); color:var(--paper); border-radius:999px; padding:7px 13px;
+  font-size:10.5px; font-weight:700; letter-spacing:.02em;
+  box-shadow:0 4px 12px rgba(36,35,33,.28);}
+.pv-savebadge svg{width:13px; height:13px; flex:0 0 auto;}
+
+/* ===== こえがき：キーボード画面 ===== */
+.pv-kb{--pv-paper:var(--paper); --pv-surface:var(--surface); --pv-ink:var(--ink);
+  --pv-sub:var(--sub); --pv-line:var(--line); --pv-ctrl:var(--card);
+  background:var(--pv-paper);}
+.pv-kb.pv-dark{--pv-paper:#1C1B19; --pv-surface:#27251F; --pv-ink:#EDEAE4;
+  --pv-sub:#9A958C; --pv-line:#3B3833; --pv-ctrl:#2E2C26;
+  background:var(--pv-paper);}
+.pv-note{position:absolute; top:0; left:0; right:0; height:53%; padding:34px 18px 0;
+  background:var(--pv-paper);}
+.pv-note .ln{display:block; height:7px; border-radius:4px; background:var(--pv-surface); margin-bottom:11px;}
+.pv-note .ln.w60{width:60%;}
+.pv-note .typed{font-size:11px; line-height:1.7; color:var(--pv-ink); letter-spacing:.01em; margin-top:4px;}
+.pv-note .typed.is-live{color:var(--pv-sub);}
+.pv-note .typed i{display:inline-block; width:1.5px; height:12px; background:var(--pv-ink);
+  vertical-align:-2px; margin-left:1px; border-radius:1px;}
+
+/* こえがきを使うアプリ側（チャット）。キーボードはモノクロ、中身は色つき */
+.pv-app{position:absolute; top:0; left:0; right:0; height:53%; padding:32px 12px 10px;
+  background:var(--pv-paper); display:flex; flex-direction:column; gap:8px; overflow:hidden;}
+.pv-bubble{max-width:82%; padding:8px 11px; font-size:10.5px; line-height:1.55;
+  border-radius:14px;}
+.pv-bubble.in{align-self:flex-start; background:var(--pv-surface); color:var(--pv-ink);
+  border-bottom-left-radius:5px;}
+.pv-bubble.out{align-self:flex-end; background:#DCEFD8; color:#2F6B45;
+  border-bottom-right-radius:5px;}
+.pv-bubble.out.is-forming{background:#EFEAD9; color:#8A7A4E;}
+.pv-bubble i{display:inline-block; width:1.5px; height:12px; background:currentColor;
+  vertical-align:-2px; margin-left:1px; border-radius:1px; opacity:.8;}
+.pv-dark .pv-bubble.out{background:#2C4636; color:#BFE3C9;}
+.pv-dark .pv-bubble.out.is-forming{background:#3A3524; color:#D6C48E;}
+.pv-kbd{position:absolute; left:0; right:0; bottom:0; height:47%;
+  background:var(--pv-surface); border-top:1px solid var(--pv-line);
+  border-radius:20px 20px 0 0; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:0;}
+.pv-mic{width:52px; height:52px; border-radius:50%; background:var(--pv-ink);
+  color:var(--pv-paper); display:flex; align-items:center; justify-content:center;
+  margin-bottom:22px;}
+.pv-mic svg{width:22px; height:22px; stroke-width:2;}
+.pv-mic.is-rec{box-shadow:0 0 0 4px var(--pv-surface), 0 0 0 6px rgba(36,35,33,.18);}
+.pv-kb.pv-dark .pv-mic.is-rec{box-shadow:0 0 0 4px var(--pv-surface), 0 0 0 6px rgba(237,234,228,.25);}
+.pv-partial{position:absolute; top:14px; left:14px; right:14px; text-align:center;
+  font-size:9px; letter-spacing:.02em; color:var(--pv-sub);}
+.pv-bar{display:flex; align-items:center; gap:7px; width:80%;}
+.pv-bar .k{width:26px; height:26px; flex:0 0 auto; color:var(--pv-ink);
+  display:flex; align-items:center; justify-content:center;}
+.pv-bar .k svg{width:15px; height:15px;}
+.pv-bar .space{flex:1; height:26px; border:1px solid var(--pv-line); border-radius:8px;
+  background:var(--pv-ctrl); display:flex; align-items:center; justify-content:center;
+  color:var(--pv-sub); font-size:9px; letter-spacing:.08em;}
+
+/* ===== こえがき：辞書画面 ===== */
+.pv-dict{background:var(--paper); padding:32px 13px 0;}
+.pv-dhead{font-size:14px; font-weight:700; letter-spacing:.04em; padding:0 3px 10px;}
+.pv-drow{display:flex; align-items:center; gap:8px; padding:9px 3px;
+  border-top:1px solid var(--line);}
+.pv-dword{min-width:0;}
+.pv-dword .rom{display:block; font-size:12px; font-weight:700; color:var(--ink); letter-spacing:.01em;}
+.pv-dword .kw{display:block; font-size:9px; color:var(--sub); margin-top:1px;}
+.pv-drow .tag{margin-left:auto; flex:0 0 auto; font-size:8.5px; font-weight:700; letter-spacing:.04em;
+  color:var(--sub); background:var(--surface); border-radius:999px; padding:2px 7px; white-space:nowrap;}
+.pv-drow .tag.t-app{color:#9A6A2E; background:#F5E7D2;}   /* アプリ名：琥珀 */
+.pv-drow .tag.t-co{color:#3E6B86; background:#DDE9F0;}    /* 社名：藍 */
+.pv-drow .tag.t-tm{color:#4E7A52; background:#DDEBD9;}    /* 用語：緑 */
+.pv-dadd{margin-top:12px; text-align:center; font-size:11px; font-weight:700; color:var(--sub);
+  border:1px dashed var(--line); border-radius:10px; padding:9px; letter-spacing:.04em;}
+
+/* 紹介文 */
+.as-about{font-size:14px; line-height:1.95; color:#3a3833; margin-top:14px;}
+
+/* つかいかた（番号つき3ステップ） */
+.as-how{list-style:none; margin-top:14px; display:flex; flex-direction:column; gap:10px;}
+.as-how li{
+  display:grid; grid-template-columns:auto minmax(0,1fr); gap:15px; align-items:start;
+  background:var(--card); border:1px solid var(--line); border-radius:18px; padding:15px 18px;
+}
+.ah-no{font-size:14px; font-weight:700; letter-spacing:.06em; color:var(--ghost); padding-top:1px;}
+.ah-t{font-size:15px; font-weight:700;}
+.ah-d{font-size:12.5px; color:var(--sub); line-height:1.75; margin-top:4px;}
+
+/* 静けさの設計（2列カード） */
+.as-feats{display:grid; grid-template-columns:1fr; gap:12px; margin-top:14px;}
+@media(min-width:560px){ .as-feats{grid-template-columns:1fr 1fr;} }
+.as-feat{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:16px 18px;}
+.af-t{font-size:14px; font-weight:700;}
+.af-d{font-size:12.5px; color:var(--sub); line-height:1.75; margin-top:6px;}
+
+/* ---------- つみきコレクション（グリッド） ---------- */
+.cat{margin-top:34px;}
+.cat:first-child{margin-top:24px;}
+.grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px;}
+@media(min-width:560px){ .grid{grid-template-columns:repeat(3,1fr);} }
+.card{
+  display:flex; flex-direction:column; gap:11px; justify-content:flex-start;
+  text-decoration:none; min-height:158px;
+  background:var(--card); border:1px solid var(--line); border-radius:22px;
+  padding:18px 16px; color:var(--ink);
+  transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+a.card:active{transform:scale(.96);}
+@media(hover:hover){ a.card:hover{transform:translateY(-3px); border-color:var(--ghost); box-shadow:0 12px 30px rgba(36,35,33,.10);} }
+/* コレクションは作品ギャラリー（クリック遷移なし）。クリック可能に見せない */
+.card--preview{cursor:default;}
+@media(hover:hover){ .card--preview:hover{border-color:var(--ghost); box-shadow:0 8px 22px rgba(36,35,33,.07);} }
+.card .ico{flex:0 0 auto; width:50px; height:50px; border-radius:14px; display:block;}
+.card .title{font-size:15px; font-weight:700; line-height:1.32; letter-spacing:.01em;}
+.card .desc{font-size:12px; color:var(--sub); line-height:1.55;}
+
+/* ---------- 制作について ---------- */
+.prose{
+  background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:26px 24px; margin-top:18px;
+}
+.prose p{font-size:15px; line-height:1.95; color:#3a3833;}
+.prose p + p{margin-top:16px;}
+.prose .hl{color:var(--ink); font-weight:500;}
+
+/* ---------- プロフィール ---------- */
+.profile{
+  background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:26px 24px; margin-top:18px;
+}
+.profile .name{font-size:19px; font-weight:700; letter-spacing:.02em;}
+.profile .name .en{font-size:13px; color:var(--sub); font-weight:500; margin-left:8px; letter-spacing:.04em;}
+.profile .role{font-size:13.5px; color:var(--sub); margin-top:4px;}
+.profile .p-row{display:flex; gap:12px; padding:14px 0; border-top:1px solid var(--line); margin-top:16px;}
+.profile .p-row:first-of-type{margin-top:20px;}
+.profile .p-key{flex:0 0 88px; font-size:12.5px; color:var(--sub); letter-spacing:.04em; padding-top:1px;}
+.profile .p-val{font-size:14px; line-height:1.8; color:#3a3833;}
+.profile a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ghost);}
+.hobby-placeholder{color:var(--ghost); font-style:normal;}
+/* 狭い画面では見出しを上に重ね、本文の行長を確保する（88pxの見出し列だと1行14字ほどで読みにくい） */
+@media(max-width:420px){
+  .profile{padding:24px 20px;}
+  .profile .p-row{flex-direction:column; gap:6px;}
+  .profile .p-key{flex:none;}
+}
+
+/* ---------- フッター ---------- */
+footer.foot{
+  text-align:center; color:var(--sub); font-size:12px; letter-spacing:.06em;
+  margin-top:72px; padding-top:32px; border-top:1px solid var(--line); line-height:1.9;
+}
+
+/* ---------- 汎用イラスト（スマホ模型） ---------- */
+/* 各アプリ詳細ページの図解で使う共通の枠。紙×墨で描く。 */
+.phone{
+  position:relative; width:232px; height:476px; margin:0 auto;
+  background:var(--card); border:1px solid var(--line); border-radius:40px;
+  box-shadow:0 18px 44px rgba(36,35,33,.12);
+  overflow:hidden;
+}
+.phone .screen{position:absolute; inset:12px; border-radius:30px;
+  background:var(--paper); overflow:hidden;}

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<script>try{document.documentElement.classList.toggle('lang-en',localStorage.getItem('itsutsu-lang')==='en')}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>いつつ — 今日を、5つだけ。</title>
+<meta name="description" content="1日に5回、各2秒。撮りためた今日の断片が、夜にそっと1本の動画になる。文字のない、優しいモノクロの動画日記アプリ「いつつ」。">
+<meta property="og:title" content="いつつ — 今日を、5つだけ。">
+<meta property="og:description" content="1日5回・各2秒。今日の断片が、夜に1本の動画になる。静かな動画日記。">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --paper:#F4F2EE; --surface:#ECE9E3; --ink:#242321; --muted:#77736B;
+    --hair:#D8D4CC; --ghost:#BEB9B0; --control:#F8F7F4;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:'Zen Maru Gothic',-apple-system,BlinkMacSystemFont,"Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif;
+    line-height:1.78; -webkit-font-smoothing:antialiased; -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 28px}
+  section{padding:124px 0}
+  .nb{white-space:nowrap}
+
+  /* JP/EN 切替：非表示側だけ display:none に。表示側は要素本来の display に任せる */
+  html:not(.lang-en) .en{display:none}
+  html.lang-en .jp{display:none}
+
+  /* header */
+  header{padding:26px 0; position:sticky; top:0; background:rgba(244,242,238,.86); backdrop-filter:blur(10px); z-index:10}
+  .nav{display:flex; align-items:center; justify-content:space-between}
+  .brand{display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.04em}
+  .logo{display:flex; gap:5px; align-items:center}
+  .logo i{border-radius:50%; background:var(--ink); display:block}
+  .logo i:nth-child(1),.logo i:nth-child(5){width:5px; height:5px}
+  .logo i:nth-child(2),.logo i:nth-child(4){width:9px; height:9px}
+  .logo i:nth-child(3){width:13px; height:13px}
+  .nav a{color:var(--muted); text-decoration:none; font-size:14px; margin-left:22px}
+  .nav a:hover{color:var(--ink)}
+  .lang-toggle{appearance:none; -webkit-appearance:none; background:none; border:1px solid var(--hair);
+    color:var(--muted); font-family:inherit; font-size:12.5px; letter-spacing:.04em; line-height:1;
+    padding:6px 12px; border-radius:999px; cursor:pointer; margin-left:22px}
+  .lang-toggle:hover{color:var(--ink); border-color:var(--ghost)}
+
+  /* hero */
+  .hero{display:flex; flex-direction:column; align-items:center; text-align:center; padding-top:72px; padding-bottom:128px}
+  .kicker{color:var(--muted); font-size:14px; letter-spacing:.14em; margin-bottom:20px}
+  h1{font-size:50px; font-weight:700; line-height:1.18; letter-spacing:0; margin-bottom:26px}
+  .lead{font-size:16.5px; line-height:1.76; color:#3a3833; max-width:28em; margin:0 auto 34px}
+  .cta{display:inline-flex; align-items:center; gap:10px; background:var(--ink); color:var(--paper);
+       padding:14px 22px; border-radius:14px; font-size:15px; font-weight:500; text-decoration:none}
+  .cta small{opacity:.7; font-weight:400}
+  .cta-note{display:block; color:var(--muted); font-size:13px; margin-top:14px}
+  .hero > div:last-child{margin-top:64px}
+
+  /* phone mock */
+  .phone{position:relative; width:232px; height:476px; margin:0 auto;
+         border-radius:40px; background:#B7B2A9; border:1px solid var(--hair);
+         box-shadow:0 20px 52px rgba(36,35,33,.13); overflow:hidden}
+  .scene{position:absolute; inset:0;
+         background:radial-gradient(120% 90% at 68% 0%, rgba(244,242,238,.14) 0%, rgba(244,242,238,.06) 34%, rgba(244,242,238,0) 58%), linear-gradient(180deg,#BDB6AC 0%,#AAA399 48%,#8E877D 100%)}
+  .scene::after{content:""; position:absolute; inset:0; box-shadow:inset 0 0 38px rgba(36,35,33,.10); pointer-events:none}
+  .top{position:absolute; top:22px; left:22px; right:22px; display:flex; justify-content:space-between; align-items:center}
+  .slots{display:flex; gap:9px}
+  .slots i{width:8px; height:8px; border-radius:50%; background:rgba(248,247,244,.92); box-shadow:0 1px 2px rgba(36,35,33,.16)}
+  .slots i.off{background:rgba(248,247,244,.34); box-shadow:none}
+  .flip{width:34px;height:34px;border-radius:50%;background:rgba(36,35,33,.24);border:1px solid rgba(248,247,244,.18);display:flex;align-items:center;justify-content:center}
+  .flip svg{width:17px;height:17px;stroke:rgba(248,247,244,.92);fill:none;stroke-width:2}
+  .rec{position:absolute; bottom:34px; left:50%; transform:translateX(-50%)}
+  .rec svg{display:block; filter:drop-shadow(0 3px 10px rgba(36,35,33,.14))}
+  .see{position:absolute; bottom:46px; left:32px; width:18px; height:30px; border-radius:5px; background:rgba(248,247,244,.90);
+       display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(36,35,33,.10)}
+  .see::after{content:""; border-left:7px solid rgba(36,35,33,.78); border-top:5px solid transparent; border-bottom:5px solid transparent; margin-left:2px}
+  /* mock内の薄いグリッド＋水平器 */
+  .gl{position:absolute; background:rgba(255,255,255,.15)}
+  .gl.v1{left:33.33%; top:0; bottom:0; width:1px}
+  .gl.v2{left:66.66%; top:0; bottom:0; width:1px}
+  .gl.h1{top:33.33%; left:0; right:0; height:1px}
+  .gl.h2{top:66.66%; left:0; right:0; height:1px}
+  .lvl{position:absolute; left:50%; top:50%; width:34px; height:1.5px; border-radius:1px; background:rgba(255,255,255,.6); transform:translate(-50%,-50%)}
+
+  /* idea */
+  .idea{text-align:center; background:var(--surface); padding:112px 0}
+  .idea .big{font-size:32px; font-weight:700; line-height:1.48; letter-spacing:.02em}
+  .idea .big span{color:var(--muted)}
+  .idea p{max-width:30em; margin:30px auto 0; color:#3a3833; font-size:16px}
+
+  /* steps */
+  #how{padding:150px 0}
+  h2{font-size:14px; letter-spacing:.16em; color:var(--muted); text-align:center; margin-bottom:68px; font-weight:700}
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:48px}
+  .step{text-align:center}
+  .step .ic{width:64px;height:64px;border-radius:50%;border:1.5px solid var(--hair);
+            display:flex;align-items:center;justify-content:center;margin:0 auto 30px}
+  .step .ic svg{width:26px;height:26px;stroke:var(--ink);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .step h3{font-size:18px; font-weight:700; margin-bottom:14px}
+  .step p{color:#5f5b54; font-size:14.5px; line-height:1.9}
+
+  /* quiet features */
+  .feat{background:var(--surface); text-align:center; padding:112px 0}
+  .feat .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:48px 56px; max-width:720px; margin:0 auto}
+  .f h3{font-size:17px; font-weight:700; margin-bottom:4px}
+  .f p{color:#5f5b54; font-size:14.5px}
+
+  /* closing */
+  .closing{text-align:center; padding:120px 0}
+  .closing .t{font-size:32px; font-weight:700; margin-bottom:10px}
+  .closing .s{color:var(--muted); margin-bottom:32px}
+
+  footer{border-top:1px solid var(--hair); padding:38px 0; color:var(--muted); font-size:13.5px}
+  .fnav{display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:16px}
+  footer a{color:var(--muted); text-decoration:none; white-space:nowrap}
+  footer a:hover{color:var(--ink)}
+
+  @media(max-width:760px){
+    section{padding:88px 0}
+    #how{padding:112px 0}
+    .hero{padding-top:42px; padding-bottom:96px}
+    .lead{margin:0 auto 30px}
+    .cta-note{margin-top:12px}
+    .hero > div:last-child{margin-top:52px}
+    h1{font-size:36px; margin-bottom:22px}
+    .idea .big{font-size:24px}
+    .steps{grid-template-columns:1fr; gap:60px}
+    .feat .grid{grid-template-columns:1fr; gap:42px}
+    .phone{width:210px; height:430px; border-radius:36px; box-shadow:0 16px 38px rgba(36,35,33,.11)}
+    .wrap{padding:0 24px}
+    .closing .t{font-size:26px}
+    .nav a:first-of-type{display:none}
+  }
+.budoux-target{word-break:keep-all; overflow-wrap:anywhere}
+.budoux-target a,.budoux-target code,.budoux-target time{white-space:nowrap}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand"><span class="logo"><i></i><i></i><i></i><i></i><i></i></span><span class="jp">いつつ</span><span class="en">Itsutsu</span></div>
+    <nav>
+      <a href="itsutsu-guide.html"><span class="jp">使い方</span><span class="en">Guide</span></a>
+      <a href="itsutsu-about.html">About</a>
+      <a href="itsutsu-support.html"><span class="jp">サポート</span><span class="en">Support</span></a>
+      <button type="button" class="lang-toggle">EN</button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero wrap">
+  <div>
+    <p class="kicker"><span class="jp">ITSUTSU — 動画日記</span><span class="en">ITSUTSU — Video Diary</span></p>
+    <h1><span class="jp"><span class="nb">今日を、</span><span class="nb">5つだけ。</span></span><span class="en">Today, in five.</span></h1>
+    <p class="lead jp">1日に5回、各2秒。撮りためた今日の断片が、夜にそっと1本の動画になる。文字のない、優しいモノクロのカメラ。</p>
+    <p class="lead en">Five times a day, two seconds each. The fragments you gather become one quiet film by nightfall. A text-free, gentle monochrome camera.</p>
+    <a class="cta" href="#"><span>App Store</span><small><span class="jp">近日公開</span><span class="en">Coming soon</span></small></a>
+    <span class="cta-note jp">まずは身内テストから。公開までもう少しお待ちください。</span>
+    <span class="cta-note en">Starting with a small private test. Please hang on a little longer until release.</span>
+  </div>
+  <div>
+    <div class="phone" aria-label="アプリの撮影画面">
+      <div class="scene">
+        <span class="gl v1"></span><span class="gl v2"></span>
+        <span class="gl h1"></span><span class="gl h2"></span>
+        <span class="lvl"></span>
+      </div>
+      <div class="top">
+        <div class="slots"><i></i><i></i><i class="off"></i><i class="off"></i><i class="off"></i></div>
+        <div class="flip"><svg viewBox="0 0 24 24"><path d="M4 9a8 8 0 0 1 14-3l2 2"/><path d="M20 4v4h-4"/><path d="M20 15a8 8 0 0 1-14 3l-2-2"/><path d="M4 20v-4h4"/></svg></div>
+      </div>
+      <div class="rec">
+        <svg width="66" height="66" viewBox="0 0 66 66">
+          <circle cx="33" cy="33" r="29" fill="none" stroke="rgba(248,247,244,.42)" stroke-width="4"/>
+          <circle cx="33" cy="33" r="29" fill="none" stroke="rgba(248,247,244,.94)" stroke-width="4" stroke-linecap="round" stroke-dasharray="182" stroke-dashoffset="70" transform="rotate(-90 33 33)"/>
+          <circle cx="33" cy="33" r="21" fill="rgba(248,247,244,.92)"/>
+        </svg>
+      </div>
+      <div class="see"></div>
+    </div>
+  </div>
+</section>
+
+<section class="idea">
+  <div class="wrap">
+    <p class="big"><span class="jp">2秒 <span>×</span> 5回 <span>＝</span> 今日。</span><span class="en">2 sec <span>×</span> 5 <span>=</span> a day.</span></p>
+    <p class="jp">長く撮ると「ちゃんと撮ろう」になる。2秒なら、生活の一瞬をそっと拾うだけ。1本でも今日になり、5つで満ちる。ノルマではなく、今日を入れるための小さな器です。</p>
+    <p class="en">Record for long and you start “trying to get it right.” Two seconds just lets you pick up a moment of daily life. One clip already makes a day; five fill it. Not a quota — a small vessel to hold today.</p>
+  </div>
+</section>
+
+<section id="how" class="wrap">
+  <h2>HOW IT WORKS</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/></svg></div>
+      <h3><span class="jp">撮る</span><span class="en">Capture</span></h3>
+      <p class="jp">開くとすぐカメラ。丸をタップして、今を2秒だけ。</p>
+      <p class="en">Camera opens instantly. Tap the circle — just two seconds of now.</p>
+    </div>
+    <div class="step">
+      <div class="ic"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 12h3M14 12h3"/></svg></div>
+      <h3><span class="jp">つながる</span><span class="en">Connect</span></h3>
+      <p class="jp">撮った分が、時間の順に自動で1本に。編集はいりません。</p>
+      <p class="en">What you shot joins into one, in time order. No editing needed.</p>
+    </div>
+    <div class="step">
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="7" y="3.5" width="10" height="17" rx="2.5"/><path d="M10.5 12l3.2 0M12 10.5l0 3"/></svg></div>
+      <h3><span class="jp">受け取る</span><span class="en">Receive</span></h3>
+      <p class="jp">夜、今日を10秒で振り返る。写真アプリに保存して手元に。</p>
+      <p class="en">At night, look back on today in ten seconds. Save it to Photos and keep it.</p>
+    </div>
+  </div>
+</section>
+
+<section id="why" class="feat">
+  <div class="wrap">
+    <h2>QUIET BY DESIGN</h2>
+    <div class="grid">
+      <div class="f"><h3><span class="jp">あなただけのもの</span><span class="en">Yours alone</span></h3><p class="jp">SNSも共有機能もありません。動画は端末の中だけ。誰にも見せなくていい。</p><p class="en">No social, no sharing. Videos stay on your device. You never have to show anyone.</p></div>
+      <div class="f"><h3><span class="jp">文字のいらない操作</span><span class="en">No words needed</span></h3><p class="jp">点とリングと余白で伝える。説明を読まなくても、触れば分かる。</p><p class="en">Dots, rings, and space do the talking. Touch it and you’ll know — no manual.</p></div>
+      <div class="f"><h3><span class="jp">優しいモノクロ</span><span class="en">Gentle monochrome</span></h3><p class="jp">はっきりした白黒ではなく、紙と墨のような温かい中立色。静かな世界観。</p><p class="en">Not stark black-and-white, but the warm neutrals of paper and ink. A quiet world.</p></div>
+      <div class="f"><h3><span class="jp">記録は、本来の色で</span><span class="en">Records, in true color</span></h3><p class="jp">UIはモノクロでも、残る動画はそのままの色。今日の記憶を均しません。</p><p class="en">The UI is monochrome, but your videos keep their real colors. We won’t flatten today’s memories.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="closing wrap">
+  <p class="t"><span class="jp"><span class="nb">今日を、</span><span class="nb">5つだけ。</span></span><span class="en">Today, in five.</span></p>
+  <p class="s"><span class="jp">夜、今日が10秒になる。そんな静かな習慣を。</span><span class="en">At night, today becomes ten seconds. A quiet little habit.</span></p>
+  <a class="cta" href="#"><span>App Store</span><small><span class="jp">近日公開</span><span class="en">Coming soon</span></small></a>
+</section>
+
+<footer>
+  <div class="wrap fnav">
+    <div class="brand"><span class="logo"><i></i><i></i><i></i><i></i><i></i></span><span class="jp">いつつ</span><span class="en">Itsutsu</span></div>
+    <div>
+      <a href="itsutsu-guide.html"><span class="jp">使い方</span><span class="en">Guide</span></a> ・
+      <a href="itsutsu-about.html">About</a> ・
+      <a href="itsutsu-news.html"><span class="jp">更新履歴</span><span class="en">News</span></a> ・
+      <a href="itsutsu-support.html"><span class="jp">サポート</span><span class="en">Support</span></a> ・
+      <a href="itsutsu-privacy.html"><span class="jp">プライバシー</span><span class="en">Privacy</span></a>
+    </div>
+    <div>© 2026 Tsumiki Inc.</div>
+  </div>
+</footer>
+
+<script src="itsutsu-lang.js"></script>
+<script type="module" src="itsutsu-budoux.js"></script>
+<!-- tsumiki-back-button -->
+<style>
+  #tsumikiEdge{position:fixed; top:0; bottom:0; left:0; width:22px; z-index:999;}
+  #tsumikiPeek{
+    position:fixed; top:50%; left:0; z-index:1001; margin-top:-23px;
+    width:46px; height:46px; display:flex; align-items:center; justify-content:center;
+    background:rgba(255,255,255,.92);
+    -webkit-backdrop-filter:saturate(180%) blur(14px); backdrop-filter:saturate(180%) blur(14px);
+    border:1px solid rgba(0,0,0,.06); border-radius:50%;
+    box-shadow:0 6px 20px rgba(0,0,0,.18);
+    color:#0071e3; font-size:24px; font-weight:600; line-height:1;
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Helvetica Neue",Arial,sans-serif;
+    transform:translateX(-70px) scale(.8); opacity:0; pointer-events:none;
+  }
+</style>
+<div id="tsumikiEdge"></div>
+<div id="tsumikiPeek">‹</div>
+<script>
+  (function(){
+    var standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches)
+      || window.navigator.standalone === true;
+    var fromTsumiki = false;
+    try{
+      if(document.referrer){
+        var r = new URL(document.referrer);
+        fromTsumiki = (r.origin === location.origin);
+      }
+    }catch(e){}
+    if(!(standalone && fromTsumiki)) return;
+
+    var peek = document.getElementById('tsumikiPeek');
+    var edge = document.getElementById('tsumikiEdge');
+
+    function goBack(){ location.href = 'index.html'; }
+
+    /* --- 左端エッジスワイプで戻る（iOS純正の戻る操作。見えるボタンは置かない） --- */
+    var sx=0, sy=0, prog=0, dragging=false, W=window.innerWidth;
+    var TRIGGER = Math.min(120, W*0.32);
+    window.addEventListener('resize', function(){ W=window.innerWidth; TRIGGER=Math.min(120, W*0.32); });
+
+    function reset(){
+      dragging = false; prog = 0;
+      peek.style.transition = 'transform .25s ease, opacity .25s ease';
+      peek.style.transform = 'translateX(-70px) scale(.8)';
+      peek.style.opacity = 0;
+    }
+    function start(e){
+      var t = e.touches ? e.touches[0] : e;
+      if(t.clientX > 26) return;
+      sx = t.clientX; sy = t.clientY; prog = 0; dragging = true;
+      peek.style.transition = 'none';
+    }
+    function move(e){
+      if(!dragging) return;
+      var t = e.touches ? e.touches[0] : e;
+      var dx = t.clientX - sx, dy = t.clientY - sy;
+      if(Math.abs(dy) > Math.abs(dx) + 12){ reset(); return; }
+      if(dx < 0) dx = 0;
+      prog = Math.min(dx / TRIGGER, 1);
+      peek.style.transform = 'translateX(' + (-70 + prog*82) + 'px) scale(' + (0.8 + prog*0.2) + ')';
+      peek.style.opacity = prog;
+      if(dx > 6 && e.cancelable) e.preventDefault();
+    }
+    function end(){
+      if(!dragging) return;
+      dragging = false;
+      if(prog >= 0.999){
+        peek.style.transition = 'transform .25s ease, opacity .25s ease';
+        peek.style.transform = 'translateX(20px) scale(1.05)';
+        peek.style.opacity = 1;
+        goBack();
+      }else{
+        reset();
+      }
+    }
+    edge.addEventListener('touchstart', start, {passive:true});
+    window.addEventListener('touchmove', move, {passive:false});
+    window.addEventListener('touchend', end, {passive:true});
+    window.addEventListener('touchcancel', end, {passive:true});
+  })();
+</script>
+<!-- /tsumiki-back-button -->
+</body>
+</html>

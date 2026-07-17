@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="robots" content="noindex, nofollow">
+<title>つみき（Tsumiki） — 業務の“ちょっと困った”を、専用アプリで解く</title>
+<meta name="description" content="毎日の打ち直し、散らばった情報、報告書づくり。いまの業務のやり方を変えずに解ける専用アプリを、ヒアリングから納品までお作りします。初回ヒアリングとお見積りは無料です。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=36">
+</head>
+<body>
+
+<!-- 線画アイコンのスプライト（currentColor で墨／淡墨を出し分け。use で使い回す） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="ico-listen" viewBox="0 0 40 40">
+    <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 7h24a4 4 0 0 1 4 4v13a4 4 0 0 1-4 4H19l-8 6v-6H8a4 4 0 0 1-4-4V11a4 4 0 0 1 4-4z"/>
+    </g>
+    <g fill="currentColor"><circle cx="14" cy="18" r="1.7"/><circle cx="20" cy="18" r="1.7"/><circle cx="26" cy="18" r="1.7"/></g>
+  </symbol>
+  <symbol id="ico-find" viewBox="0 0 40 40">
+    <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="17" cy="17" r="11"/><path d="M25 25l10 10"/><path d="M17 12v6m0 3.5v.5"/>
+    </g>
+  </symbol>
+  <symbol id="ico-build" viewBox="0 0 40 40">
+    <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="4" y="26" width="14" height="9" rx="2"/><rect x="22" y="26" width="14" height="9" rx="2"/>
+      <rect x="13" y="15" width="14" height="9" rx="2"/><rect x="13" y="4" width="14" height="9" rx="2"/>
+    </g>
+  </symbol>
+  <symbol id="ico-deliver" viewBox="0 0 40 40">
+    <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="6" y="11" width="28" height="22" rx="3"/><path d="M6 19h28"/><path d="M14 26l4 4 8-8"/>
+    </g>
+  </symbol>
+  <symbol id="ico-retype" viewBox="0 0 40 40">
+    <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="10" width="13" height="19" rx="2"/><rect x="25" y="10" width="13" height="19" rx="2"/>
+      <path d="M2 16h13M25 16h13" opacity=".45"/><path d="M17 19h6m0 0l-2.5-2.5M23 19l-2.5 2.5"/>
+    </g>
+  </symbol>
+  <symbol id="ico-scatter" viewBox="0 0 40 40">
+    <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="5" width="12" height="15" rx="2" transform="rotate(-9 9 12.5)"/>
+      <rect x="23" y="9" width="12" height="15" rx="2" transform="rotate(11 29 16.5)"/>
+      <rect x="12" y="22" width="12" height="15" rx="2" transform="rotate(-4 18 29.5)"/>
+    </g>
+  </symbol>
+  <symbol id="ico-hourglass" viewBox="0 0 40 40">
+    <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M11 5h18M11 35h18"/>
+      <path d="M13.5 5v6c0 4 6.5 6 6.5 9s-6.5 5-6.5 9v6"/>
+      <path d="M26.5 5v6c0 4-6.5 6-6.5 9s6.5 5 6.5 9v6"/>
+    </g>
+  </symbol>
+  <symbol id="ico-personlock" viewBox="0 0 40 40">
+    <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="14" cy="12" r="5.5"/><path d="M4 31c0-5.5 4.5-10 10-10s10 4.5 10 10"/>
+      <rect x="25" y="23" width="12" height="10" rx="2"/><path d="M27.5 23v-3a3.5 3.5 0 0 1 7 0v3"/>
+    </g>
+  </symbol>
+  <symbol id="ico-price" viewBox="0 0 40 40">
+    <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 4h11a3 3 0 0 1 3 3v11a3 3 0 0 1-.9 2.1L20.2 34.1a3 3 0 0 1-4.2 0L4.9 23a3 3 0 0 1 0-4.2L18.9 4.9A3 3 0 0 1 21 4z"/>
+      <circle cx="28.5" cy="11.5" r="2.6"/>
+    </g>
+  </symbol>
+  <symbol id="ico-handover" viewBox="0 0 40 40">
+    <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="8" width="17" height="24" rx="2.5"/>
+      <path d="M7.5 15h8M7.5 20h8M7.5 25h5"/>
+      <path d="M25 20h11m-4-4l4 4-4 4"/>
+    </g>
+  </symbol>
+  <symbol id="ico-blocks-bad" viewBox="0 0 40 40">
+    <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="27" width="14" height="9" rx="2"/><rect x="23" y="27" width="14" height="9" rx="2"/>
+      <g transform="rotate(-16 20 17)"><rect x="13" y="13" width="14" height="9" rx="2"/></g>
+      <path d="M18.5 27.5v-2M21.5 27.5v-2" opacity=".5"/>
+    </g>
+  </symbol>
+  <symbol id="ico-blocks-good" viewBox="0 0 40 40">
+    <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="27" width="14" height="9" rx="2"/><rect x="23" y="27" width="14" height="9" rx="2"/>
+      <rect x="13" y="16" width="14" height="9" rx="2"/><rect x="13" y="5" width="14" height="9" rx="2"/>
+    </g>
+  </symbol>
+</svg>
+
+<!-- 墨の流体（全画面固定の背景） -->
+<canvas id="inkFluid" class="ink-fluid" aria-hidden="true"></canvas>
+
+<!-- 常時のトップバー（入口では隠す） -->
+<header class="topbar" id="topbar">
+  <button class="tb-back" type="button" data-back aria-label="戻る">‹</button>
+  <a class="tb-brand" data-go="intro" href="#" aria-label="Tsumiki ホーム">
+    <span>Tsumiki</span>
+  </a>
+</header>
+
+<main id="stage">
+
+  <!-- 画面1：Tsumiki の文字だけ -->
+  <section class="screen is-active" id="s-intro" data-screen="intro">
+    <h1 class="wordmark">Tsumiki</h1>
+    <button class="scrollcue" data-go="brand" aria-label="次へ">
+      <span class="sc-text">SCROLL</span>
+      <span class="sc-line"></span>
+    </button>
+  </section>
+
+  <!-- 画面2：墨が画面全体を覆い、同じ位置の文字が白に反転する -->
+  <section class="screen" id="s-brand" data-screen="brand">
+    <h1 class="wordmark on-ink">Tsumiki</h1>
+    <button class="scrollcue on-ink" data-go="menu" aria-label="メニューへ">
+      <span class="sc-text">SCROLL</span>
+      <span class="sc-line"></span>
+    </button>
+  </section>
+
+  <!-- メニュー（3親カテゴリー＋分岐アコーディオン） -->
+  <section class="screen" id="s-menu" data-screen="menu">
+    <nav class="menu-list">
+
+      <!-- 親①：サービス -->
+      <div class="menu-group" data-group="service">
+        <button class="menu-item is-parent" type="button" data-acc="service" aria-expanded="false">
+          <span class="mi-jp">サービス</span><span class="mi-en">SERVICE</span><span class="mi-ar">→</span>
+        </button>
+        <div class="submenu">
+          <a class="sub-item" data-go="value" href="#"><span class="su-jp">提供価値</span><span class="su-en">VALUE</span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="issues" href="#"><span class="su-jp">こんな課題ありませんか？</span><span class="su-en">ISSUES</span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="process" href="#"><span class="su-jp">進め方／制作フロー</span><span class="su-en">PROCESS</span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="pricing" href="#"><span class="su-jp">料金・進行イメージ</span><span class="su-en">PRICING</span><span class="su-ar">→</span></a>
+        </div>
+      </div>
+
+      <!-- 親②：実績 -->
+      <div class="menu-group" data-group="works">
+        <button class="menu-item is-parent" type="button" data-acc="works" aria-expanded="false">
+          <span class="mi-jp">実績</span><span class="mi-en">WORKS</span><span class="mi-ar">→</span>
+        </button>
+        <div class="submenu">
+          <a class="sub-item" data-go="flagship" href="#"><span class="su-jp">看板プロダクト</span><span class="su-en">FLAGSHIP</span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="collection" href="#"><span class="su-jp">コレクション</span><span class="su-en">COLLECTION</span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="voice" href="#"><span class="su-jp">お客様の声</span><span class="su-en">VOICE</span><span class="su-ar">→</span></a>
+        </div>
+      </div>
+
+      <!-- 親③：お問い合わせ -->
+      <div class="menu-group" data-group="contact">
+        <button class="menu-item is-parent" type="button" data-acc="contact" aria-expanded="false">
+          <span class="mi-jp">お問い合わせ</span><span class="mi-en">CONTACT</span><span class="mi-ar">→</span>
+        </button>
+        <div class="submenu">
+          <a class="sub-item" data-go="profile" href="#"><span class="su-jp">プロフィール</span><span class="su-en">PROFILE</span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="hearing" href="#"><span class="su-jp">無料ヒアリング申込</span><span class="su-en">CONTACT</span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="privacy" href="#"><span class="su-jp">プライバシーポリシー</span><span class="su-en">PRIVACY</span><span class="su-ar">→</span></a>
+        </div>
+      </div>
+
+    </nav>
+
+    <!-- メニュー直下のCTA（3カテゴリーを開かなくても申し込める導線） -->
+    <div class="menu-cta-wrap">
+      <a class="menu-cta" data-go="hearing" href="#">
+        <span class="mc-jp">無料ヒアリング申込</span>
+        <span class="mc-ar">→</span>
+      </a>
+    </div>
+
+    <p class="menu-foot">© 2026 つみき</p>
+  </section>
+
+  <!-- かんばん（索引：2枚のカードから各詳細へ） -->
+  <section class="screen sheet" id="s-flagship" data-screen="flagship">
+    <div class="sheet-inner">
+      <p class="sheet-label"><span class="sl-jp">看板プロダクト</span><span class="sl-en">FLAGSHIP</span></p>
+      <p class="sheet-lead">つみきが自社で開発・運営している、2つのiOSアプリ。カードをタップすると、それぞれの詳しい紹介が開きます。</p>
+      <div class="flagship">
+        <a class="flag-card" data-go="flagship-itsutsu" href="#">
+          <img class="flag-icon" src="assets/icon-itsutsu.png" alt="いつつ アイコン" width="132" height="132" loading="lazy">
+          <div class="flag-body">
+            <div class="flag-name">いつつ</div>
+            <div class="flag-catch">今日を、5つだけ。</div>
+            <p class="flag-desc">1日に5回、各2秒。撮りためた今日の断片が、夜にそっと1本の動画になる。文字のない、やさしいモノクロの動画日記。</p>
+            <span class="flag-tag">iOSアプリ ／ 動画日記</span>
+          </div>
+          <span class="flag-ar" aria-hidden="true">→</span>
+        </a>
+        <a class="flag-card" data-go="flagship-koegaki" href="#">
+          <img class="flag-icon" src="assets/icon-koegaki.png" alt="こえがき アイコン" width="132" height="132" loading="lazy">
+          <div class="flag-body">
+            <div class="flag-name">こえがき</div>
+            <div class="flag-catch">話す、タイプしない。</div>
+            <p class="flag-desc">どのアプリでも、キーボードのマイクに話すだけ。AIがフィラーを消し、句読点を整えて、そのまま使える文章に。音声はぜんぶ端末の中で。</p>
+            <span class="flag-tag">iOSキーボード ／ 音声入力</span>
+          </div>
+          <span class="flag-ar" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 看板詳細：いつつ（App Store 風の大きな紹介ページ） -->
+  <section class="screen sheet" id="s-flagship-itsutsu" data-screen="flagship-itsutsu">
+    <div class="sheet-inner">
+      <div class="as-head">
+        <img class="as-icon" src="assets/icon-itsutsu.png" alt="いつつ アイコン" width="112" height="112">
+        <div class="as-headmeta">
+          <div class="as-name">いつつ</div>
+          <div class="as-sub">動画日記 ／ Itsutsu</div>
+          <div class="as-headrow">
+            <span class="as-badge">App Store 近日公開</span>
+            <a class="as-lp" href="itsutsu.html">紹介ページ<span class="as-lp-ar">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="as-metrics">
+        <div class="as-metric"><span class="am-k">価格</span><span class="am-v">無料</span><span class="am-cap">v1.0</span></div>
+        <div class="as-metric"><span class="am-k">対応</span><span class="am-v">iOS 18+</span><span class="am-cap">iPhone</span></div>
+        <div class="as-metric"><span class="am-k">カテゴリ</span><span class="am-v">写真/ビデオ</span><span class="am-cap">動画日記</span></div>
+        <div class="as-metric"><span class="am-k">プライバシー</span><span class="am-v">収集なし</span><span class="am-cap">Data Not Collected</span></div>
+        <div class="as-metric"><span class="am-k">開発</span><span class="am-v">つみき</span><span class="am-cap">自社</span></div>
+      </div>
+
+      <p class="as-h">プレビュー<span class="as-h-en">PREVIEW</span></p>
+      <div class="as-shots">
+        <figure class="as-shot">
+          <div class="pv pv-cam" aria-hidden="true">
+            <svg class="pv-scene" viewBox="0 0 120 260" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="sc-cf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F6E7D2"/><stop offset="1" stop-color="#E3C4A2"/></linearGradient></defs><rect width="120" height="260" fill="url(#sc-cf)"/><rect x="10" y="14" width="100" height="64" rx="8" fill="#FCF4E7" opacity=".6"/><rect y="176" width="120" height="84" fill="#CDA679"/><ellipse cx="60" cy="178" rx="40" ry="9" fill="#BE9569"/><path d="M50 118c-2-6 3-8 1-14M64 118c-2-6 3-8 1-14" stroke="#fff" stroke-width="2.4" fill="none" opacity=".7" stroke-linecap="round"/><rect x="40" y="130" width="40" height="40" rx="9" fill="#FBF7F1"/><path d="M80 139c11 1 11 16 0 17" stroke="#FBF7F1" stroke-width="5" fill="none"/><ellipse cx="60" cy="132" rx="19" ry="5.5" fill="#6E4A2C"/></svg>
+            <span class="pv-scrim"></span>
+            <div class="pv-top">
+              <div class="pv-slots"><i></i><i></i><i></i><i></i><i></i></div>
+              <span class="pv-glyph pv-flip"><svg viewBox="0 0 24 24"><path d="M4 10a8 8 0 0 1 13.5-3.5L20 9"/><path d="M20 4v5h-5"/><path d="M20 14a8 8 0 0 1-13.5 3.5L4 15"/><path d="M4 20v-5h5"/></svg></span>
+            </div>
+            <div class="pv-rec"></div>
+          </div>
+          <figcaption>今を、2秒だけ撮る</figcaption>
+        </figure>
+        <figure class="as-shot">
+          <div class="pv pv-cam" aria-hidden="true">
+            <svg class="pv-scene" viewBox="0 0 120 260" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="sc-sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#AFD2E6"/><stop offset="1" stop-color="#E7EFF1"/></linearGradient></defs><rect width="120" height="260" fill="url(#sc-sk)"/><circle cx="90" cy="50" r="20" fill="#F5DE97"/><ellipse cx="32" cy="66" rx="22" ry="9" fill="#fff" opacity=".8"/><ellipse cx="52" cy="62" rx="15" ry="7" fill="#fff" opacity=".7"/><path d="M0 198q40-40 70-13t50 5v70H0z" fill="#A7C088"/><path d="M0 224q46-22 120-5v41H0z" fill="#8BA76C"/></svg>
+            <span class="pv-scrim"></span>
+            <div class="pv-top">
+              <div class="pv-slots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+              <span class="pv-glyph pv-flip"><svg viewBox="0 0 24 24"><path d="M4 10a8 8 0 0 1 13.5-3.5L20 9"/><path d="M20 4v5h-5"/><path d="M20 14a8 8 0 0 1-13.5 3.5L4 15"/><path d="M4 20v-5h5"/></svg></span>
+            </div>
+            <div class="pv-rec is-rec"></div>
+            <span class="pv-see"><b></b></span>
+          </div>
+          <figcaption>5つで、今日が満ちる</figcaption>
+        </figure>
+        <figure class="as-shot">
+          <div class="pv pv-day" aria-hidden="true">
+            <div class="pv-film">
+              <svg class="pv-scene" viewBox="0 0 120 260" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="sc-ss1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4B678"/><stop offset=".5" stop-color="#E98D86"/><stop offset="1" stop-color="#8E6E9E"/></linearGradient></defs><rect width="120" height="260" fill="url(#sc-ss1)"/><circle cx="60" cy="150" r="26" fill="#F8CE7E"/><rect y="176" width="120" height="84" fill="#6E5678" opacity=".5"/></svg>
+              <span class="pv-filmscrim"></span>
+              <span class="pv-time">18:42</span>
+            </div>
+            <div class="pv-daytop">
+              <span class="pv-glyph"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span>
+              <span class="pv-glyph"><svg viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="11" rx="2"/><path d="M8 8V6h11v9"/></svg></span>
+            </div>
+            <span class="pv-glyph pv-check"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+          </div>
+          <figcaption>夜、10秒の今日に</figcaption>
+        </figure>
+        <figure class="as-shot">
+          <div class="pv pv-day pv-saved" aria-hidden="true">
+            <div class="pv-film">
+              <svg class="pv-scene" viewBox="0 0 120 260" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="sc-ss2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4B678"/><stop offset=".5" stop-color="#E98D86"/><stop offset="1" stop-color="#8E6E9E"/></linearGradient></defs><rect width="120" height="260" fill="url(#sc-ss2)"/><circle cx="60" cy="150" r="26" fill="#F8CE7E"/><rect y="176" width="120" height="84" fill="#6E5678" opacity=".5"/></svg>
+              <span class="pv-filmscrim"></span>
+            </div>
+            <div class="pv-savebadge"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>写真に保存</div>
+          </div>
+          <figcaption>写真に、そのまま保存</figcaption>
+        </figure>
+      </div>
+      <p class="note">映像は色そのまま、操作するUIはモノクロ。開発コードの配色・レイアウトに合わせた再現イメージです（実機スクリーンショットは公開時に差し替え）。</p>
+
+      <p class="as-h">紹介<span class="as-h-en">ABOUT</span></p>
+      <p class="as-about">長く撮ると「ちゃんと撮ろう」になる。2秒なら、生活の一瞬をそっと拾うだけ。1本でも今日になり、5つで満ちる。ノルマではなく、今日を入れるための小さな器です。<br><br>夜、撮った分が時刻順に自動で1本（最大10秒）につながります。編集はいりません。できあがった“今日”は写真アプリに保存して、手元に残せます。</p>
+
+      <p class="as-h">つかいかた<span class="as-h-en">HOW IT WORKS</span></p>
+      <ol class="as-how">
+        <li><span class="ah-no">01</span><div><p class="ah-t">撮る</p><p class="ah-d">開くとすぐカメラ。丸をタップして、今を2秒だけ。</p></div></li>
+        <li><span class="ah-no">02</span><div><p class="ah-t">つながる</p><p class="ah-d">撮った分が、時間の順に自動で1本に。編集はいりません。</p></div></li>
+        <li><span class="ah-no">03</span><div><p class="ah-t">受け取る</p><p class="ah-d">夜、今日を10秒で振り返る。写真アプリに保存して手元に。</p></div></li>
+      </ol>
+
+      <p class="as-h">静けさの設計<span class="as-h-en">QUIET BY DESIGN</span></p>
+      <div class="as-feats">
+        <div class="as-feat"><p class="af-t">あなただけのもの</p><p class="af-d">SNSも共有機能もありません。動画は端末の中だけ。誰にも見せなくていい。</p></div>
+        <div class="as-feat"><p class="af-t">文字のいらない操作</p><p class="af-d">点とリングと余白で伝える。説明を読まなくても、触れば分かる。</p></div>
+        <div class="as-feat"><p class="af-t">優しいモノクロ</p><p class="af-d">はっきりした白黒ではなく、紙と墨のような温かい中立色。静かな世界観。</p></div>
+        <div class="as-feat"><p class="af-t">記録は、本来の色で</p><p class="af-d">UIはモノクロでも、残る動画はそのままの色。今日の記憶を均しません。</p></div>
+      </div>
+
+      <p class="as-h">情報<span class="as-h-en">INFORMATION</span></p>
+      <div class="panel">
+        <div class="dl">
+          <div class="dl-row"><div class="dl-k">開発</div><div class="dl-v">つみき（髙橋 弘大）／ 自社プロダクト</div></div>
+          <div class="dl-row"><div class="dl-k">カテゴリ</div><div class="dl-v">写真／ビデオ（動画日記）</div></div>
+          <div class="dl-row"><div class="dl-k">対応OS</div><div class="dl-v">iOS 18.0 以降（iPhone・縦向き）</div></div>
+          <div class="dl-row"><div class="dl-k">技術</div><div class="dl-v">SwiftUI ＋ AVFoundation（ネイティブ実装）</div></div>
+          <div class="dl-row"><div class="dl-k">価格</div><div class="dl-v"><strong>v1.0 は無料</strong></div></div>
+          <div class="dl-row"><div class="dl-k">プライバシー</div><div class="dl-v"><strong>完全ローカル。</strong>サーバー・アカウント・解析なし。動画は端末の中だけ（Data Not Collected）。</div></div>
+          <div class="dl-row"><div class="dl-k">状態</div><div class="dl-v">身内テスト中 ／ App Store 近日公開</div></div>
+          <div class="dl-row"><div class="dl-k">紹介ページ</div><div class="dl-v"><a href="itsutsu.html">itsutsu.html</a></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 看板詳細：こえがき（App Store 風の大きな紹介ページ） -->
+  <section class="screen sheet" id="s-flagship-koegaki" data-screen="flagship-koegaki">
+    <div class="sheet-inner">
+      <div class="as-head">
+        <img class="as-icon" src="assets/icon-koegaki.png" alt="こえがき アイコン" width="112" height="112">
+        <div class="as-headmeta">
+          <div class="as-name">こえがき</div>
+          <div class="as-sub">音声入力キーボード ／ Koegaki</div>
+          <div class="as-headrow">
+            <span class="as-badge">App Store 近日公開</span>
+            <a class="as-lp" href="koegaki.html">紹介ページ<span class="as-lp-ar">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="as-metrics">
+        <div class="as-metric"><span class="am-k">価格</span><span class="am-v">無料</span><span class="am-cap">月額なし</span></div>
+        <div class="as-metric"><span class="am-k">対応</span><span class="am-v">iOS 18+</span><span class="am-cap">iPhone</span></div>
+        <div class="as-metric"><span class="am-k">カテゴリ</span><span class="am-v">ユーティリティ</span><span class="am-cap">キーボード</span></div>
+        <div class="as-metric"><span class="am-k">動作</span><span class="am-v">端末内</span><span class="am-cap">オフライン可</span></div>
+        <div class="as-metric"><span class="am-k">開発</span><span class="am-v">つみき</span><span class="am-cap">自社</span></div>
+      </div>
+
+      <p class="as-h">プレビュー<span class="as-h-en">PREVIEW</span></p>
+      <div class="as-shots">
+        <figure class="as-shot">
+          <div class="pv pv-kb" aria-hidden="true">
+            <div class="pv-app">
+              <div class="pv-bubble in">明日の集合、何時にする？</div>
+              <div class="pv-bubble out">9時に駅前で。傘も忘れずにね。<i></i></div>
+            </div>
+            <div class="pv-kbd">
+              <div class="pv-mic"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4"/></svg></div>
+              <div class="pv-bar"><span class="k"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.5 2 2.5 14 0 16M12 4c-2.5 2-2.5 14 0 16"/></svg></span><span class="space">空白</span><span class="k"><svg viewBox="0 0 24 24"><path d="M10 6h9a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-9L3 12z"/><path d="M17 9l-5 6M12 9l5 6"/></svg></span></div>
+            </div>
+          </div>
+          <figcaption>どのアプリでも話すだけ</figcaption>
+        </figure>
+        <figure class="as-shot">
+          <div class="pv pv-kb" aria-hidden="true">
+            <div class="pv-app">
+              <div class="pv-bubble in">今日の議事録おねがい！</div>
+              <div class="pv-bubble out is-forming">えー、10時半に変更で…<i></i></div>
+            </div>
+            <div class="pv-kbd">
+              <div class="pv-partial">「えー」を消しています…</div>
+              <div class="pv-mic is-rec"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4"/></svg></div>
+              <div class="pv-bar"><span class="k"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.5 2 2.5 14 0 16M12 4c-2.5 2-2.5 14 0 16"/></svg></span><span class="space">空白</span><span class="k"><svg viewBox="0 0 24 24"><path d="M10 6h9a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-9L3 12z"/><path d="M17 9l-5 6M12 9l5 6"/></svg></span></div>
+            </div>
+          </div>
+          <figcaption>フィラーを消して整える</figcaption>
+        </figure>
+        <figure class="as-shot">
+          <div class="pv pv-dict" aria-hidden="true">
+            <div class="pv-dhead">辞書</div>
+            <div class="pv-drow"><span class="pv-dword"><b class="rom">Koegaki</b><span class="kw">こえがき</span></span><b class="tag t-app">アプリ名</b></div>
+            <div class="pv-drow"><span class="pv-dword"><b class="rom">Tsumiki</b><span class="kw">つみき</span></span><b class="tag t-co">社名</b></div>
+            <div class="pv-drow"><span class="pv-dword"><b class="rom">API</b><span class="kw">えーぴーあい</span></span><b class="tag t-tm">用語</b></div>
+            <div class="pv-drow"><span class="pv-dword"><b class="rom">御中</b><span class="kw">おんちゅう</span></span><b class="tag t-tm">用語</b></div>
+            <div class="pv-dadd">＋ 追加</div>
+          </div>
+          <figcaption>自分の言葉を、辞書に</figcaption>
+        </figure>
+        <figure class="as-shot">
+          <div class="pv pv-kb pv-dark" aria-hidden="true">
+            <div class="pv-app">
+              <div class="pv-bubble in">まだ起きてる？</div>
+              <div class="pv-bubble out">うん、いま帰り道。もうすぐ着くよ。<i></i></div>
+            </div>
+            <div class="pv-kbd">
+              <div class="pv-mic"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4"/></svg></div>
+              <div class="pv-bar"><span class="k"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.5 2 2.5 14 0 16M12 4c-2.5 2-2.5 14 0 16"/></svg></span><span class="space">空白</span><span class="k"><svg viewBox="0 0 24 24"><path d="M10 6h9a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-9L3 12z"/><path d="M17 9l-5 6M12 9l5 6"/></svg></span></div>
+            </div>
+          </div>
+          <figcaption>夜も、ダークモードで</figcaption>
+        </figure>
+      </div>
+      <p class="note">キーボードはモノクロのまま、使うアプリの中で活きます。開発コードの配色・レイアウトに合わせた再現イメージです（実機スクリーンショットは公開時に差し替え）。</p>
+
+      <p class="as-h">紹介<span class="as-h-en">ABOUT</span></p>
+      <p class="as-about">どのアプリでも、キーボードのマイクをタップして話すだけ。AIが「えー」「あのー」を消し、句読点を整えて、そのまま使える文章をカーソルの位置に挿しこみます。<br><br>音声も、AIの整形も、ネットワークには一切出ません。機内モードでも動きます。アカウントも、月額も、いりません。あなたの声は、あなたのiPhoneから出ていかない。</p>
+
+      <p class="as-h">つかいかた<span class="as-h-en">HOW IT WORKS</span></p>
+      <ol class="as-how">
+        <li><span class="ah-no">01</span><div><p class="ah-t">話す</p><p class="ah-d">マイクをタップして、いつもの調子で。言い直しても大丈夫。黙れば、自動で止まります。</p></div></li>
+        <li><span class="ah-no">02</span><div><p class="ah-t">整う</p><p class="ah-d">「えー」「あのー」が消え、句読点が整う。「渋谷、いや新宿」は、ちゃんと「新宿」に。</p></div></li>
+        <li><span class="ah-no">03</span><div><p class="ah-t">挿しこまれる</p><p class="ah-d">元のアプリに戻ると、きれいな文章がカーソルの位置に。トン、という小さな手応えつき。</p></div></li>
+      </ol>
+
+      <p class="as-h">静けさの設計<span class="as-h-en">QUIET BY DESIGN</span></p>
+      <div class="as-feats">
+        <div class="as-feat"><p class="af-t">完全オンデバイス</p><p class="af-d">文字起こしも整形も、端末の中のAIだけで。オフラインでも動きます。</p></div>
+        <div class="as-feat"><p class="af-t">話し言葉のまま</p><p class="af-d">言い回しは変えません。消すのはフィラーだけ。「なんですけど」はそのまま残る。</p></div>
+        <div class="as-feat"><p class="af-t">育てる辞書</p><p class="af-d">人名や専門用語を、あなたの表記で。登録するほど、あなたの文章になっていく。</p></div>
+        <div class="as-feat"><p class="af-t">優しいモノクロ</p><p class="af-d">紙と墨のキーボード。真ん中にマイクがひとつ。それだけ。</p></div>
+      </div>
+
+      <p class="as-h">情報<span class="as-h-en">INFORMATION</span></p>
+      <div class="panel">
+        <div class="dl">
+          <div class="dl-row"><div class="dl-k">開発</div><div class="dl-v">つみき（髙橋 弘大）／ 自社プロダクト</div></div>
+          <div class="dl-row"><div class="dl-k">カテゴリ</div><div class="dl-v">ユーティリティ（カスタムキーボード）</div></div>
+          <div class="dl-row"><div class="dl-k">対応OS</div><div class="dl-v">iOS 18.0 以降（iPhone）。整形AIは Apple Intelligence 対応端末で最良、非対応でも簡易整形に自動切替。</div></div>
+          <div class="dl-row"><div class="dl-k">技術</div><div class="dl-v">SwiftUI ＋ WhisperKit ＋ Foundation Models（完全オンデバイス）</div></div>
+          <div class="dl-row"><div class="dl-k">価格</div><div class="dl-v"><strong>無料。</strong>月額・アカウントなし。</div></div>
+          <div class="dl-row"><div class="dl-k">プライバシー</div><div class="dl-v"><strong>音声も整形も端末の外に出ません。</strong>機内モードでも動作します。</div></div>
+          <div class="dl-row"><div class="dl-k">状態</div><div class="dl-v">身内テスト中 ／ App Store 近日公開</div></div>
+          <div class="dl-row"><div class="dl-k">紹介ページ</div><div class="dl-v"><a href="koegaki.html">koegaki.html</a></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- どうぐばこ（この画面だけ縦スクロール） -->
+  <section class="screen sheet" id="s-collection" data-screen="collection">
+    <div class="sheet-inner">
+      <p class="sheet-label"><span class="sl-jp">コレクション</span><span class="sl-en">COLLECTION</span></p>
+      <p class="sheet-lead">暮らし・仕事・お金。日々の小さな困りごとを解くために作った、単一HTMLの道具たち。</p>
+      <div id="collection"></div>
+    </div>
+  </section>
+
+  <!-- サービス：提供価値 -->
+  <section class="screen sheet" id="s-value" data-screen="value">
+    <div class="sheet-inner">
+      <p class="sheet-label"><span class="sl-jp">提供価値</span><span class="sl-en">VALUE</span></p>
+
+      <p class="vp">あなたの会社の業務を<span class="hl">1〜2時間じっくり伺って</span>、その会社だけのAIアプリを作ります。</p>
+      <p class="vp-sub">既製のツールに仕事を合わせるのではなく、いまの仕事のやり方に、道具の方を合わせる。だから、やり方を変えずに、そのまま使えます。</p>
+
+      <p class="h3">3つのお約束<span class="h3-en">OUR PROMISES</span></p>
+      <div class="promises">
+        <div class="promise">
+          <svg class="ico" aria-hidden="true"><use href="#ico-blocks-good"/></svg>
+          <div>
+            <p class="pr-ttl">道具のほうを、仕事に合わせます</p>
+            <p class="pr-desc">いまのやり方を変えていただく必要はありません。御社の手順に合わせて作ります。</p>
+          </div>
+        </div>
+        <div class="promise">
+          <svg class="ico" aria-hidden="true"><use href="#ico-price"/></svg>
+          <div>
+            <p class="pr-ttl">着手後、金額は変わりません</p>
+            <p class="pr-desc">ご納得いただいた金額で着手し、後から増えることはありません。ヒアリングもお見積りも無料です。</p>
+          </div>
+        </div>
+        <div class="promise">
+          <svg class="ico" aria-hidden="true"><use href="#ico-handover"/></svg>
+          <div>
+            <p class="pr-ttl">作ったものは、御社のものです</p>
+            <p class="pr-desc">ソースコードをお渡しし、著作権も御社に譲渡します。<strong>他の会社でも引き継げます。</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <p class="h3">既製のAIツールに、仕事を合わせていませんか<span class="h3-en">WHY MADE-TO-ORDER</span></p>
+      <div class="vs">
+        <div class="vs-card">
+          <div class="vs-head">
+            <svg class="ico is-lg is-soft" aria-hidden="true"><use href="#ico-blocks-bad"/></svg>
+            <p class="vs-ttl">既製のAIツール</p>
+          </div>
+          <ul class="vs-list">
+            <li>機能は多いのに、自社の手順には合わない</li>
+            <li>使わない機能の分まで、毎月払い続ける</li>
+            <li>ツールに合わせて、人がやり方を覚え直す</li>
+            <li>結局、いつもの表計算に戻ってしまう</li>
+          </ul>
+        </div>
+        <div class="vs-card is-ours">
+          <div class="vs-head">
+            <svg class="ico is-lg" aria-hidden="true"><use href="#ico-blocks-good"/></svg>
+            <p class="vs-ttl">つみきのオーダーメイド</p>
+          </div>
+          <ul class="vs-list">
+            <li>あなたの手順に合わせて、ひとつずつ作る</li>
+            <li>必要な機能だけ。余計なものは作らない</li>
+            <li>やり方は変えなくていい。道具の方が合わせる</li>
+            <li>いまの業務の中に、そのまま入る</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="h3">導入すると、こう変わります<span class="h3-en">BEFORE → AFTER</span></p>
+      <div class="ba">
+        <div class="ba-row">
+          <div class="ba-b"><span class="ba-tag">BEFORE</span>毎朝、同じ数字を3つの表に手で打ち直している。</div>
+          <div class="ba-a"><span class="ba-tag">AFTER</span>1回入力すれば、あとは自動でそろう。毎日30分の手入力がゼロに。</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-b"><span class="ba-tag">BEFORE</span>必要な情報が、メールと表計算とチャットに散らばっている。</div>
+          <div class="ba-a"><span class="ba-tag">AFTER</span>探す場所がひとつになる。「あれどこだっけ」がなくなる。</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-b"><span class="ba-tag">BEFORE</span>週次の報告書づくりに、毎回1時間かかっている。</div>
+          <div class="ba-a"><span class="ba-tag">AFTER</span>下書きが自動で出てくる。あとは目を通して直すだけ。</div>
+        </div>
+      </div>
+      <p class="note">※ 上は一例です。何がどれだけ楽になるかは業務によって変わります。まずヒアリングで、ご一緒に確かめます。</p>
+
+      <p class="h3">つみきに、依存しません<span class="h3-en">NO LOCK-IN</span></p>
+      <p class="sheet-lead">「作った会社しか中身が分からず、直すたびに高い」——外注でいちばん多い後悔です。つみきは、その逆をお約束します。</p>
+      <div class="panel">
+        <div class="dl">
+          <div class="dl-row"><div class="dl-k">お渡しするもの</div><div class="dl-v"><strong>ソースコード一式と、簡単な説明資料。</strong>中身は全部お見せします。</div></div>
+          <div class="dl-row"><div class="dl-k">権利</div><div class="dl-v"><strong>著作権は御社に譲渡します。</strong>作ったものは御社のものです。</div></div>
+          <div class="dl-row"><div class="dl-k">引き継ぎ</div><div class="dl-v">アプリは<strong>1枚のHTML</strong>で作ります。特別な環境も、専用の道具も要りません。<strong>他の会社でも引き継げます。</strong></div></div>
+          <div class="dl-row"><div class="dl-k">やめるとき</div><div class="dl-v">月額の縛りはありません。不要になれば、いつでも止められます。</div></div>
+        </div>
+        <p class="note">つみきに何かあっても、アプリは動き続けます。個人にお願いする不安は、ここで消せると考えています。</p>
+      </div>
+
+      <div class="cta-wrap">
+        <p class="cta-lead">まずは、いまの困りごとを聞かせてください。初回のヒアリングは無料です。</p>
+        <a class="cta" data-go="hearing" href="#">無料で相談する<span class="cta-ar">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- つくりて -->
+  <section class="screen sheet" id="s-profile" data-screen="profile">
+    <div class="sheet-inner">
+      <p class="sheet-label"><span class="sl-jp">プロフィール</span><span class="sl-en">PROFILE</span></p>
+      <p class="sheet-lead">アプリを作るのは、私ひとりです。だからこそ、誰が作るのかを先にお伝えしておきます。</p>
+
+      <div class="profile">
+        <div class="name">髙橋 弘大<span class="en">Kodai Takahashi</span></div>
+        <div class="role">つみき（Tsumiki）代表 ／ ソフトウェア開発業</div>
+        <div class="p-row"><div class="p-key">つくるもの</div><div class="p-val">法人のみなさま向けの、業務専用アプリ。毎日の打ち直しや、散らばった情報の整理など、現場の“ちょっと困った”を解く道具をお作りします。自社プロダクトとして iOSアプリ「いつつ」「こえがき」も開発・運営しています。</div></div>
+        <div class="p-row"><div class="p-key">強み</div><div class="p-val">普段はIT企業の現場で働いています。<strong>「言葉にしづらい困りごとを、そのまま聞いて形にする」のが本業で身についたこと</strong>です。現場の人が何に困るかを知っているので、専門用語を使わずに業務を伺えます。ご準備いただく資料もありません。</div></div>
+        <div class="p-row"><div class="p-key">大事にしていること</div><div class="p-val">作ったものが、御社の手元に残ること。ソースコードは全てお渡しし、著作権も譲渡します。アプリは1枚のHTMLで作るので、<strong>つみきがいなくても動き続け、他社でも引き継げます</strong>。</div></div>
+        <div class="p-row"><div class="p-key">趣味</div><div class="p-val">写真を撮ります。撮っていると、ふだん通り過ぎているものに気づかされます。<strong>見落とされているものに目がいく癖</strong>は、業務を伺う仕事とも、どこかで地続きな気がしています。</div></div>
+        <div class="p-row"><div class="p-key">連絡先</div><div class="p-val"><a href="mailto:support.tsumiki@gmail.com">support.tsumiki@gmail.com</a></div></div>
+      </div>
+
+      <div class="cta-wrap">
+        <p class="cta-lead">「うちのこれ、なんとかなりますか？」だけで大丈夫です。初回のヒアリングは無料です。</p>
+        <a class="cta" data-go="hearing" href="#">無料で相談する<span class="cta-ar">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- サービス：こんな課題ありませんか？ -->
+  <section class="screen sheet" id="s-issues" data-screen="issues">
+    <div class="sheet-inner">
+      <p class="sheet-label"><span class="sl-jp">こんな課題ありませんか？</span><span class="sl-en">ISSUES</span></p>
+      <p class="sheet-lead">お困りごと、ありますよね。法人のみなさまから、よく伺うのはこんなお話です。</p>
+
+      <div class="issues">
+        <div class="issue">
+          <svg class="ico" aria-hidden="true"><use href="#ico-retype"/></svg>
+          <div>
+            <p class="issue-q">毎日、同じ数字を別の表に打ち直している。</p>
+            <p class="issue-r">打ち間違いに気づくのは、たいてい後になってから。直す時間まで含めると、意外と大きな仕事になっています。</p>
+          </div>
+        </div>
+        <div class="issue">
+          <svg class="ico" aria-hidden="true"><use href="#ico-scatter"/></svg>
+          <div>
+            <p class="issue-q">必要な情報が、メール・チャット・表計算に散らばっている。</p>
+            <p class="issue-r">「あれ、どこだっけ」で毎回数分。1日に何度もあると、1年ではまとまった時間になります。</p>
+          </div>
+        </div>
+        <div class="issue">
+          <svg class="ico" aria-hidden="true"><use href="#ico-hourglass"/></svg>
+          <div>
+            <p class="issue-q">報告書や議事録づくりに、毎回まとまった時間が溶けていく。</p>
+            <p class="issue-r">本当にやりたい仕事が、いつも後回しに。忙しい週ほど、後回しの量が増えていきます。</p>
+          </div>
+        </div>
+        <div class="issue">
+          <svg class="ico" aria-hidden="true"><use href="#ico-personlock"/></svg>
+          <div>
+            <p class="issue-q">ベテランのやり方が、その人の頭の中にしかない。</p>
+            <p class="issue-r">その人が休むと止まってしまう。引き継ぎのたびに、また一から教えることになります。</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="h3">ひとつでも当てはまったら、専用アプリで解決できます<span class="h3-en">WE CAN HELP</span></p>
+      <p class="vp-sub">どれも、いまの業務のやり方を変えずに解けるものばかりです。まず何に困っているのかを伺うところから始めます。うまく言葉にできなくても大丈夫です。一緒に整理します。</p>
+      <p class="note">→ 何ができるかは <a data-go="value" href="#">提供価値</a>、どう進むかは <a data-go="process" href="#">進め方／制作フロー</a> をご覧ください。</p>
+
+      <div class="cta-wrap">
+        <p class="cta-lead">「うちのこれ、なんとかなりますか？」だけで大丈夫です。初回のヒアリングは無料です。</p>
+        <a class="cta" data-go="hearing" href="#">無料で相談する<span class="cta-ar">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- サービス：進め方／制作フロー -->
+  <section class="screen sheet" id="s-process" data-screen="process">
+    <div class="sheet-inner">
+      <p class="sheet-label"><span class="sl-jp">進め方／制作フロー</span><span class="sl-en">PROCESS</span></p>
+      <p class="sheet-lead">4つのステップで進めます。そちらの手間は、基本的に打合せだけです。残りはお任せください。</p>
+
+      <ol class="flow">
+        <li class="flow-step">
+          <span class="fs-no">01</span>
+          <div>
+            <div class="fs-head"><svg class="ico" aria-hidden="true"><use href="#ico-listen"/></svg><div class="fs-jp">じっくり伺う</div></div>
+            <div class="fs-desc">まず業務を1〜2時間、そのまま聞かせてください。専門用語は使いません。いまのやり方を、いつもどおり見せていただくだけで大丈夫です。</div>
+            <div class="fs-meta">
+              <div class="fs-item"><span class="fs-k">期間</span><span class="fs-v">1〜2時間 × 1回</span></div>
+              <div class="fs-item"><span class="fs-k">お願いすること</span><span class="fs-v">ご準備は不要です。資料も作らなくて結構です。</span></div>
+            </div>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="fs-no">02</span>
+          <div>
+            <div class="fs-head"><svg class="ico" aria-hidden="true"><use href="#ico-find"/></svg><div class="fs-jp">解くことを、一緒に決める</div></div>
+            <div class="fs-desc">伺ったお話から「本当に困っていること」を整理し、どんなアプリなら楽になるかを、ご一緒に固めます。</div>
+            <div class="fs-meta">
+              <div class="fs-item"><span class="fs-k">期間</span><span class="fs-v">約1週間</span></div>
+              <div class="fs-item"><span class="fs-k">お願いすること</span><span class="fs-v">整理した内容へのご確認と、「ここは違う」のひと言。</span></div>
+            </div>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="fs-no">03</span>
+          <div>
+            <div class="fs-head"><svg class="ico" aria-hidden="true"><use href="#ico-build"/></svg><div class="fs-jp">小さく作って、見ていただく</div></div>
+            <div class="fs-desc">いきなり完成させません。まず動く形をお見せします。触って違和感があれば、その都度直します。</div>
+            <div class="fs-meta">
+              <div class="fs-item"><span class="fs-k">期間</span><span class="fs-v">小規模なら2〜3週間／本格的なものは1〜2か月</span></div>
+              <div class="fs-item"><span class="fs-k">お願いすること</span><span class="fs-v">触って、感想をいただくだけ。</span></div>
+            </div>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="fs-no">04</span>
+          <div>
+            <div class="fs-head"><svg class="ico" aria-hidden="true"><use href="#ico-deliver"/></svg><div class="fs-jp">現場で使える形でお渡し</div></div>
+            <div class="fs-desc">実際の業務でそのまま使える形でお渡しし、使い方をご説明します。</div>
+            <div class="fs-meta">
+              <div class="fs-item"><span class="fs-k">期間</span><span class="fs-v">1回（ご説明を含む）</span></div>
+              <div class="fs-item"><span class="fs-k">お願いすること</span><span class="fs-v">使い始めていただくだけ。</span></div>
+            </div>
+          </div>
+        </li>
+      </ol>
+
+      <p class="h3">全体でどれくらいかかりますか<span class="h3-en">DURATION</span></p>
+      <div class="panel">
+        <div class="dl">
+          <div class="dl-row"><div class="dl-k">小規模</div><div class="dl-v"><strong>約2〜3週間</strong>（ヒアリングから納品まで）</div></div>
+          <div class="dl-row"><div class="dl-k">本格的なもの</div><div class="dl-v"><strong>約1〜2か月</strong>（ヒアリングから納品まで）</div></div>
+        </div>
+      </div>
+
+      <p class="note">伺った内容は他言しません。必要であればNDA（秘密保持契約＝聞いた情報を外に出さないという約束の書面）にも対応します。</p>
+
+      <div class="cta-wrap">
+        <p class="cta-lead">まずは01のヒアリングから。無料で、ご準備も要りません。</p>
+        <a class="cta" data-go="hearing" href="#">無料で相談する<span class="cta-ar">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- サービス：料金・進行イメージ -->
+  <section class="screen sheet" id="s-pricing" data-screen="pricing">
+    <div class="sheet-inner">
+      <p class="sheet-label"><span class="sl-jp">料金・進行イメージ</span><span class="sl-en">PRICING</span></p>
+      <p class="sheet-lead">初回のヒアリングは無料です。制作費は、作るものの規模で決まります。</p>
+
+      <p class="h3">料金の目安<span class="h3-en">FROM</span></p>
+      <div class="price-grid">
+        <div class="price-card">
+          <p class="pc-name">小規模</p>
+          <p class="pc-sub">1つの困りごとを解く</p>
+          <p class="pc-amt"><span class="pc-num">15</span>万円<span class="pc-from">〜</span></p>
+          <p class="pc-term">2〜3週間</p>
+        </div>
+        <div class="price-card">
+          <p class="pc-name">本格的なもの</p>
+          <p class="pc-sub">複数の業務をつなげる</p>
+          <p class="pc-amt"><span class="pc-num">40</span>万円<span class="pc-from">〜</span></p>
+          <p class="pc-term">1〜2か月</p>
+        </div>
+      </div>
+      <p class="note">ヒアリングとお見積りは無料です。上は下限の目安で、正確な金額は業務を伺ってからご提示します。<strong>ご納得いただいてから着手し、後から金額が変わることはありません。</strong></p>
+
+      <p class="h3">料金の決まり方<span class="h3-en">HOW IT'S PRICED</span></p>
+      <div class="panel">
+        <div class="dl">
+          <div class="dl-row"><div class="dl-k">初回ヒアリング</div><div class="dl-v"><strong>無料</strong>／業務を伺い、何が解決できそうかをお伝えします。ここまでで終わっても構いません。</div></div>
+          <div class="dl-row"><div class="dl-k">お見積り</div><div class="dl-v"><strong>無料</strong>／内容を伺ってからご提示します。金額にご納得いただいてから着手します。</div></div>
+          <div class="dl-row"><div class="dl-k">制作費</div><div class="dl-v">内容により個別見積。<strong>作る機能の数</strong>と<strong>扱う情報の量</strong>で決まります。小さく1機能から始めることもできます。</div></div>
+          <div class="dl-row"><div class="dl-k">お支払い</div><div class="dl-v">条件はお見積りに明記します。後から金額が変わることはありません。</div></div>
+        </div>
+      </div>
+
+      <p class="h3">料金に含まれるもの／別途になるもの<span class="h3-en">WHAT'S INCLUDED</span></p>
+      <div class="panel">
+        <ul class="can yes">
+          <li>課題の整理とご提案</li>
+          <li>アプリの制作</li>
+          <li>制作中の修正（触っていただいて、違和感を直すところまで）</li>
+          <li>納品時の使い方のご説明</li>
+        </ul>
+        <ul class="can no">
+          <li>納品後の機能追加・大きな仕様変更</li>
+          <li>継続的な運用サポート（別途ご相談ください）</li>
+        </ul>
+      </div>
+
+      <p class="h3">進行イメージ<span class="h3-en">SCHEDULE</span></p>
+      <div class="panel">
+        <div class="tl">
+          <div class="tl-row">
+            <div class="tl-lbl"><span class="tl-name">小規模</span><span class="tl-dur">約2〜3週間</span></div>
+            <div class="tl-track">
+              <div class="tl-bar" style="left:0;width:25%"></div>
+              <div class="tl-bar is-range" style="left:25%;width:12.5%"></div>
+            </div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-lbl"><span class="tl-name">本格的なもの</span><span class="tl-dur">約1〜2か月</span></div>
+            <div class="tl-track">
+              <div class="tl-bar" style="left:0;width:50%"></div>
+              <div class="tl-bar is-range" style="left:50%;width:50%"></div>
+            </div>
+          </div>
+          <div class="tl-axis"><span>0</span><span>2</span><span>4</span><span>6</span><span>8週</span></div>
+          <p class="tl-note">いずれもヒアリングから納品までの目安です。<span class="tl-key"></span> の部分は、内容によって前後する幅を表しています。</p>
+        </div>
+      </div>
+
+      <p class="h3">稼働・ご連絡<span class="h3-en">AVAILABILITY</span></p>
+      <div class="panel">
+        <div class="dl">
+          <div class="dl-row"><div class="dl-k">対応時間</div><div class="dl-v">平日夜・土日を中心に対応しています（本業のかたわらのため）。</div></div>
+          <div class="dl-row"><div class="dl-k">ご連絡</div><div class="dl-v">メールでのやりとりが中心です。打合せはオンラインでも対応します。</div></div>
+        </div>
+      </div>
+
+      <p class="h3">できること／できないこと<span class="h3-en">SCOPE</span></p>
+      <div class="panel">
+        <ul class="can yes">
+          <li>手入力・転記の自動化</li>
+          <li>散らばった情報を、ひとつの場所に集約</li>
+          <li>報告書や議事録の下書きを自動で用意</li>
+          <li>業務に合わせた、小さなAIアプリ全般</li>
+        </ul>
+        <ul class="can no">
+          <li>大規模な基幹システムの開発</li>
+          <li>24時間365日の運用保守</li>
+          <li>既存システムそのものの改修</li>
+        </ul>
+        <p class="note">合わないときは、正直にそうお伝えします。無理にお受けしません。</p>
+      </div>
+
+      <p class="h3">よくあるご質問<span class="h3-en">FAQ</span></p>
+      <div class="panel">
+        <div class="faq">
+          <div class="faq-row">
+            <p class="faq-q">途中で仕様を変えられますか？</p>
+            <p class="faq-a">変えられます。いきなり完成させず、小さく作ってお見せする進め方なので、触ってからの「やっぱりこうしたい」を前提にしています。</p>
+          </div>
+          <div class="faq-row">
+            <p class="faq-q">作ったものは、他社でも引き継げますか？</p>
+            <p class="faq-a">はい。ソースコード一式をお渡しし、著作権も御社に譲渡します。1枚のHTMLで作るので、特別な環境がなくても他の会社で引き継げます。つみきに依存しません。</p>
+          </div>
+          <div class="faq-row">
+            <p class="faq-q">月額は必ずかかりますか？</p>
+            <p class="faq-a">いいえ。納品して終わりで構いません。月額の縛りはなく、使わない機能にお金を払い続けることもありません（AI利用料などの実費が生じる場合のみ、事前にお伝えします）。</p>
+          </div>
+          <div class="faq-row">
+            <p class="faq-q">うちの業種でも大丈夫ですか？</p>
+            <p class="faq-a">業種は問いません。専門知識がこちらにない業務ほど、先入観なくじっくり伺います。</p>
+          </div>
+          <div class="faq-row">
+            <p class="faq-q">伺った内容が外に出ませんか？</p>
+            <p class="faq-a">他言しません。必要であればNDA（秘密保持契約）にも対応します。</p>
+          </div>
+          <div class="faq-row">
+            <p class="faq-q">何から始めればいいですか？</p>
+            <p class="faq-a">無料のヒアリングからです。ご準備は不要で、「うちのこれ、なんとかなりますか？」だけで大丈夫です。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-wrap">
+        <p class="cta-lead">金額をお出しする前に、まず業務を伺います。ヒアリングとお見積りまで無料です。</p>
+        <a class="cta" data-go="hearing" href="#">無料で相談する<span class="cta-ar">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 実績：お客様の声 -->
+  <section class="screen sheet" id="s-voice" data-screen="voice">
+    <div class="sheet-inner">
+      <p class="sheet-label"><span class="sl-jp">お客様の声</span><span class="sl-en">VOICE</span></p>
+      <p class="sheet-lead">導入いただいた法人のお客様の声を、ここに掲載します。</p>
+      <div class="soon">近日追加</div>
+    </div>
+  </section>
+
+  <!-- お問い合わせ：無料ヒアリング申込 -->
+  <section class="screen sheet" id="s-hearing" data-screen="hearing">
+    <div class="sheet-inner">
+      <p class="sheet-label"><span class="sl-jp">無料ヒアリング申込</span><span class="sl-en">CONTACT</span></p>
+      <p class="sheet-lead">まずは無料でお話を伺います。現場の困りごとを、そのままお聞かせください。<strong>ご準備は不要です。</strong></p>
+
+      <p class="h3">お申し込みのあと、こう進みます<span class="h3-en">WHAT HAPPENS NEXT</span></p>
+      <div class="panel">
+        <div class="dl">
+          <div class="dl-row"><div class="dl-k">01　ご返信</div><div class="dl-v"><strong>2〜3日以内を目安に、私が直接お返事します。</strong>日程のご相談だけです。</div></div>
+          <div class="dl-row"><div class="dl-k">02　ヒアリング</div><div class="dl-v"><strong>1〜2時間、1回。無料です。</strong>オンラインでも、お伺いしても構いません。いまのやり方を、いつもどおり見せていただくだけで大丈夫です。</div></div>
+          <div class="dl-row"><div class="dl-k">03　ご提案</div><div class="dl-v">何が解決できそうかと、お見積りをお出しします。<strong>ここまで無料です。</strong>ここで終わっても構いません。</div></div>
+        </div>
+        <p class="note">お見積りにご納得いただいてから着手します。後から金額が変わることはありません。</p>
+      </div>
+
+      <p class="h3">ご安心いただきたいこと<span class="h3-en">OUR PROMISE</span></p>
+      <div class="panel">
+        <ul class="can no">
+          <li>しつこい営業や、後日の追いかけ連絡はしません</li>
+          <li>伺った業務の内容を、他社や第三者に話すことはありません</li>
+          <li>ご依頼に至らなければ、ご相談内容はその時点ですみやかに削除します</li>
+        </ul>
+        <p class="note">情報の扱いは <a data-go="privacy" href="#">プライバシーポリシー</a> に記載しています。ご希望があればNDA（秘密保持契約）を締結します。</p>
+      </div>
+
+      <div class="cta-wrap">
+        <p class="cta-lead">下のボタンでメールが開きます。ひな形を用意してあるので、分かるところだけ埋めて送信してください。<strong>「うちのこれ、なんとかなりますか？」の一行だけでも大丈夫です。</strong></p>
+        <a class="cta" href="mailto:support.tsumiki@gmail.com?subject=%E7%84%A1%E6%96%99%E3%83%92%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0%E5%B8%8C%E6%9C%9B&body=%EF%BC%88%E5%88%86%E3%81%8B%E3%82%8B%E7%AF%84%E5%9B%B2%E3%81%A7%E5%A4%A7%E4%B8%88%E5%A4%AB%E3%81%A7%E3%81%99%E3%80%82%E7%A9%BA%E6%AC%84%E3%81%AE%E3%81%BE%E3%81%BE%E9%80%81%E3%81%A3%E3%81%A6%E3%81%84%E3%81%9F%E3%81%A0%E3%81%84%E3%81%A6%E3%82%82%E6%A7%8B%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%EF%BC%89%0A%0A%E2%96%A0%20%E4%BC%9A%E7%A4%BE%E5%90%8D%EF%BC%9A%0A%E2%96%A0%20%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0A%E2%96%A0%20%E3%81%94%E9%80%A3%E7%B5%A1%E5%85%88%EF%BC%88%E3%81%8A%E9%9B%BB%E8%A9%B1%E7%95%AA%E5%8F%B7%E3%81%AA%E3%81%A9%EF%BC%89%EF%BC%9A%0A%0A%E2%96%A0%20%E3%81%84%E3%81%BE%E5%9B%B0%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%93%E3%81%A8%EF%BC%9A%0A%E3%80%80%E4%BE%8B%EF%BC%89%E6%AF%8E%E6%97%A5%E3%80%81%E5%90%8C%E3%81%98%E6%95%B0%E5%AD%97%E3%82%92%E5%88%A5%E3%81%AE%E8%A1%A8%E3%81%AB%E6%89%93%E3%81%A1%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%0A%0A%E2%96%A0%20%E3%83%92%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0%E3%81%AE%E3%81%94%E5%B8%8C%E6%9C%9B%EF%BC%9A%0A%E3%80%80%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%20%EF%BC%8F%20%E8%A8%AA%E5%95%8F%20%EF%BC%8F%20%E3%81%A9%E3%81%A1%E3%82%89%E3%81%A7%E3%82%82%0A">メールで相談する<span class="cta-ar">→</span></a>
+        <p class="note">メールが開かない場合は、<a href="mailto:support.tsumiki@gmail.com">support.tsumiki@gmail.com</a> 宛に直接お送りください。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- お問い合わせ：プライバシーポリシー -->
+  <section class="screen sheet" id="s-privacy" data-screen="privacy">
+    <div class="sheet-inner">
+      <p class="sheet-label"><span class="sl-jp">プライバシーポリシー</span><span class="sl-en">PRIVACY</span></p>
+      <p class="sheet-lead">つみきは、みなさまの業務を深く伺う仕事です。だからこそ、伺った情報をどう扱うかを、はっきりさせておきます。</p>
+
+      <p class="h3">このサイトが集めていないもの<span class="h3-en">WHAT WE DON'T COLLECT</span></p>
+      <div class="panel">
+        <div class="dl">
+          <div class="dl-row"><div class="dl-k">Cookie</div><div class="dl-v"><strong>使っていません。</strong></div></div>
+          <div class="dl-row"><div class="dl-k">アクセス解析</div><div class="dl-v"><strong>していません。</strong>誰が・いつ・どのページを見たかを記録していません。</div></div>
+          <div class="dl-row"><div class="dl-k">入力フォーム</div><div class="dl-v"><strong>ありません。</strong>このサイトから送信されるものはありません。</div></div>
+        </div>
+        <p class="note">このサイトを見ていただくだけでは、あなたが誰かは分かりません。</p>
+      </div>
+
+      <p class="h3">ひとつだけ、外部に送られるもの<span class="h3-en">GOOGLE FONTS</span></p>
+      <div class="panel">
+        <p class="dl-v">文字の表示に Google Fonts（Googleが提供する書体サービス）を使っています。そのためページを開くと、<strong>IPアドレスなどの通信情報がGoogleに送信されます</strong>。取り扱いは <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Googleのプライバシーポリシー</a> に従います。</p>
+      </div>
+
+      <p class="h3">お預かりする情報<span class="h3-en">WHAT WE RECEIVE</span></p>
+      <div class="panel">
+        <ul class="can yes">
+          <li>お問い合わせメールに書かれた内容（お名前・会社名・メールアドレス・ご相談内容など）</li>
+          <li>ヒアリングやお打合せで伺った、業務に関する情報</li>
+        </ul>
+      </div>
+
+      <p class="h3">何に使うか<span class="h3-en">HOW WE USE IT</span></p>
+      <div class="panel">
+        <ul class="can yes">
+          <li>ご相談へのご返信</li>
+          <li>お見積りとご提案</li>
+          <li>アプリの制作と納品</li>
+        </ul>
+        <ul class="can no">
+          <li>上記以外の目的には使いません</li>
+          <li>営業メールの送付や、名簿としての利用はしません</li>
+        </ul>
+      </div>
+
+      <p class="h3">第三者に渡さないこと<span class="h3-en">NO SHARING</span></p>
+      <div class="panel">
+        <p class="dl-v">お預かりした情報を第三者に提供することはありません（法令に基づき求められた場合を除きます）。<strong>伺った業務の内容を、他のお客様や第三者に話すこともありません。</strong>ご希望があればNDA（秘密保持契約）を締結します。</p>
+      </div>
+
+      <p class="h3">安全に管理すること<span class="h3-en">SECURITY</span></p>
+      <div class="panel">
+        <div class="dl">
+          <div class="dl-row"><div class="dl-k">扱う人</div><div class="dl-v"><strong>代表の髙橋ひとりだけです。</strong>従業員も、外注先もいません。お預かりした情報を見る人が、他にいません。</div></div>
+          <div class="dl-row"><div class="dl-k">保管の方法</div><div class="dl-v">画面ロックとディスク暗号化をかけた端末と、二要素認証を設定したアカウントの中でのみ取り扱います。</div></div>
+        </div>
+      </div>
+
+      <p class="h3">保管と削除<span class="h3-en">RETENTION</span></p>
+      <div class="panel">
+        <div class="dl">
+          <div class="dl-row"><div class="dl-k">ご相談の情報</div><div class="dl-v"><strong>ご依頼に至らなかった場合は、その時点ですみやかに削除します。</strong>伺った業務のお話も、こちらには残しません。</div></div>
+          <div class="dl-row"><div class="dl-k">取引の記録</div><div class="dl-v">ご依頼をいただいた場合、見積書・契約書・請求書などは<strong>法令で定められた期間（5〜7年）保存します</strong>（＝税務のため、事業者が必ず取っておかなければならない書類です）。期間を過ぎたら削除します。</div></div>
+          <div class="dl-row"><div class="dl-k">削除のご依頼</div><div class="dl-v">いつでもお申し付けください。ご連絡をいただき次第、削除します。ただし<strong>上記の保存義務がある書類だけは、期間中は削除できません</strong>。</div></div>
+          <div class="dl-row"><div class="dl-k">開示・訂正</div><div class="dl-v">お預かりしている情報の開示・訂正・利用停止をご希望の場合も、下記までご連絡ください。</div></div>
+        </div>
+      </div>
+
+      <p class="h3">事業者・お問い合わせ窓口<span class="h3-en">CONTACT</span></p>
+      <div class="panel">
+        <div class="dl">
+          <div class="dl-row"><div class="dl-k">事業者</div><div class="dl-v">つみき（屋号：Tsumiki）／ 個人事業主</div></div>
+          <div class="dl-row"><div class="dl-k">代表者</div><div class="dl-v">髙橋 弘大</div></div>
+          <div class="dl-row"><div class="dl-k">事業内容</div><div class="dl-v">ソフトウェア開発業</div></div>
+          <div class="dl-row"><div class="dl-k">連絡先</div><div class="dl-v"><a href="mailto:support.tsumiki@gmail.com">support.tsumiki@gmail.com</a></div></div>
+        </div>
+        <p class="note">所在地は自宅のため公開していません。ご契約にあたり必要な場合は、お問い合わせいただければ個別にお伝えします。</p>
+      </div>
+
+      <p class="note">本ポリシーの内容を変更する場合は、このページでお知らせします。<br>制定日：2026年7月15日　／　最終改定日：2026年7月16日</p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  /* つみきコレクション（Work / Private / Asset） */
+  const categories = [
+    {key:"work", emoji:"💼", label:"Work", apps:[
+      {stem:"gijiroku",title:"議事録",desc:"会議の要点・決定・ToDoを自動整理"},
+      {stem:"vault",title:"Password 保管",desc:"パスワードをジャンル別に整理"},
+      {stem:"memo",title:"メモ帳",desc:"カテゴリーとタグで整理する白紙"},
+    ]},
+    {key:"private", emoji:"🌿", label:"Private", apps:[
+      {stem:"yuzuwari",title:"わりかん精算",desc:"立て替えをプロジェクト別に精算"},
+      {stem:"cooking",title:"料理日記",desc:"ふたりで共有する献立ノート"},
+      {stem:"tabinoki",title:"たびのき",desc:"ふたりで作る旅のしおり"},
+      {stem:"yarukoto",title:"やることばこ",desc:"やること・構想・買い物を1つの箱に"},
+      {stem:"komame",title:"こまめ",desc:"家のおそうじを定期管理"},
+      {stem:"kaimono",title:"おつかいカート",desc:"頼まれた物を安い順に探して管理"},
+    ]},
+    {key:"asset", emoji:"💰", label:"Asset", apps:[
+      {stem:"chiritsumo",title:"ちりつも",desc:"使ったお金をサッと記録"},
+      {stem:"credit",title:"明細マネージャー",desc:"立て替えとカード支出を分けて管理"},
+      {stem:"money",title:"残高 計算ツール",desc:"残高をサッと計算"},
+      {stem:"forecast",title:"資産予測グラフ",desc:"資産の推移を予測して可視化"},
+      {stem:"maitsuki",title:"まいつき",desc:"毎月の固定費を円グラフで"},
+      {stem:"hikiotoshi",title:"ひきおとし",desc:"引き落とし日をカレンダー管理"},
+      {stem:"copybox",title:"コピペ箱",desc:"よくコピーする情報を保管"},
+    ]},
+  ];
+  const col = document.getElementById("collection");
+  categories.forEach(cat=>{
+    const cards = cat.apps.map(a=>
+      '<div class="card card--preview">'+
+        '<img class="ico" src="icons/icon-'+a.stem+'.png" alt="" loading="lazy">'+
+        '<span class="title">'+a.title+'</span><span class="desc">'+a.desc+'</span></div>').join("");
+    const sec = document.createElement("div");
+    sec.className = "cat";
+    sec.innerHTML =
+      '<p class="sec-label" style="letter-spacing:.1em"><span class="em">'+cat.emoji+'</span>'+
+        cat.label+'<span class="badge">'+cat.apps.length+'</span></p>'+
+      '<div class="grid">'+cards+'</div>';
+    col.appendChild(sec);
+  });
+
+  /* ===== ページ送り（縦スクロールなし・フェード＋墨の背景化） ===== */
+  (function(){
+    const screens = {};
+    document.querySelectorAll('.screen').forEach(s => screens[s.dataset.screen] = s);
+    const LINE = ['intro', 'brand', 'menu'];   // スワイプで順送りする画面
+    let current = 'intro';
+    let animating = false;
+    let popNav = false;   // 履歴の戻る操作中は pushState しない
+    const childToGroup = {   // 子シート → 属する親カテゴリー
+      value:'service', issues:'service', process:'service', pricing:'service',
+      flagship:'works', 'flagship-itsutsu':'works', 'flagship-koegaki':'works',
+      collection:'works', voice:'works',
+      profile:'contact', hearing:'contact', privacy:'contact'
+    };
+
+    function isSheet(id){ return screens[id].classList.contains('sheet'); }
+
+    function applyChrome(id){
+      const b = document.body.classList;
+      b.toggle('at-intro', id === 'intro');
+      b.toggle('chrome-hidden', id === 'intro' || id === 'brand'); // トップバーを隠す
+      b.toggle('on-dark', id === 'menu');                          // 墨背景ではトップバーを白に
+      b.toggle('on-sheet', isSheet(id));                           // 子シートでは戻るボタンを出す
+      b.toggle('calm', id === 'flagship-itsutsu' || id === 'flagship-koegaki'); // アプリ詳細は動く墨を止めて紙色に
+    }
+
+    function go(id, dir){
+      if (id === current || animating || !screens[id]) return;
+      animating = true;
+      const from = screens[current], to = screens[id];
+      to.classList.add('is-active');
+      requestAnimationFrame(()=>{ from.classList.remove('is-active'); });
+      applyChrome(id);
+      if (window.InkFluid){
+        window.InkFluid.setScreen(id);                    // モード切替＋wash＋文字テクスチャ更新
+        if (id === 'brand') window.InkFluid.bloom();      // 指の軌跡から墨が咲いて定着
+        else window.InkFluid.sweep(dir === undefined ? 1 : dir);  // 遷移の帯ストローク1本
+      }
+      if (isSheet(id)) to.scrollTop = 0;
+      if (id === 'menu' && window.__closeGroups) window.__closeGroups();  // 戻ってきたら分岐は畳む
+      setTimeout(()=>{ animating = false; }, 820);
+      current = id;
+      // 履歴に積む（端スワイプ／ブラウザの戻るで1画面戻れるように）。戻る操作中は積まない
+      if (!popNav){ try{ history.pushState({screen:id}, ''); }catch(_){} }
+    }
+    window.__go = go;
+    applyChrome('intro');
+
+    // data-go でクリック遷移
+    document.querySelectorAll('[data-go]').forEach(el=>{
+      el.addEventListener('click', e=>{ e.preventDefault(); go(el.dataset.go); });
+    });
+
+    // 親カテゴリーのアコーディオン開閉（同時に開くのは1つだけ）
+    function closeAllGroups(){
+      document.querySelectorAll('.menu-group.open').forEach(g=>{
+        g.classList.remove('open');
+        const b = g.querySelector('[data-acc]');
+        if (b) b.setAttribute('aria-expanded','false');
+      });
+    }
+    window.__closeGroups = closeAllGroups;
+    document.querySelectorAll('[data-acc]').forEach(btn=>{
+      btn.addEventListener('click', e=>{
+        e.preventDefault();
+        const group = btn.closest('.menu-group');
+        const willOpen = !group.classList.contains('open');
+        closeAllGroups();
+        if (willOpen){ group.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+      });
+    });
+
+    // 指定した親カテゴリーを開いた状態にする
+    function openGroup(key){
+      const grp = document.querySelector('.menu-group[data-group="'+key+'"]');
+      if (!grp) return;
+      grp.classList.add('open');
+      const b = grp.querySelector('[data-acc]');
+      if (b) b.setAttribute('aria-expanded','true');
+    }
+
+    // 戻るボタン：履歴を1つ戻る（＝端スワイプと同じ挙動に統一）
+    document.querySelectorAll('[data-back]').forEach(el=>{
+      el.addEventListener('click', e=>{ e.preventDefault(); history.back(); });
+    });
+
+    // 端スワイプ／ブラウザの戻る／戻るボタン → 前画面へ。メニューに戻る時は親を開く
+    window.addEventListener('popstate', e=>{
+      const target = (e.state && e.state.screen) ? e.state.screen : 'intro';
+      const leaving = current;
+      if (target === current) return;
+      popNav = true;
+      go(target);
+      popNav = false;
+      if (target === 'menu'){ const g = childToGroup[leaving]; if (g) openGroup(g); }
+    });
+
+    // スワイプ／ホイールで順送り（intro→brand→menu）。セクション内は内部スクロール優先
+    function stepBy(dir){
+      const i = LINE.indexOf(current);
+      if (i < 0) return;                 // セクション表示中は順送りしない
+      const j = i + dir;
+      if (j >= 0 && j < LINE.length) go(LINE[j], dir);
+    }
+
+    // swipe-to-enter：intro 画面の初回タッチで墨カスケード＋振動→画面2へ
+    // ENTER_DELAY_MS = 墨を楽しむ時間。短くすると早く暗転する（以前の値: 1400）
+    const ENTER_DELAY_MS = 4200;
+    let entered = false;
+    window.addEventListener('pointerdown', e=>{
+      if (current !== 'intro' || entered) return;
+      entered = true;
+      if (window.InkFluid && window.InkFluid.cascadeAt) window.InkFluid.cascadeAt(e.clientX, e.clientY);
+      if (navigator.vibrate) { try { navigator.vibrate(12); } catch(_){} }
+      setTimeout(()=>{ if (current === 'intro') go('brand'); }, ENTER_DELAY_MS);
+    });
+
+    let wheelLock = 0;
+    window.addEventListener('wheel', e=>{
+      if (isSheet(current)) return;
+      const now = performance.now();
+      if (now - wheelLock < 900) return;
+      if (Math.abs(e.deltaY) < 12) return;
+      wheelLock = now;
+      stepBy(e.deltaY > 0 ? 1 : -1);
+    }, { passive: true });
+
+    let tsY = null;
+    window.addEventListener('touchstart', e=>{ tsY = e.touches[0].clientY; }, { passive: true });
+    window.addEventListener('touchend', e=>{
+      if (tsY === null || isSheet(current)) { tsY = null; return; }
+      const dy = e.changedTouches[0].clientY - tsY; tsY = null;
+      if (Math.abs(dy) < 45) return;
+      stepBy(dy < 0 ? 1 : -1);           // 上スワイプ＝次へ
+    }, { passive: true });
+
+    window.addEventListener('keydown', e=>{
+      if (e.key === 'Escape' && current !== 'intro') go('menu');
+    });
+  })();
+</script>
+<script src="ink-fluid.js?v=34"></script>
+</body>
+</html>

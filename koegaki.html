@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<script>try{document.documentElement.classList.toggle('lang-en',localStorage.getItem('koegaki-lang')==='en')}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>こえがき — 話す、タイプしない。</title>
+<meta name="description" content="どのアプリでも、キーボードのマイクに話すだけ。AIがフィラーを消し、句読点を整えて、そのまま使える文章に。音声はぜんぶ端末の中だけで処理する音声入力キーボード「こえがき」。">
+<meta property="og:title" content="こえがき — 話す、タイプしない。">
+<meta property="og:description" content="声が、そのまま文章になる。完全オンデバイスのAI音声入力キーボード。">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --paper:#F4F2EE; --surface:#ECE9E3; --ink:#242321; --muted:#77736B;
+    --hair:#D8D4CC; --ghost:#BEB9B0; --control:#F8F7F4;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:'Zen Maru Gothic',-apple-system,BlinkMacSystemFont,"Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif;
+    line-height:1.78; -webkit-font-smoothing:antialiased; -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 28px}
+  section{padding:124px 0}
+  .nb{white-space:nowrap}
+
+  html:not(.lang-en) .en{display:none}
+  html.lang-en .jp{display:none}
+
+  /* header */
+  header{padding:26px 0; position:sticky; top:0; background:rgba(244,242,238,.86); backdrop-filter:blur(10px); z-index:10}
+  .nav{display:flex; align-items:center; justify-content:space-between}
+  .brand{display:flex; align-items:center; gap:11px; font-weight:700; letter-spacing:.04em}
+  .brand svg{display:block}
+  .lang-toggle{appearance:none; -webkit-appearance:none; background:none; border:1px solid var(--hair);
+    color:var(--muted); font-family:inherit; font-size:12.5px; letter-spacing:.04em; line-height:1;
+    padding:6px 12px; border-radius:999px; cursor:pointer; margin-left:22px}
+  .lang-toggle:hover{color:var(--ink); border-color:var(--ghost)}
+
+  /* hero */
+  .hero{display:flex; flex-direction:column; align-items:center; text-align:center; padding-top:72px; padding-bottom:128px}
+  .kicker{color:var(--muted); font-size:14px; letter-spacing:.14em; margin-bottom:20px}
+  h1{font-size:50px; font-weight:700; line-height:1.18; letter-spacing:0; margin-bottom:26px}
+  .lead{font-size:16.5px; line-height:1.76; color:#3a3833; max-width:28em; margin:0 auto 34px}
+  .cta{display:inline-flex; align-items:center; gap:10px; background:var(--ink); color:var(--paper);
+       padding:14px 22px; border-radius:14px; font-size:15px; font-weight:500; text-decoration:none}
+  .cta small{opacity:.7; font-weight:400}
+  .cta-note{display:block; color:var(--muted); font-size:13px; margin-top:14px}
+  .hero > div:last-child{margin-top:64px}
+
+  /* phone mock（メモ＋こえがきキーボード） */
+  .phone{position:relative; width:232px; height:476px; margin:0 auto;
+         border-radius:40px; background:var(--control); border:1px solid var(--hair);
+         box-shadow:0 20px 52px rgba(36,35,33,.13); overflow:hidden}
+  .note{position:absolute; top:0; left:0; right:0; bottom:47%; padding:34px 22px 0}
+  .note .ln{height:8px; border-radius:4px; background:var(--surface); margin-bottom:12px}
+  .note .ln.w60{width:60%}
+  .note .typed{font-size:11.5px; line-height:1.8; color:var(--ink); letter-spacing:.02em}
+  .note .typed i{display:inline-block; width:2px; height:13px; background:var(--ink); vertical-align:-2px; margin-left:2px; border-radius:1px}
+  .kb{position:absolute; left:0; right:0; bottom:0; height:47%; background:var(--surface);
+      border-top:1px solid var(--hair); border-radius:22px 22px 0 0;
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0}
+  .kb .mic{width:64px; height:64px; border-radius:50%; background:var(--ink);
+           display:flex; align-items:center; justify-content:center; margin-bottom:26px}
+  .kb .mic svg{width:24px; height:24px; stroke:var(--paper); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round}
+  .kb .row{display:flex; gap:8px; align-items:center; width:82%}
+  .kb .space{flex:1; height:30px; border:1px solid var(--hair); border-radius:9px; background:var(--control);
+             display:flex; align-items:center; justify-content:center; color:var(--ghost); font-size:10px}
+  .kb .k{width:38px; height:30px; display:flex; align-items:center; justify-content:center}
+  .kb .k svg{width:16px; height:16px; stroke:var(--ink); fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round}
+
+  /* idea */
+  .idea{text-align:center; background:var(--surface); padding:112px 0}
+  .idea .big{font-size:32px; font-weight:700; line-height:1.48; letter-spacing:.02em}
+  .idea .big span{color:var(--muted)}
+  .idea p{max-width:30em; margin:30px auto 0; color:#3a3833; font-size:16px}
+
+  /* steps */
+  #how{padding:150px 0}
+  h2{font-size:14px; letter-spacing:.16em; color:var(--muted); text-align:center; margin-bottom:68px; font-weight:700}
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:48px}
+  .step{text-align:center}
+  .step .ic{width:64px;height:64px;border-radius:50%;border:1.5px solid var(--hair);
+            display:flex;align-items:center;justify-content:center;margin:0 auto 30px}
+  .step .ic svg{width:26px;height:26px;stroke:var(--ink);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .step h3{font-size:18px; font-weight:700; margin-bottom:14px}
+  .step p{color:#5f5b54; font-size:14.5px; line-height:1.9}
+
+  /* quiet features */
+  .feat{background:var(--surface); text-align:center; padding:112px 0}
+  .feat .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:48px 56px; max-width:720px; margin:0 auto}
+  .f h3{font-size:17px; font-weight:700; margin-bottom:4px}
+  .f p{color:#5f5b54; font-size:14.5px}
+
+  /* closing */
+  .closing{text-align:center; padding:120px 0}
+  .closing .t{font-size:32px; font-weight:700; margin-bottom:10px}
+  .closing .s{color:var(--muted); margin-bottom:32px}
+
+  footer{border-top:1px solid var(--hair); padding:38px 0; color:var(--muted); font-size:13.5px}
+  .fnav{display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:16px}
+
+  @media(max-width:760px){
+    section{padding:88px 0}
+    #how{padding:112px 0}
+    .hero{padding-top:42px; padding-bottom:96px}
+    .lead{margin:0 auto 30px}
+    .cta-note{margin-top:12px}
+    .hero > div:last-child{margin-top:52px}
+    h1{font-size:36px; margin-bottom:22px}
+    .idea .big{font-size:24px}
+    .steps{grid-template-columns:1fr; gap:60px}
+    .feat .grid{grid-template-columns:1fr; gap:42px}
+    .phone{width:210px; height:430px; border-radius:36px; box-shadow:0 16px 38px rgba(36,35,33,.11)}
+    .wrap{padding:0 24px}
+    .closing .t{font-size:26px}
+  }
+.budoux-target{word-break:keep-all; overflow-wrap:anywhere}
+.budoux-target a,.budoux-target code,.budoux-target time{white-space:nowrap}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <svg width="22" height="22" viewBox="0 0 100 100" aria-hidden="true">
+        <rect x="26.5" y="33.5" width="7" height="21" rx="3.5" fill="#242321"/>
+        <rect x="36.5" y="27.5" width="7" height="33" rx="3.5" fill="#242321"/>
+        <rect x="46.5" y="21.5" width="7" height="45" rx="3.5" fill="#242321"/>
+        <rect x="56.5" y="29.5" width="7" height="29" rx="3.5" fill="#242321"/>
+        <rect x="66.5" y="35.5" width="7" height="17" rx="3.5" fill="#242321"/>
+        <rect x="26.5" y="71.5" width="47" height="7" rx="3.5" fill="#242321"/>
+      </svg>
+      <span class="jp">こえがき</span><span class="en">Koegaki</span>
+    </div>
+    <nav>
+      <button type="button" class="lang-toggle">EN</button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero wrap">
+  <div>
+    <p class="kicker"><span class="jp">KOEGAKI — 音声入力キーボード</span><span class="en">KOEGAKI — Voice keyboard</span></p>
+    <h1><span class="jp"><span class="nb">話す、</span><span class="nb">タイプしない。</span></span><span class="en">Speak, don’t type.</span></h1>
+    <p class="lead jp">どのアプリでも、キーボードのマイクをタップして話すだけ。AIが「えー」「あのー」を消し、句読点を整えて、そのまま使える文章をカーソルの位置に挿しこみます。</p>
+    <p class="lead en">In any app, tap the mic on your keyboard and just talk. AI removes the “um”s, settles the punctuation, and drops ready-to-use text right at your cursor.</p>
+    <a class="cta" href="#"><span>App Store</span><small><span class="jp">近日公開</span><span class="en">Coming soon</span></small></a>
+    <span class="cta-note jp">まずは身内テストから。公開までもう少しお待ちください。</span>
+    <span class="cta-note en">Starting with a small private test. Please hang on a little longer until release.</span>
+  </div>
+  <div>
+    <div class="phone" aria-label="こえがきキーボードの画面">
+      <div class="note">
+        <div class="ln"></div>
+        <div class="ln w60"></div>
+        <p class="typed">今日の打ち合わせ、10時半に変更でお願いします。<i></i></p>
+      </div>
+      <div class="kb">
+        <div class="mic">
+          <svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v3"/></svg>
+        </div>
+        <div class="row">
+          <div class="space"><span class="jp">空白</span><span class="en">space</span></div>
+          <div class="k"><svg viewBox="0 0 24 24"><path d="M9 6h9a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-5-6 5-6z"/><path d="M12 10l4 4M16 10l-4 4"/></svg></div>
+          <div class="k"><svg viewBox="0 0 24 24"><path d="M18 6v6a2 2 0 0 1-2 2H6"/><path d="M9 11l-3 3 3 3"/></svg></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="idea">
+  <div class="wrap">
+    <p class="big"><span class="jp">声 → 文字。<span>ぜんぶ端末の中。</span></span><span class="en">Voice → text. <span>All on your device.</span></span></p>
+    <p class="jp">音声も、AIの整形も、ネットワークには一切出ません。機内モードでも動きます。アカウントも、月額も、いりません。あなたの声は、あなたのiPhoneから出ていかない。</p>
+    <p class="en">Your audio and the AI cleanup never leave the device. It works in airplane mode. No account, no subscription. Your voice never leaves your iPhone.</p>
+  </div>
+</section>
+
+<section id="how" class="wrap">
+  <h2>HOW IT WORKS</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v3.5"/></svg></div>
+      <h3><span class="jp">話す</span><span class="en">Speak</span></h3>
+      <p class="jp">マイクをタップして、いつもの調子で。言い直しても大丈夫。黙れば、自動で止まります。</p>
+      <p class="en">Tap the mic and talk like you always do. Corrections are fine. Go quiet, and it stops on its own.</p>
+    </div>
+    <div class="step">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M6 8v3M9.5 6v7M13 4.5v10M16.5 7v5"/><path d="M6 19h12"/></svg></div>
+      <h3><span class="jp">整う</span><span class="en">It tidies</span></h3>
+      <p class="jp">「えー」「あのー」が消え、句読点が整う。「渋谷、いや新宿」は、ちゃんと「新宿」に。</p>
+      <p class="en">Fillers vanish and punctuation lands. “Shibuya — no, Shinjuku” becomes simply “Shinjuku.”</p>
+    </div>
+    <div class="step">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h9"/><path d="M16 12h4M18 10v4" opacity="0"/><path d="M15.5 12h2.5"/><path d="M19 9.5v5"/><path d="M4 17h12"/></svg></div>
+      <h3><span class="jp">挿しこまれる</span><span class="en">It lands</span></h3>
+      <p class="jp">元のアプリに戻ると、きれいな文章がカーソルの位置に。トン、という小さな手応えつき。</p>
+      <p class="en">Back in your app, clean text sits right at your cursor — with a gentle tap of haptics.</p>
+    </div>
+  </div>
+</section>
+
+<section id="why" class="feat">
+  <div class="wrap">
+    <h2>QUIET BY DESIGN</h2>
+    <div class="grid">
+      <div class="f"><h3><span class="jp">完全オンデバイス</span><span class="en">Fully on-device</span></h3><p class="jp">文字起こしも整形も、端末の中のAIだけで。オフラインでも動きます。</p><p class="en">Transcription and cleanup run entirely on-device AI. Even offline.</p></div>
+      <div class="f"><h3><span class="jp">話し言葉のまま</span><span class="en">Your words, kept</span></h3><p class="jp">言い回しは変えません。消すのはフィラーだけ。「なんですけど」はそのまま残る。</p><p class="en">It never rewrites you. Only fillers go. Your tone stays yours.</p></div>
+      <div class="f"><h3><span class="jp">育てる辞書</span><span class="en">A dictionary you grow</span></h3><p class="jp">人名や専門用語を、あなたの表記で。登録するほど、あなたの文章になっていく。</p><p class="en">Names and terms, written your way. The more you teach it, the more it writes like you.</p></div>
+      <div class="f"><h3><span class="jp">優しいモノクロ</span><span class="en">Gentle monochrome</span></h3><p class="jp">紙と墨のキーボード。真ん中にマイクがひとつ。それだけ。</p><p class="en">A paper-and-ink keyboard. One mic in the middle. That’s all.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="closing wrap">
+  <p class="t"><span class="jp"><span class="nb">話す、</span><span class="nb">タイプしない。</span></span><span class="en">Speak, don’t type.</span></p>
+  <p class="s"><span class="jp">声が、そのまま文章になる静けさを。</span><span class="en">The quiet of your voice becoming writing.</span></p>
+  <a class="cta" href="#"><span>App Store</span><small><span class="jp">近日公開</span><span class="en">Coming soon</span></small></a>
+</section>
+
+<footer>
+  <div class="wrap fnav">
+    <div class="brand">
+      <svg width="18" height="18" viewBox="0 0 100 100" aria-hidden="true">
+        <rect x="26.5" y="33.5" width="7" height="21" rx="3.5" fill="#242321"/>
+        <rect x="36.5" y="27.5" width="7" height="33" rx="3.5" fill="#242321"/>
+        <rect x="46.5" y="21.5" width="7" height="45" rx="3.5" fill="#242321"/>
+        <rect x="56.5" y="29.5" width="7" height="29" rx="3.5" fill="#242321"/>
+        <rect x="66.5" y="35.5" width="7" height="17" rx="3.5" fill="#242321"/>
+        <rect x="26.5" y="71.5" width="47" height="7" rx="3.5" fill="#242321"/>
+      </svg>
+      <span class="jp">こえがき</span><span class="en">Koegaki</span>
+    </div>
+    <div>© 2026 Tsumiki Inc.</div>
+  </div>
+</footer>
+
+<script src="koegaki-lang.js"></script>
+<script type="module" src="koegaki-budoux.js"></script>
+<!-- tsumiki-back-button -->
+<style>
+  #tsumikiEdge{position:fixed; top:0; bottom:0; left:0; width:22px; z-index:999;}
+  #tsumikiPeek{
+    position:fixed; top:50%; left:0; z-index:1001; margin-top:-23px;
+    width:46px; height:46px; display:flex; align-items:center; justify-content:center;
+    background:rgba(255,255,255,.92);
+    -webkit-backdrop-filter:saturate(180%) blur(14px); backdrop-filter:saturate(180%) blur(14px);
+    border:1px solid rgba(0,0,0,.06); border-radius:50%;
+    box-shadow:0 6px 20px rgba(0,0,0,.18);
+    color:#0071e3; font-size:24px; font-weight:600; line-height:1;
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Helvetica Neue",Arial,sans-serif;
+    transform:translateX(-70px) scale(.8); opacity:0; pointer-events:none;
+  }
+</style>
+<div id="tsumikiEdge"></div>
+<div id="tsumikiPeek">‹</div>
+<script>
+  (function(){
+    var standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches)
+      || window.navigator.standalone === true;
+    var fromTsumiki = false;
+    try{
+      if(document.referrer){
+        var r = new URL(document.referrer);
+        fromTsumiki = (r.origin === location.origin);
+      }
+    }catch(e){}
+    if(!(standalone && fromTsumiki)) return;
+
+    var peek = document.getElementById('tsumikiPeek');
+    var edge = document.getElementById('tsumikiEdge');
+
+    function goBack(){ location.href = 'index.html'; }
+
+    /* --- 左端エッジスワイプで戻る（iOS純正の戻る操作。見えるボタンは置かない） --- */
+    var sx=0, sy=0, prog=0, dragging=false, W=window.innerWidth;
+    var TRIGGER = Math.min(120, W*0.32);
+    window.addEventListener('resize', function(){ W=window.innerWidth; TRIGGER=Math.min(120, W*0.32); });
+
+    function reset(){
+      dragging = false; prog = 0;
+      peek.style.transition = 'transform .25s ease, opacity .25s ease';
+      peek.style.transform = 'translateX(-70px) scale(.8)';
+      peek.style.opacity = 0;
+    }
+    function start(e){
+      var t = e.touches ? e.touches[0] : e;
+      if(t.clientX > 26) return;
+      sx = t.clientX; sy = t.clientY; prog = 0; dragging = true;
+      peek.style.transition = 'none';
+    }
+    function move(e){
+      if(!dragging) return;
+      var t = e.touches ? e.touches[0] : e;
+      var dx = t.clientX - sx, dy = t.clientY - sy;
+      if(Math.abs(dy) > Math.abs(dx) + 12){ reset(); return; }
+      if(dx < 0) dx = 0;
+      prog = Math.min(dx / TRIGGER, 1);
+      peek.style.transform = 'translateX(' + (-70 + prog*82) + 'px) scale(' + (0.8 + prog*0.2) + ')';
+      peek.style.opacity = prog;
+      if(dx > 6 && e.cancelable) e.preventDefault();
+    }
+    function end(){
+      if(!dragging) return;
+      dragging = false;
+      if(prog >= 0.999){
+        peek.style.transition = 'transform .25s ease, opacity .25s ease';
+        peek.style.transform = 'translateX(20px) scale(1.05)';
+        peek.style.opacity = 1;
+        goBack();
+      }else{
+        reset();
+      }
+    }
+    edge.addEventListener('touchstart', start, {passive:true});
+    window.addEventListener('touchmove', move, {passive:false});
+    window.addEventListener('touchend', end, {passive:true});
+    window.addEventListener('touchcancel', end, {passive:true});
+  })();
+</script>
+<!-- /tsumiki-back-button -->
+</body>
+</html>
