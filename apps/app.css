@@ -1,0 +1,75 @@
+
+:root{
+  --paper:#F4F2EE; --card:#FBFAF7; --surface:#ECE9E3;
+  --ink:#242321; --sub:#77736B; --line:#D8D4CC; --ghost:#BEB9B0;
+  --radius:20px; --accent:#8A8577;
+}
+*{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  font-family:'Zen Maru Gothic',-apple-system,BlinkMacSystemFont,"Hiragino Maru Gothic ProN","Hiragino Sans","Helvetica Neue",Arial,sans-serif;
+  background:var(--paper); color:var(--ink); line-height:1.8;
+  -webkit-font-smoothing:antialiased; padding:0 0 64px;
+}
+a{color:inherit;}
+.wrap{max-width:680px; margin:0 auto; padding:0 20px;}
+/* トップバー */
+.topbar{max-width:680px; margin:0 auto; padding:20px; display:flex; align-items:center; justify-content:space-between;}
+.wordmark{font-weight:700; letter-spacing:.02em; text-decoration:none; font-size:17px; color:var(--ink);}
+.tb-cat{font-size:12px; color:var(--sub); letter-spacing:.1em;}
+/* ヒーロー */
+.hero{display:flex; gap:18px; align-items:center; padding:14px 0 6px;}
+.app-icon{width:88px; height:88px; flex:0 0 auto; border-radius:22px; box-shadow:0 6px 18px rgba(36,35,33,.14); display:block;}
+.app-name{font-size:30px; font-weight:700; line-height:1.25; letter-spacing:.01em;}
+.app-sub{font-size:13px; color:var(--sub); margin-top:2px; letter-spacing:.04em;}
+.badges{margin-top:10px;}
+.badge{display:inline-block; font-size:13px; padding:5px 12px; border-radius:999px; background:var(--surface); color:var(--sub);}
+.badge-accent{background:color-mix(in srgb, var(--accent) 16%, var(--card)); color:color-mix(in srgb, var(--accent) 62%, var(--ink)); font-weight:500;}
+/* メトリクス */
+.metrics{display:flex; gap:8px; margin-top:20px; overflow-x:auto; scrollbar-width:none;}
+.metrics::-webkit-scrollbar{display:none;}
+.metric{flex:1 0 auto; min-width:84px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:11px 12px; text-align:center;}
+.m-k{display:block; font-size:11px; color:var(--sub); letter-spacing:.06em;}
+.m-v{display:block; font-size:15px; font-weight:700; margin-top:3px;}
+.m-c{display:block; font-size:10px; color:var(--ghost); margin-top:1px;}
+/* セクション見出し */
+.sec-h{font-size:17px; font-weight:700; margin:38px 0 14px; display:flex; align-items:baseline; gap:10px;}
+.sec-en{font-size:11px; color:var(--ghost); letter-spacing:.18em; font-weight:400;}
+/* プレビュー（軽量デバイス枠） */
+.preview{}
+.device{background:var(--card); border:1px solid var(--line); border-radius:22px; overflow:hidden; box-shadow:0 10px 28px rgba(36,35,33,.08);}
+.dv-bar{height:38px; background:color-mix(in srgb, var(--accent) 22%, var(--surface)); display:flex; align-items:center; gap:7px; padding:0 15px;}
+.dv-dot{width:10px; height:10px; border-radius:50%; background:color-mix(in srgb, var(--accent) 45%, #fff);}
+.dv-screen{padding:26px 22px 30px; display:flex; flex-direction:column; align-items:center; gap:14px; background:linear-gradient(180deg, color-mix(in srgb, var(--accent) 7%, var(--paper)), var(--paper));}
+.dv-appicon img{width:60px; height:60px; border-radius:16px; display:block; box-shadow:0 4px 12px rgba(36,35,33,.12);}
+.dv-title{font-weight:700; font-size:16px;}
+.dv-rows{width:100%; max-width:280px; display:flex; flex-direction:column; gap:9px; margin-top:4px;}
+.dv-rows span{height:13px; border-radius:7px; background:var(--surface); border:1px solid var(--line);}
+.dv-rows span:nth-child(1){width:100%;} .dv-rows span:nth-child(2){width:82%;} .dv-rows span:nth-child(3){width:64%; background:color-mix(in srgb, var(--accent) 14%, var(--surface));}
+.note{font-size:12px; color:var(--sub); margin-top:10px; line-height:1.65;}
+/* 紹介 */
+.about{font-size:15.5px; line-height:1.95;}
+/* つかいかた */
+.how{list-style:none; display:flex; flex-direction:column; gap:12px;}
+.how li{display:flex; gap:14px; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:15px 16px;}
+.ah-no{flex:0 0 auto; font-size:13px; font-weight:700; color:#fff; background:var(--accent); width:28px; height:28px; border-radius:9px; display:flex; align-items:center; justify-content:center; opacity:.85;}
+.ah-t{font-weight:700; font-size:15px;}
+.ah-d{font-size:13.5px; color:var(--sub); line-height:1.7; margin-top:2px;}
+/* 特徴 */
+.feats{display:grid; grid-template-columns:1fr 1fr; gap:11px;}
+.feat{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:15px 15px;}
+.af-t{font-weight:700; font-size:14.5px;}
+.af-d{font-size:12.5px; color:var(--sub); line-height:1.65; margin-top:5px;}
+/* 情報 */
+.panel{background:var(--card); border:1px solid var(--line); border-radius:18px; overflow:hidden;}
+.dl-row{display:flex; gap:14px; padding:13px 17px; border-top:1px solid var(--line);}
+.dl-row:first-child{border-top:none;}
+.dl-k{flex:0 0 88px; font-size:13px; color:var(--sub);}
+.dl-v{font-size:14px; flex:1;}
+/* CTA */
+.cta{margin-top:40px; background:var(--card); border:1px solid var(--line); border-radius:20px; padding:26px 22px; text-align:center;}
+.cta-t{font-size:17px; font-weight:700; line-height:1.5;}
+.cta-d{font-size:13.5px; color:var(--sub); line-height:1.75; margin-top:10px;}
+.cta-btn{display:inline-block; margin-top:18px; background:var(--ink); color:var(--paper); text-decoration:none; font-weight:700; font-size:15px; padding:13px 30px; border-radius:999px;}
+.cta-back{display:block; margin-top:16px; font-size:13px; color:var(--sub); text-decoration:none;}
+@media(max-width:400px){ .feats{grid-template-columns:1fr;} .app-name{font-size:26px;} }

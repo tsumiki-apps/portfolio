@@ -325,7 +325,7 @@
       <p class="as-h">情報<span class="as-h-en">INFORMATION</span></p>
       <div class="panel">
         <div class="dl">
-          <div class="dl-row"><div class="dl-k">開発</div><div class="dl-v">つみき（髙橋 弘大）／ 自社プロダクト</div></div>
+          <div class="dl-row"><div class="dl-k">開発</div><div class="dl-v">つみき ／ 自社プロダクト</div></div>
           <div class="dl-row"><div class="dl-k">カテゴリ</div><div class="dl-v">写真／ビデオ（動画日記）</div></div>
           <div class="dl-row"><div class="dl-k">対応OS</div><div class="dl-v">iOS 18.0 以降（iPhone・縦向き）</div></div>
           <div class="dl-row"><div class="dl-k">技術</div><div class="dl-v">SwiftUI ＋ AVFoundation（ネイティブ実装）</div></div>
@@ -438,7 +438,7 @@
       <p class="as-h">情報<span class="as-h-en">INFORMATION</span></p>
       <div class="panel">
         <div class="dl">
-          <div class="dl-row"><div class="dl-k">開発</div><div class="dl-v">つみき（髙橋 弘大）／ 自社プロダクト</div></div>
+          <div class="dl-row"><div class="dl-k">開発</div><div class="dl-v">つみき ／ 自社プロダクト</div></div>
           <div class="dl-row"><div class="dl-k">カテゴリ</div><div class="dl-v">ユーティリティ（カスタムキーボード）</div></div>
           <div class="dl-row"><div class="dl-k">対応OS</div><div class="dl-v">iOS 18.0 以降（iPhone）。整形AIは Apple Intelligence 対応端末で最良、非対応でも簡易整形に自動切替。</div></div>
           <div class="dl-row"><div class="dl-k">技術</div><div class="dl-v">SwiftUI ＋ WhisperKit ＋ Foundation Models（完全オンデバイス）</div></div>
@@ -982,9 +982,9 @@
   const col = document.getElementById("collection");
   categories.forEach(cat=>{
     const cards = cat.apps.map(a=>
-      '<div class="card card--preview">'+
+      '<a class="card" href="apps/'+a.stem+'.html">'+
         '<img class="ico" src="icons/icon-'+a.stem+'.png" alt="" loading="lazy">'+
-        '<span class="title">'+a.title+'</span><span class="desc">'+a.desc+'</span></div>').join("");
+        '<span class="title">'+a.title+'</span><span class="desc">'+a.desc+'</span></a>').join("");
     const sec = document.createElement("div");
     sec.className = "cat";
     sec.innerHTML =
