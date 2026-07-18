@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=37">
+<link rel="stylesheet" href="style.css?v=39">
 <link rel="icon" type="image/png" href="icons/icon-index.png">
 <link rel="apple-touch-icon" href="icons/icon-index.png">
 <meta name="apple-mobile-web-app-title" content="つみき">
@@ -562,11 +562,16 @@
   <section class="screen sheet" id="s-profile" data-screen="profile">
     <div class="sheet-inner">
       <p class="sheet-label"><span class="sl-jp">プロフィール</span><span class="sl-en">PROFILE</span></p>
-      <p class="sheet-lead">アプリを作るのは、私ひとりです。だからこそ、誰が作るのかを先にお伝えしておきます。</p>
+      <p class="sheet-lead">「これ、なんとかならないかな」——その一言がうれしくて、小さなアプリを作っています。作るのは私ひとりなので、先にどんな人間かをお伝えしておきます。</p>
 
       <div class="profile">
-        <div class="name">髙橋 弘大<span class="en">Kodai Takahashi</span></div>
-        <div class="role">つみき（Tsumiki）代表 ／ ソフトウェア開発業</div>
+        <div class="profile-head">
+          <img class="profile-photo" src="assets/kodai.jpg" alt="つみき代表 髙橋弘大" width="76" height="76" loading="lazy">
+          <div class="profile-id">
+            <div class="name">髙橋 弘大<span class="en">Kodai Takahashi</span></div>
+            <div class="role">つみき（Tsumiki）代表 ／ ソフトウェア開発業</div>
+          </div>
+        </div>
         <div class="p-row"><div class="p-key">つくるもの</div><div class="p-val">法人のみなさま向けの、業務専用アプリ。毎日の打ち直しや、散らばった情報の整理など、現場の“ちょっと困った”を解く道具をお作りします。自社プロダクトとして iOSアプリ「いつつ」「こえがき」も開発・運営しています。</div></div>
         <div class="p-row"><div class="p-key">強み</div><div class="p-val">普段はIT企業の現場で働いています。<strong>「言葉にしづらい困りごとを、そのまま聞いて形にする」のが本業で身についたこと</strong>です。現場の人が何に困るかを知っているので、専門用語を使わずに業務を伺えます。ご準備いただく資料もありません。</div></div>
         <div class="p-row"><div class="p-key">大事にしていること</div><div class="p-val">作ったものが、御社の手元に残ること。ソースコードは全てお渡しし、著作権も譲渡します。アプリは1枚のHTMLで作るので、<strong>つみきがいなくても動き続け、他社でも引き継げます</strong>。</div></div>
@@ -1008,34 +1013,91 @@
   /* つみきコレクション（Work / Private / Asset） */
   const categories = [
     {key:"work", emoji:"💼", label:"Work", apps:[
-      {stem:"gijiroku",title:"議事録",desc:"会議の要点・決定・ToDoを自動整理"},
-      {stem:"vault",title:"Password 保管",desc:"パスワードをジャンル別に整理"},
-      {stem:"memo",title:"メモ帳",desc:"カテゴリーとタグで整理する白紙"},
+      {stem:"gijiroku",title:"議事録",desc:"会議の要点・決定・ToDoを自動整理",
+        when:"会議のあと「何が決まったんだっけ」「誰がやるんだっけ」が分からなくなる。",
+        can:["発言メモを、要点・決定・ToDoに自動で仕分け","会議ごとに履歴を残して見返せる","まとめをコピーして、そのまま共有"],
+        after:"“誰が何をやるか”が、一目で追える議事録に。"},
+      {stem:"vault",title:"Password 保管",desc:"パスワードをジャンル別に整理",
+        when:"ID・パスワードが増えすぎて、どれがどれだか分からなくなる。",
+        can:["ジャンル別に整理して保管","合言葉方式で、自分だけが開ける","必要な時にサッと取り出せる"],
+        after:"頭で覚えておく負担が、ぐっと減る。"},
+      {stem:"memo",title:"メモ帳",desc:"カテゴリーとタグで整理する白紙",
+        when:"メモが増えると、どこに書いたか分からなくなる。",
+        can:["カテゴリとタグを付けて整理","タグで横断して探せる","思いつきを軽快に書き留められる"],
+        after:"数が増えても“探せる”メモ帳に。"},
     ]},
     {key:"private", emoji:"🌿", label:"Private", apps:[
-      {stem:"yuzuwari",title:"わりかん精算",desc:"立て替えをプロジェクト別に精算"},
-      {stem:"cooking",title:"料理日記",desc:"ふたりで共有する献立ノート"},
-      {stem:"tabinoki",title:"たびのき",desc:"ふたりで作る旅のしおり"},
-      {stem:"yarukoto",title:"やることばこ",desc:"やること・構想・買い物を1つの箱に"},
-      {stem:"komame",title:"こまめ",desc:"家のおそうじを定期管理"},
-      {stem:"kaimono",title:"おつかいカート",desc:"頼まれた物を安い順に探して管理"},
+      {stem:"yuzuwari",title:"わりかん精算",desc:"立て替えをプロジェクト別に精算",
+        when:"旅行や飲み会で「誰がいくら出したっけ」が分からなくなる。",
+        can:["立て替えをプロジェクト単位で記録","誰が誰にいくら払うかを自動計算","端数もきれいに精算"],
+        after:"精算のもやもやが、なくなる。"},
+      {stem:"cooking",title:"料理日記",desc:"ふたりで共有する献立ノート",
+        when:"「今日なに作る？」がいつも思いつかない。二人で共有もできてない。",
+        can:["作った料理・献立を写真付きで記録","二人で共有して見返せる","定番の“引き出し”が貯まっていく"],
+        after:"献立に迷う時間が、減っていく。"},
+      {stem:"tabinoki",title:"たびのき",desc:"ふたりで作る旅のしおり",
+        when:"旅行の計画や持ち物が、あちこちに散らばる。",
+        can:["行き先・やりたいこと・持ち物を1つに","二人で書き込みながら計画を育てる","当日はしおりを開くだけ"],
+        after:"迷わず動ける旅に。"},
+      {stem:"yarukoto",title:"やることばこ",desc:"やること・構想・買い物を1つの箱に",
+        when:"やること・アイデア・買い物メモが、頭の中でごちゃつく。",
+        can:["種類を選ばず、何でも放り込める","あとで3つに自然と仕分け","頭の中をいったん空にできる"],
+        after:"抱えているものが、すっきり整理される。"},
+      {stem:"komame",title:"こまめ",desc:"家のおそうじを定期管理",
+        when:"掃除が“気づいたら溜まっていた”になりがち。",
+        can:["場所ごとに掃除の周期を管理","次にやる場所が一目で分かる","溜めずに、軽く回せる"],
+        after:"家事が、無理なく回り続ける。"},
+      {stem:"kaimono",title:"おつかいカート",desc:"頼まれた物を安い順に探して管理",
+        when:"頼まれた買い物、あちこち回って非効率。つい買い忘れる。",
+        can:["買うものを、お店や価格で整理","安い順・店ごとにまとめる","買い忘れを防ぐ"],
+        after:"おつかいを、効率よく回せる。"},
     ]},
     {key:"asset", emoji:"💰", label:"Asset", apps:[
-      {stem:"chiritsumo",title:"ちりつも",desc:"使ったお金をサッと記録"},
-      {stem:"credit",title:"明細マネージャー",desc:"立て替えとカード支出を分けて管理"},
-      {stem:"money",title:"残高 計算ツール",desc:"残高をサッと計算"},
-      {stem:"forecast",title:"資産予測グラフ",desc:"資産の推移を予測して可視化"},
-      {stem:"maitsuki",title:"まいつき",desc:"毎月の固定費を円グラフで"},
-      {stem:"hikiotoshi",title:"ひきおとし",desc:"引き落とし日をカレンダー管理"},
-      {stem:"copybox",title:"コピペ箱",desc:"よくコピーする情報を保管"},
+      {stem:"chiritsumo",title:"ちりつも",desc:"使ったお金をサッと記録",
+        when:"何にいくら使ったか、あとから思い出せない。",
+        can:["支出を、その場でワンタップ記録","積み上がりを見える化","手間なく続けられる軽さ"],
+        after:"“ちりも積もれば”が、見えてくる。"},
+      {stem:"credit",title:"明細マネージャー",desc:"立て替えとカード支出を分けて管理",
+        when:"カード明細の「これ誰の分だっけ？」が分からない。",
+        can:["自分の支出と立て替えを分けて管理","立て替えを相手ごとに集計","回収漏れを防ぐ"],
+        after:"立て替えのもやもやが、消える。"},
+      {stem:"money",title:"残高 計算ツール",desc:"残高をサッと計算",
+        when:"今いくら使えるのか、パッと分からない。",
+        can:["複数口座の出入りを、さっと足し引き","残り・使えるお金を一目で把握","迷わない、シンプルな作り"],
+        after:"お金の残りが、すぐ分かる。"},
+      {stem:"forecast",title:"資産予測グラフ",desc:"資産の推移を予測して可視化",
+        when:"将来のお金が、漠然と不安。",
+        can:["今の資産と積立ペースから推移を予測","グラフで直感的に見える化","前提を変えて何度でも試せる"],
+        after:"漠然とした不安が、数字に変わる。"},
+      {stem:"maitsuki",title:"まいつき",desc:"毎月の固定費を円グラフで",
+        when:"固定費が結局いくらか、把握できていない。",
+        can:["サブスク・家賃などの固定費を登録","毎月の内訳を円グラフで表示","月額を自動集計"],
+        after:"“何に払ってるか”が、ひと目で分かる。"},
+      {stem:"hikiotoshi",title:"ひきおとし",desc:"引き落とし日をカレンダー管理",
+        when:"引き落としで残高不足の“うっかり”が怖い。",
+        can:["いつ・いくら引き落とされるかをカレンダー管理","金額も合わせて把握","残高不足を、未然に防ぐ"],
+        after:"お金の予定に、余裕を持てる。"},
+      {stem:"copybox",title:"コピペ箱",desc:"よくコピーする情報を保管",
+        when:"住所や定型文を、何度も打ち直している。",
+        can:["よく使う文を登録してワンタップコピー","用途別に整理して取り出せる","打ち直しの手間をゼロに"],
+        after:"同じ入力の繰り返しが、なくなる。"},
     ]},
   ];
   const col = document.getElementById("collection");
   categories.forEach(cat=>{
     const cards = cat.apps.map(a=>
-      '<a class="card" href="apps/'+a.stem+'.html">'+
-        '<img class="ico" src="icons/icon-'+a.stem+'.png" alt="" loading="lazy">'+
-        '<span class="title">'+a.title+'</span><span class="desc">'+a.desc+'</span></a>').join("");
+      '<div class="card-wrap">'+
+        '<button class="card" type="button" aria-expanded="false">'+
+          '<img class="ico" src="icons/icon-'+a.stem+'.png?v=2" alt="" loading="lazy">'+
+          '<span class="card-body"><span class="title">'+a.title+'</span><span class="desc">'+a.desc+'</span></span>'+
+          '<span class="card-ar" aria-hidden="true">→</span>'+
+        '</button>'+
+        '<div class="card-detail"><div class="cd-inner"><div class="cd-body">'+
+          '<p class="cd-k">こんなとき</p><p class="cd-v">'+a.when+'</p>'+
+          '<p class="cd-k">できること</p><ul class="cd-list">'+a.can.map(c=>'<li>'+c+'</li>').join('')+'</ul>'+
+          '<p class="cd-k">こう変わる</p><p class="cd-v">'+a.after+'</p>'+
+        '</div></div></div>'+
+      '</div>').join("");
     const sec = document.createElement("div");
     sec.className = "cat";
     sec.innerHTML =
@@ -1043,6 +1105,14 @@
         cat.label+'<span class="badge">'+cat.apps.length+'</span></p>'+
       '<div class="grid">'+cards+'</div>';
     col.appendChild(sec);
+  });
+  /* カードをタップで説明を開閉（アコーディオン） */
+  col.querySelectorAll('.card').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const wrap = btn.closest('.card-wrap');
+      const open = wrap.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
   });
 
   /* ===== ページ送り（縦スクロールなし・フェード＋墨の背景化） ===== */

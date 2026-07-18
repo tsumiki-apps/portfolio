@@ -682,23 +682,38 @@ body.on-dark .tb-brand{color:#F4F2EE;
 /* ---------- つみきコレクション（グリッド） ---------- */
 .cat{margin-top:34px;}
 .cat:first-child{margin-top:24px;}
-.grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px;}
-@media(min-width:560px){ .grid{grid-template-columns:repeat(3,1fr);} }
-.card{
-  display:flex; flex-direction:column; gap:11px; justify-content:flex-start;
-  text-decoration:none; min-height:158px;
-  background:var(--card); border:1px solid var(--line); border-radius:22px;
-  padding:18px 16px; color:var(--ink);
-  transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+.grid{display:flex; flex-direction:column; gap:12px; margin-top:16px;}
+/* 各アプリ：横長カード＋タップで開く説明（こんなとき／できること／こう変わる） */
+.card-wrap{
+  background:var(--card); border:1px solid var(--line); border-radius:20px; overflow:hidden;
+  transition:border-color .15s ease, box-shadow .15s ease;
 }
-a.card:active{transform:scale(.96);}
-@media(hover:hover){ a.card:hover{transform:translateY(-3px); border-color:var(--ghost); box-shadow:0 12px 30px rgba(36,35,33,.10);} }
-/* コレクションは作品ギャラリー（クリック遷移なし）。クリック可能に見せない */
-.card--preview{cursor:default;}
-@media(hover:hover){ .card--preview:hover{border-color:var(--ghost); box-shadow:0 8px 22px rgba(36,35,33,.07);} }
-.card .ico{flex:0 0 auto; width:50px; height:50px; border-radius:17px; display:block;}
+.card-wrap.is-open{border-color:var(--ghost); box-shadow:0 10px 26px rgba(36,35,33,.09);}
+@media(hover:hover){ .card-wrap:hover{border-color:var(--ghost);} }
+.card{
+  width:100%; -webkit-appearance:none; appearance:none; background:none; border:none; cursor:pointer;
+  font-family:inherit; text-align:left; color:var(--ink);
+  display:grid; grid-template-columns:56px minmax(0,1fr) auto; gap:16px; align-items:center;
+  padding:14px 16px; transition:transform .15s ease;
+}
+.card:active{transform:scale(.985);}
+.card .ico{width:56px; height:56px; border-radius:18px; display:block; border:1px solid var(--line); box-shadow:0 4px 12px rgba(36,35,33,.08);}
+.card-body{min-width:0; display:flex; flex-direction:column; gap:4px;}
 .card .title{font-size:15px; font-weight:700; line-height:1.32; letter-spacing:.01em;}
 .card .desc{font-size:12px; color:var(--sub); line-height:1.55;}
+.card-ar{font-size:20px; color:var(--ghost); transition:transform .25s ease, color .2s ease;}
+.card-wrap.is-open .card-ar{transform:rotate(90deg); color:var(--ink);}
+/* 開閉アニメーション（grid-template-rows 0fr→1fr） */
+.card-detail{display:grid; grid-template-rows:0fr; transition:grid-template-rows .28s ease;}
+.card-wrap.is-open .card-detail{grid-template-rows:1fr;}
+.cd-inner{overflow:hidden; min-height:0;}
+.cd-body{padding:14px 16px 18px; border-top:1px solid var(--line);}
+.cd-k{font-size:11px; font-weight:700; letter-spacing:.1em; color:var(--sub);}
+.cd-k:not(:first-child){margin-top:13px;}
+.cd-v{font-size:13px; color:#3a3833; line-height:1.7; margin-top:3px;}
+.cd-list{margin:5px 0 0; padding-left:1.15em;}
+.cd-list li{font-size:13px; color:#3a3833; line-height:1.7;}
+.cd-list li::marker{color:var(--ghost);}
 
 /* ---------- 制作について ---------- */
 .prose{
@@ -714,6 +729,15 @@ a.card:active{transform:scale(.96);}
   background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
   padding:26px 24px; margin-top:18px;
 }
+/* 名前の横に、四辺を丸くした顔写真（アイコン風） */
+.profile-head{display:flex; align-items:center; gap:16px;}
+.profile-photo{
+  width:76px; height:76px; flex:0 0 auto; display:block;
+  border-radius:18px; object-fit:cover; object-position:center 30%;
+  border:1px solid var(--line); box-shadow:0 3px 12px rgba(23,20,15,.14);
+  background:var(--surface);   /* 読み込み前のプレースホルダ色 */
+}
+.profile-id{min-width:0;}   /* 長い名前でも写真を潰さない */
 .profile .name{font-size:19px; font-weight:700; letter-spacing:.02em;}
 .profile .name .en{font-size:13px; color:var(--sub); font-weight:500; margin-left:8px; letter-spacing:.04em;}
 .profile .role{font-size:13.5px; color:var(--sub); margin-top:4px;}
