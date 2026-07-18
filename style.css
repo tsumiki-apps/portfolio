@@ -347,6 +347,10 @@ body.on-dark .tb-brand{color:#F4F2EE;
 
 /* 料金の目安（From価格） */
 .price-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px;}
+.price-grid.one{grid-template-columns:1fr;}
+.price-group{margin-top:20px; margin-bottom:2px; font-size:13px; font-weight:700; color:var(--ink); letter-spacing:.04em; display:flex; align-items:baseline; gap:9px;}
+.price-group .pg-en{font-size:10px; font-weight:400; color:var(--ghost); letter-spacing:.14em;}
+.price-grid.one + .price-group{margin-top:24px;}
 .price-card{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:16px 14px; text-align:center;}
 .pc-name{font-size:13px; font-weight:700; letter-spacing:.04em;}
 .pc-sub{font-size:11px; color:var(--sub); margin-top:3px; line-height:1.5;}
