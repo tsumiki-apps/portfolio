@@ -696,7 +696,7 @@ a.card:active{transform:scale(.96);}
 /* コレクションは作品ギャラリー（クリック遷移なし）。クリック可能に見せない */
 .card--preview{cursor:default;}
 @media(hover:hover){ .card--preview:hover{border-color:var(--ghost); box-shadow:0 8px 22px rgba(36,35,33,.07);} }
-.card .ico{flex:0 0 auto; width:50px; height:50px; border-radius:14px; display:block;}
+.card .ico{flex:0 0 auto; width:50px; height:50px; border-radius:17px; display:block;}
 .card .title{font-size:15px; font-weight:700; line-height:1.32; letter-spacing:.01em;}
 .card .desc{font-size:12px; color:var(--sub); line-height:1.55;}
 
