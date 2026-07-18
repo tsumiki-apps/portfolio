@@ -178,6 +178,7 @@
         </button>
         <div class="submenu">
           <a class="sub-item" data-go="profile" href="#"><span class="su-jp">プロフィール</span><span class="su-en">PROFILE</span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="company" href="#"><span class="su-jp">事業者概要</span><span class="su-en">BUSINESS</span><span class="su-ar">→</span></a>
           <a class="sub-item" data-go="hearing" href="#"><span class="su-jp">無料ヒアリング申込</span><span class="su-en">CONTACT</span><span class="su-ar">→</span></a>
           <a class="sub-item" data-go="privacy" href="#"><span class="su-jp">プライバシーポリシー</span><span class="su-en">PRIVACY</span><span class="su-ar">→</span></a>
         </div>
@@ -575,6 +576,44 @@
 
       <div class="cta-wrap">
         <p class="cta-lead">「うちのこれ、なんとかなりますか？」だけで大丈夫です。初回のヒアリングは無料です。</p>
+        <a class="cta" data-go="hearing" href="#">無料で相談する<span class="cta-ar">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- お問い合わせ：事業者概要 -->
+  <section class="screen sheet" id="s-company" data-screen="company">
+    <div class="sheet-inner">
+      <p class="sheet-label"><span class="sl-jp">事業者概要</span><span class="sl-en">BUSINESS</span></p>
+      <p class="sheet-lead">安心してご相談いただけるよう、事業者の情報をひとつにまとめました。</p>
+
+      <div class="panel">
+        <div class="dl">
+          <div class="dl-row"><div class="dl-k">屋号</div><div class="dl-v">つみき（Tsumiki）</div></div>
+          <div class="dl-row"><div class="dl-k">形態</div><div class="dl-v">個人事業主</div></div>
+          <div class="dl-row"><div class="dl-k">代表者</div><div class="dl-v">髙橋 弘大（たかはし こうだい）</div></div>
+          <div class="dl-row"><div class="dl-k">事業内容</div><div class="dl-v">ソフトウェア開発業。法人・個人向けの業務専用アプリの受託開発と、自社プロダクト（iOSアプリ「いつつ」「こえがき」）の開発・運営。</div></div>
+          <div class="dl-row"><div class="dl-k">所在地</div><div class="dl-v">自宅のため非公開。ご契約にあたり必要な場合は、お問い合わせいただければ個別にお伝えします。</div></div>
+          <div class="dl-row"><div class="dl-k">連絡先</div><div class="dl-v"><a href="mailto:support.tsumiki@gmail.com">support.tsumiki@gmail.com</a></div></div>
+          <div class="dl-row"><div class="dl-k">ウェブ</div><div class="dl-v">tsumiki-apps.com</div></div>
+        </div>
+      </div>
+
+      <p class="h3">料金・お取引について<span class="h3-en">TERMS</span></p>
+      <div class="panel">
+        <div class="dl">
+          <div class="dl-row"><div class="dl-k">サービス</div><div class="dl-v">業務内容を伺ったうえで制作する、オーダーメイドの専用アプリ。</div></div>
+          <div class="dl-row"><div class="dl-k">料金</div><div class="dl-v">内容により個別お見積り（個人向けは3万円〜、法人向けは15万円〜が目安）。<strong>初回ヒアリング・お見積りは無料</strong>で、ご納得いただいてから着手します。→ 詳しくは <a data-go="pricing" href="#">料金・進行イメージ</a></div></div>
+          <div class="dl-row"><div class="dl-k">お支払い</div><div class="dl-v">条件はお見積りに明記します。着手後に金額が変わることはありません。</div></div>
+          <div class="dl-row"><div class="dl-k">納品物</div><div class="dl-v">アプリ本体（ソースコード一式）と、簡単な説明資料。著作権はお客様に譲渡します。</div></div>
+          <div class="dl-row"><div class="dl-k">キャンセル</div><div class="dl-v">ヒアリング・お見積りの段階での終了は、費用は一切かかりません。着手後の取り扱いは、お見積り・ご契約時に個別に定めます。</div></div>
+        </div>
+      </div>
+
+      <p class="note">個人情報の取り扱いは <a data-go="privacy" href="#">プライバシーポリシー</a> をご覧ください。本サイトは、商品をその場で購入・決済する通信販売ではなく、ご相談・お見積りを経てご契約いただく受託開発サービスです。</p>
+
+      <div class="cta-wrap">
+        <p class="cta-lead">ご不明な点は、お気軽にお問い合わせください。初回のヒアリングは無料です。</p>
         <a class="cta" data-go="hearing" href="#">無料で相談する<span class="cta-ar">→</span></a>
       </div>
     </div>
@@ -1018,7 +1057,7 @@
       value:'service', issues:'service', process:'service', pricing:'service',
       flagship:'works', 'flagship-itsutsu':'works', 'flagship-koegaki':'works',
       collection:'works', voice:'works',
-      profile:'contact', hearing:'contact', privacy:'contact'
+      profile:'contact', company:'contact', hearing:'contact', privacy:'contact'
     };
 
     function isSheet(id){ return screens[id].classList.contains('sheet'); }
