@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=43">
+<link rel="stylesheet" href="style.css?v=44">
 <link rel="icon" type="image/png" href="icons/icon-index.png?v=2">
 <link rel="apple-touch-icon" href="icons/icon-index.png?v=2">
 <meta name="apple-mobile-web-app-title" content="つみき">
@@ -252,6 +252,13 @@
       </div>
 
       <p class="as-h">プレビュー<span class="as-h-en">PREVIEW</span></p>
+      <figure class="as-video">
+        <div class="pv pv-photo pv-lg">
+          <video class="pv-vid" src="assets/itsutsu-preview.mp4" poster="assets/itsutsu-video-poster.jpg"
+                 autoplay muted loop playsinline preload="metadata" aria-label="いつつで書き出した1日の動画"></video>
+        </div>
+        <figcaption>実際に書き出した「今日」（約7秒・ミュートで再生）</figcaption>
+      </figure>
       <div class="as-shots">
         <figure class="as-shot">
           <div class="pv pv-photo" aria-hidden="true">
@@ -1233,6 +1240,21 @@
     window.addEventListener('keydown', e=>{
       if (e.key === 'Escape' && current !== 'intro') go('menu');
     });
+  })();
+</script>
+<script>
+  /* いつつの動画：その画面が表示されている時だけミュート再生（切替時に確実に再生／離れたら停止） */
+  (function(){
+    var v = document.querySelector('.pv-vid');
+    var screen = document.getElementById('s-flagship-itsutsu');
+    if (!v || !screen) return;
+    v.muted = true;                       // 自動再生の許可条件（明示）
+    function sync(){
+      if (screen.classList.contains('is-active')) { v.play().catch(function(){}); }
+      else { v.pause(); }
+    }
+    new MutationObserver(sync).observe(screen, { attributes:true, attributeFilter:['class'] });
+    sync();
   })();
 </script>
 <script src="ink-fluid.js?v=34"></script>
