@@ -903,9 +903,55 @@
       </div>
 
       <div class="cta-wrap">
-        <p class="cta-lead">下のボタンでメールが開きます。ひな形を用意してあるので、分かるところだけ埋めて送信してください。<strong>「うちのこれ、なんとかなりますか？」の一行だけでも大丈夫です。</strong></p>
-        <a class="cta" href="mailto:support.tsumiki@gmail.com?subject=%E7%84%A1%E6%96%99%E3%83%92%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0%E5%B8%8C%E6%9C%9B&body=%EF%BC%88%E5%88%86%E3%81%8B%E3%82%8B%E7%AF%84%E5%9B%B2%E3%81%A7%E5%A4%A7%E4%B8%88%E5%A4%AB%E3%81%A7%E3%81%99%E3%80%82%E7%A9%BA%E6%AC%84%E3%81%AE%E3%81%BE%E3%81%BE%E9%80%81%E3%81%A3%E3%81%A6%E3%81%84%E3%81%9F%E3%81%A0%E3%81%84%E3%81%A6%E3%82%82%E6%A7%8B%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%EF%BC%89%0A%0A%E2%96%A0%20%E4%BC%9A%E7%A4%BE%E5%90%8D%EF%BC%9A%0A%E2%96%A0%20%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0A%E2%96%A0%20%E3%81%94%E9%80%A3%E7%B5%A1%E5%85%88%EF%BC%88%E3%81%8A%E9%9B%BB%E8%A9%B1%E7%95%AA%E5%8F%B7%E3%81%AA%E3%81%A9%EF%BC%89%EF%BC%9A%0A%0A%E2%96%A0%20%E3%81%84%E3%81%BE%E5%9B%B0%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%93%E3%81%A8%EF%BC%9A%0A%E3%80%80%E4%BE%8B%EF%BC%89%E6%AF%8E%E6%97%A5%E3%80%81%E5%90%8C%E3%81%98%E6%95%B0%E5%AD%97%E3%82%92%E5%88%A5%E3%81%AE%E8%A1%A8%E3%81%AB%E6%89%93%E3%81%A1%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%0A%0A%E2%96%A0%20%E3%83%92%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0%E3%81%AE%E3%81%94%E5%B8%8C%E6%9C%9B%EF%BC%9A%0A%E3%80%80%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%20%EF%BC%8F%20%E8%A8%AA%E5%95%8F%20%EF%BC%8F%20%E3%81%A9%E3%81%A1%E3%82%89%E3%81%A7%E3%82%82%0A">メールで相談する<span class="cta-ar">→</span></a>
-        <p class="note">メールが開かない場合は、<a href="mailto:support.tsumiki@gmail.com">support.tsumiki@gmail.com</a> 宛に直接お送りください。</p>
+        <p class="cta-lead">下のフォームに、分かるところだけ書いて送信してください。<strong>そのまま私に届きます。</strong>「うちのこれ、なんとかなりますか？」の一行だけでも大丈夫です。</p>
+
+        <form id="hearing-form" class="hform" novalidate>
+          <div class="hf-field">
+            <label class="hf-label" for="hf-name">お名前<span class="hf-req">必須</span></label>
+            <input class="hf-input" id="hf-name" name="お名前" type="text" autocomplete="name" required placeholder="例）積木 太郎">
+          </div>
+          <div class="hf-field">
+            <label class="hf-label" for="hf-company">会社名・お店の名前<span class="hf-opt">任意</span></label>
+            <input class="hf-input" id="hf-company" name="会社名・お店の名前" type="text" autocomplete="organization" placeholder="例）つみき商店">
+          </div>
+          <div class="hf-field">
+            <label class="hf-label" for="hf-email">メールアドレス<span class="hf-req">必須</span></label>
+            <input class="hf-input" id="hf-email" name="email" type="email" autocomplete="email" inputmode="email" required placeholder="例）you@example.com">
+            <p class="hf-hint">このアドレス宛に、私から直接お返事します。</p>
+          </div>
+          <div class="hf-field">
+            <label class="hf-label" for="hf-tel">お電話番号<span class="hf-opt">任意</span></label>
+            <input class="hf-input" id="hf-tel" name="お電話番号" type="tel" autocomplete="tel" inputmode="tel" placeholder="例）090-1234-5678">
+          </div>
+          <div class="hf-field">
+            <label class="hf-label" for="hf-msg">いま困っていること<span class="hf-req">必須</span></label>
+            <textarea class="hf-input hf-textarea" id="hf-msg" name="いま困っていること" required placeholder="例）毎日、同じ数字を別の表に打ち直している。一行だけでも大丈夫です。"></textarea>
+          </div>
+          <div class="hf-field">
+            <span class="hf-label">ヒアリングのご希望</span>
+            <div class="hf-seg" role="radiogroup" aria-label="ヒアリングのご希望">
+              <label class="hf-chip"><input type="radio" name="ヒアリングのご希望" value="オンライン"><span>オンライン</span></label>
+              <label class="hf-chip"><input type="radio" name="ヒアリングのご希望" value="訪問"><span>訪問</span></label>
+              <label class="hf-chip"><input type="radio" name="ヒアリングのご希望" value="どちらでも" checked><span>どちらでも</span></label>
+            </div>
+          </div>
+
+          <!-- FormSubmit（フォーム内容をメールへ転送するサービス）の設定 -->
+          <input type="hidden" name="_subject" value="【無料ヒアリング】新しいお申し込み">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input class="hf-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <button type="submit" class="cta hf-submit"><span class="cta-label">送信する</span><span class="cta-ar">→</span></button>
+          <p id="hf-status" class="hf-status" role="status" aria-live="polite"></p>
+        </form>
+
+        <div id="hf-done" class="hf-done" hidden>
+          <p class="hf-done-ttl">送信しました。ありがとうございます。</p>
+          <p class="hf-done-body">2〜3日以内を目安に、いただいたメールアドレス宛に私から直接お返事します。日程のご相談だけです。どうぞお気軽に。</p>
+        </div>
+
+        <p class="note hf-alt">フォームがうまく動かないときは、<a href="mailto:support.tsumiki@gmail.com?subject=%E7%84%A1%E6%96%99%E3%83%92%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0%E5%B8%8C%E6%9C%9B&body=%EF%BC%88%E5%88%86%E3%81%8B%E3%82%8B%E7%AF%84%E5%9B%B2%E3%81%A7%E5%A4%A7%E4%B8%88%E5%A4%AB%E3%81%A7%E3%81%99%E3%80%82%E7%A9%BA%E6%AC%84%E3%81%AE%E3%81%BE%E3%81%BE%E9%80%81%E3%81%A3%E3%81%A6%E3%81%84%E3%81%9F%E3%81%A0%E3%81%84%E3%81%A6%E3%82%82%E6%A7%8B%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%EF%BC%89%0A%0A%E2%96%A0%20%E4%BC%9A%E7%A4%BE%E5%90%8D%EF%BC%9A%0A%E2%96%A0%20%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0A%E2%96%A0%20%E3%81%94%E9%80%A3%E7%B5%A1%E5%85%88%EF%BC%88%E3%81%8A%E9%9B%BB%E8%A9%B1%E7%95%AA%E5%8F%B7%E3%81%AA%E3%81%A9%EF%BC%89%EF%BC%9A%0A%0A%E2%96%A0%20%E3%81%84%E3%81%BE%E5%9B%B0%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%93%E3%81%A8%EF%BC%9A%0A%E3%80%80%E4%BE%8B%EF%BC%89%E6%AF%8E%E6%97%A5%E3%80%81%E5%90%8C%E3%81%98%E6%95%B0%E5%AD%97%E3%82%92%E5%88%A5%E3%81%AE%E8%A1%A8%E3%81%AB%E6%89%93%E3%81%A1%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%0A%0A%E2%96%A0%20%E3%83%92%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0%E3%81%AE%E3%81%94%E5%B8%8C%E6%9C%9B%EF%BC%9A%0A%E3%80%80%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%20%EF%BC%8F%20%E8%A8%AA%E5%95%8F%20%EF%BC%8F%20%E3%81%A9%E3%81%A1%E3%82%89%E3%81%A7%E3%82%82%0A">メールアプリから送る</a> こともできます。届け先は support.tsumiki@gmail.com です。</p>
       </div>
     </div>
   </section>
@@ -1255,6 +1301,53 @@
     }
     new MutationObserver(sync).observe(screen, { attributes:true, attributeFilter:['class'] });
     sync();
+  })();
+</script>
+<script>
+  /* 無料ヒアリング：ページ内フォーム → FormSubmit 経由でメール送信（ページ遷移なし） */
+  (function(){
+    var form = document.getElementById('hearing-form');
+    if (!form) return;
+    var ENDPOINT = 'https://formsubmit.co/ajax/support.tsumiki@gmail.com';
+    var btn = form.querySelector('.hf-submit');
+    var label = btn.querySelector('.cta-label');
+    var statusEl = document.getElementById('hf-status');
+    var doneEl = document.getElementById('hf-done');
+    var honey = form.querySelector('.hf-honey');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (honey && honey.value) return;                 // ボット除け（人間には見えない欄）
+      if (!form.reportValidity()) return;               // 未入力・形式エラーはブラウザ標準の表示に任せる
+
+      var original = label.textContent;
+      btn.disabled = true;
+      label.textContent = '送信中…';
+      statusEl.className = 'hf-status';
+      statusEl.textContent = '';
+
+      var data = {};
+      new FormData(form).forEach(function(v, k){ data[k] = v; });
+
+      fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function(res){
+        return res.json().then(function(j){ return j; }, function(){ return {}; });
+      }).then(function(j){
+        // FormSubmit は転送成功時のみ success:"true" を返す。未有効化・障害時は success:"false"
+        if (String(j && j.success) !== 'true') throw new Error('not forwarded');
+        form.hidden = true;
+        doneEl.hidden = false;
+        doneEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }).catch(function(){
+        btn.disabled = false;
+        label.textContent = original;
+        statusEl.className = 'hf-status is-error';
+        statusEl.innerHTML = '送信できませんでした。お手数ですが <a href="mailto:support.tsumiki@gmail.com">support.tsumiki@gmail.com</a> 宛に直接お送りください。';
+      });
+    });
   })();
 </script>
 <script src="ink-fluid.js?v=34"></script>
