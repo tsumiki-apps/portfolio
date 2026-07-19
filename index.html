@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=45">
+<link rel="stylesheet" href="style.css?v=46">
 <link rel="icon" type="image/png" href="icons/icon-index.png?v=2">
 <link rel="apple-touch-icon" href="icons/icon-index.png?v=2">
 <meta name="apple-mobile-web-app-title" content="つみき">
@@ -972,20 +972,23 @@
         <div class="dl">
           <div class="dl-row"><div class="dl-k">Cookie</div><div class="dl-v"><strong>使っていません。</strong></div></div>
           <div class="dl-row"><div class="dl-k">アクセス解析</div><div class="dl-v"><strong>していません。</strong>誰が・いつ・どのページを見たかを記録していません。</div></div>
-          <div class="dl-row"><div class="dl-k">入力フォーム</div><div class="dl-v"><strong>ありません。</strong>このサイトから送信されるものはありません。</div></div>
         </div>
-        <p class="note">このサイトを見ていただくだけでは、あなたが誰かは分かりません。</p>
+        <p class="note">このサイトを見ていただくだけでは、あなたが誰かは分かりません。フォームに入力して送信いただいたときにだけ、内容が私に届きます。</p>
       </div>
 
-      <p class="h3">ひとつだけ、外部に送られるもの<span class="h3-en">GOOGLE FONTS</span></p>
+      <p class="h3">外部に送られるもの<span class="h3-en">THIRD PARTIES</span></p>
       <div class="panel">
-        <p class="dl-v">文字の表示に Google Fonts（Googleが提供する書体サービス）を使っています。そのためページを開くと、<strong>IPアドレスなどの通信情報がGoogleに送信されます</strong>。取り扱いは <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Googleのプライバシーポリシー</a> に従います。</p>
+        <div class="dl">
+          <div class="dl-row"><div class="dl-k">Google Fonts</div><div class="dl-v">文字の表示に Google Fonts（Googleが提供する書体サービス）を使っています。そのためページを開くと、<strong>IPアドレスなどの通信情報がGoogleに送信されます</strong>。取り扱いは <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Googleのプライバシーポリシー</a> に従います。</div></div>
+          <div class="dl-row"><div class="dl-k">お問い合わせフォーム</div><div class="dl-v">「無料ヒアリング申込」フォームは、入力内容を私のメールへ転送するために <strong>FormSubmit</strong> という外部サービスを経由します。<strong>送信ボタンを押した時点で、入力内容が同サービスのサーバーを通ります。</strong>うまく送信できなかった場合は、お使いのメールアプリから直接お送りいただく形になります（その場合、経由するのはメールのみです）。</div></div>
+        </div>
+        <p class="note">フォームを使わず、<a href="mailto:support.tsumiki@gmail.com">support.tsumiki@gmail.com</a> へ直接メールをいただくこともできます。外部サービスを通したくない場合は、そちらをご利用ください。</p>
       </div>
 
       <p class="h3">お預かりする情報<span class="h3-en">WHAT WE RECEIVE</span></p>
       <div class="panel">
         <ul class="can yes">
-          <li>お問い合わせメールに書かれた内容（お名前・会社名・メールアドレス・ご相談内容など）</li>
+          <li>お問い合わせフォームに入力された内容、またはお問い合わせメールに書かれた内容（お名前・会社名・メールアドレス・お電話番号・ご相談内容など）</li>
           <li>ヒアリングやお打合せで伺った、業務に関する情報</li>
         </ul>
       </div>
@@ -1320,6 +1323,26 @@
     var doneEl = document.getElementById('hf-done');
     var honey = form.querySelector('.hf-honey');
 
+    /* 送信に失敗しても打ち直しが要らないよう、入力内容をそのままメール本文に組み立てる */
+    function buildMailto(){
+      function val(sel){ var el = form.querySelector(sel); return el ? el.value.trim() : ''; }
+      var pref = form.querySelector('input[name="ヒアリングのご希望"]:checked');
+      var body = [
+        '■ お名前：' + val('#hf-name'),
+        '■ 会社名・お店の名前：' + val('#hf-company'),
+        '■ ご連絡先メール：' + val('#hf-email'),
+        '■ お電話番号：' + val('#hf-tel'),
+        '',
+        '■ いま困っていること：',
+        val('#hf-msg'),
+        '',
+        '■ ヒアリングのご希望：' + (pref ? pref.value : 'どちらでも')
+      ].join('\n');
+      return 'mailto:support.tsumiki@gmail.com'
+        + '?subject=' + encodeURIComponent('【無料ヒアリング】お申し込み')
+        + '&body=' + encodeURIComponent(body);
+    }
+
     form.addEventListener('submit', function(e){
       e.preventDefault();
       if (honey && honey.value) return;                 // ボット除け（人間には見えない欄）
@@ -1349,8 +1372,14 @@
       }).catch(function(){
         btn.disabled = false;
         label.textContent = original;
+        var url = buildMailto();
         statusEl.className = 'hf-status is-error';
-        statusEl.innerHTML = '送信できませんでした。お手数ですが <a href="mailto:support.tsumiki@gmail.com">support.tsumiki@gmail.com</a> 宛に直接お送りください。';
+        statusEl.innerHTML =
+          'うまく送信できませんでした（ネットワークの環境によって、まれに届かないことがあります）。'
+          + '<strong>入力いただいた内容はそのまま残しています。</strong>'
+          + '下のボタンでメールアプリが開きますので、そのまま送信してください。'
+          + '<a class="hf-mailbtn" href="' + url + '">入力内容そのままメールで送る →</a>';
+        try { window.location.href = url; } catch(_){}   // 可能なら自動でメールアプリを開く
       });
     });
   })();
