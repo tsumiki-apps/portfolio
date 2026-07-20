@@ -5,3 +5,6 @@
 # デザイン参考資料（公開サイトに載せない）
 _refs/
 _draft*.html
+
+# 展示室の元データ（大きいのでリポジトリには入れない。手元に保管）
+assets/gallery/_originals/
