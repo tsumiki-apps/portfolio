@@ -714,7 +714,11 @@
   window.InkFluid = { bloom: bloom, setScreen: setScreen, sweep: startSweep, cascadeAt: cascadeAt };
 
   // -------------------- ループ --------------------
-  const DT_BOOST = 2.0, DT_LERP = 0.3;
+  // DT_BOOST = 入力が止まっている間の早回し倍率／DT_LERP = そこへ寄せる速さ（1フレームあたり）
+  // 以前の値: DT_BOOST 2.0, DT_LERP 0.3。この組み合わせだと指を離した0.13秒後から
+  // わずか0.15秒で2倍速に達し、墨が「ブワッ」と急加速して見えていた。
+  // 余韻を早く収める意図は残したいので、倍率を下げ、加速も約0.8秒かけて緩やかにする。
+  const DT_BOOST = 1.4, DT_LERP = 0.06;
   let dynDtScale = 1.0;
   let lastTime = performance.now();
   function update() {
