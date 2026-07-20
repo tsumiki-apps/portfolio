@@ -271,27 +271,47 @@ body.on-dark .tb-brand{color:#F4F2EE;
 @media(max-width:420px){ .vp{font-size:19px;} }
 .vp-sub{font-size:14px; color:#3a3833; line-height:1.9; margin-top:14px;}
 
-/* 比較（既製ツール／オーダーメイド） */
-.vs{display:grid; grid-template-columns:1fr; gap:12px; margin-top:14px;}
-@media(min-width:560px){ .vs{grid-template-columns:1fr 1fr;} }
-.vs-card{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:18px;}
-.vs-card.is-ours{border-color:var(--ink);}
-.vs-head{display:flex; align-items:center; gap:12px;}
-.vs-ttl{font-size:13px; font-weight:700; letter-spacing:.04em; color:var(--sub);}
-.vs-card.is-ours .vs-ttl{color:var(--ink);}
-.vs-list{list-style:none; margin-top:14px; display:flex; flex-direction:column; gap:8px;}
-.vs-list li{font-size:13px; line-height:1.7; color:#3a3833; padding-left:16px; position:relative;}
-.vs-list li::before{content:""; position:absolute; left:0; top:10px; width:8px; height:1.5px;
-  background:var(--ghost); border-radius:1px;}
-.vs-card.is-ours .vs-list li::before{background:var(--ink);}
+/* 比較（既製ツール／オーダーメイド）
+   論点ごとに1枚のカード。同じ論点について両者を上下に並べて1対1で比べられるようにする。
+   つみき側だけ墨のベタ丸＋太字、既製側は淡いグレーに落として主従をつける。 */
+.cmp{display:flex; flex-direction:column; gap:10px; margin-top:14px;}
+.cmp-row{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:14px 16px;}
+/* 論点ラベル（何について比べているか） */
+.cmp-k{
+  font-size:10.5px; font-weight:700; letter-spacing:.14em; color:var(--sub);
+  padding-bottom:9px; margin-bottom:10px; border-bottom:1px solid var(--line);
+}
+.cmp-side{display:grid; grid-template-columns:auto minmax(0,1fr); gap:10px; align-items:start;}
+.cmp-side + .cmp-side{margin-top:9px;}
+.cmp-mk{
+  width:19px; height:19px; border-radius:50%; margin-top:1px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:10px; font-weight:700; line-height:1;
+}
+.cmp-side.is-them .cmp-mk{background:var(--surface); color:var(--ghost);}
+.cmp-side.is-ours .cmp-mk{background:var(--ink); color:var(--paper);}
+.cmp-who{font-size:10px; letter-spacing:.1em; color:var(--ghost); display:block; margin-bottom:2px;}
+.cmp-side.is-ours .cmp-who{color:var(--sub);}
+.cmp-txt{font-size:13px; line-height:1.7; color:var(--sub);}
+.cmp-side.is-ours .cmp-txt{color:var(--ink); font-weight:700;}
 
 /* Before → After */
 .ba{display:flex; flex-direction:column; gap:10px; margin-top:14px;}
 .ba-row{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:16px 18px;}
 .ba-tag{display:block; font-size:10px; letter-spacing:.16em; color:var(--ghost); margin-bottom:4px;}
 .ba-b{font-size:13px; color:var(--sub); line-height:1.7;}
-.ba-a{font-size:14.5px; font-weight:700; line-height:1.7; margin-top:10px; padding-top:10px;
+/* AFTER 側。区切り線の上に「↓」の丸印を重ねて変化を示す（AFTER ラベルの代わり）。
+   丸は 22px なので、線から上に 11px はみ出す。margin-top はその分を見込んだ値。 */
+.ba-a{position:relative;
+  font-size:14.5px; font-weight:700; line-height:1.7; margin-top:24px; padding-top:18px;
   border-top:1px dashed var(--line);}
+.ba-a::before{
+  content:"↓"; position:absolute; left:0; top:0; transform:translateY(-50%);
+  width:22px; height:22px; border-radius:50%;
+  background:var(--ink); color:var(--paper);
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; line-height:1;
+}
 
 /* 課題リスト */
 .issues{display:flex; flex-direction:column; gap:12px; margin-top:14px;}
