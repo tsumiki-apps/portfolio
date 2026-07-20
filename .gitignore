@@ -1,3 +1,7 @@
 .DS_Store
 
 .claude/
+
+# デザイン参考資料（公開サイトに載せない）
+_refs/
+_draft*.html
