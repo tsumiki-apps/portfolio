@@ -947,3 +947,61 @@ footer.foot{
   .g-mat, .g-lightbox{transition:none;}
   .g-item:hover .g-mat{transform:none;}
 }
+
+/* ===========================================================
+   大画面（PC）向けの拡大
+   このサイトはスマホ基準の固定pxで作ってあり、既存のブレークポイントは
+   max-width（小さい画面で縮める）ばかりで、大画面で拡大する指定が無かった。
+   そのため1440px幅でも本文が13.5〜14pxのまま＝PCだと文字が小さく見えていた。
+
+   ここは min-width:1024px 限定の上書き。スマホ側のCSSには一切触れないので、
+   iPhoneでの見え方は従来のまま変わらない。
+   読み物本文は約+15%、見出しはやや大きめに。プレビューのモック(.pv-*)は
+   「小さな画面の再現」が目的なので意図的に対象外にしている。
+   =========================================================== */
+@media (min-width:1024px){
+  :root{ --wrap:860px; }   /* 760px だと両側に340pxずつ余白が出て細長く見えるため */
+
+  /* 見出し */
+  .vp{font-size:26px;}
+  .h3{font-size:19px;}
+  .as-h, .issue-q, .ah-t, .g-title{font-size:17px;}
+  .h3-en, .as-h-en{font-size:11px;}
+  .sl-en{font-size:12.5px;}
+
+  /* 本文・リード */
+  .sheet-lead, .vp-sub, .as-about, .faq-q, .af-t, .flag-catch, .pr-ttl{font-size:16px;}
+  .dl-v, .flag-desc, .tl-name{font-size:15.5px;}
+  .cta-lead, .faq-a, .ba-b, .ba-a, .cmp-txt, .as-sub, .cd-v{font-size:15px;}
+  .dl-k, .issue-r, .pr-desc, .af-d, .ah-d, .fs-item, .as-lp, .can li, .vs-list li{font-size:14px;}
+  .note, .tl-note, .g-meta{font-size:14px;}
+  .fs-k{font-size:11.5px;}
+  .ba-tag, .cmp-who, .am-k, .am-cap{font-size:11px;}
+
+  /* 料金カード */
+  .price-group, .pc-name{font-size:15px;}
+  .pc-num{font-size:36px;}
+  .pc-amt, .pc-from{font-size:15px;}
+  .pc-sub{font-size:12.5px;}
+  .pc-term, .as-badge, .tl-dur{font-size:13px;}
+
+  /* 申込フォーム */
+  .hf-label{font-size:15px;}
+  .hf-input{font-size:16.5px;}
+  .hf-hint, .hf-status{font-size:13.5px;}
+  .hf-done-body{font-size:15px;}
+
+  /* メニュー */
+  .su-jp{font-size:18px;}
+  .su-en{font-size:10px;}
+}
+
+/* 大型モニタ（1600px以上）：1024px指定のままだと横が余りすぎて細長く見えるので、もう一段だけ広げる。
+   本文の行長が伸びすぎない範囲（960px）に留める。 */
+@media (min-width:1600px){
+  :root{ --wrap:960px; }
+  .vp{font-size:28px;}
+  .sheet-lead, .vp-sub, .as-about{font-size:17px;}
+  .dl-v{font-size:16px;}
+  .h3{font-size:20px;}
+}
