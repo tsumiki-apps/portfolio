@@ -385,9 +385,16 @@ body.on-dark .tb-brand{color:#F4F2EE;
 }
 /* カード間をつなぐ流れの線（最後のステップには出さない） */
 .flow-step:not(:last-child)::after{
-  content:""; position:absolute; left:27px; bottom:-13px; width:1px; height:13px; background:var(--line);
+  content:""; position:absolute; left:33.5px; bottom:-13px; width:1px; height:13px; background:var(--line);
 }
-.flow-step .fs-no{font-size:15px; font-weight:700; letter-spacing:.08em; color:var(--ghost); padding-top:9px;}
+/* 番号は墨のベタ丸に白抜き。上の接続線（left:33.5px）は、この丸の中心に合わせている
+   ＝カード左padding 18px + 丸の半径 16px。丸のサイズを変えたら線の位置も直すこと。 */
+.flow-step .fs-no{
+  width:32px; height:32px; border-radius:50%; flex:0 0 auto;
+  background:var(--ink); color:var(--paper);
+  display:flex; align-items:center; justify-content:center;
+  font-size:12.5px; font-weight:700; letter-spacing:.04em;
+}
 .fs-head{display:flex; align-items:center; gap:11px; margin-bottom:7px;}
 /* 各ステップの「期間／お願いすること」 */
 .fs-meta{margin-top:10px; padding-top:10px; border-top:1px dashed var(--line);
