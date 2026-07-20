@@ -185,6 +185,16 @@
         </div>
       </div>
 
+      <!-- 親④：好きなもの -->
+      <div class="menu-group" data-group="favorites">
+        <button class="menu-item is-parent" type="button" data-acc="favorites" aria-expanded="false">
+          <span class="mi-jp">好きなもの</span><span class="mi-en">FAVORITES</span><span class="mi-ar">→</span>
+        </button>
+        <div class="submenu">
+          <a class="sub-item" data-go="gallery" href="#"><span class="su-jp">写真展示室</span><span class="su-en">GALLERY</span><span class="su-ar">→</span></a>
+        </div>
+      </div>
+
     </nav>
 
     <!-- メニュー直下のCTA（3カテゴリーを開かなくても申し込める導線） -->
@@ -594,6 +604,90 @@
     </div>
   </section>
 
+  <!-- 好きなもの：写真展示室 -->
+  <!-- 写真の足し方：assets/gallery/ に画像を置き、下の .g-item を1つ複製して
+       src / alt / 作品名 / 撮影地・撮影年 を書き換えるだけ。1室は8〜15枚を上限の目安に。
+       枚数が増えたら .g-room をもう1つ作って「室」で分ける（一覧が散漫になるのを防ぐため）。 -->
+  <section class="screen sheet" id="s-gallery" data-screen="gallery">
+    <div class="sheet-inner">
+      <p class="sheet-label"><span class="sl-jp">写真展示室</span><span class="sl-en">GALLERY</span></p>
+      <p class="sheet-lead">撮っていると、ふだん通り過ぎているものに気づかされます。見落とされていたものを、少しだけ立ち止まって見られる場所として。写真をタップすると大きく表示されます。</p>
+
+      <div class="g-room">
+        <div class="g-room-head">
+          <h2 class="g-room-title">第一室｜通り過ぎたもの</h2>
+          <p class="g-room-note">通勤路や、なんでもない道の途中で。</p>
+        </div>
+        <div class="g-grid">
+
+          <button class="g-item" type="button" data-full="assets/gallery/ph-01.jpg">
+            <span class="g-mat"><img src="assets/gallery/ph-01.jpg" alt="（写真の説明を入れてください）" width="1200" height="1600" loading="lazy" decoding="async"></span>
+            <span class="g-label">
+              <span class="g-title">作品名</span>
+              <span class="g-meta">撮影地・2026</span>
+            </span>
+          </button>
+
+          <button class="g-item" type="button" data-full="assets/gallery/ph-02.jpg">
+            <span class="g-mat"><img src="assets/gallery/ph-02.jpg" alt="（写真の説明を入れてください）" width="1600" height="1200" loading="lazy" decoding="async"></span>
+            <span class="g-label">
+              <span class="g-title">作品名</span>
+              <span class="g-meta">撮影地・2026</span>
+            </span>
+          </button>
+
+          <button class="g-item" type="button" data-full="assets/gallery/ph-03.jpg">
+            <span class="g-mat"><img src="assets/gallery/ph-03.jpg" alt="（写真の説明を入れてください）" width="1200" height="1500" loading="lazy" decoding="async"></span>
+            <span class="g-label">
+              <span class="g-title">作品名</span>
+              <span class="g-meta">撮影地・2026</span>
+            </span>
+          </button>
+
+          <button class="g-item" type="button" data-full="assets/gallery/ph-04.jpg">
+            <span class="g-mat"><img src="assets/gallery/ph-04.jpg" alt="（写真の説明を入れてください）" width="1600" height="1067" loading="lazy" decoding="async"></span>
+            <span class="g-label">
+              <span class="g-title">作品名</span>
+              <span class="g-meta">撮影地・2026</span>
+            </span>
+          </button>
+
+          <button class="g-item" type="button" data-full="assets/gallery/ph-05.jpg">
+            <span class="g-mat"><img src="assets/gallery/ph-05.jpg" alt="（写真の説明を入れてください）" width="1200" height="1200" loading="lazy" decoding="async"></span>
+            <span class="g-label">
+              <span class="g-title">作品名</span>
+              <span class="g-meta">撮影地・2026</span>
+            </span>
+          </button>
+
+          <button class="g-item" type="button" data-full="assets/gallery/ph-06.jpg">
+            <span class="g-mat"><img src="assets/gallery/ph-06.jpg" alt="（写真の説明を入れてください）" width="1067" height="1600" loading="lazy" decoding="async"></span>
+            <span class="g-label">
+              <span class="g-title">作品名</span>
+              <span class="g-meta">撮影地・2026</span>
+            </span>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 展示室の拡大表示。1枚に集中させるための全画面ビュー -->
+  <div class="g-lightbox" id="g-lightbox" role="dialog" aria-modal="true" aria-label="写真の拡大表示" hidden>
+    <div class="g-stage">
+      <img id="g-lb-img" src="" alt="">
+      <p class="g-cap">
+        <span class="g-title" id="g-lb-title"></span><br>
+        <span class="g-meta" id="g-lb-meta"></span>
+      </p>
+    </div>
+    <button class="g-lb-btn g-close" type="button" id="g-lb-close" aria-label="閉じる">✕</button>
+    <button class="g-lb-btn g-prev" type="button" id="g-lb-prev" aria-label="前の写真">←</button>
+    <button class="g-lb-btn g-next" type="button" id="g-lb-next" aria-label="次の写真">→</button>
+    <p class="g-count" id="g-lb-count"></p>
+  </div>
+
   <!-- お問い合わせ：事業者概要 -->
   <section class="screen sheet" id="s-company" data-screen="company">
     <div class="sheet-inner">
@@ -975,11 +1069,9 @@
             </div>
           </div>
 
-          <!-- FormSubmit（フォーム内容をメールへ転送するサービス）の設定 -->
+          <!-- Formspree（フォーム内容をメールへ届けるサービス）の設定 -->
           <input type="hidden" name="_subject" value="【無料ヒアリング】新しいお申し込み">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_captcha" value="false">
-          <input class="hf-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input class="hf-honey" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
 
           <button type="submit" class="cta hf-submit"><span class="cta-label">送信する</span><span class="cta-ar">→</span></button>
           <p id="hf-status" class="hf-status" role="status" aria-live="polite"></p>
@@ -1014,7 +1106,7 @@
       <div class="panel">
         <div class="dl">
           <div class="dl-row"><div class="dl-k">Google Fonts</div><div class="dl-v">文字の表示に Google Fonts（Googleが提供する書体サービス）を使っています。そのためページを開くと、<strong>IPアドレスなどの通信情報がGoogleに送信されます</strong>。取り扱いは <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Googleのプライバシーポリシー</a> に従います。</div></div>
-          <div class="dl-row"><div class="dl-k">お問い合わせフォーム</div><div class="dl-v">「無料ヒアリング申込」フォームは、入力内容を私のメールへ転送するために <strong>FormSubmit</strong> という外部サービスを経由します。<strong>送信ボタンを押した時点で、入力内容が同サービスのサーバーを通ります。</strong>うまく送信できなかった場合は、お使いのメールアプリから直接お送りいただく形になります（その場合、経由するのはメールのみです）。</div></div>
+          <div class="dl-row"><div class="dl-k">お問い合わせフォーム</div><div class="dl-v">「無料ヒアリング申込」フォームは、入力内容を私のメールへ届けるために <strong>Formspree</strong>（米国のフォーム送信サービス）を経由します。<strong>送信ボタンを押した時点で、入力内容が同サービスのサーバーを通り、同サービスの管理画面にも記録が残ります。</strong>その記録を見られるのは私だけで、ご依頼に至らなかった場合は他のご相談情報と同じく、すみやかに削除します。うまく送信できなかった場合は、お使いのメールアプリから直接お送りいただく形になります（その場合、経由するのはメールのみです）。</div></div>
         </div>
         <p class="note">フォームを使わず、<a href="mailto:support.tsumiki@gmail.com">support.tsumiki@gmail.com</a> へ直接メールをいただくこともできます。外部サービスを通したくない場合は、そちらをご利用ください。</p>
       </div>
@@ -1201,7 +1293,8 @@
       value:'service', issues:'service', process:'service', pricing:'service',
       flagship:'works', 'flagship-itsutsu':'works', 'flagship-koegaki':'works',
       collection:'works', voice:'works',
-      profile:'contact', company:'contact', hearing:'contact', privacy:'contact'
+      profile:'contact', company:'contact', hearing:'contact', privacy:'contact',
+      gallery:'favorites'
     };
 
     function isSheet(id){ return screens[id].classList.contains('sheet'); }
@@ -1346,11 +1439,11 @@
   })();
 </script>
 <script>
-  /* 無料ヒアリング：ページ内フォーム → FormSubmit 経由でメール送信（ページ遷移なし） */
+  /* 無料ヒアリング：ページ内フォーム → Formspree 経由でメール送信（ページ遷移なし） */
   (function(){
     var form = document.getElementById('hearing-form');
     if (!form) return;
-    var ENDPOINT = 'https://formsubmit.co/ajax/support.tsumiki@gmail.com';
+    var ENDPOINT = 'https://formspree.io/f/mlgqnwvw';
     var btn = form.querySelector('.hf-submit');
     var label = btn.querySelector('.cta-label');
     var statusEl = document.getElementById('hf-status');
@@ -1396,10 +1489,16 @@
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(data)
       }).then(function(res){
-        return res.json().then(function(j){ return j; }, function(){ return {}; });
-      }).then(function(j){
-        // FormSubmit は転送成功時のみ success:"true" を返す。未有効化・障害時は success:"false"
-        if (String(j && j.success) !== 'true') throw new Error('not forwarded');
+        // 本文が JSON でない場合も落ちないように、HTTPステータスと併せて判定材料にする
+        return res.json().then(function(j){ return { ok: res.ok, body: j }; },
+                              function(){ return { ok: res.ok, body: {} }; });
+      }).then(function(r){
+        // Formspree の成功応答は HTTP 2xx かつ {ok:true, next:"/thanks"}。
+        // 「受理された証拠」が取れた時だけ成功扱いにする（判断がつかない時は失敗側へ倒し、
+        //  下のメール導線に必ず逃がす＝送れていないのに送信済みと見せてお問い合わせを失わないため）
+        var sent = r.ok && r.body && !r.body.errors
+                   && (r.body.ok === true || typeof r.body.next === 'string');
+        if (!sent) throw new Error('not sent');
         form.hidden = true;
         doneEl.hidden = false;
         doneEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1416,6 +1515,91 @@
         try { window.location.href = url; } catch(_){}   // 可能なら自動でメールアプリを開く
       });
     });
+  })();
+
+  /* ===== 写真展示室：拡大鑑賞（ライトボックス） ===== */
+  (function(){
+    var items = Array.prototype.slice.call(document.querySelectorAll('#s-gallery .g-item'));
+    if (!items.length) return;
+    var box   = document.getElementById('g-lightbox');
+    var img   = document.getElementById('g-lb-img');
+    var tEl   = document.getElementById('g-lb-title');
+    var mEl   = document.getElementById('g-lb-meta');
+    var cEl   = document.getElementById('g-lb-count');
+    var btns  = [document.getElementById('g-lb-close'),
+                 document.getElementById('g-lb-prev'),
+                 document.getElementById('g-lb-next')];
+    var idx = 0, opener = null;
+
+    function show(i){
+      idx = (i + items.length) % items.length;
+      var it = items[idx];
+      var im = it.querySelector('img');
+      img.src = it.dataset.full || im.src;
+      img.alt = im.alt || '';
+      tEl.textContent = it.querySelector('.g-title').textContent;
+      mEl.textContent = it.querySelector('.g-meta').textContent;
+      cEl.textContent = (idx + 1) + ' / ' + items.length;
+    }
+    function open(i){
+      opener = items[i];
+      show(i);
+      box.hidden = false;
+      box.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      btns[0].focus();
+    }
+    function close(){
+      box.classList.remove('is-open');
+      box.hidden = true;
+      img.src = '';
+      document.body.style.overflow = '';
+      if (opener) opener.focus();            // 元のサムネイルにフォーカスを戻す
+    }
+
+    items.forEach(function(it, i){
+      it.addEventListener('click', function(){ open(i); });
+    });
+    btns[0].addEventListener('click', close);
+    btns[1].addEventListener('click', function(){ show(idx - 1); });
+    btns[2].addEventListener('click', function(){ show(idx + 1); });
+    box.addEventListener('click', function(e){ if (e.target === box) close(); });
+
+    document.addEventListener('keydown', function(e){
+      if (box.hidden) return;
+      if (e.key === 'Escape')     { e.preventDefault(); close(); }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); show(idx - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); show(idx + 1); }
+      if (e.key === 'Tab'){        // フォーカスをモーダル内に閉じ込める
+        e.preventDefault();
+        var cur = btns.indexOf(document.activeElement);
+        var next = e.shiftKey ? cur - 1 : cur + 1;
+        btns[(next + btns.length) % btns.length].focus();
+      }
+    });
+
+    // スワイプで前後（縦スワイプは無視して、既存の画面送りと衝突させない）
+    var sx = 0, sy = 0;
+    box.addEventListener('touchstart', function(e){
+      sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+    }, {passive:true});
+    box.addEventListener('touchend', function(e){
+      var dx = e.changedTouches[0].clientX - sx;
+      var dy = e.changedTouches[0].clientY - sy;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) show(idx + (dx < 0 ? 1 : -1));
+    }, {passive:true});
+
+    // 画面に入ったら静かに現れる
+    if ('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(es){
+        es.forEach(function(en){
+          if (en.isIntersecting){ en.target.classList.add('in-view'); io.unobserve(en.target); }
+        });
+      }, {rootMargin:'0px 0px -8% 0px'});
+      items.forEach(function(it){ io.observe(it); });
+    } else {
+      items.forEach(function(it){ it.classList.add('in-view'); });
+    }
   })();
 </script>
 <script src="ink-fluid.js?v=35"></script>
