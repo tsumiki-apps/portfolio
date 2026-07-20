@@ -978,6 +978,11 @@ footer.foot{
   .fs-k{font-size:11.5px;}
   .ba-tag, .cmp-who, .am-k, .am-cap{font-size:11px;}
 
+  /* リード文は max-width:34em（＝約34文字で改行）で、860pxの容器に対し316pxが
+     未使用のまま折り返していた。日本語の読みやすい1行は40〜45文字程度なので、
+     そこに収まる範囲で広げて不自然な折り返しを減らす。 */
+  .sheet-lead, .g-room-note{max-width:46em;}
+
   /* 料金カード */
   .price-group, .pc-name{font-size:15px;}
   .pc-num{font-size:36px;}
@@ -1004,4 +1009,5 @@ footer.foot{
   .sheet-lead, .vp-sub, .as-about{font-size:17px;}
   .dl-v{font-size:16px;}
   .h3{font-size:20px;}
+  .sheet-lead, .g-room-note{max-width:48em;}
 }
