@@ -651,13 +651,11 @@
     if (elapsed > CASCADE_MS) { cascade.active = false; return; }
     if (now < cascade.nextT) return;
     cascade.nextT = now + 150 + (elapsed / CASCADE_MS) * 220;   // だんだん間遠に
-    let tx, ty;
-    if (Math.random() < 0.5) {   // 半分は中央寄り（画面2の文字の地肌を確保）
-      tx = 0.3 + Math.random() * 0.4; ty = 0.3 + Math.random() * 0.4;
-    } else {                     // 半分はタッチ起点の周り
-      tx = Math.min(0.9, Math.max(0.1, cascade.ox + (Math.random() - 0.5) * 0.5));
-      ty = Math.min(0.9, Math.max(0.1, cascade.oy + (Math.random() - 0.5) * 0.5));
-    }
+    // 墨は「指を置いた場所」からのみ出す。
+    // 以前はここで半分を画面中央寄り・半分を起点から±0.25ずらした位置に散らしていたが、
+    // 指と無関係な場所から墨が湧いて見えるため、滴の発生位置は起点に固定した。
+    // 広がりは位置ではなく、下の速度ベクトル（角度と強さ）だけで作る。
+    const tx = cascade.ox, ty = cascade.oy;
     const ang = Math.random() * Math.PI * 2;
     const spd = 300 + Math.random() * 500;   // 強すぎると画面端で乱れるため控えめに
     trail.push({ x: tx, y: ty, t: now });
