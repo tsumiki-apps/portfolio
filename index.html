@@ -185,7 +185,10 @@
         </div>
       </div>
 
-      <!-- 親④：好きなもの -->
+      <!-- 親④：好きなもの
+           写真展示室は本物の写真を入れるまで非公開。実際の写真とキャプションを入れたら、
+           下の <div class="menu-group" ...> を囲っているコメントを外すだけで公開される。
+           （画面本体 #s-gallery とライトボックスはそのまま残してあります）
       <div class="menu-group" data-group="favorites">
         <button class="menu-item is-parent" type="button" data-acc="favorites" aria-expanded="false">
           <span class="mi-jp">好きなもの</span><span class="mi-en">FAVORITES</span><span class="mi-ar">→</span>
@@ -194,6 +197,7 @@
           <a class="sub-item" data-go="gallery" href="#"><span class="su-jp">写真展示室</span><span class="su-en">GALLERY</span><span class="su-ar">→</span></a>
         </div>
       </div>
+      -->
 
     </nav>
 
@@ -678,7 +682,7 @@
     <div class="g-stage">
       <img id="g-lb-img" src="" alt="">
       <p class="g-cap">
-        <span class="g-title" id="g-lb-title"></span><br>
+        <span class="g-title" id="g-lb-title"></span>
         <span class="g-meta" id="g-lb-meta"></span>
       </p>
     </div>
@@ -1567,11 +1571,15 @@
 
     document.addEventListener('keydown', function(e){
       if (box.hidden) return;
-      if (e.key === 'Escape')     { e.preventDefault(); close(); }
-      if (e.key === 'ArrowLeft')  { e.preventDefault(); show(idx - 1); }
-      if (e.key === 'ArrowRight') { e.preventDefault(); show(idx + 1); }
+      // 既存の「Escapeでメニューへ戻る」(window側) より先に処理し、伝播を止める。
+      // 止めないと、写真を閉じたつもりが menu 画面まで飛んでしまう。
+      if (e.key === 'Escape' || e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'Tab'){
+        e.preventDefault(); e.stopPropagation();
+      }
+      if (e.key === 'Escape')     { close(); }
+      if (e.key === 'ArrowLeft')  { show(idx - 1); }
+      if (e.key === 'ArrowRight') { show(idx + 1); }
       if (e.key === 'Tab'){        // フォーカスをモーダル内に閉じ込める
-        e.preventDefault();
         var cur = btns.indexOf(document.activeElement);
         var next = e.shiftKey ? cur - 1 : cur + 1;
         btns[(next + btns.length) % btns.length].focus();

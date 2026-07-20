@@ -855,3 +855,95 @@ footer.foot{
 }
 .phone .screen{position:absolute; inset:12px; border-radius:30px;
   background:var(--paper); overflow:hidden;}
+
+/* ---------- 写真展示室（GALLERY） ---------- */
+/* 設計方針：作品（写真とその額）は直角、UI（ボタン等）は既存の丸みを踏襲する。
+   色は既存トークン（--paper/--card/--ink/--sub/--line）だけを使い、白を増やさない。 */
+
+/* 室（テーマ）の見出し。1室あたり8〜15枚を上限の目安にする */
+.g-room{margin-bottom:64px;}
+.g-room:last-of-type{margin-bottom:0;}
+.g-room-head{margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid var(--line);}
+.g-room-title{font-size:17px; font-weight:700; letter-spacing:.06em; line-height:1.6;}
+.g-room-note{margin-top:6px; font-size:12px; line-height:1.8; color:var(--sub); max-width:34em;}
+
+/* 一覧：モバイル1列 → 2列 → 3列。写真は原寸比のまま（構図を切らない） */
+.g-grid{display:grid; grid-template-columns:1fr; gap:48px;}
+@media (min-width:600px){ .g-grid{grid-template-columns:1fr 1fr; gap:40px 32px;} }
+@media (min-width:900px){ .g-grid{grid-template-columns:repeat(3,1fr);} }
+
+/* 1点の展示。マット（作品まわりの余白）＋極薄の枠で額装を模す */
+.g-item{
+  /* button は中身を中央に寄せるため、行内で額の天地がずれる。上端で揃える */
+  display:block; align-self:start; width:100%; text-align:left; cursor:pointer;
+  background:none; border:none; padding:0; font:inherit; color:inherit;
+  -webkit-tap-highlight-color:transparent;
+}
+.g-mat{
+  display:block;
+  background:var(--card); border:1px solid var(--line);
+  padding:14px; box-shadow:0 1px 3px rgba(36,35,33,.06);
+  transition:box-shadow .4s ease, transform .4s ease;
+}
+@media (min-width:600px){ .g-mat{padding:18px;} }
+.g-item:hover .g-mat, .g-item:focus-visible .g-mat{
+  box-shadow:0 10px 28px rgba(36,35,33,.12); transform:translateY(-2px);
+}
+.g-item:focus-visible{outline:2px solid var(--ink); outline-offset:6px;}
+.g-mat img{display:block; width:100%; height:auto; background:var(--surface);}
+
+/* 作品ラベル（tombstone）：作品名 → 撮影地・撮影年 の最小構成 */
+.g-label{display:block; margin-top:12px;}
+.g-title{display:block; font-size:15px; line-height:1.7; letter-spacing:.04em;}
+.g-meta{display:block; margin-top:3px; font-size:12px; letter-spacing:.06em; color:var(--sub);}
+/* ライトボックス内のキャプションは1行ずつ中央に */
+.g-cap .g-title, .g-cap .g-meta{display:block;}
+
+/* 拡大鑑賞（ライトボックス）：1枚に集中させる */
+.g-lightbox{
+  position:fixed; inset:0; z-index:120; display:none;
+  background:rgba(20,19,17,.94);
+  padding:calc(env(safe-area-inset-top) + 56px) 16px calc(env(safe-area-inset-bottom) + 88px);
+}
+/* フェードで見せない（transitionが進まない環境でも確実に表示されるように） */
+.g-lightbox.is-open{display:flex; align-items:center; justify-content:center;}
+.g-stage{max-width:1100px; width:100%; text-align:center;}
+.g-stage img{
+  max-width:100%; max-height:calc(100vh - 240px);
+  width:auto; height:auto; margin:0 auto; display:block;
+  box-shadow:0 24px 60px rgba(0,0,0,.5);
+}
+.g-cap{margin-top:18px; color:#EDEAE4;}
+.g-cap .g-title{font-size:15px;}
+.g-cap .g-meta{color:#9A958C;}
+
+/* ライトボックスの操作系はUIなので既存の丸みに従う */
+.g-lb-btn{
+  position:absolute; width:44px; height:44px; border-radius:50%;
+  background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.22);
+  color:#EDEAE4; font-size:18px; line-height:1; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:background .2s ease;
+}
+.g-lb-btn:hover{background:rgba(255,255,255,.2);}
+.g-lb-btn:focus-visible{outline:2px solid #EDEAE4; outline-offset:3px;}
+.g-close{top:calc(env(safe-area-inset-top) + 12px); right:14px;}
+.g-prev{left:14px; bottom:calc(env(safe-area-inset-bottom) + 24px);}
+.g-next{right:14px; bottom:calc(env(safe-area-inset-bottom) + 24px);}
+@media (min-width:900px){
+  .g-prev{left:24px; top:50%; bottom:auto; transform:translateY(-50%);}
+  .g-next{right:24px; top:50%; bottom:auto; transform:translateY(-50%);}
+}
+.g-count{
+  position:absolute; left:0; right:0; bottom:calc(env(safe-area-inset-bottom) + 36px);
+  text-align:center; font-size:11px; letter-spacing:.18em; color:#9A958C; pointer-events:none;
+}
+
+/* 画面に入ったら静かに現れる */
+.g-item{opacity:0; transform:translateY(12px); transition:opacity .7s ease, transform .7s ease;}
+.g-item.in-view{opacity:1; transform:none;}
+@media (prefers-reduced-motion:reduce){
+  .g-item{opacity:1; transform:none; transition:none;}
+  .g-mat, .g-lightbox{transition:none;}
+  .g-item:hover .g-mat{transform:none;}
+}
