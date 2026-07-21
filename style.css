@@ -115,6 +115,32 @@ body.on-dark .tb-brand{color:#F4F2EE;
   text-shadow:0 0 8px rgba(23,20,15,.85), 0 0 18px rgba(23,20,15,.7), 0 0 34px rgba(23,20,15,.55);
 }
 
+/* ── 見出しの字形（A1ゴシック Bold のアウトライン） ──────────────
+   実体は index.html の <symbol id="oc-*">。フォントファイルは置いていない。
+     --oc-em … 字面の高さ／em（font-size に対する縦の比）
+     --oc-ar … 字面の 横÷縦（これを渡さないと SVG が既定の 300px 幅になる）
+   inline-block にしてあるのは、SVG が字面ぶんの高さしか持たないため。
+   インラインなら親に行ボックス（line-height）がそのまま残るので、テキストだった
+   ときと上下の余白が変わらない。block + margin だと親にマージンが相殺されて詰まる。 */
+.oc{display:inline-block; vertical-align:baseline;
+    height:calc(1em * var(--oc-em)); width:auto;
+    aspect-ratio:var(--oc-ar); fill:currentColor;}
+.oc-wordmark{--oc-em:.793; --oc-ar:5.852}
+.oc-itsutsu {--oc-em:.653; --oc-ar:4.332}
+.oc-koegaki {--oc-em:.910; --oc-ar:4.122}
+
+/* 字形を画像にすると h1 からテキストが消えてしまうので、読み上げと検索エンジン用に
+   同じ文字列を目に見えない形で残す（レイアウトには影響しない）。 */
+.oc-alt{position:absolute; width:1px; height:1px; margin:-1px; padding:0;
+        overflow:hidden; clip-path:inset(50%); white-space:nowrap; border:0;}
+
+/* 墨背景では text-shadow が効かないので、同じにじみを drop-shadow で再現 */
+.wordmark.on-ink .oc{
+  filter:drop-shadow(0 0 8px rgba(23,20,15,.85))
+         drop-shadow(0 0 18px rgba(23,20,15,.7))
+         drop-shadow(0 0 34px rgba(23,20,15,.55));
+}
+
 /* 入口（旧ロゴ様式・未使用でも保持） */
 #s-intro .kicker{margin-bottom:30px;}
 .brand{display:flex; align-items:center; justify-content:center; gap:16px;}
