@@ -608,6 +608,14 @@
   }, { passive: true });
   window.addEventListener('mouseleave', () => { lastPX = lastPY = null; });
 
+  // 指/マウスが触れているかを持つ。カスケードを「触れている間だけ」に限るために使う。
+  let pointerDown = false;
+  window.addEventListener('pointerdown',   () => { pointerDown = true;  }, { passive: true });
+  window.addEventListener('pointerup',     () => { pointerDown = false; }, { passive: true });
+  window.addEventListener('pointercancel', () => { pointerDown = false; }, { passive: true });
+  window.addEventListener('touchend',      () => { pointerDown = false; }, { passive: true });
+  window.addEventListener('touchcancel',   () => { pointerDown = false; }, { passive: true });
+
   // -------------------- virtual sweep（画面遷移の帯ストローク） --------------------
   // 遷移1回＝画面外左→右へ 700ms の太い帯ストローク1本。線形補間で太さ均一。
   const sweep = { active: false, startT: 0, dur: 700, y: 0.06, px: -0.05 };
@@ -645,10 +653,16 @@
     trail.push({ x, y, t: now });
     splat(x, y, 0, 120, 1.0, 0.9);   // まず触れた場所にひと滴
   }
+  // 指を離してから滴を出し続ける猶予。0だと途切れ方が唐突なので、余韻ぶんだけ残す。
+  const CASCADE_TAIL_MS = 300;
   function updateCascade(now) {
     if (!cascade.active) return;
     const elapsed = now - cascade.startT;
     if (elapsed > CASCADE_MS) { cascade.active = false; return; }
+    // 以前はここが純粋なタイマーだったため、指を離しても最大3.6秒ぶん（14個）の滴が
+    // 同じ場所から出続け、「触れていないのに墨が湧く」状態になっていた。
+    // 触れている間＋離した直後の余韻だけに限定する。既にある墨は流体側でそのまま流れ続ける。
+    if (!pointerDown && elapsed > CASCADE_TAIL_MS) { cascade.active = false; return; }
     if (now < cascade.nextT) return;
     cascade.nextT = now + 150 + (elapsed / CASCADE_MS) * 220;   // だんだん間遠に
     // 墨は「指を置いた場所」からのみ出す。
@@ -667,7 +681,11 @@
   function bloom() {
     const now = performance.now();
     let pts = trail.filter(p => now - p.t < 1400);
-    if (pts.length < 2) pts = [{x:0.5, y:0.10}, {x:0.5, y:0.26}, {x:0.5, y:0.42}];
+    // 直近1400msに軌跡が無い場合の受け皿。以前はここで画面中央(x=0.5)の固定3点に
+    // 大きな滴を落としていたため、指と無関係な場所に墨が湧いて見えることがあった。
+    // 時間切れでも「最後に触れた場所」を使い、指から出たように見せる。
+    if (pts.length < 2) pts = trail.slice(-3);
+    if (pts.length < 1) pts = [{ x: cascade.ox, y: cascade.oy }];
     const N = Math.min(8, pts.length);
     const items = [];
     for (let i = 0; i < N; i++) {
