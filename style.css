@@ -857,65 +857,72 @@ footer.foot{
   background:var(--paper); overflow:hidden;}
 
 /* ---------- 写真展示室（GALLERY） ---------- */
-/* 設計方針：作品（写真とその額）は直角、UI（ボタン等）は既存の丸みを踏襲する。
+/* 1作品＝1〜6枚の写真＋共通のラベル（美術館の連作の掛け方）。
+   作品（写真と額）は直角、UI（ボタン）は既存の丸みを踏襲する。
    色は既存トークン（--paper/--card/--ink/--sub/--line）だけを使い、白を増やさない。 */
 
-/* 室（テーマ）の見出し。1室あたり8〜15枚を上限の目安にする */
-.g-room{margin-bottom:64px;}
-.g-room:last-of-type{margin-bottom:0;}
-.g-room-head{margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid var(--line);}
-.g-room-title{font-size:17px; font-weight:700; letter-spacing:.06em; line-height:1.6;}
-.g-room-note{margin-top:6px; font-size:12px; line-height:1.8; color:var(--sub); max-width:34em;}
+.g-works{display:block;}
+.g-work{margin-bottom:72px;}
+.g-work:last-child{margin-bottom:0;}
 
-/* 一覧：モバイル1列 → 2列 → 3列。写真は原寸比のまま（構図を切らない） */
-.g-grid{display:grid; grid-template-columns:1fr; gap:48px;}
-@media (min-width:600px){ .g-grid{grid-template-columns:1fr 1fr; gap:40px 32px;} }
-@media (min-width:900px){ .g-grid{grid-template-columns:repeat(3,1fr);} }
-
-/* 1点の展示。マット（作品まわりの余白）＋極薄の枠で額装を模す */
-.g-item{
-  /* button は中身を中央に寄せるため、行内で額の天地がずれる。上端で揃える */
-  display:block; align-self:start; width:100%; text-align:left; cursor:pointer;
-  background:none; border:none; padding:0; font:inherit; color:inherit;
-  -webkit-tap-highlight-color:transparent;
-}
-.g-mat{
-  display:block;
+/* 額（マット）。作品まわりの余白＋極薄の枠で額装を模す */
+.g-plate{
   background:var(--card); border:1px solid var(--line);
   padding:14px; box-shadow:0 1px 3px rgba(36,35,33,.06);
-  transition:box-shadow .4s ease, transform .4s ease;
 }
-@media (min-width:600px){ .g-mat{padding:18px;} }
-.g-item:hover .g-mat, .g-item:focus-visible .g-mat{
-  box-shadow:0 10px 28px rgba(36,35,33,.12); transform:translateY(-2px);
-}
-.g-item:focus-visible{outline:2px solid var(--ink); outline-offset:6px;}
-.g-mat img{display:block; width:100%; height:auto; background:var(--surface);}
+@media (min-width:600px){ .g-plate{padding:20px;} }
 
-/* 作品ラベル（tombstone）：作品名 → 撮影地・撮影年 の最小構成 */
-.g-label{display:block; margin-top:12px;}
-.g-title{display:block; font-size:15px; line-height:1.7; letter-spacing:.04em;}
-.g-meta{display:block; margin-top:3px; font-size:12px; letter-spacing:.06em; color:var(--sub);}
-/* ライトボックス内のキャプションは1行ずつ中央に */
-.g-cap .g-title, .g-cap .g-meta{display:block;}
+/* 連作は正方の小さなグリッドで「これで一作品」と見せる（原寸比は拡大時に見せる） */
+.g-plate.is-set{display:grid; grid-template-columns:1fr 1fr; gap:8px;}
+/* 列数は枚数に合わせる。2枚組を3列にすると右端が空いて不格好になるため */
+@media (min-width:600px){
+  .g-plate.is-set{gap:12px;}
+  .g-plate.is-set-4, .g-plate.is-set-6, .g-plate.is-set-5{grid-template-columns:repeat(3,1fr);}
+}
+.g-plate.is-set .g-shot img{aspect-ratio:1/1; object-fit:cover;}
+
+/* 単独の作品は、縦位置でも1画面に収まる高さに抑える（全体を一度に見せるため） */
+.g-plate.is-single .g-shot img{max-height:78vh; width:auto; max-width:100%; margin:0 auto;}
+
+.g-shot{
+  display:block; width:100%; padding:0; border:none; background:none;
+  cursor:pointer; -webkit-tap-highlight-color:transparent;
+  transition:opacity .3s ease;
+}
+.g-shot img{display:block; width:100%; height:auto; background:var(--surface);}
+.g-shot:hover{opacity:.88;}
+.g-shot:focus-visible{outline:2px solid var(--ink); outline-offset:4px;}
+
+/* 作品ラベル（tombstone）：タイトル → 解説文 */
+.g-label{margin-top:14px;}
+.g-title{font-size:17px; font-weight:700; line-height:1.6; letter-spacing:.05em;}
+.g-count-note{
+  display:inline-block; margin-left:10px; font-size:11px; letter-spacing:.14em;
+  color:var(--sub); vertical-align:middle;
+}
+.g-note{margin-top:8px; font-size:13.5px; line-height:1.95; color:#3a3833; max-width:34em;}
 
 /* 拡大鑑賞（ライトボックス）：1枚に集中させる */
 .g-lightbox{
   position:fixed; inset:0; z-index:120; display:none;
-  background:rgba(20,19,17,.94);
+  /* 解説文を重ねるので、下の一覧が透けて読みにくくならない濃さにする */
+  background:rgba(20,19,17,.97);
   padding:calc(env(safe-area-inset-top) + 56px) 16px calc(env(safe-area-inset-bottom) + 88px);
 }
 /* フェードで見せない（transitionが進まない環境でも確実に表示されるように） */
 .g-lightbox.is-open{display:flex; align-items:center; justify-content:center;}
 .g-stage{max-width:1100px; width:100%; text-align:center;}
 .g-stage img{
-  max-width:100%; max-height:calc(100vh - 240px);
+  max-width:100%; max-height:calc(100vh - 250px);
   width:auto; height:auto; margin:0 auto; display:block;
   box-shadow:0 24px 60px rgba(0,0,0,.5);
 }
 .g-cap{margin-top:18px; color:#EDEAE4;}
-.g-cap .g-title{font-size:15px;}
-.g-cap .g-meta{color:#9A958C;}
+.g-cap .g-title{display:block; font-size:15px;}
+.g-cap .g-note{
+  display:block; margin:8px auto 0; color:#B8B3AA; font-size:12.5px;
+  max-width:30em; text-align:left;
+}
 
 /* ライトボックスの操作系はUIなので既存の丸みに従う */
 .g-lb-btn{
@@ -940,10 +947,13 @@ footer.foot{
 }
 
 /* 画面に入ったら静かに現れる */
-.g-item{opacity:0; transform:translateY(12px); transition:opacity .7s ease, transform .7s ease;}
-.g-item.in-view{opacity:1; transform:none;}
+.g-work{opacity:0; transform:translateY(12px); transition:opacity .7s ease, transform .7s ease;}
+.g-work.in-view{opacity:1; transform:none;}
 @media (prefers-reduced-motion:reduce){
-  .g-item{opacity:1; transform:none; transition:none;}
+  .g-work{opacity:1; transform:none; transition:none;}
+  .g-shot, .g-lb-btn{transition:none;}
+  .g-shot:hover{opacity:1;}
+}
   .g-mat, .g-lightbox{transition:none;}
   .g-item:hover .g-mat{transform:none;}
 }
