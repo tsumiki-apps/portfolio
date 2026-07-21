@@ -331,6 +331,53 @@ body.on-dark .tb-brand{color:#F4F2EE;
   font-size:11px; line-height:1;
 }
 
+/* ---------- 挿絵（線画のシーン） ----------
+   既存の .ico と同じ線の太さ・色で描き、動かすのは小物だけ。人や机は静止させる。
+   線が多いぶん、動きを足すと途端に騒がしくなるため。
+   再生の合図は .screen.is-active（シートが開いた瞬間）。JSは足していない。
+   非アクティブ時は animation-play-state:paused なので、裏で回り続けることもない。 */
+.scene{margin-top:18px; opacity:0; transform:translateY(10px);
+  transition:opacity .8s ease .15s, transform .8s ease .15s;}
+.scene svg{display:block; width:100%; height:auto;}
+.screen.is-active .scene{opacity:1; transform:none;}
+/* PCでは本文幅いっぱいに広げない。SVGは拡大すると線まで太くなり、
+   隣のカードの 34px アイコン（1.7px）と太さが揃わなくなるため。 */
+@media(min-width:1024px){ .scene{max-width:440px; margin-left:auto; margin-right:auto;} }
+
+.sc-line{fill:none; stroke:var(--ink); stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;}
+.sc-soft{stroke:var(--ghost);}        /* 補助線は淡墨に落として主役の邪魔をしない */
+.sc-bub, .sc-paper{transform-box:fill-box; transform-origin:50% 100%;}
+
+/* 吹き出し：ぽこっと出て、しばらく居て、すっと消える。3つを時間差で回す */
+.sc-bub{opacity:0;}
+.screen.is-active .sc-bub{animation:sc-pop 9s ease-in-out infinite;}
+.screen.is-active .sc-bub2{animation-delay:2.6s;}
+.screen.is-active .sc-bub3{animation-delay:5.4s;}
+@keyframes sc-pop{
+  0%      {opacity:0; transform:scale(.72) translateY(4px);}
+  6%      {opacity:1; transform:scale(1) translateY(0);}
+  9%      {transform:scale(.985) translateY(0);}   /* 出きったあとの小さな揺り戻し */
+  12%,26% {opacity:1; transform:scale(1) translateY(0);}
+  34%     {opacity:0; transform:scale(.94) translateY(-5px);}
+  100%    {opacity:0; transform:scale(.72) translateY(4px);}
+}
+
+/* 紙：ごくゆっくり漂わせる。周期をばらして同時に動いて見えないようにする */
+.screen.is-active .sc-paper{animation:sc-float 7s ease-in-out infinite;}
+.screen.is-active .sc-paper2{animation-duration:8.4s; animation-delay:-2.1s;}
+.screen.is-active .sc-paper3{animation-duration:6.2s; animation-delay:-4.3s;}
+@keyframes sc-float{
+  0%,100%{transform:translateY(0) rotate(0deg);}
+  50%    {transform:translateY(-3.5px) rotate(1.4deg);}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .scene{opacity:1; transform:none; transition:none;}
+  .sc-bub{opacity:1;}
+  .screen.is-active .sc-bub,
+  .screen.is-active .sc-paper{animation:none;}
+}
+
 /* 課題リスト */
 .issues{display:flex; flex-direction:column; gap:12px; margin-top:14px;}
 .issue{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:16px 18px;
@@ -876,28 +923,13 @@ footer.foot{
 
 /* ---------- 写真展示室（GALLERY） ---------- */
 /* プロフィール画面の一部として置く。経歴表と地続きに見えないよう罫線で区切る */
-/* ---------- 人生の整え方（信条）：本人の作文を掲載 ---------- */
+/* ---------- ごあいさつ（代表挨拶）：本人の言葉を掲載 ---------- */
 /* 写真展示室と同じ「章立て」の間合いに揃える */
 .credo{margin-top:56px; padding-top:40px; border-top:1px solid var(--line);}
 .credo .sheet-label .sl-jp{font-size:19px;}
-/* この一行だけは宣言なので、本文より大きく・墨色で置く */
-.credo .sheet-lead{
-  max-width:none; margin-bottom:26px;
-  font-size:17px; font-weight:700; color:var(--ink); letter-spacing:.02em;
-}
-.credo-p{font-size:14px; line-height:1.95; color:#3a3833;}
-.credo .h3{margin-top:26px;}
-.credo-list{list-style:none; margin-top:14px;}
-.credo-list li{padding:13px 0; border-top:1px solid var(--line);}
-.credo-list li:first-child{border-top:none; padding-top:4px;}
-/* 変化の前後：before は控えめに、after を主役に置く（否定せず、上書きする見せ方） */
-.cr-b{display:block; font-size:12.5px; color:var(--sub); line-height:1.7;}
-.cr-a{
-  display:flex; gap:9px; margin-top:5px;
-  font-size:14.5px; font-weight:700; color:var(--ink); line-height:1.7;
-}
-.cr-ar{flex:0 0 auto; color:var(--ghost); font-weight:400;}
-.credo-close{margin-top:26px; padding-top:20px; border-top:1px solid var(--line);}
+/* 手紙として読ませる：行間広め・段落間もはっきり・34emで折り返す（760pxいっぱいに伸ばさない） */
+.credo-p{font-size:14px; line-height:2.0; color:#3a3833; max-width:34em;}
+.credo-p + .credo-p{margin-top:17px;}
 
 .g-gallery{margin-top:56px; padding-top:40px; border-top:1px solid var(--line);}
 .g-gallery .sheet-label .sl-jp{font-size:19px;}
@@ -1002,7 +1034,6 @@ footer.foot{
   .g-work{opacity:1; transform:none; transition:none;}
   .g-shot, .g-lb-btn{transition:none;}
   .g-shot:hover{opacity:1;}
-}
   .g-mat, .g-lightbox{transition:none;}
   .g-item:hover .g-mat{transform:none;}
 }
