@@ -857,6 +857,11 @@ footer.foot{
   background:var(--paper); overflow:hidden;}
 
 /* ---------- 写真展示室（GALLERY） ---------- */
+/* プロフィール画面の一部として置く。経歴表と地続きに見えないよう罫線で区切る */
+.g-gallery{margin-top:56px; padding-top:40px; border-top:1px solid var(--line);}
+.g-gallery .sheet-label .sl-jp{font-size:19px;}
+.g-gallery .sheet-lead{margin-bottom:32px;}
+
 /* 1作品＝1〜6枚の写真＋共通のラベル（美術館の連作の掛け方）。
    作品（写真と額）は直角、UI（ボタン）は既存の丸みを踏襲する。
    色は既存トークン（--paper/--card/--ink/--sub/--line）だけを使い、白を増やさない。 */

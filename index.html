@@ -185,16 +185,6 @@
         </div>
       </div>
 
-      <!-- 親④：好きなもの -->
-      <div class="menu-group" data-group="favorites">
-        <button class="menu-item is-parent" type="button" data-acc="favorites" aria-expanded="false">
-          <span class="mi-jp">好きなもの</span><span class="mi-en">FAVORITES</span><span class="mi-ar">→</span>
-        </button>
-        <div class="submenu">
-          <a class="sub-item" data-go="gallery" href="#"><span class="su-jp">写真展示室</span><span class="su-en">GALLERY</span><span class="su-ar">→</span></a>
-        </div>
-      </div>
-
     </nav>
 
     <!-- メニュー直下のCTA（3カテゴリーを開かなくても申し込める導線） -->
@@ -597,21 +587,10 @@
         <div class="p-row"><div class="p-key">連絡先</div><div class="p-val"><a href="mailto:support.tsumiki@gmail.com">support.tsumiki@gmail.com</a></div></div>
       </div>
 
-      <div class="cta-wrap">
-        <p class="cta-lead">「うちのこれ、なんとかなりますか？」だけで大丈夫です。初回のヒアリングは無料です。</p>
-        <a class="cta" data-go="hearing" href="#">無料で相談する<span class="cta-ar">→</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 好きなもの：写真展示室 -->
-  <!-- 写真の足し方：assets/gallery/ に画像を置き、下の .g-item を1つ複製して
-       src / alt / 作品名 / 撮影地・撮影年 を書き換えるだけ。1室は8〜15枚を上限の目安に。
-       枚数が増えたら .g-room をもう1つ作って「室」で分ける（一覧が散漫になるのを防ぐため）。 -->
-  <section class="screen sheet" id="s-gallery" data-screen="gallery">
-    <div class="sheet-inner">
-      <p class="sheet-label"><span class="sl-jp">写真展示室</span><span class="sl-en">GALLERY</span></p>
-      <p class="sheet-lead">撮りためた写真から、いくつかを選んで並べています。写真をタップすると大きく表示されます。</p>
+      <!-- 写真展示室：独立ページにするほどの量ではないため、プロフィールの一部として置く -->
+      <div class="g-gallery">
+        <p class="sheet-label"><span class="sl-jp">写真展示室</span><span class="sl-en">GALLERY</span></p>
+        <p class="sheet-lead">大切にしているカメラで情景を残しておくことが好きです。ぜひご覧になってください。</p>
 
       <div class="g-works">
         <div class="g-work">
@@ -693,6 +672,12 @@
             <p class="g-note">ぐっと惹かれたモノたちの魅力を引き出して撮影がしたい。アメリカのノーベル文学賞作家ジョン・スタインベックの言葉を借りると、蝶を追って山頂にたどり着く少年でありたいです。</p>
           </div>
         </div>
+      </div>
+      </div>
+
+      <div class="cta-wrap">
+        <p class="cta-lead">「うちのこれ、なんとかなりますか？」だけで大丈夫です。初回のヒアリングは無料です。</p>
+        <a class="cta" data-go="hearing" href="#">無料で相談する<span class="cta-ar">→</span></a>
       </div>
     </div>
   </section>
@@ -1317,8 +1302,7 @@
       value:'service', issues:'service', process:'service', pricing:'service',
       flagship:'works', 'flagship-itsutsu':'works', 'flagship-koegaki':'works',
       collection:'works', voice:'works',
-      profile:'contact', company:'contact', hearing:'contact', privacy:'contact',
-      gallery:'favorites'
+      profile:'contact', company:'contact', hearing:'contact', privacy:'contact'
     };
 
     function isSheet(id){ return screens[id].classList.contains('sheet'); }
@@ -1543,7 +1527,7 @@
 
   /* ===== 写真展示室：拡大鑑賞（ライトボックス） ===== */
   (function(){
-    var items = Array.prototype.slice.call(document.querySelectorAll('#s-gallery .g-shot'));
+    var items = Array.prototype.slice.call(document.querySelectorAll('#s-profile .g-shot'));
     if (!items.length) return;
     var box   = document.getElementById('g-lightbox');
     var img   = document.getElementById('g-lb-img');
@@ -1619,7 +1603,7 @@
     }, {passive:true});
 
     // 画面に入ったら静かに現れる
-    var works = Array.prototype.slice.call(document.querySelectorAll('#s-gallery .g-work'));
+    var works = Array.prototype.slice.call(document.querySelectorAll('#s-profile .g-work'));
     if ('IntersectionObserver' in window){
       var io = new IntersectionObserver(function(es){
         es.forEach(function(en){
