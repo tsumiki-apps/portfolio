@@ -861,6 +861,9 @@ footer.foot{
 .g-gallery{margin-top:56px; padding-top:40px; border-top:1px solid var(--line);}
 .g-gallery .sheet-label .sl-jp{font-size:19px;}
 .g-gallery .sheet-lead{margin-bottom:32px;}
+/* リード文・解説文は 34em(=476px) で折り返していて、760pxの額に対し約280pxが
+   未使用のまま余っていた。額と同じ幅まで使わせて、早すぎる改行をなくす。 */
+.g-gallery .sheet-lead, .g-gallery .g-note{max-width:none;}
 
 /* 1作品＝1〜6枚の写真＋共通のラベル（美術館の連作の掛け方）。
    作品（写真と額）は直角、UI（ボタン）は既存の丸みを踏襲する。
