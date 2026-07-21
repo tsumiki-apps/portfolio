@@ -1062,7 +1062,7 @@ footer.foot{
   /* 本文・リード */
   .sheet-lead, .vp-sub, .as-about, .faq-q, .af-t, .flag-catch, .pr-ttl{font-size:16px;}
   .dl-v, .flag-desc, .tl-name{font-size:15.5px;}
-  .cta-lead, .faq-a, .ba-b, .ba-a, .cmp-txt, .as-sub, .cd-v{font-size:15px;}
+  .cta-lead, .faq-a, .ba-b, .ba-a, .cmp-txt, .as-sub, .cd-v, .credo-p{font-size:15px;}
   .dl-k, .issue-r, .pr-desc, .af-d, .ah-d, .fs-item, .as-lp, .can li, .vs-list li{font-size:14px;}
   .note, .tl-note, .g-meta{font-size:14px;}
   .fs-k{font-size:11.5px;}
@@ -1071,7 +1071,7 @@ footer.foot{
   /* リード文は max-width:34em（＝約34文字で改行）で、860pxの容器に対し316pxが
      未使用のまま折り返していた。日本語の読みやすい1行は40〜45文字程度なので、
      そこに収まる範囲で広げて不自然な折り返しを減らす。 */
-  .sheet-lead, .g-room-note{max-width:46em;}
+  .sheet-lead, .g-room-note, .credo-p{max-width:46em;}
 
   /* 料金カード */
   .price-group, .pc-name{font-size:15px;}
@@ -1099,5 +1099,5 @@ footer.foot{
   .sheet-lead, .vp-sub, .as-about{font-size:17px;}
   .dl-v{font-size:16px;}
   .h3{font-size:20px;}
-  .sheet-lead, .g-room-note{max-width:48em;}
+  .sheet-lead, .g-room-note, .credo-p{max-width:48em;}
 }
