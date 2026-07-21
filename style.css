@@ -858,28 +858,28 @@ footer.foot{
 
 /* ---------- 写真展示室（GALLERY） ---------- */
 /* プロフィール画面の一部として置く。経歴表と地続きに見えないよう罫線で区切る */
-/* ---------- 人生の整え方（信条）：本人の作文を掲載 ---------- */
+/* ---------- ごあいさつ（代表挨拶）：本人の作文をもとにした挨拶文 ---------- */
 /* 写真展示室と同じ「章立て」の間合いに揃える */
 .credo{margin-top:56px; padding-top:40px; border-top:1px solid var(--line);}
 .credo .sheet-label .sl-jp{font-size:19px;}
-/* この一行だけは宣言なので、本文より大きく・墨色で置く */
+/* 挨拶の主題を一行だけ掲げる（本文より大きく・墨色で） */
 .credo .sheet-lead{
   max-width:none; margin-bottom:26px;
   font-size:17px; font-weight:700; color:var(--ink); letter-spacing:.02em;
 }
-.credo-p{font-size:14px; line-height:1.95; color:#3a3833;}
-.credo .h3{margin-top:26px;}
-.credo-list{list-style:none; margin-top:14px;}
-.credo-list li{padding:13px 0; border-top:1px solid var(--line);}
-.credo-list li:first-child{border-top:none; padding-top:4px;}
-/* 変化の前後：before は控えめに、after を主役に置く（否定せず、上書きする見せ方） */
-.cr-b{display:block; font-size:12.5px; color:var(--sub); line-height:1.7;}
-.cr-a{
-  display:flex; gap:9px; margin-top:5px;
-  font-size:14.5px; font-weight:700; color:var(--ink); line-height:1.7;
+/* 手紙として読ませるため、行間を広めに取り、段落間もはっきり空ける。
+   1行は 34em（約40字）で折り返す＝サイト共通の解説文の約束に合わせる。
+   これが無いと760pxの額いっぱいに伸びて1行51字になり、手紙としては読みにくい。 */
+.credo-p{font-size:14px; line-height:2.0; color:#3a3833; max-width:34em;}
+.credo-p + .credo-p{margin-top:17px;}
+/* 署名：手紙の作法どおり右寄せ。屋号・肩書は控えめに、名前だけ墨色で立てる */
+.credo-sign{
+  margin-top:30px; text-align:right;
+  font-size:13px; color:var(--sub); letter-spacing:.04em;
 }
-.cr-ar{flex:0 0 auto; color:var(--ghost); font-weight:400;}
-.credo-close{margin-top:26px; padding-top:20px; border-top:1px solid var(--line);}
+.credo-sign strong{
+  margin-left:10px; font-size:15.5px; font-weight:700; color:var(--ink);
+}
 
 .g-gallery{margin-top:56px; padding-top:40px; border-top:1px solid var(--line);}
 .g-gallery .sheet-label .sl-jp{font-size:19px;}
