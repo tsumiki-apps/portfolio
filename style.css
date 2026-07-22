@@ -913,17 +913,18 @@ body.on-dark .tb-brand{color:#F4F2EE;
   background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
   padding:26px 24px; margin-top:18px;
 }
-/* 名前の横に、四辺を丸くした顔写真（アイコン風） */
-.profile-head{display:flex; align-items:center; gap:16px;}
+/* 名前の横に、四辺を丸くした顔写真（左寄せ・存在感のある大きさ） */
+.profile-head{display:flex; align-items:center; gap:18px;}
 .profile-photo{
-  width:76px; height:76px; flex:0 0 auto; display:block;
-  border-radius:18px; object-fit:cover; object-position:center 30%;
-  border:1px solid var(--line); box-shadow:0 3px 12px rgba(23,20,15,.14);
+  width:112px; height:112px; flex:0 0 auto; display:block;
+  border-radius:22px; object-fit:cover; object-position:center 30%;
+  border:1px solid var(--line); box-shadow:0 5px 18px rgba(23,20,15,.16);
   background:var(--surface);   /* 読み込み前のプレースホルダ色 */
 }
 .profile-id{min-width:0;}   /* 長い名前でも写真を潰さない */
-.profile .name{font-size:19px; font-weight:700; letter-spacing:.02em;}
-.profile .name .en{font-size:13px; color:var(--sub); font-weight:500; margin-left:8px; letter-spacing:.04em;}
+.profile .name{font-size:20px; font-weight:700; letter-spacing:.02em;}
+/* 写真を大きくしたぶん、英字は改行して名前行を詰まらせない（横に並べると窮屈） */
+.profile .name .en{display:block; font-size:13px; color:var(--sub); font-weight:500; margin-top:4px; letter-spacing:.04em;}
 .profile .role{font-size:13.5px; color:var(--sub); margin-top:4px;}
 .profile .p-row{display:flex; gap:12px; padding:14px 0; border-top:1px solid var(--line); margin-top:16px;}
 .profile .p-row:first-of-type{margin-top:20px;}
