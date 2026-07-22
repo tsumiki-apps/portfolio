@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=63">
+<link rel="stylesheet" href="style.css?v=64">
 <link rel="icon" type="image/png" href="icons/icon-index.png?v=2">
 <link rel="apple-touch-icon" href="icons/icon-index.png?v=2">
 <meta name="apple-mobile-web-app-title" content="つみき">
@@ -477,6 +477,51 @@
       <p class="vp">あなたの会社の業務を<span class="hl">1〜2時間じっくり伺って</span>、その会社だけの専用アプリを作ります。</p>
       <p class="vp-sub">既製のツールに仕事を合わせるのではなく、いまの仕事のやり方に、道具の方を合わせる。だから、やり方を変えずに、そのまま使えます。</p>
 
+      <!-- 挿絵：業務 × つみき ＝ 専用アプリ。左右の丸（素材）は静止し、
+           右の端末に「完成したアプリ」が紙芝居のように現れては消える。
+           makers-base の POLICY 01（素材×素材→完成品）の考え方を、つみきの
+           積み木モチーフに置き換えたもの。JSなし・.is-active で再生。 -->
+      <div class="scene scene-value" aria-hidden="true">
+        <svg viewBox="0 0 320 122" role="img">
+          <!-- 左の丸：御社の業務（書類） -->
+          <g class="sc-line">
+            <circle cx="46" cy="61" r="25"/>
+            <g class="sc-soft">
+              <rect x="37" y="49" width="18" height="24" rx="2.5"/>
+              <path d="M41 56h10M41 61h10M41 66h6"/>
+            </g>
+          </g>
+
+          <!-- × 掛け合わせ -->
+          <g class="sc-line sc-soft"><path d="M85 55l10 12M95 55l-10 12"/></g>
+
+          <!-- 中の丸：つみき（積み木） -->
+          <g class="sc-line">
+            <circle cx="134" cy="61" r="25"/>
+            <g class="sc-soft">
+              <rect x="122" y="62" width="12" height="9" rx="1.6"/>
+              <rect x="134" y="62" width="12" height="9" rx="1.6"/>
+              <rect x="128" y="52" width="12" height="9" rx="1.6"/>
+            </g>
+          </g>
+
+          <!-- ＝ イコール -->
+          <g class="sc-line sc-soft"><path d="M172 57h12M172 65h12"/></g>
+
+          <!-- 右：完成した専用アプリ（端末）。中身が現れる -->
+          <g class="sc-line">
+            <rect x="204" y="26" width="72" height="70" rx="10"/>
+            <path d="M204 40h72" class="sc-soft"/>
+            <circle cx="240" cy="33" r="1.6" fill="currentColor" stroke="none"/>
+          </g>
+          <!-- ↓ この中身が「完成品が現れる」アニメ -->
+          <g class="sc-line sc-reveal">
+            <path d="M214 52h30M214 60h52M214 68h40" class="sc-soft"/>
+            <path d="M244 82l6 6 12-13"/>
+          </g>
+        </svg>
+      </div>
+
       <p class="h3">3つのお約束<span class="h3-en">OUR PROMISES</span></p>
       <div class="promises">
         <div class="promise">
@@ -883,6 +928,35 @@
     <div class="sheet-inner">
       <p class="sheet-label"><span class="sl-jp">進め方／制作フロー</span><span class="sl-en">PROCESS</span></p>
       <p class="sheet-lead">4つのステップで進めます。そちらの手間は、基本的に打合せだけです。残りはお任せください。</p>
+
+      <!-- 挿絵：相談（左）から お渡し（右）へ、線がスッとつながる。
+           下のステップ間の縦線（.flow-step::after）と同じ「つながる」表現。
+           人・箱は静止し、動くのは連結線と、その上を進む点だけ。JSなし。 -->
+      <div class="scene scene-process" aria-hidden="true">
+        <svg viewBox="0 0 320 76" role="img">
+          <!-- 左：相談する人 -->
+          <g class="sc-line">
+            <circle cx="44" cy="30" r="9"/>
+            <path d="M31 64c-1-14 5-24 13-24s13 10 13 22"/>
+          </g>
+          <!-- 吹き出し（相談） -->
+          <g class="sc-line sc-soft">
+            <rect x="54" y="10" width="30" height="19" rx="6"/>
+            <path d="M62 29l-4 6 9-6"/>
+            <path d="M60 17h18M60 22h11"/>
+          </g>
+
+          <!-- 連結線：左→右にスッと伸びる。上を点が進む -->
+          <path class="sc-connect" d="M78 52h164" pathLength="100"/>
+          <circle class="sc-dot" r="3.2" fill="currentColor" stroke="none"/>
+
+          <!-- 右：お渡しする専用アプリ（端末＋チェック） -->
+          <g class="sc-line">
+            <rect x="250" y="20" width="44" height="44" rx="8"/>
+            <path d="M262 44l7 7 14-16"/>
+          </g>
+        </svg>
+      </div>
 
       <ol class="flow">
         <li class="flow-step">

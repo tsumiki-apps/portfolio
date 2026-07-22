@@ -371,11 +371,45 @@ body.on-dark .tb-brand{color:#F4F2EE;
   50%    {transform:translateY(-3.5px) rotate(1.4deg);}
 }
 
+/* VALUE：右の端末に「完成品」が紙芝居のように現れる。出て→留まって→消える */
+.sc-reveal{opacity:0; transform-box:fill-box; transform-origin:50% 50%;}
+.screen.is-active .sc-reveal{animation:sc-reveal 6s ease-in-out infinite;}
+@keyframes sc-reveal{
+  0%      {opacity:0; transform:scale(.85);}
+  12%     {opacity:1; transform:scale(1);}
+  62%     {opacity:1; transform:scale(1);}
+  74%,100%{opacity:0; transform:scale(.85);}
+}
+
+/* PROCESS：相談→お渡しを結ぶ線が左から伸び、点がその上を進む */
+.sc-connect{fill:none; stroke:var(--ink); stroke-width:1.7; stroke-linecap:round;
+  stroke-dasharray:100; stroke-dashoffset:100;}
+.screen.is-active .sc-connect{animation:sc-draw 5s ease-in-out infinite;}
+@keyframes sc-draw{
+  0%      {stroke-dashoffset:100;}
+  40%,100%{stroke-dashoffset:0;}
+}
+/* 点は連結線に沿って移動（offset-path）。非対応ブラウザでは単に非表示でも成立する */
+.sc-dot{opacity:0; offset-path:path('M78 52h164'); offset-rotate:0deg;}
+.screen.is-active .sc-dot{animation:sc-travel 5s ease-in-out infinite;}
+@keyframes sc-travel{
+  0%      {opacity:0; offset-distance:0%;}
+  8%      {opacity:1;}
+  40%     {opacity:1; offset-distance:100%;}
+  46%,100%{opacity:0; offset-distance:100%;}
+}
+
 @media (prefers-reduced-motion:reduce){
   .scene{opacity:1; transform:none; transition:none;}
   .sc-bub{opacity:1;}
+  .sc-reveal{opacity:1;}
+  .sc-connect{stroke-dashoffset:0;}
+  .sc-dot{opacity:0;}
   .screen.is-active .sc-bub,
-  .screen.is-active .sc-paper{animation:none;}
+  .screen.is-active .sc-paper,
+  .screen.is-active .sc-reveal,
+  .screen.is-active .sc-connect,
+  .screen.is-active .sc-dot{animation:none;}
 }
 
 /* 課題リスト */
