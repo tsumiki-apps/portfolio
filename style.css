@@ -399,17 +399,110 @@ body.on-dark .tb-brand{color:#F4F2EE;
   46%,100%{opacity:0; offset-distance:100%;}
 }
 
+/* ==================== 特長（FEATURES）ショーケース ====================
+   PCではイラスト左・短文右の2カラム、スマホでは縦積み。
+   イラストは既存 .scene / .sc-line の語彙をそのまま使い、動きは「中間」＝
+   1枚につき1〜2要素が動く。種類（運ぶ／はまる／回る／揺れる／描かれる／守る）で
+   6枚を描き分けている。 */
+.feats{display:flex; flex-direction:column; gap:44px; margin-top:22px;}
+.feat-illust{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:6px 10px;}
+.feat-illust .scene{margin-top:0; max-width:none;}
+.feat-body{margin-top:13px;}
+.feat-k{font-size:10px; font-weight:700; letter-spacing:.2em; color:var(--sub);}
+.feat-ttl{font-size:17px; font-weight:700; line-height:1.55; letter-spacing:.01em; margin-top:7px;}
+.feat-txt{font-size:13.5px; color:#3a3833; line-height:1.9; margin-top:9px;}
+@media(min-width:1024px){
+  .feats{gap:60px;}
+  .feat{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:44px; align-items:center;}
+  .feat-illust .scene{margin:0;}
+  .feat-body{margin-top:0;}
+  .feat-ttl{font-size:20px;}
+  .feat-txt{font-size:14.5px;}
+}
+
+/* 共通：到着の印（チェックがぽんと出て、留まって、消える） */
+.sc-arrive{opacity:0; transform-box:fill-box; transform-origin:50% 50%;}
+.screen.is-active .sc-arrive{animation:sc-arrive 5s ease-in-out infinite;}
+@keyframes sc-arrive{
+  0%,50%  {opacity:0; transform:scale(.5);}
+  60%     {opacity:1; transform:scale(1);}
+  88%     {opacity:1; transform:scale(1);}
+  96%,100%{opacity:0; transform:scale(.7);}
+}
+
+/* 01 御社のもの：アプリのカードが左（作り手）→右（御社）へ運ばれる */
+.sc-carry{opacity:0; transform-box:fill-box; transform:translate(80px,64px);}
+.screen.is-active .sc-carry{animation:sc-carry 5s ease-in-out infinite;}
+@keyframes sc-carry{
+  0%      {opacity:0; transform:translate(80px,64px) scale(.9);}
+  10%     {opacity:1; transform:translate(80px,64px) scale(1);}
+  50%     {opacity:1; transform:translate(198px,62px) scale(1);}
+  58%,100%{opacity:0; transform:translate(206px,62px) scale(.85);}
+}
+
+/* 02 やり方を変えない：道具のピースが右からすっと入り、軽く収まる */
+.sc-fit{transform-box:fill-box;}
+.screen.is-active .sc-fit{animation:sc-fit 5s ease-in-out infinite;}
+@keyframes sc-fit{
+  0%      {transform:translateX(42px); opacity:.35;}
+  18%     {transform:translateX(0);    opacity:1;}
+  24%     {transform:translateX(-3px);}
+  30%,80% {transform:translateX(0);    opacity:1;}
+  94%,100%{transform:translateX(42px); opacity:.35;}
+}
+
+/* 03 依存しない：受け渡しの矢印がゆっくり回り、アプリが小さく上下 */
+.sc-spin{transform-box:fill-box; transform-origin:center;}
+.screen.is-active .sc-spin{animation:sc-spin 16s linear infinite;}
+@keyframes sc-spin{to{transform:rotate(360deg);}}
+.sc-bob{transform-box:fill-box;}
+.screen.is-active .sc-bob{animation:sc-bob 4s ease-in-out infinite;}
+@keyframes sc-bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+
+/* 04 金額固定：値札がゆっくり揺れ、錠前が静かに脈打つ */
+.sc-sway{transform-box:fill-box; transform-origin:22% 24%;}
+.screen.is-active .sc-sway{animation:sc-sway 4.5s ease-in-out infinite;}
+@keyframes sc-sway{0%,100%{transform:rotate(-2.2deg);}50%{transform:rotate(2.2deg);}}
+.sc-pulse{transform-box:fill-box; transform-origin:center;}
+.screen.is-active .sc-pulse{animation:sc-pulse 3s ease-in-out infinite;}
+@keyframes sc-pulse{0%,100%{transform:scale(1); opacity:.85;}50%{transform:scale(1.05); opacity:1;}}
+
+/* 05 小さく作って見せる：中身が上から順に描かれ、最後にチェック */
+.sc-drawin > *{stroke-dasharray:100; stroke-dashoffset:100;}
+.screen.is-active .sc-drawin > *{animation:sc-draw 1.6s ease-out forwards;}
+.screen.is-active .sc-drawin > :nth-child(2){animation-delay:.35s;}
+.screen.is-active .sc-drawin > :nth-child(3){animation-delay:.7s;}
+.screen.is-active .sc-drawin > :nth-child(4){animation-delay:1.05s;}
+
+/* 06 情報を守る：盾の外周が描かれ、静かに脈打つ */
+.sc-shield > *{stroke-dasharray:100; stroke-dashoffset:100;}
+.screen.is-active .sc-shield > *{animation:sc-draw 1.9s ease-out forwards, sc-glow 3.4s ease-in-out 1.9s infinite;}
+@keyframes sc-glow{0%,100%{opacity:.6;}50%{opacity:1;}}
+
 @media (prefers-reduced-motion:reduce){
   .scene{opacity:1; transform:none; transition:none;}
   .sc-bub{opacity:1;}
   .sc-reveal{opacity:1;}
   .sc-connect{stroke-dashoffset:0;}
   .sc-dot{opacity:0;}
+  .sc-arrive{opacity:1; transform:none;}
+  .sc-carry{opacity:1; transform:translate(198px,62px);}
+  .sc-fit{opacity:1; transform:none;}
+  .sc-drawin > *, .sc-shield > *{stroke-dashoffset:0;}
   .screen.is-active .sc-bub,
   .screen.is-active .sc-paper,
   .screen.is-active .sc-reveal,
   .screen.is-active .sc-connect,
-  .screen.is-active .sc-dot{animation:none;}
+  .screen.is-active .sc-dot,
+  .screen.is-active .sc-arrive,
+  .screen.is-active .sc-carry,
+  .screen.is-active .sc-fit,
+  .screen.is-active .sc-spin,
+  .screen.is-active .sc-bob,
+  .screen.is-active .sc-sway,
+  .screen.is-active .sc-pulse,
+  .screen.is-active .sc-drawin > *,
+  .screen.is-active .sc-shield > *{animation:none;}
 }
 
 /* 課題リスト */

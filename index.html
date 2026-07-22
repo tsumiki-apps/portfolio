@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=64">
+<link rel="stylesheet" href="style.css?v=65">
 <link rel="icon" type="image/png" href="icons/icon-index.png?v=2">
 <link rel="apple-touch-icon" href="icons/icon-index.png?v=2">
 <meta name="apple-mobile-web-app-title" content="つみき">
@@ -172,6 +172,7 @@
           <span class="mi-jp">サービス</span><span class="mi-en">SERVICE</span><span class="mi-ar">→</span>
         </button>
         <div class="submenu">
+          <a class="sub-item" data-go="features" href="#"><span class="su-jp">つみきの特長</span><span class="su-en">FEATURES</span><span class="su-ar">→</span></a>
           <a class="sub-item" data-go="value" href="#"><span class="su-jp">提供価値</span><span class="su-en">VALUE</span><span class="su-ar">→</span></a>
           <a class="sub-item" data-go="issues" href="#"><span class="su-jp">こんな課題ありませんか？</span><span class="su-en">ISSUES</span><span class="su-ar">→</span></a>
           <a class="sub-item" data-go="process" href="#"><span class="su-jp">進め方／制作フロー</span><span class="su-en">PROCESS</span><span class="su-ar">→</span></a>
@@ -464,6 +465,174 @@
 
       <div class="cta-wrap">
         <p class="cta-lead">「こういうの、うちにも欲しい」と思ったら。あなたの“ちょっと困った”に合わせて、専用のアプリをお作りします。初回のご相談は無料です。</p>
+        <a class="cta" data-go="hearing" href="#">無料で相談する<span class="cta-ar">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- サービス：特長（イラスト左・短文右のショーケース） -->
+  <section class="screen sheet" id="s-features" data-screen="features">
+    <div class="sheet-inner">
+      <p class="sheet-label"><span class="sl-jp">つみきの特長</span><span class="sl-en">FEATURES</span></p>
+      <p class="sheet-lead">オーダーメイドだからできる、6つのお約束。ひとつずつご紹介します。</p>
+
+      <div class="feats">
+
+        <!-- 01 御社のものになる -->
+        <div class="feat">
+          <div class="feat-illust">
+            <div class="scene" aria-hidden="true"><svg viewBox="0 0 300 176" role="img">
+              <!-- 左：私（作り手） -->
+              <g class="sc-line"><circle cx="46" cy="74" r="11"/><path d="M28 134c-2-20 8-34 18-34s18 14 18 30"/></g>
+              <!-- 右：御社（建物） -->
+              <g class="sc-line">
+                <path d="M196 70l38-20 38 20"/>
+                <rect x="204" y="70" width="60" height="64" rx="3"/>
+                <path d="M226 134v-24h16v24" class="sc-soft"/>
+                <path d="M212 84h10M242 84h10M212 98h10M242 98h10" class="sc-soft"/>
+              </g>
+              <!-- 受け渡すアプリのカード（左→右へ運ばれる） -->
+              <g class="sc-line sc-carry">
+                <rect x="0" y="0" width="26" height="20" rx="3"/>
+                <path d="M5 7h16M5 12h11" class="sc-soft"/>
+              </g>
+              <!-- 届いた印（建物にチェック） -->
+              <g class="sc-line sc-arrive"><path d="M226 60l6 6 12-13"/></g>
+            </svg></div>
+          </div>
+          <div class="feat-body">
+            <p class="feat-k">FEATURE 01</p>
+            <h3 class="feat-ttl">作ったアプリは、御社のもの</h3>
+            <p class="feat-txt">ソースコード（＝アプリの設計図）をお渡しし、著作権も譲渡します。他の会社でも、そのまま引き継げます。</p>
+          </div>
+        </div>
+
+        <!-- 02 やり方を変えない -->
+        <div class="feat">
+          <div class="feat-illust">
+            <div class="scene" aria-hidden="true"><svg viewBox="0 0 300 176" role="img">
+              <!-- いまの仕事の形（穴あきの枠） -->
+              <g class="sc-line">
+                <path d="M64 44h112a10 10 0 0 1 10 10v20h-24a14 14 0 0 0 0 28h24v20a10 10 0 0 1-10 10H64a10 10 0 0 1-10-10V54a10 10 0 0 1 10-10z"/>
+              </g>
+              <!-- 道具のほうが、形に合わせて入る -->
+              <g class="sc-line sc-fit">
+                <path d="M162 74a14 14 0 0 1 0 28h24a6 6 0 0 0 6-6V80a6 6 0 0 0-6-6z"/>
+                <path d="M172 84h10" class="sc-soft"/>
+              </g>
+            </svg></div>
+          </div>
+          <div class="feat-body">
+            <p class="feat-k">FEATURE 02</p>
+            <h3 class="feat-ttl">道具のほうを、仕事に合わせる</h3>
+            <p class="feat-txt">いまの手順は、そのままで大丈夫。慣れたやり方を変えずに、道具の側をぴったり合わせて作ります。</p>
+          </div>
+        </div>
+
+        <!-- 03 依存しない -->
+        <div class="feat">
+          <div class="feat-illust">
+            <div class="scene" aria-hidden="true"><svg viewBox="0 0 300 176" role="img">
+              <!-- 中央：動き続けるアプリ -->
+              <g class="sc-line sc-bob">
+                <rect x="126" y="52" width="48" height="72" rx="8"/>
+                <path d="M136 66h28M136 74h20M136 82h28" class="sc-soft"/>
+                <path d="M143 108l5 5 9-10"/>
+              </g>
+              <!-- 左右の人（誰でも引き継げる） -->
+              <g class="sc-line sc-soft"><circle cx="40" cy="72" r="9"/><path d="M26 120c-1-16 6-27 14-27s14 11 14 24"/></g>
+              <g class="sc-line sc-soft"><circle cx="260" cy="72" r="9"/><path d="M246 120c-1-16 6-27 14-27s14 11 14 24"/></g>
+              <!-- 受け渡しの回転矢印 -->
+              <g class="sc-line sc-spin">
+                <path d="M150 34a55 55 0 0 1 52 38"/>
+                <path d="M196 60l6 14 14-6" class="sc-soft"/>
+                <path d="M150 142a55 55 0 0 1-52-38"/>
+                <path d="M104 116l-6-14-14 6" class="sc-soft"/>
+              </g>
+            </svg></div>
+          </div>
+          <div class="feat-body">
+            <p class="feat-k">FEATURE 03</p>
+            <h3 class="feat-ttl">つみきに、縛られない</h3>
+            <p class="feat-txt">わたし一人がいなくても動き、他社でも直せる形でお渡しします。特定の誰かへの依存をつくりません。</p>
+          </div>
+        </div>
+
+        <!-- 04 金額が変わらない -->
+        <div class="feat">
+          <div class="feat-illust">
+            <div class="scene" aria-hidden="true"><svg viewBox="0 0 300 176" role="img">
+              <!-- 値札（ゆっくり揺れる） -->
+              <g class="sc-line sc-sway">
+                <path d="M96 58l58 0 40 40-58 58-40-40z"/>
+                <circle cx="116" cy="78" r="6"/>
+                <path d="M132 108l16 16m8-8l-16-16" class="sc-soft"/>
+                <path d="M150 96l14 14" class="sc-soft"/>
+              </g>
+              <!-- 錠前（変わらない印・軽く脈打つ） -->
+              <g class="sc-line sc-pulse">
+                <rect x="196" y="104" width="40" height="30" rx="5"/>
+                <path d="M203 104v-7a13 13 0 0 1 26 0v7"/>
+                <circle cx="216" cy="118" r="3" fill="currentColor" stroke="none"/>
+              </g>
+            </svg></div>
+          </div>
+          <div class="feat-body">
+            <p class="feat-k">FEATURE 04</p>
+            <h3 class="feat-ttl">着手後、金額は増えない</h3>
+            <p class="feat-txt">ご納得いただいた金額で着手し、あとから膨らむことはありません。ヒアリングもお見積りも無料です。</p>
+          </div>
+        </div>
+
+        <!-- 05 小さく作って見せる -->
+        <div class="feat">
+          <div class="feat-illust">
+            <div class="scene" aria-hidden="true"><svg viewBox="0 0 300 176" role="img">
+              <!-- 端末 -->
+              <g class="sc-line"><rect x="118" y="26" width="64" height="124" rx="12"/><circle cx="150" cy="36" r="1.7" fill="currentColor" stroke="none"/></g>
+              <!-- 中身が少しずつ描かれていく（試作→形になる） -->
+              <g class="sc-line sc-drawin">
+                <path d="M130 54h40" pathLength="100"/>
+                <path d="M130 68h40" pathLength="100"/>
+                <path d="M130 82h26" pathLength="100"/>
+                <rect x="130" y="98" width="40" height="22" rx="4" pathLength="100"/>
+              </g>
+              <!-- 完成の印 -->
+              <g class="sc-line sc-arrive"><path d="M140 130l6 6 12-13"/></g>
+            </svg></div>
+          </div>
+          <div class="feat-body">
+            <p class="feat-k">FEATURE 05</p>
+            <h3 class="feat-ttl">いきなり、完成させない</h3>
+            <p class="feat-txt">まず動く形をお見せします。実際に触った感想をもとに、少しずつ整えていきます。</p>
+          </div>
+        </div>
+
+        <!-- 06 情報を守る -->
+        <div class="feat">
+          <div class="feat-illust">
+            <div class="scene" aria-hidden="true"><svg viewBox="0 0 300 176" role="img">
+              <!-- 書類 -->
+              <g class="sc-line sc-soft"><rect x="132" y="60" width="36" height="46" rx="3"/><path d="M139 72h22M139 80h22M139 88h14"/></g>
+              <!-- 守る盾（外周が描かれ、静かに脈打つ） -->
+              <g class="sc-line sc-shield">
+                <path d="M150 30l44 16v28c0 30-22 50-44 60-22-10-44-30-44-60V46z" pathLength="100"/>
+              </g>
+              <!-- 守られた印 -->
+              <g class="sc-line sc-arrive"><path d="M138 86l8 8 16-18"/></g>
+            </svg></div>
+          </div>
+          <div class="feat-body">
+            <p class="feat-k">FEATURE 06</p>
+            <h3 class="feat-ttl">伺った情報は、守る</h3>
+            <p class="feat-txt">業務を深く伺う仕事だからこそ。ご希望に応じてNDA（秘密保持契約）も締結します。</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="cta-wrap">
+        <p class="cta-lead">「うちのこれ、なんとかなりますか？」だけで大丈夫です。初回のヒアリングは無料です。</p>
         <a class="cta" data-go="hearing" href="#">無料で相談する<span class="cta-ar">→</span></a>
       </div>
     </div>
@@ -1468,7 +1637,7 @@
     let animating = false;
     let popNav = false;   // 履歴の戻る操作中は pushState しない
     const childToGroup = {   // 子シート → 属する親カテゴリー
-      value:'service', issues:'service', process:'service', pricing:'service',
+      features:'service', value:'service', issues:'service', process:'service', pricing:'service',
       flagship:'works', 'flagship-itsutsu':'works', 'flagship-koegaki':'works',
       collection:'works', voice:'works',
       profile:'contact', company:'contact', hearing:'contact', privacy:'contact'
