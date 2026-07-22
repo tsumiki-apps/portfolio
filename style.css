@@ -1235,3 +1235,40 @@ footer.foot{
   .h3{font-size:20px;}
   .sheet-lead, .g-room-note, .credo-p{max-width:48em;}
 }
+
+/* ---------- サイト共通フッター（読み物ページ末尾の墨の帯） ----------
+   HTMLは index.html の <template id="site-foot-tpl"> に1回だけ書き、JSで各 .screen.sheet の
+   末尾へ複製している。.screen の左右 padding(20px) を負マージンで打ち消して全幅の帯にする。 */
+.sfoot{
+  flex:0 0 auto;
+  margin:0 -20px; width:calc(100% + 40px);
+  background:var(--ink); color:var(--paper);
+}
+.sfoot-in{
+  max-width:var(--wrap); margin:0 auto; padding:44px 20px 30px;
+  display:flex; align-items:flex-start; gap:44px;
+}
+.sfoot-brand{display:flex; align-items:center; gap:13px; flex:0 0 auto;}
+.sfoot-brand img{width:44px; height:44px; border-radius:11px; display:block;}
+.sfoot-name{display:flex; flex-direction:column; font-weight:700; font-size:16px; letter-spacing:.1em; line-height:1.2;}
+.sfoot-name-jp{font-size:10px; font-weight:500; letter-spacing:.28em; color:rgba(244,242,238,.58); margin-top:4px;}
+.sfoot-cols{flex:1 1 auto; display:flex; flex-wrap:wrap; justify-content:flex-end; gap:26px 44px;}
+.sfoot-col{display:flex; flex-direction:column; gap:5px; text-align:left;}
+.sfoot-h{font-size:10.5px; letter-spacing:.22em; color:rgba(244,242,238,.5); margin-bottom:3px;}
+/* padding でタップ領域を確保（見た目の行間は gap と合わせて従来どおり） */
+.sfoot-col a{color:var(--paper); text-decoration:none; font-size:13px; letter-spacing:.04em; line-height:1.5; padding:4px 0;}
+.sfoot-col a:active{opacity:.7;}
+@media(hover:hover){ .sfoot-col a:hover{opacity:.72;} .sfoot-bar-in a:hover{opacity:.72;} }
+.sfoot-bar{border-top:1px solid rgba(244,242,238,.16);}
+.sfoot-bar-in{
+  max-width:var(--wrap); margin:0 auto;
+  padding:15px 20px calc(15px + env(safe-area-inset-bottom));
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+}
+.sfoot-bar-in a{color:rgba(244,242,238,.85); text-decoration:none; font-size:12px; letter-spacing:.06em;}
+.sfoot-copy{font-size:11px; letter-spacing:.1em; color:rgba(244,242,238,.5);}
+/* スマホ：縦積み（ロゴ→3列を2段組で） */
+@media(max-width:640px){
+  .sfoot-in{flex-direction:column; gap:28px; padding:36px 20px 26px;}
+  .sfoot-cols{justify-content:flex-start;}
+}

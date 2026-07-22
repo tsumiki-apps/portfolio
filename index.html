@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=66">
+<link rel="stylesheet" href="style.css?v=67">
 <link rel="icon" type="image/png" href="icons/icon-index.png?v=2">
 <link rel="apple-touch-icon" href="icons/icon-index.png?v=2">
 <meta name="apple-mobile-web-app-title" content="つみき">
@@ -1520,6 +1520,46 @@
 
 </main>
 
+<!-- サイト共通フッター（墨の帯）。ここに1回だけ書き、下のスクリプトで各「読み物」画面
+     （.screen.sheet）の末尾へ複製して配置する。入口（intro/brand）とメニューには付けない。 -->
+<template id="site-foot-tpl">
+  <footer class="sfoot">
+    <div class="sfoot-in">
+      <div class="sfoot-brand">
+        <img src="icons/icon-index.png" alt="つみき ロゴ" width="44" height="44" loading="lazy">
+        <span class="sfoot-name">Tsumiki<span class="sfoot-name-jp">つみき</span></span>
+      </div>
+      <nav class="sfoot-cols" aria-label="サイト内リンク">
+        <div class="sfoot-col">
+          <p class="sfoot-h">サービス</p>
+          <a data-go="features" href="#">つみきの特長</a>
+          <a data-go="value" href="#">提供価値</a>
+          <a data-go="issues" href="#">こんな課題ありませんか？</a>
+          <a data-go="process" href="#">進め方／制作フロー</a>
+          <a data-go="pricing" href="#">料金・進行イメージ</a>
+        </div>
+        <div class="sfoot-col">
+          <p class="sfoot-h">実績</p>
+          <a data-go="flagship" href="#">看板プロダクト</a>
+          <a data-go="collection" href="#">コレクション</a>
+        </div>
+        <div class="sfoot-col">
+          <p class="sfoot-h">お問い合わせ</p>
+          <a data-go="profile" href="#">プロフィール</a>
+          <a data-go="company" href="#">事業者概要</a>
+          <a data-go="hearing" href="#">無料ヒアリング申込</a>
+        </div>
+      </nav>
+    </div>
+    <div class="sfoot-bar">
+      <div class="sfoot-bar-in">
+        <a data-go="privacy" href="#">プライバシーポリシー</a>
+        <span class="sfoot-copy">© 2026 つみき（Tsumiki）</span>
+      </div>
+    </div>
+  </footer>
+</template>
+
 <script>
   /* つみきコレクション（Work / Private / Asset） */
   const categories = [
@@ -1628,6 +1668,17 @@
       if(willOpen){ wrap.classList.add('is-open'); btn.setAttribute('aria-expanded','true'); }
     });
   });
+
+  /* ===== サイト共通フッター：読み物（sheet）画面の末尾へ複製配置 =====
+     必ず下の「ページ送り」IIFEより前に実行する（複製したリンクにも data-go の
+     クリック配線が効くようにするため）。入口・メニューは .sheet でないので対象外。 */
+  (function(){
+    const tpl = document.getElementById('site-foot-tpl');
+    if (!tpl || !('content' in tpl)) return;
+    document.querySelectorAll('.screen.sheet').forEach(sec=>{
+      sec.appendChild(tpl.content.cloneNode(true));
+    });
+  })();
 
   /* ===== ページ送り（縦スクロールなし・フェード＋墨の背景化） ===== */
   (function(){
