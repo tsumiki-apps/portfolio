@@ -223,10 +223,16 @@ body.on-dark .tb-brand{color:#F4F2EE;
   transition:opacity .7s ease, transform .7s ease;
 }
 .menu-group.open .sub-item{opacity:1; transform:translateY(0);}
-.menu-group.open .sub-item:nth-child(1){transition-delay:.14s;}
-.menu-group.open .sub-item:nth-child(2){transition-delay:.26s;}
-.menu-group.open .sub-item:nth-child(3){transition-delay:.38s;}
-.menu-group.open .sub-item:nth-child(4){transition-delay:.50s;}
+/* 時差は <a> だけを数える（.su-break の <span> を挟んでも番号がズレないよう nth-of-type） */
+.menu-group.open .sub-item:nth-of-type(1){transition-delay:.14s;}
+.menu-group.open .sub-item:nth-of-type(2){transition-delay:.26s;}
+.menu-group.open .sub-item:nth-of-type(3){transition-delay:.38s;}
+.menu-group.open .sub-item:nth-of-type(4){transition-delay:.50s;}
+.menu-group.open .sub-item:nth-of-type(5){transition-delay:.62s;}
+/* サービスのサブメニュー：PC幅では「特長・価値・課題／進め方・料金」の2行組に。
+   自然折返しに任せると4項目目の後で折れ、料金だけが孤立していた。モバイルは従来どおり。 */
+.su-break{display:none;}
+@media (min-width:1024px){ .su-break{display:block; height:0;} }
 .su-jp{grid-area:jp; font-size:16.5px; font-weight:500; letter-spacing:.04em; line-height:1.28;}
 .su-en{grid-area:en; font-size:9px; letter-spacing:.24em; color:rgba(244,242,238,.55); margin-top:3px;}
 .su-ar{grid-area:ar; font-size:16px; color:rgba(244,242,238,.4);
