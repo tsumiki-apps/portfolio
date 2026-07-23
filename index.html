@@ -1380,7 +1380,71 @@
       <p class="sheet-label"><span class="sl-jp">無料ヒアリング申込</span><span class="sl-en">CONTACT</span></p>
       <p class="sheet-lead">まずは無料でお話を伺います。現場の困りごとを、そのままお聞かせください。<strong>ご準備は不要です。</strong></p>
 
+      <!-- 挿絵：向かい合ってお茶を飲みながら話す。人と机は静止、吹き出しだけが時間差で浮かぶ -->
+      <div class="scene" aria-hidden="true"><svg viewBox="0 0 300 150" role="img">
+        <!-- 左：ご相談者 -->
+        <g class="sc-line">
+          <circle cx="52" cy="62" r="10"/>
+          <path d="M37 118c-1-18 6-31 15-31s15 12 15 29"/>
+        </g>
+        <!-- 右：私 -->
+        <g class="sc-line">
+          <circle cx="248" cy="62" r="10"/>
+          <path d="M263 118c1-18-6-31-15-31s-15 12-15 29"/>
+        </g>
+        <!-- 机とお茶 -->
+        <g class="sc-line">
+          <path d="M108 118h84"/>
+          <path d="M116 118v14M184 118v14" class="sc-soft"/>
+          <rect x="127" y="107" width="13" height="11" rx="2.5" class="sc-soft"/>
+          <rect x="160" y="107" width="13" height="11" rx="2.5" class="sc-soft"/>
+        </g>
+        <!-- 会話の吹き出し（左→右→あいだ、の順にぽこっと） -->
+        <g class="sc-line">
+          <g class="sc-bub sc-bub1">
+            <rect x="64" y="14" width="52" height="27" rx="9"/>
+            <path d="M78 41l-6 9 14-8"/>
+            <path d="M74 23h32M74 30h20" class="sc-soft"/>
+          </g>
+          <g class="sc-bub sc-bub2">
+            <rect x="184" y="6" width="56" height="29" rx="9"/>
+            <path d="M226 35l6 9-14-8"/>
+            <path d="M192 15h40M192 22.5h26" class="sc-soft"/>
+          </g>
+          <g class="sc-bub sc-bub3">
+            <rect x="132" y="56" width="36" height="22" rx="8"/>
+            <g fill="currentColor" stroke="none"><circle cx="143" cy="67" r="1.6"/><circle cx="150" cy="67" r="1.6"/><circle cx="157" cy="67" r="1.6"/></g>
+          </g>
+        </g>
+      </svg></div>
+
       <p class="h3">お申し込みのあと、こう進みます<span class="h3-en">WHAT HAPPENS NEXT</span></p>
+
+      <!-- 挿絵：申込（封筒）→ヒアリング（会話）→ご提案（書類）。線が伸び、点が進み、最後にチェック -->
+      <div class="scene scene-hsteps" aria-hidden="true"><svg viewBox="0 0 320 80" role="img">
+        <path class="sc-connect" d="M14 68h292" pathLength="100"/>
+        <circle class="sc-dot" r="3.2" fill="currentColor" stroke="none"/>
+        <!-- 01 ご返信（封筒） -->
+        <g class="sc-line">
+          <rect x="22" y="28" width="46" height="30" rx="4"/>
+          <path d="M22 32l23 15 23-15"/>
+        </g>
+        <!-- 02 ヒアリング（会話） -->
+        <g class="sc-line">
+          <rect x="132" y="16" width="44" height="25" rx="8"/>
+          <path d="M144 41l-5 8 12-7"/>
+          <path d="M140 25h28M140 32h18" class="sc-soft"/>
+          <rect x="170" y="38" width="32" height="20" rx="7" class="sc-soft"/>
+        </g>
+        <!-- 03 ご提案（お見積りの書類＋朱のチェック） -->
+        <g class="sc-line">
+          <path d="M256 16h24l10 10v30a3 3 0 0 1-3 3h-31a3 3 0 0 1-3-3V19a3 3 0 0 1 3-3z"/>
+          <path d="M280 16v10h10" class="sc-soft"/>
+          <path d="M262 32h18M262 38h12" class="sc-soft"/>
+        </g>
+        <g class="sc-line sc-arrive sc-accent"><path d="M264 47l6 6 11-12"/></g>
+      </svg></div>
+
       <div class="panel">
         <div class="dl">
           <div class="dl-row"><div class="dl-k">01　ご返信</div><div class="dl-v"><strong>2〜3日以内を目安に、私が直接お返事します。</strong>日程のご相談だけです。</div></div>
@@ -1392,6 +1456,13 @@
 
       <p class="h3">ご安心いただきたいこと<span class="h3-en">OUR PROMISE</span></p>
       <div class="panel">
+        <!-- 挿絵：盾が自分で描かれて、静かに明滅する -->
+        <div class="scene scene-guard" aria-hidden="true"><svg viewBox="0 0 44 48" role="img">
+          <g class="sc-line sc-shield">
+            <path d="M22 4l15 5.5V22c0 10.5-6.5 18-15 22-8.5-4-15-11.5-15-22V9.5z" pathLength="100"/>
+            <path d="M14.5 23.5l5.5 5.5 10-11" pathLength="100"/>
+          </g>
+        </svg></div>
         <ul class="can no">
           <li>しつこい営業や、後日の追いかけ連絡はしません</li>
           <li>伺った業務の内容を、他社や第三者に話すことはありません</li>
@@ -1443,6 +1514,13 @@
         </form>
 
         <div id="hf-done" class="hf-done" hidden>
+          <!-- 表示された瞬間に、丸→チェックの順で一筆書きされる（1回だけ） -->
+          <svg class="hf-check" viewBox="0 0 48 48" aria-hidden="true">
+            <g class="sc-line sc-drawin">
+              <circle cx="24" cy="24" r="20" pathLength="100"/>
+              <path d="M15 25l7 7 12-14" pathLength="100"/>
+            </g>
+          </svg>
           <p class="hf-done-ttl">送信しました。ありがとうございます。</p>
           <p class="hf-done-body">2〜3日以内を目安に、いただいたメールアドレス宛に私から直接お返事します。日程のご相談だけです。どうぞお気軽に。</p>
         </div>

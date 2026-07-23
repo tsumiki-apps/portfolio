@@ -715,6 +715,14 @@ body.on-dark .tb-brand{color:#F4F2EE;
 .hf-done-body{font-size:13.5px; color:#3a3833; line-height:1.9; margin-top:10px;}
 .hf-alt{margin-top:18px;}
 
+/* ---------- 無料ヒアリング：挿絵（既存 .scene / sc-* の語彙を流用） ---------- */
+/* タイムラインの点は、この画面の連結線に沿って進ませる（基底 .sc-dot の path を上書き） */
+.scene-hsteps .sc-dot{offset-path:path('M14 68h292');}
+/* 盾はパネル内に小さく置く */
+.scene-guard{margin:2px auto 16px; max-width:92px;}
+/* 送信完了のチェック（表示された瞬間に sc-drawin で一筆書きされる） */
+.hf-check{display:block; width:46px; height:46px; margin:0 auto 12px; color:var(--ink);}
+
 /* ---------- セクション（この画面だけ内部スクロール） ---------- */
 .screen.sheet{justify-content:flex-start; align-items:stretch; text-align:left;}
 .screen.sheet.is-active{overflow-y:auto; -webkit-overflow-scrolling:touch;}
