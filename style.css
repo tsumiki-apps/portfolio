@@ -11,6 +11,8 @@
   --sub:#77736B;     /* 補助文字 */
   --line:#D8D4CC;    /* 罫線 */
   --ghost:#BEB9B0;   /* いちばん淡い線 */
+  --accent:#D14E26;      /* 朱（差し色・強）。書画の落款のように「小さな要素だけ」に使う */
+  --accent-soft:#F1CDBB; /* 淡朱（差し色・弱）。イラストの面に */
   --radius:20px;
   --wrap:760px;
 }
@@ -1272,3 +1274,28 @@ footer.foot{
   .sfoot-in{flex-direction:column; gap:28px; padding:36px 20px 26px;}
   .sfoot-cols{justify-content:flex-start;}
 }
+
+/* ---------- 差し色（朱）の適用 ----------
+   参考サイト（Makers' Base）の「大きい面は淡く・強い色は小さく」を紙×墨に翻訳。
+   朱＝「約束が果たされた印」（チェック・錠前・はまる部品）と小さなラベルだけに使い、
+   本文・見出し・ボタンは墨のまま＝シンプルな雰囲気から離れない。入口・メニュー・フッターは不変。 */
+
+/* 英字ラベル・キッカー類（参考の「— POLICY 01」に対応） */
+.sl-en, .h3-en, .as-h-en, .feat-k, .pg-en{color:var(--accent);}
+.ah-no{color:var(--accent);}
+
+/* 大見出し内ハイライトの下線を淡墨→朱に */
+.vp .hl{border-bottom-color:var(--accent);}
+
+/* 進め方：手順の丸バッジ（参考の橙の丸に対応） */
+.flow-step .fs-no{background:var(--accent);}
+
+/* BEFORE→AFTER：変化後の印だけ朱で強調 */
+.ba-a .ba-tag{color:var(--accent);}
+
+/* 料金の進行イメージ：前後する幅の斜線を淡朱に */
+.tl-bar.is-range{background:repeating-linear-gradient(45deg, var(--accent-soft) 0 2px, rgba(0,0,0,0) 2px 5px);}
+
+/* 動くイラスト用：朱の線（currentColor の塗りにも効くよう color も揃える）と淡朱の面 */
+.sc-accent{stroke:var(--accent); color:var(--accent);}
+.sc-fillsoft{fill:var(--accent-soft);}
