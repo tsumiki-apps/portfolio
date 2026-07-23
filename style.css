@@ -1355,3 +1355,64 @@ footer.foot{
 @media (prefers-reduced-motion:reduce){
   .tw-t .tw-c, .tw-b{opacity:1; transform:none; transition:none;}
 }
+
+/* ---------- つみきの特長：冒頭の大きな動くイラスト「積み木の工房」 ----------
+   .screen の左右padding(20px)を負マージンで打ち消し、画面端まで広げる（フッターと同じ手法）。
+   スマホは高さを固定し、preserveAspectRatio=slice で中央の物語部分を見せる。
+   線の太さは vector-effect で拡縮に関わらず 1.7px を保ち、下のカード群の線画と揃える。 */
+.fhero{
+  margin:0 -20px; width:calc(100% + 40px); flex:0 0 auto;
+  padding-top:calc(env(safe-area-inset-top) + 64px);
+  opacity:0; transform:translateY(8px);
+  transition:opacity .8s ease .1s, transform .8s ease .1s;
+}
+.screen.is-active .fhero{opacity:1; transform:none;}
+.fhero svg{display:block; width:100%; height:auto; max-height:46vh;}  /* 半画面弱に収める（超過分はsliceが上下の余白を刈る） */
+@media(max-width:640px){ .fhero svg{height:238px; max-height:none;} }
+.fhero .sc-line, .fhero .sc-soft{vector-effect:non-scaling-stroke;}
+/* イラストが冒頭に来たぶん、見出しの上の余白は詰める */
+#s-features .sheet-inner{padding-top:34px;}
+
+/* 積み木：1つずつ積み上がる（12秒で一巡。backwards=開始前は隠す） */
+.fh-b{animation:fh-in 12s ease-in-out infinite backwards;}
+.fh-b1{animation-delay:.4s;}
+.fh-b2{animation-delay:1.1s;}
+.fh-b3{animation-name:fh-slide; animation-delay:1.8s;}   /* 3段目だけ横からはまる */
+.fh-b4{animation-delay:2.5s;}
+@keyframes fh-in{
+  0%{opacity:0; transform:translateY(-10px);}
+  5%{opacity:1; transform:none;}
+  78%{opacity:1;}
+  86%,100%{opacity:0;}
+}
+@keyframes fh-slide{
+  0%{opacity:0; transform:translateX(-36px);}
+  5%{opacity:1; transform:none;}
+  78%{opacity:1;}
+  86%,100%{opacity:0;}
+}
+/* アプリのカード：塔の上から浮かび、点線の道を通って御社の戸口へ */
+.fh-card{animation:fh-card 12s ease-in-out infinite backwards;}
+@keyframes fh-card{
+  0%,26%{opacity:0; transform:translate(0,-6px);}
+  31%{opacity:1; transform:translate(0,-18px);}
+  40%{transform:translate(120px,-52px);}
+  50%{transform:translate(255px,22px);}
+  58%{opacity:1; transform:translate(374px,108px);}
+  64%,100%{opacity:0; transform:translate(374px,108px);}
+}
+/* 届いた印（朱のチェック）：カードが着いた頃に咲く */
+.fh-check{
+  transform-box:fill-box; transform-origin:50% 50%;
+  animation:fh-pop 12s ease-in-out infinite backwards;
+}
+@keyframes fh-pop{
+  0%,58%{opacity:0; transform:scale(.6);}
+  63%{opacity:1; transform:scale(1);}
+  86%{opacity:1;}
+  93%,100%{opacity:0;}
+}
+/* 視差効果を減らす設定の人には動かさず、すべて見えた状態で止める */
+@media (prefers-reduced-motion:reduce){
+  .fhero .fh-b, .fhero .fh-card, .fhero .fh-check{animation:none;}
+}

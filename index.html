@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=71">
+<link rel="stylesheet" href="style.css?v=72">
 <link rel="icon" type="image/png" href="icons/icon-index.png?v=2">
 <link rel="apple-touch-icon" href="icons/icon-index.png?v=2">
 <meta name="apple-mobile-web-app-title" content="つみき">
@@ -480,6 +480,61 @@
 
   <!-- サービス：特長（イラスト左・短文右のショーケース） -->
   <section class="screen sheet" id="s-features" data-screen="features">
+
+    <!-- 冒頭の大きな動くイラスト「積み木の工房」（横は画面端まで・12秒で一巡）
+         左：作り手と吹き出し（伺う）→ 中央：積み木が積み上がる（小さく作る。3段目は横からはまる＝道具を合わせる）
+         → カードが点線の道を通って御社へ（御社のもの）→ 朱のチェック（届いた印）。錠前＝金額は変わらない、盾＝情報を守る -->
+    <div class="fhero" aria-hidden="true">
+      <svg viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid slice" role="img">
+        <!-- 地面（手描きの切れ目入り）。sc-soft単体だとfillが黒塗りになるため必ずsc-lineと併用 -->
+        <path d="M120 340h420M580 340h500" class="sc-line sc-soft"/>
+        <!-- 左の小物：鉢植えとカップ（静かな余白の景色） -->
+        <g class="sc-line sc-soft">
+          <path d="M186 340v-16"/>
+          <path d="M186 328c-8-4-12-12-10-20 8 2 12 10 10 20zM186 330c8-6 14-6 18-2-6 6-12 8-18 2z"/>
+          <path d="M176 340h20"/>
+        </g>
+        <g class="sc-line sc-soft"><path d="M318 340v-12h18v12"/><path d="M336 332c6 0 6 8 0 8"/></g>
+        <!-- 作り手 -->
+        <g class="sc-line">
+          <circle cx="392" cy="282" r="13"/>
+          <path d="M372 340c-2-22 9-37 20-37s20 15 20 35"/>
+          <path d="M404 310c14 4 26 12 34 22"/>
+        </g>
+        <!-- 吹き出し（じっくり伺う） -->
+        <g class="sc-line sc-bub">
+          <rect x="378" y="164" width="52" height="34" rx="11"/>
+          <path d="M394 198l-6 10 16-10"/>
+          <g fill="currentColor" stroke="none"><circle cx="394" cy="181" r="2.2"/><circle cx="404" cy="181" r="2.2"/><circle cx="414" cy="181" r="2.2"/></g>
+        </g>
+        <!-- 積み木（1つずつ積み上がる。3段目は横からすっとはまる） -->
+        <g class="sc-line fh-b fh-b1"><rect x="452" y="310" width="46" height="28" rx="4"/></g>
+        <g class="sc-line fh-b fh-b2"><rect x="452" y="280" width="46" height="28" rx="4" class="sc-fillsoft"/></g>
+        <g class="sc-line fh-b fh-b3"><rect x="452" y="250" width="46" height="28" rx="4"/></g>
+        <g class="sc-line fh-b fh-b4"><rect x="452" y="220" width="46" height="28" rx="4"/></g>
+        <!-- 届ける道（点線） -->
+        <path d="M500 190 C 640 140, 740 220, 838 296" class="sc-line sc-soft" stroke-dasharray="1 9"/>
+        <!-- アプリのカード（塔から御社へ届く） -->
+        <g class="sc-line fh-card">
+          <rect x="450" y="176" width="46" height="34" rx="6" class="sc-fillsoft"/>
+          <path d="M458 186h30M458 194h20" class="sc-soft"/>
+        </g>
+        <!-- 御社（建物） -->
+        <g class="sc-line">
+          <path d="M786 178l54-28 54 28"/>
+          <rect x="794" y="178" width="92" height="162" rx="3"/>
+          <path d="M828 340v-40h26v40" class="sc-soft"/>
+          <path d="M810 200h12M846 200h12M810 222h12M846 222h12" class="sc-soft"/>
+        </g>
+        <!-- 届いた印（朱） -->
+        <g class="sc-line sc-accent fh-check"><path d="M828 268l9 9 16-18"/></g>
+        <!-- 錠前（金額は変わらない・朱） -->
+        <g class="sc-line sc-accent"><rect x="694" y="318" width="26" height="20" rx="4"/><path d="M699 318v-5a8 8 0 0 1 16 0v5"/></g>
+        <!-- 盾（情報を守る） -->
+        <g class="sc-line sc-soft"><path d="M916 296l20 8v12c0 14-10 22-20 26-10-4-20-12-20-26v-12z"/></g>
+      </svg>
+    </div>
+
     <div class="sheet-inner">
       <p class="sheet-label"><span class="sl-jp">つみきの特長</span><span class="sl-en">FEATURES</span></p>
       <p class="sheet-lead">オーダーメイドだからできる、6つのお約束。ひとつずつご紹介します。</p>
