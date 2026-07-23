@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=70">
+<link rel="stylesheet" href="style.css?v=71">
 <link rel="icon" type="image/png" href="icons/icon-index.png?v=2">
 <link rel="apple-touch-icon" href="icons/icon-index.png?v=2">
 <meta name="apple-mobile-web-app-title" content="つみき">
@@ -1772,6 +1772,110 @@
     if (!tpl || !('content' in tpl)) return;
     document.querySelectorAll('.screen.sheet').forEach(sec=>{
       sec.appendChild(tpl.content.cloneNode(true));
+    });
+  })();
+
+  /* ===== 文字の現れ：見出しは1字ずつ（タイピング風）・ブロックはふわっと =====
+     画面が開いた時に見えている分は少しずつ時間差で、画面より下の分はスクロールで
+     見えた瞬間に1回だけ現れる。読み返し時は普通の文字（再発火しない）。
+     ・対象は読み物（.screen.sheet）のみ。入口・メニュー・フッターには効かせない
+     ・日本語の禁則（「、」「。」等が行頭に来ない）を保つため、行頭禁止文字は前の字と同じ箱で分割
+     ・OSの「視差効果を減らす」設定の人には無効＝即表示 */
+  (function(){
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    /* --- 見出しを1字ずつの箱に分ける（禁則を保つ） --- */
+    const NO_HEAD = '、。，．・：；！？…ー」』）〕】》〉ゝゞ々っゃゅょぁぃぅぇぉッャュョァィゥェォ';
+    const NO_TAIL = '「『（〔【《〈';
+    function splitChars(el){
+      let total = 0;
+      (function walk(node){
+        Array.from(node.childNodes).forEach(n=>{
+          if (n.nodeType === 3){
+            const text = n.textContent;
+            if (!text.trim()) return;
+            const groups = [];
+            let cur = '';
+            for (const ch of text){
+              if (cur === ''){ cur = ch; continue; }
+              const prev = cur[cur.length - 1];
+              if (NO_HEAD.includes(ch) || NO_TAIL.includes(prev)) cur += ch;
+              else { groups.push(cur); cur = ch; }
+            }
+            if (cur) groups.push(cur);
+            const frag = document.createDocumentFragment();
+            groups.forEach(g=>{
+              const s = document.createElement('span');
+              s.className = 'tw-c'; s.textContent = g;
+              frag.appendChild(s); total++;
+            });
+            node.replaceChild(frag, n);   // n は node の子。親を1段間違えると NotFoundError で全体が止まる
+          } else if (n.nodeType === 1 && !n.matches('.h3-en, .as-h-en, .tw-c')){
+            walk(n);
+          }
+        });
+      })(el);
+      /* 1字あたりの遅れ。長い見出しでも全体0.55秒に収める（間延び防止） */
+      const step = Math.min(26, 550 / Math.max(1, total));
+      el.querySelectorAll('.tw-c').forEach((s,i)=>{ s.style.setProperty('--d', Math.round(i*step)+'ms'); });
+    }
+
+    /* --- 対象を選ぶ --- */
+    const TYPE_SEL = '.screen.sheet .sl-jp, .screen.sheet .h3, .screen.sheet .feat-ttl, .screen.sheet .as-h';
+    const ITEM_SEL = '.feat, .issue, .flow-step, .promise, .price-card, .faq-row, .ba-row, .as-feat, .card-wrap';
+    document.querySelectorAll(TYPE_SEL).forEach(el=>{
+      if (el.textContent.length > 80) return;   // 想定外に長い場合は無理に割らない
+      splitChars(el); el.classList.add('tw-t');
+    });
+    const marked = [];
+    document.querySelectorAll('.screen.sheet').forEach(sec=>{
+      sec.querySelectorAll(ITEM_SEL).forEach(el=>{ el.classList.add('tw-b'); marked.push(el); });
+      sec.querySelectorAll('.sheet-inner > *').forEach(el=>{
+        if (el.querySelector(ITEM_SEL)) return;   // 中の項目が個別に現れる容れ物は対象外
+        el.classList.add('tw-b'); marked.push(el);
+      });
+      sec.querySelectorAll('.tw-t').forEach(el=>{ if (!marked.includes(el)) marked.push(el); });
+    });
+
+    function reveal(el, delay){
+      el.style.transitionDelay = (delay||0) + 'ms';
+      el.classList.add('tw-in');
+      setTimeout(()=>{ el.style.transitionDelay = ''; }, (delay||0) + 900);  // ホバー等の邪魔をしない
+    }
+
+    /* --- 画面より下の分：見えた瞬間に現れる --- */
+    const io = ('IntersectionObserver' in window) ? new IntersectionObserver(entries=>{
+      entries.forEach(en=>{
+        if (!en.isIntersecting) return;
+        reveal(en.target, 0); io.unobserve(en.target);
+      });
+    }, { rootMargin:'0px 0px -8% 0px', threshold:0 }) : null;
+
+    /* --- 画面が開いた瞬間：非表示の画面はIOが誤発火するため、開いた時に登録する ---
+       開いた時点で見えている要素はその場で時間差表示、下の要素はIOに任せる */
+    function arm(sec){
+      if (sec.__twArmed) return;
+      sec.__twArmed = true;
+      /* 開いた直後はレイアウトが確定しきっていないことがあるため、少し待ってから測る。
+         ビューポート高は環境により innerHeight が 0 を返すことがあるので多重に取る */
+      setTimeout(()=>{
+        const vh = Math.max(window.innerHeight || 0, document.documentElement.clientHeight || 0) || 800;
+        const els = sec.querySelectorAll('.tw-t, .tw-b');
+        let k = 0;
+        els.forEach(el=>{
+          const r = el.getBoundingClientRect();
+          if (r.top < vh && r.bottom > 0){ reveal(el, Math.min(k, 6) * 60); k++; }
+          else if (io) io.observe(el);
+          else reveal(el, 0);
+        });
+      }, 60);
+    }
+    const mo = new MutationObserver(muts=>{
+      muts.forEach(m=>{ if (m.target.classList.contains('is-active')) arm(m.target); });
+    });
+    document.querySelectorAll('.screen.sheet').forEach(sec=>{
+      mo.observe(sec, { attributes:true, attributeFilter:['class'] });
+      if (sec.classList.contains('is-active')) arm(sec);
     });
   })();
 

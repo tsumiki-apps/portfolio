@@ -1343,3 +1343,15 @@ footer.foot{
 /* 動くイラスト用：朱の線（currentColor の塗りにも効くよう color も揃える）と淡朱の面 */
 .sc-accent{stroke:var(--accent); color:var(--accent);}
 .sc-fillsoft{fill:var(--accent-soft);}
+
+/* ---------- 文字の現れ（見出しは1字ずつ・ブロックはふわっと） ----------
+   クラスは index.html のスクリプトがJSで付与する（JSが動かない環境では何も隠れない＝安全）。
+   tw-t: 1字ずつ現れる見出し（.tw-c が1字の箱、--d に文字ごとの遅れ）
+   tw-b: ふわっと現れるブロック。tw-in が「現れた後」の状態 */
+.tw-t .tw-c{opacity:0;}
+.tw-t.tw-in .tw-c{opacity:1; transition:opacity .09s linear; transition-delay:var(--d, 0ms);}
+.tw-b{opacity:0; transform:translateY(8px);}
+.tw-b.tw-in{opacity:1; transform:none; transition:opacity .55s ease, transform .55s ease;}
+@media (prefers-reduced-motion:reduce){
+  .tw-t .tw-c, .tw-b{opacity:1; transform:none; transition:none;}
+}
