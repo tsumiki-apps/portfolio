@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=68">
+<link rel="stylesheet" href="style.css?v=69">
 <link rel="icon" type="image/png" href="icons/icon-index.png?v=2">
 <link rel="apple-touch-icon" href="icons/icon-index.png?v=2">
 <meta name="apple-mobile-web-app-title" content="つみき">
@@ -645,7 +645,7 @@
       <p class="sheet-label"><span class="sl-jp">提供価値</span><span class="sl-en">VALUE</span></p>
 
       <p class="vp">あなたの会社の業務を<span class="hl">1〜2時間じっくり伺って</span>、その会社だけの専用アプリを作ります。</p>
-      <p class="vp-sub">既製のツールに仕事を合わせるのではなく、いまの仕事のやり方に、道具の方を合わせる。だから、やり方を変えずに、そのまま使えます。</p>
+      <p class="vp-sub">仕事のやり方は、そのまま。道具のほうを合わせます。</p>
 
       <!-- 挿絵：業務 × つみき ＝ 専用アプリ。左右の丸（素材）は静止し、
            右の端末に「完成したアプリ」が紙芝居のように現れては消える。
@@ -693,106 +693,91 @@
       </div>
 
       <p class="h3">3つのお約束<span class="h3-en">OUR PROMISES</span></p>
-      <div class="promises">
+      <div class="promises is-compact">
         <div class="promise">
           <svg class="ico" aria-hidden="true"><use href="#ico-handover"/></svg>
-          <div>
-            <p class="pr-ttl">作ったものは、御社のものです</p>
-            <p class="pr-desc">ソースコードをお渡しし、著作権も御社に譲渡します。<strong>他の会社でも引き継げます。</strong></p>
-          </div>
+          <p class="pr-ttl">作ったものは、御社のもの</p>
         </div>
         <div class="promise">
           <svg class="ico" aria-hidden="true"><use href="#ico-blocks-good"/></svg>
-          <div>
-            <p class="pr-ttl">道具のほうを、仕事に合わせます</p>
-            <p class="pr-desc">いまのやり方を変えていただく必要はありません。御社の手順に合わせて作ります。</p>
-          </div>
+          <p class="pr-ttl">道具のほうを、仕事に合わせる</p>
         </div>
         <div class="promise">
           <svg class="ico" aria-hidden="true"><use href="#ico-price"/></svg>
-          <div>
-            <p class="pr-ttl">着手後、金額は変わりません</p>
-            <p class="pr-desc">ご納得いただいた金額で着手し、後から増えることはありません。ヒアリングもお見積りも無料です。</p>
-          </div>
+          <p class="pr-ttl">着手後、金額は変わらない</p>
         </div>
       </div>
+      <p class="note">→ それぞれの詳しい中身は <a data-go="features" href="#">つみきの特長</a> でご紹介しています。</p>
 
-      <p class="h3">既製のAIツールに、仕事を合わせていませんか<span class="h3-en">WHY MADE-TO-ORDER</span></p>
-      <div class="cmp">
-        <div class="cmp-row">
-          <div class="cmp-k">手順への合い方</div>
-          <div class="cmp-side is-them">
-            <span class="cmp-mk" aria-hidden="true">✕</span>
-            <div><span class="cmp-who">既製のAIツール</span><span class="cmp-txt">機能は多いのに、自社の手順には合わない</span></div>
-          </div>
-          <div class="cmp-side is-ours">
-            <span class="cmp-mk" aria-hidden="true">✓</span>
-            <div><span class="cmp-who">つみき</span><span class="cmp-txt">あなたの手順に合わせて、ひとつずつ作る</span></div>
-          </div>
+      <p class="h3">既製のツールに、仕事を合わせていませんか<span class="h3-en">WHY MADE-TO-ORDER</span></p>
+      <!-- 比較：文章の表をやめ、積み木の絵で見せる。
+           左＝既製（傾いて乗らない・淡墨）／右＝つみき（順に積み上がる・墨＋朱の印） -->
+      <div class="vs2">
+        <div class="vs2-card is-them">
+          <div class="scene" aria-hidden="true"><svg viewBox="0 0 220 140" role="img">
+            <g class="sc-line sc-soft">
+              <rect x="52" y="96" width="52" height="30" rx="5"/>
+              <rect x="116" y="96" width="52" height="30" rx="5"/>
+            </g>
+            <g class="sc-line sc-soft sc-sway">
+              <g transform="rotate(-12 110 62)"><rect x="84" y="47" width="52" height="30" rx="5"/></g>
+            </g>
+            <g class="sc-line sc-soft"><path d="M162 38l12 12M174 38l-12 12"/></g>
+          </svg></div>
+          <p class="vs2-ttl">既製のツール</p>
+          <ul class="vs2-list">
+            <li>自社の手順に、合わない</li>
+            <li>使わない機能にも、毎月払う</li>
+            <li>人が、やり方を覚え直す</li>
+            <li>結局、表計算に戻る</li>
+          </ul>
         </div>
-        <div class="cmp-row">
-          <div class="cmp-k">費用のかかり方</div>
-          <div class="cmp-side is-them">
-            <span class="cmp-mk" aria-hidden="true">✕</span>
-            <div><span class="cmp-who">既製のAIツール</span><span class="cmp-txt">使わない機能の分まで、毎月払い続ける</span></div>
-          </div>
-          <div class="cmp-side is-ours">
-            <span class="cmp-mk" aria-hidden="true">✓</span>
-            <div><span class="cmp-who">つみき</span><span class="cmp-txt">必要な機能だけ。余計なものは作らない</span></div>
-          </div>
-        </div>
-        <div class="cmp-row">
-          <div class="cmp-k">覚え直しの手間</div>
-          <div class="cmp-side is-them">
-            <span class="cmp-mk" aria-hidden="true">✕</span>
-            <div><span class="cmp-who">既製のAIツール</span><span class="cmp-txt">ツールに合わせて、人がやり方を覚え直す</span></div>
-          </div>
-          <div class="cmp-side is-ours">
-            <span class="cmp-mk" aria-hidden="true">✓</span>
-            <div><span class="cmp-who">つみき</span><span class="cmp-txt">やり方は変えなくていい。道具の方が合わせる</span></div>
-          </div>
-        </div>
-        <div class="cmp-row">
-          <div class="cmp-k">現場への定着</div>
-          <div class="cmp-side is-them">
-            <span class="cmp-mk" aria-hidden="true">✕</span>
-            <div><span class="cmp-who">既製のAIツール</span><span class="cmp-txt">結局、いつもの表計算に戻ってしまう</span></div>
-          </div>
-          <div class="cmp-side is-ours">
-            <span class="cmp-mk" aria-hidden="true">✓</span>
-            <div><span class="cmp-who">つみき</span><span class="cmp-txt">いまの業務の中に、そのまま入る</span></div>
-          </div>
+        <div class="vs2-card is-ours">
+          <div class="scene" aria-hidden="true"><svg viewBox="0 0 220 140" role="img">
+            <g class="sc-line sc-drawin">
+              <rect x="52" y="96" width="52" height="30" rx="5" pathLength="100"/>
+              <rect x="116" y="96" width="52" height="30" rx="5" pathLength="100"/>
+              <rect x="84" y="62" width="52" height="30" rx="5" pathLength="100"/>
+              <rect x="84" y="28" width="52" height="30" rx="5" pathLength="100"/>
+            </g>
+            <g class="sc-line sc-arrive sc-accent"><path d="M158 34l6 6 12-13"/></g>
+          </svg></div>
+          <p class="vs2-ttl">つみきのオーダーメイド</p>
+          <ul class="vs2-list">
+            <li>手順に合わせて、作る</li>
+            <li>必要な機能だけ</li>
+            <li>覚え直しは、なし</li>
+            <li>業務に、そのまま入る</li>
+          </ul>
         </div>
       </div>
 
       <p class="h3">導入すると、こう変わります<span class="h3-en">BEFORE → AFTER</span></p>
       <div class="ba">
         <div class="ba-row">
-          <div class="ba-b"><span class="ba-tag">BEFORE</span>毎朝、同じ数字を3つの表に手で打ち直している。</div>
-          <div class="ba-a">1回入力すれば、あとは自動でそろう。毎日30分の手入力がゼロに。</div>
+          <div class="ba-b"><span class="ba-tag">BEFORE</span>毎朝、同じ数字を3つの表に打ち直し。</div>
+          <div class="ba-a">1回の入力で、自動でそろう。毎日30分がゼロに。</div>
         </div>
         <div class="ba-row">
-          <div class="ba-b"><span class="ba-tag">BEFORE</span>必要な情報が、メールと表計算とチャットに散らばっている。</div>
-          <div class="ba-a">探す場所がひとつになる。「あれどこだっけ」がなくなる。</div>
+          <div class="ba-b"><span class="ba-tag">BEFORE</span>情報がメール・表計算・チャットに散らばる。</div>
+          <div class="ba-a">探す場所が、ひとつになる。</div>
         </div>
         <div class="ba-row">
-          <div class="ba-b"><span class="ba-tag">BEFORE</span>週次の報告書づくりに、毎回1時間かかっている。</div>
-          <div class="ba-a">下書きが自動で出てくる。あとは目を通して直すだけ。</div>
+          <div class="ba-b"><span class="ba-tag">BEFORE</span>週次の報告書に、毎回1時間。</div>
+          <div class="ba-a">下書きは自動。目を通して直すだけ。</div>
         </div>
       </div>
-      <p class="note">※ 上は一例です。何がどれだけ楽になるかは業務によって変わります。まずヒアリングで、ご一緒に確かめます。</p>
+      <p class="note">※ 一例です。何がどれだけ楽になるかは、ヒアリングでご一緒に確かめます。</p>
 
       <p class="h3">つみきに、依存しません<span class="h3-en">NO LOCK-IN</span></p>
-      <p class="sheet-lead">「作った会社しか中身が分からず、直すたびに高い」——外注でいちばん多い後悔です。つみきは、その逆をお約束します。</p>
-      <div class="panel">
-        <div class="dl">
-          <div class="dl-row"><div class="dl-k">お渡しするもの</div><div class="dl-v"><strong>ソースコード一式と、簡単な説明資料。</strong>中身は全部お見せします。</div></div>
-          <div class="dl-row"><div class="dl-k">権利</div><div class="dl-v"><strong>著作権は御社に譲渡します。</strong>作ったものは御社のものです。</div></div>
-          <div class="dl-row"><div class="dl-k">引き継ぎ</div><div class="dl-v">アプリは<strong>1枚のHTML</strong>で作ります。特別な環境も、専用の道具も要りません。<strong>他の会社でも引き継げます。</strong></div></div>
-          <div class="dl-row"><div class="dl-k">やめるとき</div><div class="dl-v">月額の縛りはありません。不要になれば、いつでも止められます。</div></div>
-        </div>
-        <p class="note">つみきに何かあっても、アプリは動き続けます。個人にお願いする不安は、ここで消せると考えています。</p>
+      <div class="chips">
+        <span class="chip">ソースコード一式を納品</span>
+        <span class="chip">著作権は御社に譲渡</span>
+        <span class="chip">1枚のHTMLで制作</span>
+        <span class="chip">他の会社でも引き継げる</span>
+        <span class="chip">月額の縛りなし</span>
       </div>
+      <p class="note">つみきに何かあっても、アプリは動き続けます。個人にお願いする不安は、ここで消します。</p>
 
       <div class="cta-wrap">
         <p class="cta-lead">まずは、いまの困りごとを聞かせてください。初回のヒアリングは無料です。</p>

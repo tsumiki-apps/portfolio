@@ -298,28 +298,27 @@ body.on-dark .tb-brand{color:#F4F2EE;
 .vp-sub{font-size:14px; color:#3a3833; line-height:1.9; margin-top:14px;}
 
 /* 比較（既製ツール／オーダーメイド）
-   論点ごとに1枚のカード。同じ論点について両者を上下に並べて1対1で比べられるようにする。
-   つみき側だけ墨のベタ丸＋太字、既製側は淡いグレーに落として主従をつける。 */
-.cmp{display:flex; flex-direction:column; gap:10px; margin-top:14px;}
-.cmp-row{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:14px 16px;}
-/* 論点ラベル（何について比べているか） */
-.cmp-k{
-  font-size:10.5px; font-weight:700; letter-spacing:.14em; color:var(--sub);
-  padding-bottom:9px; margin-bottom:10px; border-bottom:1px solid var(--line);
-}
-.cmp-side{display:grid; grid-template-columns:auto minmax(0,1fr); gap:10px; align-items:start;}
-.cmp-side + .cmp-side{margin-top:9px;}
-.cmp-mk{
-  width:19px; height:19px; border-radius:50%; margin-top:1px;
-  display:flex; align-items:center; justify-content:center;
-  font-size:10px; font-weight:700; line-height:1;
-}
-.cmp-side.is-them .cmp-mk{background:var(--surface); color:var(--ghost);}
-.cmp-side.is-ours .cmp-mk{background:var(--ink); color:var(--paper);}
-.cmp-who{font-size:10px; letter-spacing:.1em; color:var(--ghost); display:block; margin-bottom:2px;}
-.cmp-side.is-ours .cmp-who{color:var(--sub);}
-.cmp-txt{font-size:13px; line-height:1.7; color:var(--sub);}
-.cmp-side.is-ours .cmp-txt{color:var(--ink); font-weight:700;}
+   文章の表をやめ、動く積み木2枚で対比する。
+   既製側＝淡墨・傾いて乗らない／つみき側＝墨・順に積み上がり朱の印。
+   短句リストは✕／✓の記号だけで主従をつけ、「誰の話か」の反復をなくす。 */
+.vs2{display:grid; grid-template-columns:1fr; gap:12px; margin-top:14px;}
+@media(min-width:640px){ .vs2{grid-template-columns:1fr 1fr;} }
+.vs2-card{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:14px 18px 18px;}
+.vs2-card.is-ours{border-color:var(--ink);}
+.vs2-card .scene{margin:0 auto; max-width:230px;}
+.vs2-ttl{font-size:12.5px; font-weight:700; letter-spacing:.05em; color:var(--ghost);
+  text-align:center; margin-top:2px;}
+.vs2-card.is-ours .vs2-ttl{color:var(--ink);}
+.vs2-list{list-style:none; margin-top:12px; display:flex; flex-direction:column; gap:7px;}
+.vs2-list li{position:relative; padding-left:21px; font-size:12.5px; line-height:1.65; color:var(--sub);}
+.vs2-list li::before{content:"✕"; position:absolute; left:2px; top:1px; font-size:11px; color:var(--ghost);}
+.vs2-card.is-ours .vs2-list li{color:var(--ink); font-weight:500;}
+.vs2-card.is-ours .vs2-list li::before{content:"✓"; color:var(--accent);}
+
+/* 依存しません：文章のパネルをやめ、約束をチップで並べる */
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;}
+.chip{font-size:12.5px; font-weight:700; letter-spacing:.02em; color:var(--ink);
+  background:var(--card); border:1px solid var(--line); border-radius:999px; padding:8px 15px;}
 
 /* Before → After */
 .ba{display:flex; flex-direction:column; gap:10px; margin-top:14px;}
@@ -564,6 +563,14 @@ body.on-dark .tb-brand{color:#F4F2EE;
 .pr-ttl{font-size:14.5px; font-weight:700; line-height:1.55;}
 .pr-desc{font-size:12.5px; color:var(--sub); line-height:1.75; margin-top:5px;}
 .pr-desc strong{color:var(--ink); font-weight:700;}
+/* コンパクト版：アイコン＋タイトルだけ（詳細は「つみきの特長」に任せる） */
+.promises.is-compact .promise{align-items:center; padding:13px 16px;}
+@media(min-width:640px){
+  .promises.is-compact{flex-direction:row; gap:10px;}
+  .promises.is-compact .promise{flex:1 1 0; grid-template-columns:30px minmax(0,1fr); gap:11px;}
+  .promises.is-compact .pr-ttl{font-size:13px;}
+  .promises.is-compact .ico{width:30px; height:30px;}
+}
 
 /* 料金の目安（From価格） */
 .price-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px;}
