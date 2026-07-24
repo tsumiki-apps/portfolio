@@ -541,7 +541,7 @@
 
       <div class="feats">
 
-        <!-- 01 御社のものになる -->
+        <!-- 01 あなた専用に鍵つきでお渡し -->
         <div class="feat">
           <div class="feat-illust">
             <div class="scene" aria-hidden="true"><svg viewBox="0 4 300 176" role="img">
@@ -592,25 +592,31 @@
           </div>
         </div>
 
-        <!-- 03 依存しない -->
+        <!-- 03 守る（無断コピー・横流しを防ぐ） -->
         <div class="feat">
           <div class="feat-illust">
             <div class="scene" aria-hidden="true"><svg viewBox="0 0 300 176" role="img">
-              <!-- 中央：動き続けるアプリ -->
-              <g class="sc-line sc-bob">
-                <rect x="126" y="52" width="48" height="72" rx="8" class="sc-fillsoft"/>
-                <path d="M136 66h28M136 74h20M136 82h28" class="sc-soft"/>
-                <path d="M143 108l5 5 9-10" class="sc-accent"/>
+              <!-- あなた専用のアプリ（本体） -->
+              <g class="sc-line">
+                <rect x="92" y="36" width="64" height="104" rx="11"/>
+                <circle cx="124" cy="46" r="1.7" fill="currentColor" stroke="none"/>
+                <path d="M104 64h40M104 74h26" class="sc-soft"/>
               </g>
-              <!-- 左右の人（誰でも引き継げる） -->
-              <g class="sc-line sc-soft"><circle cx="40" cy="72" r="9"/><path d="M26 120c-1-16 6-27 14-27s14 11 14 24"/></g>
-              <g class="sc-line sc-soft"><circle cx="260" cy="72" r="9"/><path d="M246 120c-1-16 6-27 14-27s14 11 14 24"/></g>
-              <!-- 受け渡しの回転矢印 -->
-              <g class="sc-line sc-spin">
-                <path d="M150 34a55 55 0 0 1 52 38"/>
-                <path d="M196 60l6 14 14-6" class="sc-soft"/>
-                <path d="M150 142a55 55 0 0 1-52-38"/>
-                <path d="M104 116l-6-14-14 6" class="sc-soft"/>
+              <!-- 鍵（錠前・脈打つ・朱＝あなた専用の鍵） -->
+              <g class="sc-line sc-pulse sc-accent">
+                <rect x="108" y="94" width="32" height="26" rx="5"/>
+                <path d="M115 94v-6a9 9 0 0 1 18 0v6"/>
+                <circle cx="124" cy="106" r="3" fill="currentColor" stroke="none"/>
+              </g>
+              <!-- 無断コピー（薄いゴースト）＝横流しされようとするアプリ -->
+              <g class="sc-line sc-soft">
+                <rect x="198" y="52" width="52" height="84" rx="9" stroke-dasharray="5 6"/>
+                <path d="M210 72h28M210 82h18M210 92h28"/>
+              </g>
+              <!-- 禁止マーク（朱・脈打つ）＝それを止める -->
+              <g class="sc-line sc-pulse sc-accent">
+                <circle cx="224" cy="94" r="27"/>
+                <path d="M205 75l38 38"/>
               </g>
             </svg></div>
           </div>
