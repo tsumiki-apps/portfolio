@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=77">
+<link rel="stylesheet" href="style.css?v=78">
 <link rel="icon" type="image/png" href="icons/icon-index.png?v=2">
 <link rel="apple-touch-icon" href="icons/icon-index.png?v=2">
 <meta name="apple-mobile-web-app-title" content="つみき">
@@ -1257,6 +1257,18 @@
     <button class="g-lb-btn g-prev" type="button" id="g-lb-prev" aria-label="前の写真">←</button>
     <button class="g-lb-btn g-next" type="button" id="g-lb-next" aria-label="次の写真">→</button>
     <p class="g-count" id="g-lb-count"></p>
+  </div>
+
+  <!-- 実績アプリのプレビュー写真の拡大表示（タップで大きく見る。展示室のライトボックスと同じ見た目・操作感） -->
+  <div class="g-lightbox pv-lightbox" id="pv-lightbox" role="dialog" aria-modal="true" aria-label="プレビュー画像の拡大表示" hidden>
+    <div class="g-stage">
+      <img id="pv-lb-img" src="" alt="">
+      <p class="g-cap"><span class="g-title" id="pv-lb-cap"></span></p>
+    </div>
+    <button class="g-lb-btn g-close" type="button" id="pv-lb-close" aria-label="閉じる">✕</button>
+    <button class="g-lb-btn g-prev" type="button" id="pv-lb-prev" aria-label="前の画像">←</button>
+    <button class="g-lb-btn g-next" type="button" id="pv-lb-next" aria-label="次の画像">→</button>
+    <p class="g-count" id="pv-lb-count"></p>
   </div>
 
   <!-- お問い合わせ：事業者概要 -->
@@ -2612,6 +2624,93 @@
     } else {
       works.forEach(function(w){ w.classList.add('in-view'); });
     }
+  })();
+
+  /* ===== 実績アプリのプレビュー写真：タップで拡大（.pv-img を全画面表示） ===== */
+  (function(){
+    var box = document.getElementById('pv-lightbox');
+    if (!box) return;
+    var img    = document.getElementById('pv-lb-img');
+    var capEl  = document.getElementById('pv-lb-cap');
+    var cEl    = document.getElementById('pv-lb-count');
+    var closeB = document.getElementById('pv-lb-close');
+    var prevB  = document.getElementById('pv-lb-prev');
+    var nextB  = document.getElementById('pv-lb-next');
+    var group = [], idx = 0, opener = null;
+
+    function show(i){
+      idx = (i + group.length) % group.length;
+      var fig = group[idx];
+      var im  = fig.querySelector('.pv-img');
+      var cap = fig.querySelector('figcaption');
+      img.src = im.currentSrc || im.src;
+      img.alt = im.alt || '';
+      capEl.textContent = cap ? cap.textContent : '';
+      cEl.textContent = group.length > 1 ? (idx + 1) + ' / ' + group.length : '';
+      var solo = group.length < 2;
+      prevB.hidden = nextB.hidden = solo;
+    }
+    function open(figs, i, opn){
+      group = figs; opener = opn;
+      show(i);
+      box.hidden = false; box.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      closeB.focus();
+    }
+    function close(){
+      box.classList.remove('is-open'); box.hidden = true;
+      img.src = ''; document.body.style.overflow = '';
+      if (opener) opener.focus();
+    }
+
+    // プレビュー帯（.as-shots）ごとにグループ化。同じ帯（スマホ5枚／PC5枚）を前後に送れる。
+    Array.prototype.slice.call(document.querySelectorAll('.as-shots')).forEach(function(row){
+      var figs = Array.prototype.slice.call(row.querySelectorAll('.as-shot')).filter(function(f){
+        return f.querySelector('.pv-img');
+      });
+      if (!figs.length) return;
+      figs.forEach(function(fig, i){
+        var pv  = fig.querySelector('.pv');
+        var cap = fig.querySelector('figcaption');
+        if (!pv) return;
+        pv.classList.add('pv-zoomable');
+        pv.setAttribute('role', 'button');
+        pv.setAttribute('tabindex', '0');
+        pv.setAttribute('aria-label', (cap ? cap.textContent + '。' : '') + 'タップで拡大');
+        pv.addEventListener('click', function(){ open(figs, i, pv); });
+        pv.addEventListener('keydown', function(e){
+          if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(figs, i, pv); }
+        });
+      });
+    });
+
+    closeB.addEventListener('click', close);
+    prevB.addEventListener('click', function(){ show(idx - 1); });
+    nextB.addEventListener('click', function(){ show(idx + 1); });
+    box.addEventListener('click', function(e){ if (e.target === box) close(); });
+
+    document.addEventListener('keydown', function(e){
+      if (box.hidden) return;
+      // 既存の「Escapeでメニューへ戻る」より先に処理して伝播を止める（閉じたつもりが画面遷移しないように）
+      if (e.key === 'Escape' || e.key === 'ArrowLeft' || e.key === 'ArrowRight'){
+        e.preventDefault(); e.stopPropagation();
+      }
+      if (e.key === 'Escape')     { close(); }
+      if (e.key === 'ArrowLeft')  { if (group.length > 1) show(idx - 1); }
+      if (e.key === 'ArrowRight') { if (group.length > 1) show(idx + 1); }
+    });
+
+    // スワイプで前後（縦スワイプは無視）
+    var sx = 0, sy = 0;
+    box.addEventListener('touchstart', function(e){
+      sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+    }, {passive:true});
+    box.addEventListener('touchend', function(e){
+      if (group.length < 2) return;
+      var dx = e.changedTouches[0].clientX - sx;
+      var dy = e.changedTouches[0].clientY - sy;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) show(idx + (dx < 0 ? 1 : -1));
+    }, {passive:true});
   })();
 </script>
 <script src="ink-fluid.js?v=38"></script>

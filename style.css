@@ -862,6 +862,11 @@ body.on-dark .tb-brand{color:#F4F2EE;
 .pv-img{width:100%; height:100%; object-fit:cover; object-position:top center; display:block;}
 .pv:has(.pv-img)::before{display:none;}          /* 実画面のときは擬似ノッチを消す */
 .pv:has(.pv-img){background:var(--card);}
+/* タップで拡大できるプレビュー写真：カーソルと軽い押し込みで「押せる」ことを伝える */
+.pv-zoomable{cursor:zoom-in;}
+.pv-zoomable:active{transform:scale(.985);}
+.pv-zoomable:focus-visible{outline:2px solid var(--ink); outline-offset:3px;}
+@media (prefers-reduced-motion:reduce){ .pv-zoomable:active{transform:none;} }
 /* 1枚だけのときはフレーム幅にフィット（横スクロールの帯にしない） */
 .as-shots-solo .as-shot{width:auto;}
 
