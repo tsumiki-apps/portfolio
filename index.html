@@ -2660,7 +2660,8 @@
     function close(){
       box.classList.remove('is-open'); box.hidden = true;
       img.src = ''; document.body.style.overflow = '';
-      if (opener) opener.focus();
+      // preventScroll：閉じた時に元のサムネイルへ飛んでページが勝手にスクロールするのを防ぐ
+      if (opener){ try { opener.focus({preventScroll:true}); } catch(_){ opener.focus(); } }
     }
 
     // プレビュー帯（.as-shots）ごとにグループ化。同じ帯（スマホ5枚／PC5枚）を前後に送れる。
@@ -2684,10 +2685,16 @@
       });
     });
 
-    closeB.addEventListener('click', close);
-    prevB.addEventListener('click', function(){ show(idx - 1); });
-    nextB.addEventListener('click', function(){ show(idx + 1); });
-    box.addEventListener('click', function(e){ if (e.target === box) close(); });
+    closeB.addEventListener('click', function(e){ e.stopPropagation(); close(); });
+    prevB.addEventListener('click', function(e){ e.stopPropagation(); show(idx - 1); });
+    nextB.addEventListener('click', function(e){ e.stopPropagation(); show(idx + 1); });
+    // 写真そのもの以外（背景・写真まわりの余白・キャプション）はどこをクリックしても閉じる。
+    // PC幅だと写真の左右に広い余白ができるが、そこは .g-stage 領域で以前は閉じなかった＝閉じにくかった。
+    box.addEventListener('click', function(e){
+      if (e.target === img) return;              // 写真は拡大鑑賞のため閉じない
+      if (e.target.closest('.g-lb-btn')) return; // ←→✕ は各ボタンの処理に任せる
+      close();
+    });
 
     document.addEventListener('keydown', function(e){
       if (box.hidden) return;
