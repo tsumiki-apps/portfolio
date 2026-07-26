@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=72">
+<link rel="stylesheet" href="style.css?v=74">
 <link rel="icon" type="image/png" href="icons/icon-index.png?v=2">
 <link rel="apple-touch-icon" href="icons/icon-index.png?v=2">
 <meta name="apple-mobile-web-app-title" content="つみき">
@@ -194,8 +194,8 @@
           <span class="mi-jp">実績</span><span class="mi-en">WORKS</span><span class="mi-ar">→</span>
         </button>
         <div class="submenu">
-          <a class="sub-item" data-go="flagship" href="#"><span class="su-jp">看板プロダクト</span><span class="su-en">FLAGSHIP</span><span class="su-ar">→</span></a>
-          <a class="sub-item" data-go="collection" href="#"><span class="su-jp">コレクション</span><span class="su-en">COLLECTION</span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="collection" href="#"><span class="su-jp">つみきアプリたち</span><span class="su-en">TSUMIKI APPS</span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="flagship" href="#"><span class="su-jp">趣味で制作したアプリたち</span><span class="su-en">SIDE PROJECTS</span><span class="su-ar">→</span></a>
           <!-- 「お客様の声」は実績がそろうまで一時非表示。復活するときは下の1行のコメントを外すだけ（画面本体 #s-voice はそのまま残してあります） -->
           <!-- <a class="sub-item" data-go="voice" href="#"><span class="su-jp">お客様の声</span><span class="su-en">VOICE</span><span class="su-ar">→</span></a> -->
         </div>
@@ -230,8 +230,8 @@
   <!-- かんばん（索引：2枚のカードから各詳細へ） -->
   <section class="screen sheet" id="s-flagship" data-screen="flagship">
     <div class="sheet-inner">
-      <p class="sheet-label"><span class="sl-jp">看板プロダクト</span><span class="sl-en">FLAGSHIP</span></p>
-      <p class="sheet-lead">つみきが自社で開発・運営している、2つのiOSアプリ。カードをタップすると、それぞれの詳しい紹介が開きます。</p>
+      <p class="sheet-label"><span class="sl-jp">趣味で制作したアプリたち</span><span class="sl-en">SIDE PROJECTS</span></p>
+      <p class="sheet-lead">仕事とは別に、自分が本当に欲しくてつくった2つのiOSアプリ。ゼロから設計・デザイン・実装まで手がけました。カードをタップすると、それぞれの詳しい紹介が開きます。</p>
       <div class="flagship">
         <a class="flag-card" data-go="flagship-itsutsu" href="#">
           <img class="flag-icon" src="assets/icon-itsutsu.png" alt="いつつ アイコン" width="132" height="132" loading="lazy">
@@ -467,13 +467,190 @@
   <!-- どうぐばこ（この画面だけ縦スクロール） -->
   <section class="screen sheet" id="s-collection" data-screen="collection">
     <div class="sheet-inner">
-      <p class="sheet-label"><span class="sl-jp">コレクション</span><span class="sl-en">COLLECTION</span></p>
-      <p class="sheet-lead">この事業を始めるために、個人的にアプリをつくり続けてきました。暮らし・仕事・お金の“ちょっと困った”に、これまで<strong>37個</strong>。ここでは、その中から<strong>16個</strong>をご紹介します。</p>
-      <div id="collection"></div>
+      <p class="sheet-label"><span class="sl-jp">つみきアプリたち</span><span class="sl-en">TSUMIKI APPS</span></p>
+      <p class="sheet-lead">現場の“ちょっと困った”に合わせてつくった、つみきのアプリ。カードをタップすると、それぞれの詳しい紹介ページが開きます。</p>
+
+      <div class="app-feature">
+        <a class="app-card" data-go="app-kouban" href="#">
+          <img class="app-card-ico" src="assets/icon-kouban.png?v=1" alt="香盤メーカー アイコン" width="72" height="72" loading="lazy">
+          <span class="app-card-body">
+            <span class="app-card-name">香盤メーカー</span>
+            <span class="app-card-desc">稽古のNGから「今日できる場面」を出す</span>
+            <span class="app-card-tags"><span class="app-tag">スケジュール</span><span class="app-tag">舞台・稽古</span></span>
+          </span>
+          <span class="app-card-ar" aria-hidden="true">→</span>
+        </a>
+        <a class="app-card" data-go="app-mazeiro" href="#">
+          <img class="app-card-ico" src="assets/icon-mazeiro.png?v=1" alt="まぜいろ アイコン" width="72" height="72" loading="lazy">
+          <span class="app-card-body">
+            <span class="app-card-name">まぜいろ</span>
+            <span class="app-card-desc">カラー剤の配合を、比率からグラムに</span>
+            <span class="app-card-tags"><span class="app-tag">美容</span><span class="app-tag">ヘアカラー</span></span>
+          </span>
+          <span class="app-card-ar" aria-hidden="true">→</span>
+        </a>
+      </div>
 
       <div class="cta-wrap">
         <p class="cta-lead">「こういうの、うちにも欲しい」と思ったら。あなたの“ちょっと困った”に合わせて、専用のアプリをお作りします。初回のご相談は無料です。</p>
         <a class="cta" data-go="hearing" href="#">無料で相談する<span class="cta-ar">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- つみきアプリ詳細（テンプレ見本）：香盤メーカー
+       構造：タイトル＋2ボタン → ①簡潔な紹介 → ②プレビュー → ③STAR形式の詳しい紹介 → 情報 -->
+  <section class="screen sheet" id="s-app-kouban" data-screen="app-kouban">
+    <div class="sheet-inner">
+      <div class="as-head as-head-app">
+        <img class="as-icon" src="assets/icon-kouban.png?v=1" alt="香盤メーカー アイコン" width="112" height="112">
+        <div class="as-headmeta">
+          <div class="as-name">香盤メーカー</div>
+          <div class="as-sub">稽古スケジュール ／ Kouban</div>
+          <!-- タイトル横の2ボタン（購入＝準備中／プロダクトキー＝本体へ） -->
+          <div class="as-actions">
+            <span class="as-buy is-soon" role="button" aria-disabled="true">購入はこちら<small>準備中</small></span>
+            <a class="as-key" href="https://tools.tsumiki-apps.com/kouban.html" target="_blank" rel="noopener">プロダクトキーをお持ちの方はこちら<span class="as-key-ar">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ① 簡潔な紹介 -->
+      <p class="as-about">稽古に来られないメンバーを選ぶと、その日に<strong>「今日できる場面」だけ</strong>を香盤表からすっと抜き出す道具。限られた稽古時間を、段取りで悩まずに使い切るためのアプリです。</p>
+
+      <!-- 制作の背景 -->
+      <p class="as-h">制作の背景<span class="as-h-en">BACKGROUND</span></p>
+      <p class="as-bg">もともと、稽古の現場では「今日は誰が来られないか」が分かるたびに、香盤表とにらめっこして『じゃあ今日はどの場面をやろう』と組み直していました。この照合が毎回じわじわ時間を食い、稽古の頭出しでもたついてしまう。<br><br>その<strong>“段取りのストレス”をなくすために、香盤メーカーは生まれました。</strong>欠席者を選ぶだけで「今日できる場面」が出るなら、迷っていた時間はまるごと稽古に回せる——そう考えて形にした一本です。</p>
+
+      <!-- ② プレビュー（スマホ5＋PC5） -->
+      <p class="as-h">プレビュー<span class="as-h-en">PREVIEW</span></p>
+      <p class="pv-group-k">スマホ版<span class="pv-group-en">iPhone</span></p>
+      <div class="as-shots">
+        <figure class="as-shot"><div class="pv pv-ph" aria-hidden="true"><span class="pv-ph-name">香盤メーカー</span><span class="pv-ph-note">準備中</span></div><figcaption>香盤表を登録</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph" aria-hidden="true"><span class="pv-ph-name">香盤メーカー</span><span class="pv-ph-note">準備中</span></div><figcaption>欠席者を選ぶ</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph" aria-hidden="true"><span class="pv-ph-name">香盤メーカー</span><span class="pv-ph-note">準備中</span></div><figcaption>今日できる場面が出る</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph" aria-hidden="true"><span class="pv-ph-name">香盤メーカー</span><span class="pv-ph-note">準備中</span></div><figcaption>場面ごとの出演者</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph" aria-hidden="true"><span class="pv-ph-name">香盤メーカー</span><span class="pv-ph-note">準備中</span></div><figcaption>結果を共有・印刷</figcaption></figure>
+      </div>
+      <p class="pv-group-k">PC版<span class="pv-group-en">Desktop</span></p>
+      <div class="as-shots">
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc pv-ph" aria-hidden="true"><span class="pv-ph-name">香盤メーカー</span><span class="pv-ph-note">準備中</span></div><figcaption>香盤表を登録</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc pv-ph" aria-hidden="true"><span class="pv-ph-name">香盤メーカー</span><span class="pv-ph-note">準備中</span></div><figcaption>欠席者を選ぶ</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc pv-ph" aria-hidden="true"><span class="pv-ph-name">香盤メーカー</span><span class="pv-ph-note">準備中</span></div><figcaption>今日できる場面が出る</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc pv-ph" aria-hidden="true"><span class="pv-ph-name">香盤メーカー</span><span class="pv-ph-note">準備中</span></div><figcaption>場面ごとの出演者</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc pv-ph" aria-hidden="true"><span class="pv-ph-name">香盤メーカー</span><span class="pv-ph-note">準備中</span></div><figcaption>結果を共有・印刷</figcaption></figure>
+      </div>
+      <p class="note">実画面のスクリーンショットは、後で差し替えます（現在はプレースホルダ）。</p>
+
+      <!-- ③ STAR形式の詳しい紹介 -->
+      <p class="as-h">くわしく<span class="as-h-en">STORY</span></p>
+      <div class="as-star">
+        <div class="star-row">
+          <p class="star-k">こんな場面で<span class="star-en">SITUATION</span></p>
+          <p class="star-v">演劇やダンスの稽古前。出演者それぞれの予定がバラバラで、その日に全員はそろわない。</p>
+        </div>
+        <div class="star-row">
+          <p class="star-k">困っていたこと<span class="star-en">TASK</span></p>
+          <p class="star-v">「誰が休みか」と「その場面に誰が要るか」を毎回つき合わせて、今日どこを稽古できるかを探すのに時間がかかる。稽古場に着いてから慌てて組み直すことも。</p>
+        </div>
+        <div class="star-row">
+          <p class="star-k">アプリがすること<span class="star-en">ACTION</span></p>
+          <p class="star-v">各場面の出演者（香盤表）を一度だけ登録。あとは欠席者を選ぶだけで、<strong>全員そろう＝今日できる場面</strong>を自動で抜き出して並べます。</p>
+        </div>
+        <div class="star-row is-result">
+          <p class="star-k">こう変わる<span class="star-en">RESULT</span></p>
+          <p class="star-v">稽古の段取りが数秒で決まり、限られた時間を「今日できること」に集中できる。（※ここには実際の声・成果が入ります）</p>
+        </div>
+      </div>
+
+      <!-- 情報 -->
+      <p class="as-h">情報<span class="as-h-en">INFORMATION</span></p>
+      <div class="panel">
+        <div class="dl">
+          <div class="dl-row"><div class="dl-k">制作</div><div class="dl-v">つみき</div></div>
+          <div class="dl-row"><div class="dl-k">カテゴリ</div><div class="dl-v">スケジュール（舞台・稽古）</div></div>
+          <div class="dl-row"><div class="dl-k">形式</div><div class="dl-v">ブラウザで動くアプリ（インストール不要）</div></div>
+          <div class="dl-row"><div class="dl-k">お渡し</div><div class="dl-v">プロダクトキー（合言葉）で解錠してお使いいただけます</div></div>
+          <div class="dl-row"><div class="dl-k">本体</div><div class="dl-v"><a href="https://tools.tsumiki-apps.com/kouban.html" target="_blank" rel="noopener">tools.tsumiki-apps.com/kouban.html</a></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- つみきアプリ詳細：まぜいろ
+       構造：タイトル＋2ボタン → ①簡潔な紹介 → 制作の背景 → ②プレビュー（スマホ5＋PC5）→ ③STAR → 情報 -->
+  <section class="screen sheet" id="s-app-mazeiro" data-screen="app-mazeiro">
+    <div class="sheet-inner">
+      <div class="as-head as-head-app">
+        <img class="as-icon" src="assets/icon-mazeiro.png?v=1" alt="まぜいろ アイコン" width="112" height="112">
+        <div class="as-headmeta">
+          <div class="as-name">まぜいろ</div>
+          <div class="as-sub">カラー剤の配合計算 ／ Mazeiro</div>
+          <div class="as-actions">
+            <span class="as-buy is-soon" role="button" aria-disabled="true">購入はこちら<small>準備中</small></span>
+            <a class="as-key" href="https://tools.tsumiki-apps.com/mazeiro.html" target="_blank" rel="noopener">プロダクトキーをお持ちの方はこちら<span class="as-key-ar">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ① 簡潔な紹介 -->
+      <p class="as-about">レシピの<strong>比率と作りたい量を入れるだけ</strong>で、各カラー剤が何グラム必要かを即計算。2剤（オキシ）の倍率にも対応します。混ぜる前の“あの計算”をなくすアプリです。</p>
+
+      <!-- 制作の背景 -->
+      <p class="as-h">制作の背景<span class="as-h-en">BACKGROUND</span></p>
+      <p class="as-bg">美容室の現場では、カラー剤のレシピが「1：1」「1：1.5」のような<strong>比率でしか残っていない</strong>ことが多く、そのたびに『じゃあ何グラムと何グラム』と暗算・計算し直していました。作る量を変えればまた計算、混ぜ間違えれば材料もやり直し。<br><br>その<strong>“毎回の換算ストレス”を消すために、まぜいろをつくりました。</strong>比率と総量さえ入れれば必要なグラムが出るなら、計算に取られていた集中を、施術そのものに戻せる——そう考えて形にしました。</p>
+
+      <!-- ② プレビュー（スマホ5＋PC5） -->
+      <p class="as-h">プレビュー<span class="as-h-en">PREVIEW</span></p>
+      <p class="pv-group-k">スマホ版<span class="pv-group-en">iPhone</span></p>
+      <div class="as-shots">
+        <figure class="as-shot"><div class="pv pv-ph" aria-hidden="true"><span class="pv-ph-name">まぜいろ</span><span class="pv-ph-note">準備中</span></div><figcaption>比率を入れる</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph" aria-hidden="true"><span class="pv-ph-name">まぜいろ</span><span class="pv-ph-note">準備中</span></div><figcaption>作りたい量を入れる</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph" aria-hidden="true"><span class="pv-ph-name">まぜいろ</span><span class="pv-ph-note">準備中</span></div><figcaption>必要グラムが出る</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph" aria-hidden="true"><span class="pv-ph-name">まぜいろ</span><span class="pv-ph-note">準備中</span></div><figcaption>2剤の倍率</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph" aria-hidden="true"><span class="pv-ph-name">まぜいろ</span><span class="pv-ph-note">準備中</span></div><figcaption>レシピを保存</figcaption></figure>
+      </div>
+      <p class="pv-group-k">PC版<span class="pv-group-en">Desktop</span></p>
+      <div class="as-shots">
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc pv-ph" aria-hidden="true"><span class="pv-ph-name">まぜいろ</span><span class="pv-ph-note">準備中</span></div><figcaption>比率を入れる</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc pv-ph" aria-hidden="true"><span class="pv-ph-name">まぜいろ</span><span class="pv-ph-note">準備中</span></div><figcaption>作りたい量を入れる</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc pv-ph" aria-hidden="true"><span class="pv-ph-name">まぜいろ</span><span class="pv-ph-note">準備中</span></div><figcaption>必要グラムが出る</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc pv-ph" aria-hidden="true"><span class="pv-ph-name">まぜいろ</span><span class="pv-ph-note">準備中</span></div><figcaption>2剤の倍率</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc pv-ph" aria-hidden="true"><span class="pv-ph-name">まぜいろ</span><span class="pv-ph-note">準備中</span></div><figcaption>レシピを保存</figcaption></figure>
+      </div>
+      <p class="note">実画面のスクリーンショットは、後で差し替えます（現在はプレースホルダ）。</p>
+
+      <!-- ③ STAR形式の詳しい紹介 -->
+      <p class="as-h">くわしく<span class="as-h-en">STORY</span></p>
+      <div class="as-star">
+        <div class="star-row">
+          <p class="star-k">こんな場面で<span class="star-en">SITUATION</span></p>
+          <p class="star-v">美容室でヘアカラーを調合するとき。レシピは比率でしか残っておらず、作る量はお客様ごとに変わる。</p>
+        </div>
+        <div class="star-row">
+          <p class="star-k">困っていたこと<span class="star-en">TASK</span></p>
+          <p class="star-v">比率からグラムへの換算を毎回手計算。総量を変えるとやり直しになり、混ぜ間違いは材料のロスに直結する。</p>
+        </div>
+        <div class="star-row">
+          <p class="star-k">アプリがすること<span class="star-en">ACTION</span></p>
+          <p class="star-v">比率と作りたい総量を入れるだけで、<strong>各剤の必要グラムを自動計算</strong>。2剤の倍率にも対応し、総量からの逆算もできる。</p>
+        </div>
+        <div class="star-row is-result">
+          <p class="star-k">こう変わる<span class="star-en">RESULT</span></p>
+          <p class="star-v">調合前の計算がゼロに。ミスと材料のロスが減り、手を止めずに施術へ集中できる。（※ここには実際の声・成果が入ります）</p>
+        </div>
+      </div>
+
+      <!-- 情報 -->
+      <p class="as-h">情報<span class="as-h-en">INFORMATION</span></p>
+      <div class="panel">
+        <div class="dl">
+          <div class="dl-row"><div class="dl-k">制作</div><div class="dl-v">つみき</div></div>
+          <div class="dl-row"><div class="dl-k">カテゴリ</div><div class="dl-v">美容（ヘアカラー配合）</div></div>
+          <div class="dl-row"><div class="dl-k">形式</div><div class="dl-v">ブラウザで動くアプリ（インストール不要）</div></div>
+          <div class="dl-row"><div class="dl-k">お渡し</div><div class="dl-v">プロダクトキー（合言葉）で解錠してお使いいただけます</div></div>
+          <div class="dl-row"><div class="dl-k">本体</div><div class="dl-v"><a href="https://tools.tsumiki-apps.com/mazeiro.html" target="_blank" rel="noopener">tools.tsumiki-apps.com/mazeiro.html</a></div></div>
+        </div>
       </div>
     </div>
   </section>
@@ -1697,8 +1874,8 @@
         </div>
         <div class="sfoot-col">
           <p class="sfoot-h">実績</p>
-          <a data-go="flagship" href="#">看板プロダクト</a>
-          <a data-go="collection" href="#">コレクション</a>
+          <a data-go="collection" href="#">つみきアプリたち</a>
+          <a data-go="flagship" href="#">趣味で制作したアプリたち</a>
         </div>
         <div class="sfoot-col">
           <p class="sfoot-h">お問い合わせ</p>
@@ -1792,6 +1969,7 @@
     ]},
   ];
   const col = document.getElementById("collection");
+  if (col) {                                   // つみきアプリたちは個別紹介ページ運用に変更。旧グリッドの器が無い時は描画しない
   categories.forEach(cat=>{
     const cards = cat.apps.map(a=>
       '<div class="card-wrap">'+
@@ -1825,6 +2003,7 @@
       if(willOpen){ wrap.classList.add('is-open'); btn.setAttribute('aria-expanded','true'); }
     });
   });
+  }
 
   /* ===== サイト共通フッター：読み物（sheet）画面の末尾へ複製配置 =====
      必ず下の「ページ送り」IIFEより前に実行する（複製したリンクにも data-go の
@@ -1952,7 +2131,7 @@
     const childToGroup = {   // 子シート → 属する親カテゴリー
       features:'service', value:'service', issues:'service', process:'service', pricing:'service',
       flagship:'works', 'flagship-itsutsu':'works', 'flagship-koegaki':'works',
-      collection:'works', voice:'works',
+      collection:'works', 'app-kouban':'works', 'app-mazeiro':'works', voice:'works',
       profile:'contact', company:'contact', hearing:'contact', privacy:'contact'
     };
 
@@ -1964,7 +2143,7 @@
       b.toggle('chrome-hidden', id === 'intro' || id === 'brand'); // トップバーを隠す
       b.toggle('on-dark', id === 'menu');                          // 墨背景ではトップバーを白に
       b.toggle('on-sheet', isSheet(id));                           // 子シートでは戻るボタンを出す
-      b.toggle('calm', id === 'flagship-itsutsu' || id === 'flagship-koegaki'); // アプリ詳細は動く墨を止めて紙色に
+      b.toggle('calm', id === 'flagship-itsutsu' || id === 'flagship-koegaki' || id === 'app-kouban' || id === 'app-mazeiro'); // アプリ詳細は動く墨を止めて紙色に
     }
 
     function go(id, dir){

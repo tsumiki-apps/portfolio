@@ -789,6 +789,71 @@ body.on-dark .tb-brand{color:#F4F2EE;
 .as-lp:active .as-lp-ar{transform:translateX(3px);}
 @media(hover:hover){ .as-lp:hover{border-color:var(--ghost);} .as-lp:hover .as-lp-ar{transform:translateX(3px);} }
 
+/* ---------- つみきアプリ：一覧の注目カード（紹介ページへの入口） ---------- */
+.app-feature{margin-top:18px; display:flex; flex-direction:column; gap:12px;}
+.app-card{display:flex; align-items:center; gap:14px; text-decoration:none; color:var(--ink);
+  background:var(--card); border:1px solid var(--line); border-radius:18px; padding:14px 16px;
+  box-shadow:0 6px 18px rgba(36,35,33,.06); transition:border-color .15s ease, transform .15s ease;}
+.app-card:active{transform:scale(.99);}
+@media(hover:hover){ .app-card:hover{border-color:var(--ghost);} .app-card:hover .app-card-ar{transform:translateX(4px);} }
+.app-card-ico{width:72px; height:72px; border-radius:16px; border:1px solid var(--line); flex:none; display:block;}
+.app-card-body{display:flex; flex-direction:column; gap:5px; min-width:0; flex:1 1 auto;}
+.app-card-name{font-size:17px; font-weight:700; letter-spacing:.03em;}
+.app-card-desc{font-size:12.5px; color:var(--sub); line-height:1.6;}
+.app-card-tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:2px;}
+.app-tag{font-size:10.5px; font-weight:700; letter-spacing:.03em; color:var(--sub);
+  background:var(--surface); border-radius:999px; padding:3px 9px;}
+.app-card-ar{flex:none; color:var(--ghost); font-size:18px; transition:transform .2s ease;}
+
+/* アプリ詳細のヘッダーは、2ボタン分だけ右カラムが高くなるのでアイコンを上揃えに */
+.as-head-app{align-items:start;}
+
+/* ---------- つみきアプリ詳細：タイトル横のアクション（購入／プロダクトキー） ---------- */
+.as-actions{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:14px;}
+.as-buy{display:inline-flex; align-items:center; gap:8px; border-radius:999px;
+  padding:11px 20px; font-size:13.5px; font-weight:700; letter-spacing:.03em;
+  background:var(--ink); color:var(--paper); text-decoration:none;}
+.as-buy.is-soon{background:var(--surface); color:var(--sub); cursor:default;}
+.as-buy.is-soon small{font-size:10px; font-weight:700; letter-spacing:.06em; color:var(--paper);
+  background:var(--ghost); border-radius:999px; padding:2px 8px;}
+.as-key{display:inline-flex; align-items:center; gap:7px; border-radius:999px;
+  padding:11px 20px; font-size:13.5px; font-weight:700; letter-spacing:.02em;
+  color:var(--ink); text-decoration:none; border:1px solid var(--ink); background:var(--card);}
+.as-key-ar{transition:transform .2s ease;}
+.as-key:active .as-key-ar{transform:translateX(3px);}
+@media(hover:hover){ .as-key:hover{background:var(--ink); color:var(--paper);} .as-key:hover .as-key-ar{transform:translateX(3px);} }
+@media(max-width:480px){ .as-actions{width:100%;} .as-buy, .as-key{flex:1 1 auto; justify-content:center;} }
+
+/* ---------- つみきアプリ詳細：STAR形式のストーリー ---------- */
+.as-star{margin-top:14px; border:1px solid var(--line); border-radius:18px; background:var(--card); overflow:hidden;}
+.star-row{padding:16px 18px; border-top:1px solid var(--line);}
+.star-row:first-child{border-top:none;}
+.star-row.is-result{background:var(--accent-soft);}
+.star-k{display:flex; align-items:baseline; gap:9px; font-size:14px; font-weight:700; letter-spacing:.02em; color:var(--ink);}
+.star-en{font-size:9.5px; letter-spacing:.2em; color:var(--sub); font-weight:600;}
+.star-v{font-size:14px; line-height:1.9; color:#3a3833; margin-top:7px;}
+.star-row.is-result .star-v{color:#5a3323;}
+
+/* ---------- つみきアプリ詳細：制作の背景 ---------- */
+.as-bg{font-size:14px; line-height:1.95; color:#3a3833; margin-top:14px;}
+
+/* ---------- プレビュー：スマホ／PC の小見出し ---------- */
+.pv-group-k{display:flex; align-items:baseline; gap:9px; font-size:12.5px; font-weight:700;
+  letter-spacing:.04em; color:var(--ink); margin:20px 0 0;}
+.pv-group-en{font-size:9.5px; letter-spacing:.2em; color:var(--sub); font-weight:600;}
+
+/* ---------- プレビューのプレースホルダ（実画面が入るまでの仮） ---------- */
+.pv-ph{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+  background:var(--surface); color:var(--sub);}
+.pv-ph-name{font-size:14px; font-weight:700; letter-spacing:.04em; color:var(--ink);}
+.pv-ph-note{font-size:11px; letter-spacing:.04em;}
+/* PC版プレビュー：横長フレーム（ブラウザ窓風）。既存 .pv/.as-shot より後に定義されるため、
+   確実に上書きできるよう詳細度を .pv.pv-pc で一段上げる */
+.as-shot.as-shot-pc{width:280px;}
+.pv.pv-pc{width:280px; height:180px; border-radius:16px;}
+.pv.pv-pc::before{width:44px; height:5px; top:8px;}
+@media(max-width:480px){ .as-shot.as-shot-pc{width:248px;} .pv.pv-pc{width:248px; height:158px;} }
+
 /* メトリクス帯（App Store の評価行・横スクロール） */
 .as-metrics{
   display:flex; gap:0; margin-top:22px; overflow-x:auto; -webkit-overflow-scrolling:touch;
