@@ -1284,40 +1284,39 @@
   <!-- サービス：他社との比較 -->
   <section class="screen sheet" id="s-compare" data-screen="compare">
 
-    <!-- 動くイラスト：サブスク＝毎月お金が出ていく／買い切り＝一度きりで手元に残る -->
+    <!-- 動くイラスト：同じ道具を左右に置き、払い方の違いだけを対比する。
+         左＝毎月コインが下へ流れ続ける／右＝一度だけ乗って朱チェック（以後なし）。 -->
     <div class="fhero cmp-fhero" aria-hidden="true">
       <svg viewBox="0 0 1200 300" preserveAspectRatio="xMidYMid meet" role="img">
         <!-- 中央の仕切り -->
-        <path d="M600 46 V258" class="sc-line sc-soft" stroke-dasharray="1 11"/>
+        <path d="M600 54 V248" class="sc-line sc-soft" stroke-dasharray="1 11"/>
 
-        <!-- 左：一般的なサブスク型（毎月ずっと出ていく） -->
-        <text x="310" y="70" class="cmp-cap">毎月ずっと</text>
-        <text x="310" y="90" class="cmp-sub">SUBSCRIPTION</text>
+        <!-- 左：サブスク＝毎月ずっと出ていく -->
+        <text x="300" y="70" class="cmp-cap">毎月ずっと</text>
+        <text x="300" y="91" class="cmp-sub">SUBSCRIPTION</text>
         <g class="sc-line">
-          <rect x="222" y="112" width="176" height="104" rx="12" class="sc-fillsoft"/>
-          <path d="M222 140 H398" class="sc-soft"/>
-          <circle cx="240" cy="126" r="3.4" fill="currentColor" stroke="none"/>
-          <path d="M244 164 H360 M244 184 H332" class="sc-soft"/>
+          <rect x="228" y="116" width="144" height="90" rx="12" class="sc-fillsoft"/>
+          <path d="M228 140 H372" class="sc-soft"/>
+          <circle cx="244" cy="128" r="3.2" fill="currentColor" stroke="none"/>
+          <path d="M246 162 H346 M246 182 H322" class="sc-soft"/>
         </g>
-        <!-- 毎月ドリップ（コインが下へ落ちて消える） -->
-        <g class="cmp-drip cmp-d1"><circle cx="310" cy="224" r="13" class="cmp-coin"/><text x="310" y="229" class="cmp-yen">¥</text></g>
-        <g class="cmp-drip cmp-d2"><circle cx="310" cy="224" r="13" class="cmp-coin"/><text x="310" y="229" class="cmp-yen">¥</text></g>
-        <g class="cmp-drip cmp-d3"><circle cx="310" cy="224" r="13" class="cmp-coin"/><text x="310" y="229" class="cmp-yen">¥</text></g>
+        <!-- 毎月、下へ流れ続けるコイン（3枚を時間差でループ） -->
+        <g class="cmp-drip cmp-d1"><circle cx="300" cy="212" r="13" class="cmp-coin"/><text x="300" y="217" class="cmp-yen">¥</text></g>
+        <g class="cmp-drip cmp-d2"><circle cx="300" cy="234" r="12" class="cmp-coin"/><text x="300" y="239" class="cmp-yen">¥</text></g>
+        <g class="cmp-drip cmp-d3"><circle cx="300" cy="256" r="11" class="cmp-coin"/><text x="300" y="260" class="cmp-yen">¥</text></g>
 
-        <!-- 右：つみき（買い切り＝一度きり／手元に残る） -->
-        <text x="884" y="70" class="cmp-cap">一度きり</text>
-        <text x="884" y="90" class="cmp-sub">TSUMIKI</text>
-        <!-- 一度だけ入るコイン -->
-        <g class="sc-carry cmp-once"><circle cx="884" cy="118" r="14" class="cmp-coin"/><text x="884" y="124" class="cmp-yen">¥</text></g>
-        <!-- 積み木ブロック（あなたのもの・ずっと手元に） -->
+        <!-- 右：つみき＝一度きり払って、あとは手元に -->
+        <text x="900" y="70" class="cmp-cap">一度きり</text>
+        <text x="900" y="91" class="cmp-sub">TSUMIKI</text>
+        <!-- 一度だけ上に乗るコイン（静止） -->
+        <g class="cmp-once"><circle cx="900" cy="108" r="13" class="cmp-coin"/><text x="900" y="113" class="cmp-yen">¥</text></g>
         <g class="sc-line">
-          <rect x="820" y="158" width="128" height="58" rx="8" class="sc-fillsoft"/>
-          <rect x="838" y="132" width="92" height="30" rx="6"/>
+          <rect x="828" y="116" width="144" height="90" rx="12" class="sc-fillsoft"/>
+          <path d="M828 140 H972" class="sc-soft"/>
+          <circle cx="844" cy="128" r="3.2" fill="currentColor" stroke="none"/>
         </g>
-        <!-- 朱チェック（支払いは済み・以後不要） -->
-        <g class="sc-line sc-accent sc-arrive"><path d="M852 188 l12 12 22 -24"/></g>
-        <!-- 鍵（あなた専用） -->
-        <g class="sc-line sc-soft"><rect x="952" y="188" width="22" height="17" rx="4"/><path d="M956 188 v-4 a6 6 0 0 1 12 0 v4"/></g>
+        <!-- 済んだ印（朱チェック・以後の支払いなし） -->
+        <g class="sc-line sc-accent sc-arrive"><path d="M880 172 l11 11 22 -24"/></g>
       </svg>
     </div>
 
