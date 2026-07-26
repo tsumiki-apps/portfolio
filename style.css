@@ -231,6 +231,7 @@ body.on-dark .tb-brand{color:#F4F2EE;
 .menu-group.open .sub-item:nth-of-type(3){transition-delay:.38s;}
 .menu-group.open .sub-item:nth-of-type(4){transition-delay:.50s;}
 .menu-group.open .sub-item:nth-of-type(5){transition-delay:.62s;}
+.menu-group.open .sub-item:nth-of-type(6){transition-delay:.74s;}
 /* サービスのサブメニュー：PC幅では「特長・価値・課題／進め方・料金」の2行組に。
    自然折返しに任せると4項目目の後で折れ、料金だけが孤立していた。モバイルは従来どおり。 */
 .su-break{display:none;}
