@@ -791,7 +791,10 @@ body.on-dark .tb-brand{color:#F4F2EE;
 @media(hover:hover){ .as-lp:hover{border-color:var(--ghost);} .as-lp:hover .as-lp-ar{transform:translateX(3px);} }
 
 /* ---------- つみきアプリ：一覧の注目カード（紹介ページへの入口） ---------- */
-.app-feature{margin-top:18px; display:flex; flex-direction:column; gap:12px;}
+/* カードは横長1列だと desktop(容器860〜960px)で右に空白が余るため、
+   容器幅に応じて自動で段組み（スマホ=1列 / desktop=2列）にして横を使い切る。 */
+.app-feature{margin-top:18px; display:grid; gap:12px;
+  grid-template-columns:repeat(auto-fill, minmax(340px, 1fr));}
 .app-card{display:flex; align-items:center; gap:14px; text-decoration:none; color:var(--ink);
   background:var(--card); border:1px solid var(--line); border-radius:18px; padding:14px 16px;
   box-shadow:0 6px 18px rgba(36,35,33,.06); transition:border-color .15s ease, transform .15s ease;}
