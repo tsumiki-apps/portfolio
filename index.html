@@ -1260,12 +1260,11 @@
   </div>
 
   <!-- 実績アプリのプレビュー写真の拡大表示（タップで大きく見る。展示室のライトボックスと同じ見た目・操作感） -->
-  <div class="g-lightbox pv-lightbox" id="pv-lightbox" role="dialog" aria-modal="true" aria-label="プレビュー画像の拡大表示" hidden>
+  <div class="g-lightbox pv-lightbox" id="pv-lightbox" role="dialog" aria-modal="true" aria-label="プレビュー画像の拡大表示（写真以外をタップで閉じる）" tabindex="-1" hidden>
     <div class="g-stage">
       <img id="pv-lb-img" src="" alt="">
       <p class="g-cap"><span class="g-title" id="pv-lb-cap"></span></p>
     </div>
-    <button class="g-lb-btn g-close" type="button" id="pv-lb-close" aria-label="閉じる">✕</button>
     <button class="g-lb-btn g-prev" type="button" id="pv-lb-prev" aria-label="前の画像">←</button>
     <button class="g-lb-btn g-next" type="button" id="pv-lb-next" aria-label="次の画像">→</button>
     <p class="g-count" id="pv-lb-count"></p>
@@ -2633,7 +2632,6 @@
     var img    = document.getElementById('pv-lb-img');
     var capEl  = document.getElementById('pv-lb-cap');
     var cEl    = document.getElementById('pv-lb-count');
-    var closeB = document.getElementById('pv-lb-close');
     var prevB  = document.getElementById('pv-lb-prev');
     var nextB  = document.getElementById('pv-lb-next');
     var group = [], idx = 0, opener = null;
@@ -2655,7 +2653,7 @@
       show(i);
       box.hidden = false; box.classList.add('is-open');
       document.body.style.overflow = 'hidden';
-      closeB.focus();
+      box.focus({preventScroll:true});   // フォーカスを拡大ビュー内へ（Escapeや操作の起点に）
     }
     function close(){
       box.classList.remove('is-open'); box.hidden = true;
@@ -2685,12 +2683,10 @@
       });
     });
 
-    closeB.addEventListener('click', close);
     prevB.addEventListener('click', function(e){ e.stopPropagation(); show(idx - 1); });
     nextB.addEventListener('click', function(e){ e.stopPropagation(); show(idx + 1); });
-    // 「写真そのもの」と「←→（前後送り）」以外は、どこをクリック／タップしても閉じる。
-    // ✕を正確に狙わなくても、その周りの暗い部分・余白・背景のどこでも閉じられる＝押しにくさを解消。
-    // （✕ボタン自身も closeB で閉じるうえ、ここにも伝播して二重に閉じるが close() は何度呼んでも安全）
+    // 閉じるボタン（✕）は廃止。「写真そのもの」と「←→（前後送り）」以外なら、
+    // 背景・余白・写真まわりのどこをクリック／タップしても閉じる（Escapeでも閉じる）。
     box.addEventListener('click', function(e){
       if (e.target === img) return;                     // 写真は拡大鑑賞のため閉じない
       if (e.target.closest('.g-prev, .g-next')) return; // 送りボタンだけ除外
