@@ -890,9 +890,12 @@ body.on-dark .tb-brand{color:#F4F2EE;
 .am-cap{font-size:10px; color:var(--ghost); white-space:nowrap;}
 
 /* 詳細ページの小見出し */
-.as-h{font-size:15px; font-weight:700; letter-spacing:.02em; margin:34px 0 0;
-  display:flex; align-items:baseline; gap:10px;}
-.as-h-en{font-size:10px; letter-spacing:.22em; color:var(--sub); font-weight:500;}
+/* 見出しは1文字ずつ span 化される（登場アニメ tw-c）。flex にすると gap や wrap が
+   全文字に効いてしまうので使わず、通常のインライン流し＝日本語は自然に詰まる。
+   英語ラベルにだけ左マージンで間隔を与える。 */
+.as-h{font-size:15px; font-weight:700; letter-spacing:.02em; margin:34px 0 0; line-height:1.5;}
+.as-h-en{font-size:10px; letter-spacing:.22em; color:var(--sub); font-weight:500; margin-left:10px;
+  white-space:nowrap;}
 
 /* プレビュー帯（実画面の再現モックを横スクロール） */
 .as-shots{
