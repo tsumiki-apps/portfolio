@@ -2685,14 +2685,15 @@
       });
     });
 
-    closeB.addEventListener('click', function(e){ e.stopPropagation(); close(); });
+    closeB.addEventListener('click', close);
     prevB.addEventListener('click', function(e){ e.stopPropagation(); show(idx - 1); });
     nextB.addEventListener('click', function(e){ e.stopPropagation(); show(idx + 1); });
-    // 写真そのもの以外（背景・写真まわりの余白・キャプション）はどこをクリックしても閉じる。
-    // PC幅だと写真の左右に広い余白ができるが、そこは .g-stage 領域で以前は閉じなかった＝閉じにくかった。
+    // 「写真そのもの」と「←→（前後送り）」以外は、どこをクリック／タップしても閉じる。
+    // ✕を正確に狙わなくても、その周りの暗い部分・余白・背景のどこでも閉じられる＝押しにくさを解消。
+    // （✕ボタン自身も closeB で閉じるうえ、ここにも伝播して二重に閉じるが close() は何度呼んでも安全）
     box.addEventListener('click', function(e){
-      if (e.target === img) return;              // 写真は拡大鑑賞のため閉じない
-      if (e.target.closest('.g-lb-btn')) return; // ←→✕ は各ボタンの処理に任せる
+      if (e.target === img) return;                     // 写真は拡大鑑賞のため閉じない
+      if (e.target.closest('.g-prev, .g-next')) return; // 送りボタンだけ除外
       close();
     });
 
