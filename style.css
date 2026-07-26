@@ -836,7 +836,13 @@ body.on-dark .tb-brand{color:#F4F2EE;
 .as-key-ar{transition:transform .2s ease;}
 .as-key:active .as-key-ar{transform:translateX(3px);}
 @media(hover:hover){ .as-key:hover{background:var(--ink); color:var(--paper);} .as-key:hover .as-key-ar{transform:translateX(3px);} }
-@media(max-width:480px){ .as-actions{width:100%;} .as-buy, .as-key{flex:1 1 auto; justify-content:center;} }
+/* 取扱説明書＝三次ボタン（薄い枠・控えめ。購入＞プロダクトキー＞取説 の順で目立たせる） */
+.as-manual{display:inline-flex; align-items:center; gap:7px; border-radius:999px;
+  padding:11px 18px; font-size:13.5px; font-weight:700; letter-spacing:.02em;
+  color:var(--sub); text-decoration:none; border:1px solid var(--line); background:var(--card);}
+.as-manual:active .as-key-ar{transform:translateX(3px);}
+@media(hover:hover){ .as-manual:hover{border-color:var(--ghost); color:var(--ink);} .as-manual:hover .as-key-ar{transform:translateX(3px);} }
+@media(max-width:480px){ .as-actions{width:100%;} .as-buy, .as-key, .as-manual{flex:1 1 auto; justify-content:center;} }
 
 /* ---------- つみきアプリ詳細：STAR形式のストーリー ---------- */
 .as-star{margin-top:14px; border:1px solid var(--line); border-radius:18px; background:var(--card); overflow:hidden;}
