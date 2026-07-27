@@ -809,6 +809,31 @@ body.on-dark .tb-brand{color:#F4F2EE;
   background:var(--surface); border-radius:999px; padding:3px 9px;}
 .app-card-ar{flex:none; color:var(--ghost); font-size:18px; transition:transform .2s ease;}
 
+/* ---------- アプリ「セット」表示（対で使う2つを一まとまりに） ---------- */
+.app-group{margin-top:12px; border:1px solid var(--line); border-radius:20px;
+  background:var(--surface); padding:14px 14px 16px;}
+.app-group-k{display:flex; align-items:baseline; gap:9px; font-size:13px; font-weight:700;
+  letter-spacing:.04em; color:var(--ink);}
+.app-group-en{font-size:9.5px; letter-spacing:.2em; color:var(--sub); font-weight:600;}
+.app-group-note{font-size:12px; color:var(--sub); line-height:1.7; margin:6px 0 12px;}
+.app-group-cards{display:grid; gap:12px; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));}
+/* カード名の横につく「労働者用／管理者用」バッジ */
+.app-card-role{display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:.04em;
+  color:var(--sub); background:var(--paper); border:1px solid var(--line);
+  border-radius:999px; padding:2px 8px; margin-left:8px; vertical-align:middle;}
+
+/* ---------- アプリ詳細：対になる相棒アプリへの導線 ---------- */
+.as-pair{display:flex; align-items:center; gap:12px; margin-top:16px; text-decoration:none;
+  color:var(--ink); border:1px solid var(--line); border-radius:14px; background:var(--card);
+  padding:11px 14px; transition:border-color .15s ease, transform .15s ease;}
+.as-pair:active{transform:scale(.99);}
+@media(hover:hover){ .as-pair:hover{border-color:var(--ghost);} .as-pair:hover .as-pair-ar{transform:translateX(4px);} }
+.as-pair-ico{width:44px; height:44px; border-radius:11px; border:1px solid var(--line); flex:none; display:block;}
+.as-pair-tx{display:flex; flex-direction:column; gap:2px; min-width:0; flex:1 1 auto;}
+.as-pair-k{font-size:10.5px; letter-spacing:.1em; color:var(--sub); font-weight:700;}
+.as-pair-n{font-size:14px; font-weight:700; letter-spacing:.02em;}
+.as-pair-ar{flex:none; color:var(--ghost); font-size:16px; transition:transform .2s ease;}
+
 /* アプリ詳細のヘッダーは、2ボタン分だけ右カラムが高くなるのでアイコンを上揃えに */
 .as-head-app{align-items:start;}
 

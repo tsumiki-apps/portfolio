@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=79">
+<link rel="stylesheet" href="style.css?v=80">
 <link rel="icon" type="image/png" href="icons/icon-index.png?v=2">
 <link rel="apple-touch-icon" href="icons/icon-index.png?v=2">
 <meta name="apple-mobile-web-app-title" content="つみき">
@@ -499,15 +499,32 @@
           </span>
           <span class="app-card-ar" aria-hidden="true">→</span>
         </a>
-        <a class="app-card" data-go="app-dakoku" href="#">
-          <img class="app-card-ico" src="assets/icon-dakoku.png?v=1" alt="打刻 アイコン" width="72" height="72" loading="lazy">
-          <span class="app-card-body">
-            <span class="app-card-name">打刻</span>
-            <span class="app-card-desc">出勤・退勤をタップ、派遣の勤怠を自動集計</span>
-            <span class="app-card-tags"><span class="app-tag">勤怠管理</span><span class="app-tag">派遣</span></span>
-          </span>
-          <span class="app-card-ar" aria-hidden="true">→</span>
-        </a>
+      </div>
+
+      <!-- 勤怠管理セット：対で使う2つ（打刻＝労働者用／打刻管理＝管理者用） -->
+      <div class="app-group">
+        <p class="app-group-k">勤怠管理セット<span class="app-group-en">FOR TEAMS</span></p>
+        <p class="app-group-note">労働者と管理者、<strong>対で使う2つ</strong>。現場で打刻し、会社側はそのまま集計。データはクラウドで共有されます。</p>
+        <div class="app-group-cards">
+          <a class="app-card" data-go="app-dakoku" href="#">
+            <img class="app-card-ico" src="assets/icon-dakoku.png?v=1" alt="打刻 アイコン" width="72" height="72" loading="lazy">
+            <span class="app-card-body">
+              <span class="app-card-name">打刻<span class="app-card-role">労働者用</span></span>
+              <span class="app-card-desc">出勤・退勤をタップ、自分の勤務をかんたん記録</span>
+              <span class="app-card-tags"><span class="app-tag">勤怠管理</span><span class="app-tag">派遣</span></span>
+            </span>
+            <span class="app-card-ar" aria-hidden="true">→</span>
+          </a>
+          <a class="app-card" data-go="app-dakoku-kanri" href="#">
+            <img class="app-card-ico" src="assets/icon-dakoku-kanri.png?v=1" alt="打刻管理 アイコン" width="72" height="72" loading="lazy">
+            <span class="app-card-body">
+              <span class="app-card-name">打刻管理<span class="app-card-role">管理者用</span></span>
+              <span class="app-card-desc">コード発行から勤務表・書き出し・請求算定まで</span>
+              <span class="app-card-tags"><span class="app-tag">集計・書き出し</span><span class="app-tag">派遣元</span></span>
+            </span>
+            <span class="app-card-ar" aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
 
       <div class="cta-wrap">
@@ -749,14 +766,14 @@
     </div>
   </section>
 
-  <!-- つみきアプリ詳細：打刻（派遣の勤怠管理・労働者用＋管理者用） -->
+  <!-- つみきアプリ詳細：打刻（派遣の勤怠・労働者用） -->
   <section class="screen sheet" id="s-app-dakoku" data-screen="app-dakoku">
     <div class="sheet-inner">
       <div class="as-head as-head-app">
         <img class="as-icon" src="assets/icon-dakoku.png?v=1" alt="打刻 アイコン" width="112" height="112">
         <div class="as-headmeta">
           <div class="as-name">打刻</div>
-          <div class="as-sub">派遣の勤怠管理 ／ Dakoku</div>
+          <div class="as-sub">派遣の勤怠・労働者用 ／ 打刻</div>
           <div class="as-actions">
             <span class="as-buy is-soon" role="button" aria-disabled="true">購入はこちら<small>準備中</small></span>
             <a class="as-key" href="https://tools.tsumiki-apps.com/dakoku.html" target="_blank" rel="noopener">プロダクトキーをお持ちの方はこちら<span class="as-key-ar">→</span></a>
@@ -766,50 +783,55 @@
       </div>
 
       <!-- ① 簡潔な紹介 -->
-      <p class="as-about">出勤・退勤を<strong>タップするだけ</strong>。派遣の<strong>勤怠管理表（会社に出す提出書類）</strong>まで自動でつくれます。労働者が現場で打刻し、管理者はそのまま集計。データは<strong>クラウドで共有</strong>されるので、集計をやり直す必要がありません。</p>
+      <p class="as-about">派遣で働く人のための<strong>打刻アプリ</strong>。出勤・退勤を<strong>大きなボタンでタップするだけ</strong>。自分の勤務記録や月の合計、交通費・定期もそのまま残せます。打刻は<strong>クラウドで会社と共有</strong>されるので、紙のタイムシートも、月末の報告もいりません。</p>
+
+      <!-- 対になる管理者アプリへの導線 -->
+      <a class="as-pair" data-go="app-dakoku-kanri" href="#">
+        <img class="as-pair-ico" src="assets/icon-dakoku-kanri.png?v=1" alt="打刻管理 アイコン" width="44" height="44" loading="lazy">
+        <span class="as-pair-tx"><span class="as-pair-k">対になる管理者アプリ</span><span class="as-pair-n">打刻管理 — 集計・勤務表・書き出し</span></span>
+        <span class="as-pair-ar" aria-hidden="true">→</span>
+      </a>
 
       <!-- 制作の背景 -->
       <p class="as-h">制作の背景<span class="as-h-en">BACKGROUND</span></p>
-      <p class="as-bg">派遣の勤怠は、紙のタイムシートや手集計になりがちで、転記ミスや月末の締め作業がじわじわ積み重なります。現場で働く人にとっては「打刻がめんどう」、会社にとっては「集計と提出書類づくりが重い」——両方の負担がありました。<br><br>その<strong>手間をまるごと消すために、打刻は生まれました。</strong>労働者は大きなボタンをタップするだけ。打刻はクラウドで管理者と共有され、勤務表から<strong>派遣の勤怠管理表（Excel／PDF）</strong>まで一気に書き出せる。交通費・定期や請求算定にも対応した、現場と会社の両方のための一本です。</p>
+      <p class="as-bg">派遣の現場では、紙のタイムシートに手書きして、月末にまとめて提出——という流れになりがちです。書き忘れや、あとから「あの日、何時までだっけ？」の思い出し作業も、地味な負担でした。<br><br>その<strong>「打刻がめんどう」を消すために、打刻は生まれました。</strong>大きな出勤・退勤ボタンをタップするだけ。15分丸めや休憩・残業・休日出勤も自動で計算され、自分の勤務記録がいつでも見られます。交通費や定期も登録でき、会社（管理者）へはクラウドで自動共有。<strong>集計は「打刻管理」側にまるごと引き継がれます。</strong></p>
 
       <!-- ② プレビュー -->
       <p class="as-h">プレビュー<span class="as-h-en">PREVIEW</span></p>
       <p class="pv-group-k">スマホ版<span class="pv-group-en">iPhone</span></p>
       <div class="as-shots">
         <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/dakoku-ph-punch.png?v=1" alt="打刻アプリの出勤・退勤画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>出勤・退勤をタップ</figcaption></figure>
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/dakoku-ph-record.png?v=1" alt="打刻アプリの勤務記録画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>自分の勤務記録</figcaption></figure>
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/dakoku-ph-staff.png?v=1" alt="打刻管理アプリの従業員登録・コード発行画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>従業員を登録・コード発行</figcaption></figure>
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/dakoku-ph-table.png?v=1" alt="打刻管理アプリの勤務表・集計画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>勤務表で集計を確認</figcaption></figure>
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/dakoku-ph-export.png?v=1" alt="打刻管理アプリのExcel・PDF書き出し／請求算定画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>Excel・PDFで書き出し</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/dakoku-ph-record.png?v=1" alt="打刻アプリの勤務記録画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>月の勤務記録を確認</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/dakoku-ph-edit.png?v=1" alt="打刻アプリの記録修正画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>打ち忘れも自分で修正</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/dakoku-ph-commute.png?v=1" alt="打刻アプリの交通費・定期設定画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>交通費・定期も登録</figcaption></figure>
       </div>
       <p class="pv-group-k">PC版<span class="pv-group-en">Desktop</span></p>
       <div class="as-shots">
         <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/dakoku-pc-punch.png?v=1" alt="打刻アプリ PC版の出勤・退勤画面" loading="lazy" width="1200" height="750"></div><figcaption>出勤・退勤をタップ</figcaption></figure>
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/dakoku-pc-record.png?v=1" alt="打刻アプリ PC版の勤務記録画面" loading="lazy" width="1200" height="750"></div><figcaption>自分の勤務記録</figcaption></figure>
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/dakoku-pc-staff.png?v=1" alt="打刻管理アプリ PC版の従業員登録・コード発行画面" loading="lazy" width="1200" height="750"></div><figcaption>従業員を登録・コード発行</figcaption></figure>
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/dakoku-pc-table.png?v=1" alt="打刻管理アプリ PC版の勤務表・集計画面" loading="lazy" width="1200" height="750"></div><figcaption>勤務表で集計を確認</figcaption></figure>
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/dakoku-pc-export.png?v=1" alt="打刻管理アプリ PC版のExcel・PDF書き出し／請求算定画面" loading="lazy" width="1200" height="750"></div><figcaption>Excel・PDFで書き出し</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/dakoku-pc-record.png?v=1" alt="打刻アプリ PC版の勤務記録画面" loading="lazy" width="1200" height="750"></div><figcaption>月の勤務記録を確認</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/dakoku-pc-edit.png?v=1" alt="打刻アプリ PC版の記録修正画面" loading="lazy" width="1200" height="750"></div><figcaption>打ち忘れも自分で修正</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/dakoku-pc-commute.png?v=1" alt="打刻アプリ PC版の交通費・定期設定画面" loading="lazy" width="1200" height="750"></div><figcaption>交通費・定期も登録</figcaption></figure>
       </div>
-      <p class="note">実際の「打刻」の画面です（労働者用・管理者用／掲載データはサンプルで、実在の従業員・勤怠ではありません）。</p>
+      <p class="note">実際の「打刻」（労働者用）の画面です。掲載データはサンプルで、実在の従業員・勤怠ではありません。</p>
 
       <!-- ③ STAR形式の詳しい紹介 -->
       <p class="as-h">くわしく<span class="as-h-en">STORY</span></p>
       <div class="as-star">
         <div class="star-row">
           <p class="star-k">こんな場面で<span class="star-en">SITUATION</span></p>
-          <p class="star-v">派遣スタッフが複数の現場で働き、毎月の勤怠をまとめて会社に提出する必要がある。</p>
+          <p class="star-v">派遣で複数の現場に入り、日々の出退勤を自分で記録して会社に報告する必要がある。</p>
         </div>
         <div class="star-row">
           <p class="star-k">困っていたこと<span class="star-en">TASK</span></p>
-          <p class="star-v">紙のタイムシートや手集計だと、転記ミスや締めの手間がかかり、提出書類づくりに時間が溶ける。現場と会社で数字がずれることも。</p>
+          <p class="star-v">紙やメモだと書き忘れ・思い出し作業が起きる。休憩や残業の計算もあいまいで、月末の報告がめんどう。</p>
         </div>
         <div class="star-row">
           <p class="star-k">アプリがすること<span class="star-en">ACTION</span></p>
-          <p class="star-v">労働者は出勤・退勤を<strong>タップするだけ</strong>。打刻はクラウドで管理者と共有され、勤務表と<strong>派遣の勤怠管理表（Excel／PDF）</strong>まで自動で。交通費・定期や請求算定にも対応します。</p>
+          <p class="star-v">出勤・退勤を<strong>タップするだけ</strong>。実働・残業・休日出勤を自動計算し、月の合計も一目で。交通費・定期も登録でき、打刻は<strong>クラウドで会社と共有</strong>されます。</p>
         </div>
         <div class="star-row is-result">
           <p class="star-k">こう変わる<span class="star-en">RESULT</span></p>
-          <p class="star-v">集計のやり直しがゼロに。打刻から提出書類まで一本の流れになり、現場も会社も締めがラクになる。（※ここには実際の声・成果が入ります）</p>
+          <p class="star-v">「打刻がめんどう」がなくなり、報告いらず。自分の勤務も、数字でいつでも確認できる。（※ここには実際の声・成果が入ります）</p>
         </div>
       </div>
 
@@ -818,10 +840,102 @@
       <div class="panel">
         <div class="dl">
           <div class="dl-row"><div class="dl-k">制作</div><div class="dl-v">つみき</div></div>
-          <div class="dl-row"><div class="dl-k">カテゴリ</div><div class="dl-v">勤怠管理（派遣）</div></div>
-          <div class="dl-row"><div class="dl-k">形式</div><div class="dl-v">ブラウザで動くアプリ（インストール不要）。<strong>労働者用・管理者用の2つ</strong>＋クラウド共有</div></div>
+          <div class="dl-row"><div class="dl-k">カテゴリ</div><div class="dl-v">勤怠管理（派遣・労働者用）</div></div>
+          <div class="dl-row"><div class="dl-k">形式</div><div class="dl-v">ブラウザで動くアプリ（インストール不要）。<strong>労働者用</strong>＋クラウド共有</div></div>
+          <div class="dl-row"><div class="dl-k">対になるアプリ</div><div class="dl-v"><a data-go="app-dakoku-kanri" href="#">打刻管理（管理者用）</a>で集計・勤務表・書き出し</div></div>
           <div class="dl-row"><div class="dl-k">お渡し</div><div class="dl-v">プロダクトキー（合言葉）で解錠してお使いいただけます</div></div>
-          <div class="dl-row"><div class="dl-k">本体</div><div class="dl-v"><a href="https://tools.tsumiki-apps.com/dakoku.html" target="_blank" rel="noopener">dakoku.html（労働者）</a> ／ <a href="https://tools.tsumiki-apps.com/dakoku-kanri.html" target="_blank" rel="noopener">dakoku-kanri.html（管理者）</a></div></div>
+          <div class="dl-row"><div class="dl-k">本体</div><div class="dl-v"><a href="https://tools.tsumiki-apps.com/dakoku.html" target="_blank" rel="noopener">dakoku.html（労働者）</a></div></div>
+        </div>
+      </div>
+
+      <div class="cta-wrap">
+        <p class="cta-lead">「こういうの、うちにも欲しい」と思ったら。あなたの“ちょっと困った”に合わせて、専用のアプリをお作りします。初回のご相談は無料です。</p>
+        <a class="cta" data-go="hearing" href="#">無料で相談する<span class="cta-ar">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- つみきアプリ詳細：打刻管理（派遣の勤怠・管理者用） -->
+  <section class="screen sheet" id="s-app-dakoku-kanri" data-screen="app-dakoku-kanri">
+    <div class="sheet-inner">
+      <div class="as-head as-head-app">
+        <img class="as-icon" src="assets/icon-dakoku-kanri.png?v=1" alt="打刻管理 アイコン" width="112" height="112">
+        <div class="as-headmeta">
+          <div class="as-name">打刻管理</div>
+          <div class="as-sub">派遣の勤怠・管理者用 ／ 打刻管理</div>
+          <div class="as-actions">
+            <span class="as-buy is-soon" role="button" aria-disabled="true">購入はこちら<small>準備中</small></span>
+            <a class="as-key" href="https://tools.tsumiki-apps.com/dakoku-kanri.html" target="_blank" rel="noopener">プロダクトキーをお持ちの方はこちら<span class="as-key-ar">→</span></a>
+            <a class="as-manual" href="https://tools.tsumiki-apps.com/dakoku-tsukaikata.html" target="_blank" rel="noopener">取扱説明書<span class="as-key-ar">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ① 簡潔な紹介 -->
+      <p class="as-about">派遣会社（管理者）のための<strong>集計アプリ</strong>。従業員ごとに<strong>打刻コードを発行</strong>すれば、あとは全員の打刻がクラウドに集まります。月度の勤務表を<strong>自動集計</strong>し、<strong>派遣の勤怠管理表（Excel／PDF）</strong>や請求算定まで、そのまま書き出せます。</p>
+
+      <!-- 対になる労働者アプリへの導線 -->
+      <a class="as-pair" data-go="app-dakoku" href="#">
+        <img class="as-pair-ico" src="assets/icon-dakoku.png?v=1" alt="打刻 アイコン" width="44" height="44" loading="lazy">
+        <span class="as-pair-tx"><span class="as-pair-k">対になる労働者アプリ</span><span class="as-pair-n">打刻 — 現場で出勤・退勤をタップ</span></span>
+        <span class="as-pair-ar" aria-hidden="true">→</span>
+      </a>
+
+      <!-- 制作の背景 -->
+      <p class="as-h">制作の背景<span class="as-h-en">BACKGROUND</span></p>
+      <p class="as-bg">派遣の勤怠は、スタッフごと・現場ごとにバラバラの紙が集まり、転記して、集計して、提出書類に清書して……と、月末の締めが重い作業でした。数字のずれや計算ミスも起きやすいところです。<br><br>その<strong>「集計と提出書類づくり」をまるごと引き受けるのが、打刻管理です。</strong>従業員に打刻コードを配るだけで、全員の出退勤がクラウドに集約。15分丸め・休憩・残業・休日出勤・深夜まで自動計算し、勤務表から<strong>Excel／PDFの提出書類</strong>と<strong>請求算定</strong>まで一気に書き出せます。確認印欄や派遣元・派遣先の会社名にも対応しています。</p>
+
+      <!-- ② プレビュー -->
+      <p class="as-h">プレビュー<span class="as-h-en">PREVIEW</span></p>
+      <p class="pv-group-k">スマホ版<span class="pv-group-en">iPhone</span></p>
+      <div class="as-shots">
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/dakoku-kanri-ph-staff.png?v=1" alt="打刻管理アプリの従業員一覧画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>従業員とコードを一覧</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/dakoku-kanri-ph-code.png?v=1" alt="打刻管理アプリの打刻コード発行画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>打刻コードを発行</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/dakoku-kanri-ph-table.png?v=1" alt="打刻管理アプリの勤務表・集計画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>勤務表で自動集計</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/dakoku-kanri-ph-billing.png?v=1" alt="打刻管理アプリのExcel・PDF書き出し／請求算定画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>請求算定・書き出し</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/dakoku-kanri-ph-settings.png?v=1" alt="打刻管理アプリの会社名・提出先設定画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>提出先・倍率を設定</figcaption></figure>
+      </div>
+      <p class="pv-group-k">PC版<span class="pv-group-en">Desktop</span></p>
+      <div class="as-shots">
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/dakoku-kanri-pc-staff.png?v=1" alt="打刻管理アプリ PC版の従業員一覧画面" loading="lazy" width="1200" height="750"></div><figcaption>従業員とコードを一覧</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/dakoku-kanri-pc-code.png?v=1" alt="打刻管理アプリ PC版の打刻コード発行画面" loading="lazy" width="1200" height="750"></div><figcaption>打刻コードを発行</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/dakoku-kanri-pc-table.png?v=1" alt="打刻管理アプリ PC版の勤務表・集計画面" loading="lazy" width="1200" height="750"></div><figcaption>勤務表で自動集計</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/dakoku-kanri-pc-billing.png?v=1" alt="打刻管理アプリ PC版のExcel・PDF書き出し／請求算定画面" loading="lazy" width="1200" height="750"></div><figcaption>請求算定・書き出し</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/dakoku-kanri-pc-settings.png?v=1" alt="打刻管理アプリ PC版の会社名・提出先設定画面" loading="lazy" width="1200" height="750"></div><figcaption>提出先・倍率を設定</figcaption></figure>
+      </div>
+      <p class="note">実際の「打刻管理」（管理者用）の画面です。掲載データはサンプルで、実在の従業員・勤怠ではありません。</p>
+
+      <!-- ③ STAR形式の詳しい紹介 -->
+      <p class="as-h">くわしく<span class="as-h-en">STORY</span></p>
+      <div class="as-star">
+        <div class="star-row">
+          <p class="star-k">こんな場面で<span class="star-en">SITUATION</span></p>
+          <p class="star-v">複数のスタッフを複数の現場に派遣し、毎月それぞれの勤怠をまとめて提出書類にする必要がある。</p>
+        </div>
+        <div class="star-row">
+          <p class="star-k">困っていたこと<span class="star-en">TASK</span></p>
+          <p class="star-v">紙の集計・転記でミスが起きやすく、締めのたびに時間が溶ける。請求のための計算も手作業になりがち。</p>
+        </div>
+        <div class="star-row">
+          <p class="star-k">アプリがすること<span class="star-en">ACTION</span></p>
+          <p class="star-v">従業員に<strong>コードを配るだけ</strong>で打刻がクラウドに集約。勤務表を自動集計し、<strong>提出書類（Excel／PDF）</strong>と請求算定まで書き出せます。確認印・派遣元／派遣先の会社名にも対応。</p>
+        </div>
+        <div class="star-row is-result">
+          <p class="star-k">こう変わる<span class="star-en">RESULT</span></p>
+          <p class="star-v">転記も清書もゼロに。締めが「選んで書き出す」だけになり、提出までの時間が大きく縮む。（※ここには実際の声・成果が入ります）</p>
+        </div>
+      </div>
+
+      <!-- 情報 -->
+      <p class="as-h">情報<span class="as-h-en">INFORMATION</span></p>
+      <div class="panel">
+        <div class="dl">
+          <div class="dl-row"><div class="dl-k">制作</div><div class="dl-v">つみき</div></div>
+          <div class="dl-row"><div class="dl-k">カテゴリ</div><div class="dl-v">勤怠管理（派遣・管理者用）</div></div>
+          <div class="dl-row"><div class="dl-k">形式</div><div class="dl-v">ブラウザで動くアプリ（インストール不要）。<strong>管理者用</strong>＋クラウド共有</div></div>
+          <div class="dl-row"><div class="dl-k">対になるアプリ</div><div class="dl-v"><a data-go="app-dakoku" href="#">打刻（労働者用）</a>で現場から打刻</div></div>
+          <div class="dl-row"><div class="dl-k">お渡し</div><div class="dl-v">プロダクトキー（合言葉）で解錠してお使いいただけます</div></div>
+          <div class="dl-row"><div class="dl-k">本体</div><div class="dl-v"><a href="https://tools.tsumiki-apps.com/dakoku-kanri.html" target="_blank" rel="noopener">dakoku-kanri.html（管理者）</a></div></div>
         </div>
       </div>
 
@@ -2405,7 +2519,7 @@
     const childToGroup = {   // 子シート → 属する親カテゴリー
       features:'service', value:'service', compare:'service', issues:'service', process:'service', pricing:'service',
       flagship:'works', 'flagship-itsutsu':'works', 'flagship-koegaki':'works',
-      collection:'works', 'app-kouban':'works', 'app-mazeiro':'works', 'app-credit':'works', 'app-dakoku':'works', voice:'works',
+      collection:'works', 'app-kouban':'works', 'app-mazeiro':'works', 'app-credit':'works', 'app-dakoku':'works', 'app-dakoku-kanri':'works', voice:'works',
       profile:'contact', company:'contact', hearing:'contact', privacy:'contact'
     };
 
@@ -2417,7 +2531,7 @@
       b.toggle('chrome-hidden', id === 'intro' || id === 'brand'); // トップバーを隠す
       b.toggle('on-dark', id === 'menu');                          // 墨背景ではトップバーを白に
       b.toggle('on-sheet', isSheet(id));                           // 子シートでは戻るボタンを出す
-      b.toggle('calm', id === 'flagship-itsutsu' || id === 'flagship-koegaki' || id === 'app-kouban' || id === 'app-mazeiro' || id === 'app-credit' || id === 'app-dakoku'); // アプリ詳細は動く墨を止めて紙色に
+      b.toggle('calm', id === 'flagship-itsutsu' || id === 'flagship-koegaki' || id === 'app-kouban' || id === 'app-mazeiro' || id === 'app-credit' || id === 'app-dakoku' || id === 'app-dakoku-kanri'); // アプリ詳細は動く墨を止めて紙色に
     }
 
     function go(id, dir){
