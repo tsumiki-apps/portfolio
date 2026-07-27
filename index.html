@@ -2560,8 +2560,9 @@
       if (id === 'menu' && window.__closeGroups) window.__closeGroups();  // 戻ってきたら分岐は畳む
       setTimeout(()=>{ animating = false; }, 820);
       current = id;
-      // 履歴に積む（端スワイプ／ブラウザの戻るで1画面戻れるように）。戻る操作中は積まない
-      if (!popNav){ try{ history.pushState({screen:id}, ''); }catch(_){} }
+      // 履歴に積む（端スワイプ／ブラウザの戻るで1画面戻れるように）。戻る操作中は積まない。
+      // URL のハッシュに現在画面を残すことで、リロードしても同じページを復元できる（入口は素のURL）。
+      if (!popNav){ try{ history.pushState({screen:id}, '', id === 'intro' ? location.pathname : '#'+id); }catch(_){} }
     }
     window.__go = go;
     applyChrome('intro');
@@ -2657,6 +2658,43 @@
     window.addEventListener('keydown', e=>{
       if (e.key === 'Escape' && current !== 'intro') go('menu');
     });
+
+    /* ===== リロード復元：URL ハッシュに対応する画面を、入口アニメを飛ばして直接表示 =====
+       go() が履歴にハッシュ（#pricing など）を残すので、読み込み時にそれを読んで復元する。
+       これで「開いていたページでリロード → そのページのまま」になる。 */
+    function applyInkScreen(id){
+      // InkFluid はこの時点で未ロード（ink-fluid.js は後ろの <script> で読み込まれる）。
+      // 準備でき次第、モード（墨の背景）をその画面に合わせる。本体には手を入れない。
+      if (window.InkFluid){ window.InkFluid.setScreen(id); return; }
+      let n = 0;
+      const t = setInterval(()=>{
+        if (window.InkFluid){ window.InkFluid.setScreen(id); clearInterval(t); }
+        else if (++n > 120){ clearInterval(t); }
+      }, 30);
+    }
+    (function restoreFromHash(){
+      let id = '';
+      try { id = decodeURIComponent((location.hash || '').replace(/^#/, '')); } catch(_){}
+      if (!id || id === 'intro' || !screens[id]){
+        // ハッシュなし＝通常の入口。初期状態を履歴に記録しておく（最初の戻るで state を持てるように）
+        try { history.replaceState({screen: current}, '', location.pathname); } catch(_){}
+        return;
+      }
+      entered = true;                                   // 入口の自動遷移（cascade）を止める
+      screens['intro'].classList.remove('is-active');
+      screens[id].classList.add('is-active');           // MutationObserver がタイプライタ演出を起動
+      applyChrome(id);
+      if (isSheet(id)) screens[id].scrollTop = 0;
+      if (id === 'menu' && window.__closeGroups) window.__closeGroups();
+      current = id;
+      applyInkScreen(id);
+      // 戻る操作の土台を用意：子シートならメニュー、それ以外は入口を1つ下に積む
+      const base = childToGroup[id] ? 'menu' : 'intro';
+      try {
+        history.replaceState({screen: base}, '', base === 'intro' ? location.pathname : '#'+base);
+        history.pushState({screen: id}, '', '#'+id);
+      } catch(_){}
+    })();
   })();
 </script>
 <script>
