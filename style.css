@@ -904,6 +904,13 @@ body.on-dark .tb-brand{color:#F4F2EE;
 /* 1枚だけのときはフレーム幅にフィット（横スクロールの帯にしない） */
 .as-shots-solo .as-shot{width:auto;}
 
+/* 書き出したPDF提出書類：スマホ枠でなく「書類そのもの」の縦長シートで見せる */
+.as-shot.as-shot-doc{width:auto; max-width:100%;}
+.pv.pv-doc{width:min(520px, 84vw); height:auto; aspect-ratio:794 / 956;
+  border-radius:8px; background:#fff;}
+.pv.pv-doc::before{display:none;}                 /* 擬似ノッチを消す */
+.pv.pv-doc .pv-img{object-fit:contain; object-position:top center;}
+
 /* PC版プレビュー：横長フレーム（ブラウザ窓風）。既存 .pv/.as-shot より後に定義されるため、
    確実に上書きできるよう詳細度を .pv.pv-pc で一段上げる */
 .as-shot.as-shot-pc{width:280px;}
