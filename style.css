@@ -910,6 +910,7 @@ body.on-dark .tb-brand{color:#F4F2EE;
   border-radius:8px; background:#fff;}
 .pv.pv-doc::before{display:none;}                 /* 擬似ノッチを消す */
 .pv.pv-doc .pv-img{object-fit:contain; object-position:top center;}
+.pv.pv-doc.pv-doc-kouban{aspect-ratio:794 / 878;} /* 香盤PDFは午前・午後の2枠ぶんで少し縦が短い */
 
 /* PC版プレビュー：横長フレーム（ブラウザ窓風）。既存 .pv/.as-shot より後に定義されるため、
    確実に上書きできるよう詳細度を .pv.pv-pc で一段上げる */
