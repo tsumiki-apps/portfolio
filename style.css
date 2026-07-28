@@ -615,6 +615,13 @@ body.on-dark .tb-brand{color:#F4F2EE;
 .pc-num{font-size:30px; font-weight:700; letter-spacing:.01em; margin-right:1px;}
 .pc-from{font-size:15px; margin-left:2px;}
 .pc-term{font-size:11.5px; color:var(--sub); margin-top:8px; padding-top:9px; border-top:1px solid var(--line);}
+/* 個人向けは補助的な扱い。メインの法人料金より控えめ・小さく */
+.price-card.is-mini{padding:12px 14px; text-align:left;}
+.price-card.is-mini .pc-head{display:flex; align-items:baseline; justify-content:space-between; gap:10px;}
+.price-card.is-mini .pc-name{font-size:12.5px;}
+.price-card.is-mini .pc-amt{margin-top:0; font-size:12px; white-space:nowrap;}
+.price-card.is-mini .pc-num{font-size:16px;}
+.price-card.is-mini .pc-sub{margin-top:7px; font-size:11px;}
 
 /* FAQ */
 .faq-row{padding:14px 0; border-top:1px solid var(--line);}
@@ -1392,6 +1399,11 @@ footer.foot{
   .pc-amt, .pc-from{font-size:15px;}
   .pc-sub{font-size:12.5px;}
   .pc-term, .as-badge, .tl-dur{font-size:13px;}
+  /* 個人向けミニカードはデスクトップでも控えめに */
+  .price-card.is-mini .pc-name{font-size:13.5px;}
+  .price-card.is-mini .pc-amt{font-size:13px;}
+  .price-card.is-mini .pc-num{font-size:18px;}
+  .price-card.is-mini .pc-sub{font-size:12px;}
 
   /* 申込フォーム */
   .hf-label{font-size:15px;}
