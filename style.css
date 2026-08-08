@@ -1157,11 +1157,18 @@ body.on-dark .tb-brand{color:#F4F2EE;
    中央寄せなのは、左寄せだと右だけ35px空いて崩れて見えるため。
    ⚠️ 幅を変えるときは tools/make_app_covers.py の W_COVER も同じ比率で変える
       （画像の解像度を据え置くと、画面上の文字まで一緒に縮む） */
+.as-cover picture{display:block;}
 .as-cover img{display:block; width:100%; max-width:300px; height:auto; margin:0 auto;
   border:1px solid var(--line); border-radius:var(--radius);}
-/* PCは左寄せ。容器860pxの中で380pxを中央に置くと左右に240pxずつ空いて、
-   左揃えの本文から切り離されて見える。スマホは余白が左右18pxずつなので中央のままでよい */
+/* 3段に分ける。⚠️ index.html の <source media> と必ずそろえること（760px）
+   ①〜480px    縦長版 300px・中央寄せ
+   ②481〜759px 縦長版 380px・左寄せ（容器が440〜720pxしかなく、ここで横長版に
+                すると画像内の要点が8〜11pxまで潰れる。横長版は容器660px以上から）
+   ③760px〜    横長版 cover-*-wide.png（2150x517・見出し左／要点右）を容器いっぱいに。
+                縦長版(960幅)を伸ばしているのではない。伸ばすと画像内の見出しが50pxになり
+                ページ最大の .as-name 26px を超えて浮くため、別レイアウトで作ってある */
 @media(min-width:481px){ .as-cover img{max-width:380px; margin-left:0;} }
+@media(min-width:760px){ .as-cover img{max-width:100%;} }
 /* 節の冒頭に置く版（料金ページ）。リード文のすぐ下なので上の間隔を詰める */
 .as-cover.is-opener{margin-top:16px;}
 

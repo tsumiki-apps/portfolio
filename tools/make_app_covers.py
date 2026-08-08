@@ -54,6 +54,11 @@ from PIL import Image, ImageDraw, ImageFont
 # そうしないと画面上の文字まで一緒に小さくなる（画像内の文字サイズは据え置きでよい）。
 W_COVER = 960              # 描画 スマホ300px / PC380px → 倍率 0.313 / 0.396
 W_STRIP = 1080             # 帯はカード幅いっぱい。描画 スマホ306px / PC390px → 0.283 / 0.361
+W_WIDE = 2150              # PC用の横長版。描画 860px（容器いっぱい）→ 倍率 0.400
+#   ↑ PCで全幅に使いたいが、960幅の画像を860pxに伸ばすと画像内の見出しが50pxになり
+#     ページ最大の .as-name 26px を大きく超える。そこで「同じ文字サイズのまま横に広い」
+#     別画像を用意し、<picture> で481px以上のときだけ差し替える。
+#     2150 = 40(要点) x 860 / 16(PC本文16pxに合わせる) から逆算した値。
 S = 2                      # 2倍でレンダ→縮小（文字を締める）
 
 # 画像内のフォントサイズ。右のコメントが iPhone375px での実効サイズ＝これが正。
@@ -164,6 +169,60 @@ def strip(slug, kicker, head):
     save(im, W, HS, os.path.join(OUT, f"strip-{slug}.png"))
 
 
+def cover_wide(slug, kicker, head, bullets):
+    """PC用の横長版（2150 x 約520）。860pxに描画され、容器の幅いっぱいを使う。
+
+    縦長版をそのまま伸ばすと文字が大きくなりすぎるので、**同じ文字サイズのまま
+    横に広い**別レイアウトにしてある。空いた横を埋めるため、見出しと要点を2段組に
+    （左＝キッカー＋見出し＋罫線／右＝要点）。高さは縦長版とほぼ同じに収まる。
+    """
+    W = W_WIDE
+    M = 100 * S
+    COL2 = 1150 * S                            # 右列（要点）の開始x
+    KICK_TOP, HEAD_TOP, HEAD_STEP = 70, 175, 78
+    LINE_H, GAP = 52, 16
+
+    probe = ImageDraw.Draw(Image.new("RGB", (10, 10)))
+    bf = f(FONT_BODY, COVER_BODY)
+    # 右列の幅は 2050-1150=900。要点が長くても折り返せる
+    bullet_lines = [wrap(probe, b, bf, (2050 * S) - COL2 - 34 * S) for b in bullets]
+    body_end = HEAD_TOP + sum(len(ls) * LINE_H + GAP for ls in bullet_lines)
+    left_end = HEAD_TOP + HEAD_STEP * len(head) + 16 + 24
+    H = max(body_end, left_end) + 70
+
+    im = Image.new("RGB", (W * S, H * S), PAPER)
+    d = ImageDraw.Draw(im)
+
+    # 積み木は右下の隅。要点の右端(最長でx≈1910)より外側の1980以降に置くこと
+    big = logo(200 * S, stroke="#E7E3DB", sw=3.6)
+    im.paste(big, (W * S - big.width + 30 * S, H * S - big.height + 25 * S), big)
+
+    kf = f(FONT_BODB, COVER_KICK)
+    kw = d.textlength(kicker, font=kf)
+    d.rectangle([M, KICK_TOP * S, M + kw + 28 * S, (KICK_TOP + 54) * S], fill=INK)
+    d.text((M + 14 * S, (KICK_TOP + 10) * S), kicker, font=kf, fill=PAPER)
+
+    y = HEAD_TOP * S
+    hf = f(FONT_DISP, COVER_HEAD)
+    for ln in head:
+        d.text((M, y), ln, font=hf, fill=INK)
+        y += HEAD_STEP * S
+    rule_y = HEAD_TOP + HEAD_STEP * len(head) + 16
+    d.line([M, rule_y * S, M + 200 * S, rule_y * S], fill=LINE, width=2 * S)
+
+    y = HEAD_TOP * S
+    for lines in bullet_lines:
+        for i, ln in enumerate(lines):
+            if i == 0:
+                d.ellipse([COL2 + 3 * S, y + 17 * S, COL2 + 15 * S, y + 29 * S], fill=GHOST)
+            d.text((COL2 + 34 * S, y), ln, font=bf, fill=SUB)
+            y += LINE_H * S
+        y += GAP * S
+
+    os.makedirs(OUT, exist_ok=True)
+    save(im, W, H, os.path.join(OUT, f"cover-{slug}-wide.png"))
+
+
 def cover(slug, kicker, head, bullets):
     """詳細ページ先頭の要約カバー。描画は スマホ300x約203px / PC380x約257px。
 
@@ -226,6 +285,7 @@ def cover(slug, kicker, head, bullets):
 
     os.makedirs(OUT, exist_ok=True)
     save(im, W, H, os.path.join(OUT, f"cover-{slug}.png"))
+    cover_wide(slug, kicker, head, bullets)      # PC用の横長版も同時に作る
 
 
 # ---------------------------------------------------------------- 詳細ページの要約カバー
@@ -323,9 +383,11 @@ def sync_html():
         fixed += 1
         return f'{head}{fname}{mid}width="{nw}" height="{nh}"{tail}'
 
-    html = re.sub(
-        r'(src="assets/covers/)([\w-]+\.png)(\?v=\d+"\s*\n?\s*)width="(\d+)" height="(\d+)"()',
-        repl, html)
+    # <img src=...> と <picture> の <source srcset=...> の両方をそろえる
+    for attr in ("src", "srcset"):
+        html = re.sub(
+            rf'({attr}="assets/covers/)([\w-]+\.png)(\?v=\d+"\s*\n?\s*)width="(\d+)" height="(\d+)"()',
+            repl, html)
     if fixed:
         open(path, "w", encoding="utf-8").write(html)
     print(f"index.html の width/height を {fixed} 箇所そろえた")
