@@ -50,7 +50,10 @@ import os
 import cairosvg
 from PIL import Image, ImageDraw, ImageFont
 
-W = 1080                   # 横幅（固定）。縦は中身の行数から自動で決まる
+# 横解像度。**描画幅を縮めるときは、ここも同じ比率で縮める**こと。
+# そうしないと画面上の文字まで一緒に小さくなる（画像内の文字サイズは据え置きでよい）。
+W_COVER = 960              # 描画 スマホ300px / PC380px → 倍率 0.313 / 0.396
+W_STRIP = 1080             # 帯はカード幅いっぱい。描画 スマホ306px / PC390px → 0.283 / 0.361
 S = 2                      # 2倍でレンダ→縮小（文字を締める）
 
 # 画像内のフォントサイズ。右のコメントが iPhone375px での実効サイズ＝これが正。
@@ -124,7 +127,7 @@ def wrap(draw, text, font, max_w):
     return lines
 
 
-def save(im, H, path):
+def save(im, W, H, path):
     flat = im.resize((W, H), Image.LANCZOS)
     flat = flat.convert("P", palette=Image.ADAPTIVE, colors=128)  # 3色設計なので減色で劣化しない
     flat.save(path, "PNG", optimize=True)
@@ -132,45 +135,49 @@ def save(im, H, path):
 
 
 def strip(slug, kicker, head):
-    """一覧カード用の帯（1080x336）。iPhone375px で 306x95 に描画される。
+    """一覧カード用の帯（1080x270）。iPhone375px で 306x76 に描画される。
 
     一覧の仕事は「explanation」ではなく「recognition」なので、要点は載せない。
     キッカーと見出しだけ。載せると下の1行説明と重複するうえ、カードが縦に伸びて
     一覧が一覧でなくなる。
     """
-    HS = 336
-    M = 64 * S
+    W, HS = W_STRIP, 270
+    M = 60 * S
     im = Image.new("RGB", (W * S, HS * S), PAPER)
     d = ImageDraw.Draw(im)
 
-    big = logo(230 * S, stroke="#E7E3DB", sw=3.6)
-    im.paste(big, (W * S - big.width + 30 * S, HS * S - big.height + 26 * S), big)
+    big = logo(190 * S, stroke="#E7E3DB", sw=3.8)
+    im.paste(big, (W * S - big.width + 24 * S, HS * S - big.height + 20 * S), big)
 
     kf = f(FONT_BODB, STRIP_KICK)
     kw = d.textlength(kicker, font=kf)
-    d.rectangle([M, 48 * S, M + kw + 26 * S, 48 * S + 52 * S], fill=INK)
-    d.text((M + 13 * S, 58 * S), kicker, font=kf, fill=PAPER)
+    d.rectangle([M, 34 * S, M + kw + 26 * S, 34 * S + 50 * S], fill=INK)
+    d.text((M + 13 * S, 43 * S), kicker, font=kf, fill=PAPER)
 
-    y = 136 * S
+    y = 108 * S
     hf = f(FONT_DISP, STRIP_HEAD)
     for ln in head:
         d.text((M, y), ln, font=hf, fill=INK)
-        y += 70 * S
+        y += 66 * S
 
     os.makedirs(OUT, exist_ok=True)
-    save(im, HS, os.path.join(OUT, f"strip-{slug}.png"))
+    save(im, W, HS, os.path.join(OUT, f"strip-{slug}.png"))
 
 
 def cover(slug, kicker, head, bullets):
-    """詳細ページ先頭の要約カバー。iPhone375px で 335 x 約233px に描画される。
+    """詳細ページ先頭の要約カバー。描画は スマホ300x約203px / PC380x約257px。
 
-    ロゴ・アプリ名・URL は入れない（冒頭の「入れていないもの」参照）。そのぶん
-    縦が 1154 → 750前後 まで縮み、ページの中で浮かなくなる。
+    ロゴ・アプリ名・URL は入れない（冒頭の「入れていないもの」参照）。
+    横解像度を 1080→960 にしてあるのは、描画幅を 335→300px に縮めても
+    画面上の文字サイズが変わらないようにするため（倍率 0.310→0.313 でほぼ同じ）。
     """
-    M = 72 * S
-    right = (W - 72) * S
-    KICK_TOP, HEAD_TOP, HEAD_STEP = 64, 168, 78
-    LINE_H, GAP = 56, 20                       # 要点の行送りと項目間
+    W = W_COVER
+    M = 64 * S
+    right = (W - 64) * S
+    # ⚠️ 横解像度だけ縮めても高さは縮まない（縦横比が縦長になって相殺される）。
+    #    小さくしたいときは、この縦の数値も一緒に詰めること。
+    KICK_TOP, HEAD_TOP, HEAD_STEP = 48, 138, 72
+    LINE_H, GAP = 52, 16                       # 要点の行送りと項目間
 
     if len(head) > 2:
         raise ValueError(f"{slug}: 見出しは2行まで（ページの見出し階層を超える）")
@@ -179,22 +186,23 @@ def cover(slug, kicker, head, bullets):
     probe = ImageDraw.Draw(Image.new("RGB", (10, 10)))
     bf = f(FONT_BODY, COVER_BODY)
     bullet_lines = [wrap(probe, b, bf, right - M - 34 * S) for b in bullets]
-    rule_y = HEAD_TOP + HEAD_STEP * len(head) + 20
-    bullets_top = rule_y + 44
-    H = bullets_top + sum(len(ls) * LINE_H + GAP for ls in bullet_lines) + 56
+    rule_y = HEAD_TOP + HEAD_STEP * len(head) + 16
+    bullets_top = rule_y + 36
+    H = bullets_top + sum(len(ls) * LINE_H + GAP for ls in bullet_lines) + 44
 
     im = Image.new("RGB", (W * S, H * S), PAPER)
     d = ImageDraw.Draw(im)
 
     # 右下の余白に淡い積み木（紙の質感の代わり）
-    big = logo(300 * S, stroke="#E7E3DB", sw=3.4)
-    im.paste(big, (W * S - big.width + 40 * S, H * S - big.height + 34 * S), big)
+    # ⚠️ 縦を詰めたぶん要点の最終行に近づく。積み木は右下の隅へ逃がすこと
+    big = logo(210 * S, stroke="#E7E3DB", sw=3.6)
+    im.paste(big, (W * S - big.width + 55 * S, H * S - big.height + 45 * S), big)
 
     # キッカー（黒地の小さなラベル）
     kf = f(FONT_BODB, COVER_KICK)
     kw = d.textlength(kicker, font=kf)
-    d.rectangle([M, KICK_TOP * S, M + kw + 28 * S, (KICK_TOP + 58) * S], fill=INK)
-    d.text((M + 14 * S, (KICK_TOP + 12) * S), kicker, font=kf, fill=PAPER)
+    d.rectangle([M, KICK_TOP * S, M + kw + 28 * S, (KICK_TOP + 54) * S], fill=INK)
+    d.text((M + 14 * S, (KICK_TOP + 10) * S), kicker, font=kf, fill=PAPER)
 
     # 見出し（A1ゴシック・最大2行）
     y = HEAD_TOP * S
@@ -211,13 +219,13 @@ def cover(slug, kicker, head, bullets):
     for lines in bullet_lines:
         for i, ln in enumerate(lines):
             if i == 0:
-                d.ellipse([M + 3 * S, y + 19 * S, M + 15 * S, y + 31 * S], fill=GHOST)
+                d.ellipse([M + 3 * S, y + 17 * S, M + 15 * S, y + 29 * S], fill=GHOST)
             d.text((M + indent, y), ln, font=bf, fill=SUB)
             y += LINE_H * S
         y += GAP * S
 
     os.makedirs(OUT, exist_ok=True)
-    save(im, H, os.path.join(OUT, f"cover-{slug}.png"))
+    save(im, W, H, os.path.join(OUT, f"cover-{slug}.png"))
 
 
 # ---------------------------------------------------------------- 詳細ページの要約カバー
@@ -248,7 +256,7 @@ cover("credit", "経理・家計／明細の自動集計",
 cover("dakoku", "人材派遣／勤怠・労働者用",
       ["出勤と退勤を、", "大きなボタンでタップ"],
       ["打刻はタップ1回。紙のシートが不要",
-       "自分の勤務記録と月の合計をその場で確認",
+       "勤務記録と月の合計をその場で確認",
        "交通費・定期もそのまま残せる",
        "打刻はクラウドで会社と共有される"])
 
@@ -269,7 +277,7 @@ cover("itsutsu", "iOSアプリ／動画日記",
 
 cover("koegaki", "iOSキーボード／音声入力",
       ["話すだけで、", "整った文章になる"],
-      ["キーボードのマイクをタップして話すだけ",
+      ["マイクをタップして話すだけ",
        "AIがフィラーを消し、句読点を整える",
        "音声もAIの整形も、端末の外に出ない",
        "機内モードでも動く。月額なし"])
