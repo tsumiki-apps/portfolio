@@ -100,6 +100,44 @@ def wrap(draw, text, font, max_w):
     return lines
 
 
+def save(im, H, path):
+    flat = im.resize((W, H), Image.LANCZOS)
+    flat = flat.convert("P", palette=Image.ADAPTIVE, colors=128)  # 3色設計なので減色で劣化しない
+    flat.save(path, "PNG", optimize=True)
+    print(f"✓ {path}  {W}x{H}  ({os.path.getsize(path) // 1024} KB)")
+
+
+def strip(slug, kicker, head):
+    """一覧カード用の帯（1080x432＝5:2）。
+
+    一覧の仕事は「explanation」ではなく「recognition」なので、要点は載せない。
+    キッカーと見出しだけ。載せると下の1行説明と重複するうえ、カードが縦に伸びて
+    一覧が一覧でなくなる。ロゴとURLも省く（自分のサイトの中なので不要）。
+    """
+    HS = 432
+    M = 76 * S
+    im = Image.new("RGB", (W * S, HS * S), PAPER)
+    d = ImageDraw.Draw(im)
+
+    big = logo(300 * S, stroke="#E7E3DB", sw=3.4)
+    im.paste(big, (W * S - big.width + 40 * S, HS * S - big.height + 34 * S), big)
+
+    kf = f(FONT_BODB, 22)
+    kw = d.textlength(kicker, font=kf)
+    d.rectangle([M, 62 * S, M + kw + 32 * S, 62 * S + 50 * S], fill=INK)
+    d.text((M + 16 * S, 72 * S), kicker, font=kf, fill=PAPER)
+
+    y = 158 * S
+    hf = f(FONT_DISP, 65)
+    for ln in head:
+        d.text((M, y), ln, font=hf, fill=INK)
+        y += 90 * S
+
+    os.makedirs(OUT, exist_ok=True)
+    path = os.path.join(OUT, f"strip-{slug}.png")
+    save(im, HS, path)
+
+
 def cover(slug, kicker, appname, head, bullets):
     M = 88 * S
     right = (W - 88) * S
@@ -134,8 +172,9 @@ def cover(slug, kicker, appname, head, bullets):
     d.rectangle([M, 200 * S, M + kw + 32 * S, 200 * S + 50 * S], fill=INK)
     d.text((M + 16 * S, 210 * S), kicker, font=kf, fill=PAPER)
 
-    # アプリ名
-    d.text((M, 288 * S), appname, font=f(FONT_BODB, 30), fill=SUB)
+    # アプリ名（料金バナーのように名前が無い版では空文字を渡す）
+    if appname:
+        d.text((M, 288 * S), appname, font=f(FONT_BODB, 30), fill=SUB)
 
     # 見出し（A1ゴシック・最大2行）
     y = 366 * S
@@ -163,14 +202,10 @@ def cover(slug, kicker, appname, head, bullets):
     d.text((M, (H - 110) * S), "tsumiki-apps.com", font=f(FONT_NUM, 30), fill=GHOST)
 
     os.makedirs(OUT, exist_ok=True)
-    path = os.path.join(OUT, f"cover-{slug}.png")
-    flat = im.resize((W, H), Image.LANCZOS)
-    flat = flat.convert("P", palette=Image.ADAPTIVE, colors=128)  # 3色設計なので減色で劣化しない
-    flat.save(path, "PNG", optimize=True)
-    print(f"✓ {path}  ({os.path.getsize(path) // 1024} KB)")
+    save(im, H, os.path.join(OUT, f"cover-{slug}.png"))
 
 
-# ---------------------------------------------------------------- 5枚
+# ---------------------------------------------------------------- 詳細ページの要約カバー
 # 文言はサイト本文とランサーズ ポートフォリオ（本人承認済み）から起こしている。
 # 事実でないことは書かないこと。
 
@@ -208,3 +243,38 @@ cover("dakoku-kanri", "人材派遣／勤怠・管理者用", "打刻管理",
        "全員の打刻が集まり、月度で自動集計",
        "勤怠管理表をExcel・PDFで書き出し",
        "請求算定まで、そのまま通る"])
+
+# 看板プロダクト（趣味で制作したiOSアプリ2本）
+cover("itsutsu", "iOSアプリ／動画日記", "いつつ",
+      ["1日に5回、各2秒。", "夜、1本の動画になる"],
+      ["撮るのは1回2秒。身構えずに済む",
+       "5つ撮ると、今日が満ちる",
+       "夜に自動で1本（最大10秒）に連結",
+       "文字のない、モノクロの動画日記"])
+
+cover("koegaki", "iOSキーボード／音声入力", "こえがき",
+      ["話すだけで、", "整った文章になる"],
+      ["キーボードのマイクをタップして話すだけ",
+       "AIがフィラーを消し、句読点を整える",
+       "音声もAIの整形も、端末の外に出ない",
+       "機内モードでも動く。月額なし"])
+
+# 料金ページの先頭バナー
+# ⚠️ 金額は入れないこと。入れると値段を直すたびに画像の再生成が要るうえ、
+#    Google検索にも出ない数字が公開ページの一次情報になってしまう。約束だけを載せる。
+cover("pricing", "料金について", "",
+      ["金額は、あとから", "膨らみません。"],
+      ["ヒアリングとお見積りは無料です",
+       "着手後、金額は変わりません",
+       "月額の縛りなし。やめても動きます",
+       "ソースコード一式をお渡しします"])
+
+
+# ---------------------------------------------------------------- 一覧カード用の帯
+strip("kouban", "舞台・稽古／スケジュール", ["欠席者を選ぶだけで", "「今日できる場面」が出る"])
+strip("mazeiro", "美容室／ヘアカラー配合", ["レシピの比率から、", "必要なグラムを即計算"])
+strip("credit", "経理・家計／明細の自動集計", ["明細CSVを読むだけで、", "カテゴリ別に自動集計"])
+strip("dakoku", "人材派遣／勤怠・労働者用", ["出勤と退勤を、", "大きなボタンでタップ"])
+strip("dakoku-kanri", "人材派遣／勤怠・管理者用", ["現場の打刻から、", "請求算定まで一本に"])
+strip("itsutsu", "iOSアプリ／動画日記", ["1日に5回、各2秒。", "夜、1本の動画になる"])
+strip("koegaki", "iOSキーボード／音声入力", ["話すだけで、", "整った文章になる"])
