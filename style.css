@@ -622,6 +622,23 @@ body.on-dark .tb-brand{color:#F4F2EE;
 .price-card.is-mini .pc-amt{margin-top:0; font-size:12px; white-space:nowrap;}
 .price-card.is-mini .pc-num{font-size:16px;}
 .price-card.is-mini .pc-sub{margin-top:7px; font-size:11px;}
+.price-card.is-mini .pc-sub a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ghost);}
+/* 総額レンジ表示（15〜45万円）。数字2つ＋波ダッシュが375pxの半幅カードに収まるよう1段落とす */
+.pc-amt.is-range .pc-num{font-size:23px;}
+.pc-tilde{font-size:14px; color:var(--sub); margin:0 1px;}
+
+/* オプション料金表（名前｜金額＋追加日数） */
+.opt{display:flex; flex-direction:column;}
+.opt-row{display:grid; grid-template-columns:1fr auto; gap:12px; align-items:baseline;
+  padding:12px 0; border-top:1px solid var(--line);}
+.opt-row:first-child{border-top:none; padding-top:0;}
+.opt-n{font-size:13.5px; line-height:1.7; color:#3a3833;}
+.opt-p{font-size:13.5px; font-weight:700; color:var(--ink); text-align:right; white-space:nowrap;}
+.opt-d{display:block; margin-top:2px; font-size:11px; font-weight:400; color:var(--sub);}
+
+/* 見出し直下の補足リード（h3 と本文のあいだ） */
+.sheet-sub{margin-top:10px; font-size:13px; line-height:1.85; color:var(--sub);}
+.sheet-sub strong{font-weight:700; color:var(--ink);}
 
 /* FAQ */
 .faq-row{padding:14px 0; border-top:1px solid var(--line);}

@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=81">
+<link rel="stylesheet" href="style.css?v=82">
 <link rel="icon" type="image/png" href="icons/icon-index.png?v=2">
 <link rel="apple-touch-icon" href="icons/icon-index.png?v=2">
 <meta name="apple-mobile-web-app-title" content="つみき">
@@ -1520,7 +1520,7 @@
       <div class="panel">
         <div class="dl">
           <div class="dl-row"><div class="dl-k">サービス</div><div class="dl-v">業務内容を伺ったうえで制作する、オーダーメイドの専用アプリ。</div></div>
-          <div class="dl-row"><div class="dl-k">料金</div><div class="dl-v">内容により個別お見積り（個人向けは要相談、法人向けは15万円〜が目安）。<strong>初回ヒアリング・お見積りは無料</strong>で、ご納得いただいてから着手します。→ 詳しくは <a data-go="pricing" href="#">料金・進行イメージ</a></div></div>
+          <div class="dl-row"><div class="dl-k">料金</div><div class="dl-v">個人向けは要相談。法人向けは<strong>総額</strong>で、小規模15〜45万円／本格的なもの40〜60万円が目安です（すでにあるアプリをそのまま導入するなら一律5万円）。<strong>初回ヒアリング・お見積りは無料</strong>で、ご納得いただいてから着手します。→ 詳しくは <a data-go="pricing" href="#">料金・進行イメージ</a></div></div>
           <div class="dl-row"><div class="dl-k">お支払い</div><div class="dl-v">条件はお見積りに明記します。着手後に金額が変わることはありません。</div></div>
           <div class="dl-row"><div class="dl-k">納品物</div><div class="dl-v">アプリ本体（あなた専用・鍵つき）と、簡単な説明資料。※ソースコードのお渡し（買い取り・著作権譲渡）は、ご希望に応じて別途ご相談に応じます。</div></div>
           <div class="dl-row"><div class="dl-k">キャンセル</div><div class="dl-v">ヒアリング・お見積りの段階での終了は、費用は一切かかりません。着手後の取り扱いは、お見積り・ご契約時に個別に定めます。</div></div>
@@ -1793,7 +1793,7 @@
             <div class="fs-head"><svg class="ico" aria-hidden="true"><use href="#ico-build"/></svg><div class="fs-jp">小さく作って、見ていただく</div></div>
             <div class="fs-desc">いきなり完成させません。まず動く形をお見せします。触って違和感があれば、その都度直します。</div>
             <div class="fs-meta">
-              <div class="fs-item"><span class="fs-k">期間</span><span class="fs-v">小規模なら2〜3週間／本格的なものは1〜2か月</span></div>
+              <div class="fs-item"><span class="fs-k">期間</span><span class="fs-v">小規模なら2〜4週間／本格的なものは1〜2か月</span></div>
               <div class="fs-item"><span class="fs-k">お願いすること</span><span class="fs-v">触って、感想をいただくだけ。</span></div>
             </div>
           </div>
@@ -1815,10 +1815,10 @@
       <div class="panel">
         <div class="tl">
           <div class="tl-row">
-            <div class="tl-lbl"><span class="tl-name">小規模</span><span class="tl-dur">約2〜3週間</span></div>
+            <div class="tl-lbl"><span class="tl-name">小規模</span><span class="tl-dur">約2〜4週間</span></div>
             <div class="tl-track">
               <div class="tl-bar" style="left:0;width:25%"></div>
-              <div class="tl-bar is-range" style="left:25%;width:12.5%"></div>
+              <div class="tl-bar is-range" style="left:25%;width:25%"></div>
             </div>
           </div>
           <div class="tl-row">
@@ -1846,9 +1846,9 @@
   <section class="screen sheet" id="s-pricing" data-screen="pricing">
     <div class="sheet-inner">
       <p class="sheet-label"><span class="sl-jp">料金・進行イメージ</span><span class="sl-en">PRICING</span></p>
-      <p class="sheet-lead">初回のヒアリングは無料です。制作費は、作るものの規模で決まります。</p>
+      <p class="sheet-lead">金額は、あとから膨らみません。下の目安は「これ一式でいくらか」という<strong>総額</strong>です。ヒアリングとお見積りは無料です。</p>
 
-      <p class="h3">料金の目安<span class="h3-en">FROM</span></p>
+      <p class="h3">料金の目安（総額）<span class="h3-en">TOTAL COST</span></p>
 
       <p class="price-group">個人のみなさま<span class="pg-en">FOR INDIVIDUALS</span></p>
       <div class="price-grid one">
@@ -1862,24 +1862,84 @@
       </div>
 
       <p class="price-group">法人のみなさま<span class="pg-en">FOR BUSINESS</span></p>
+      <div class="price-grid one">
+        <div class="price-card is-mini">
+          <div class="pc-head">
+            <p class="pc-name">すでにあるアプリを、そのまま導入</p>
+            <p class="pc-amt"><span class="pc-num">5</span>万円<span class="pc-from">一律</span></p>
+          </div>
+          <p class="pc-sub">「香盤メーカー」「打刻」など、できあがっているものを御社専用の鍵つきでお渡しします。中身を作り込まないぶん、最短即日・この値段で。まずは <a data-go="hearing" href="#">導入のご相談</a> で実物をご覧ください。</p>
+        </div>
+      </div>
       <div class="price-grid">
         <div class="price-card">
           <p class="pc-name">小規模</p>
           <p class="pc-sub">1つの困りごとを解く</p>
-          <p class="pc-amt"><span class="pc-num">15</span>万円<span class="pc-from">〜</span></p>
-          <p class="pc-term">2〜3週間</p>
+          <p class="pc-amt is-range"><span class="pc-num">15</span><span class="pc-tilde">〜</span><span class="pc-num">45</span>万円</p>
+          <p class="pc-term">2〜4週間</p>
         </div>
         <div class="price-card">
           <p class="pc-name">本格的なもの</p>
           <p class="pc-sub">複数の業務をつなげる</p>
-          <p class="pc-amt"><span class="pc-num">40</span>万円<span class="pc-from">〜</span></p>
+          <p class="pc-amt is-range"><span class="pc-num">40</span><span class="pc-tilde">〜</span><span class="pc-num">60</span>万円</p>
           <p class="pc-term">1〜2か月</p>
         </div>
       </div>
-      <p class="note">上は下限の目安です。正確な金額は、業務を伺ってから無料でお見積りします。</p>
-      <p class="note">「香盤メーカー」など、<strong>すでにあるアプリを、そのまま導入</strong>することもできます。作り込みが要らないぶん、最短即日・低価格で。まずは <a data-go="hearing" href="#">導入のご相談</a> で、実物をご覧いただけます。</p>
+      <p class="note">幅があるのは、作る画面の数と扱う情報の量で変わるためです。<strong>多くの場合、この幅に収まります。</strong>超えそうなときは、お見積りをお出しする前に、正直にそうお伝えします。</p>
 
-      <p class="h3">料金の決まり方<span class="h3-en">HOW IT'S PRICED</span></p>
+      <p class="h3">この金額に、含まれるもの<span class="h3-en">WHAT'S INCLUDED</span></p>
+      <div class="panel">
+        <ul class="can yes">
+          <li>業務のヒアリングと、課題の整理・ご提案</li>
+          <li>アプリの制作（入力・一覧・検索・出力まで）</li>
+          <li>ソースコード一式と、かんたんな運用手順書</li>
+          <li>あなた専用の鍵（プロダクトキー）でのお渡し</li>
+          <li>お渡し時の、使い方のご説明</li>
+          <li>制作中の修正（違和感を直すところまで）</li>
+          <li>納品後1か月の、不具合対応（無償）</li>
+        </ul>
+        <p class="note">ヒアリングとお見積りは無料です。<strong>着手までは、一円もかかりません。</strong></p>
+      </div>
+
+      <p class="h3">別途になるもの<span class="h3-en">OPTIONS</span></p>
+      <p class="sheet-sub">はじめから総額が読めるように、追加になるものも先に出しておきます。</p>
+      <div class="panel">
+        <div class="opt">
+          <div class="opt-row"><p class="opt-n">図解入りの操作手順書（PDF）</p><p class="opt-p">3万円<span class="opt-d">＋3日</span></p></div>
+          <div class="opt-row"><p class="opt-n">既存のエクセル・CSVからのデータ移行</p><p class="opt-p">5万円<span class="opt-d">＋3日</span></p></div>
+          <div class="opt-row"><p class="opt-n">台帳・画面の追加（1台帳＋3画面あたり）</p><p class="opt-p">10万円<span class="opt-d">＋7日</span></p></div>
+          <div class="opt-row"><p class="opt-n">現地での導入立ち会い・操作説明（1回）</p><p class="opt-p">3万円<span class="opt-d">＋1日</span></p></div>
+          <div class="opt-row"><p class="opt-n">会計ソフト・決済など、外部サービスとの連携</p><p class="opt-p">応相談</p></div>
+          <div class="opt-row"><p class="opt-n">ソースコードと著作権の買い取り</p><p class="opt-p">応相談</p></div>
+        </div>
+        <p class="note">いずれも、着手前のお見積りに載せます。<strong>作業を始めてから追加になることはありません。</strong></p>
+      </div>
+
+      <p class="h3">お見積りを見比べるときは<span class="h3-en">HOW TO COMPARE</span></p>
+      <p class="sheet-sub">つみき以外からも、ぜひお見積りをお取りください。そのとき、この4つを聞いてみてください。<strong>基本料金だけを見比べると、あとで総額が入れ替わることがあります。</strong></p>
+      <div class="panel">
+        <div class="faq">
+          <div class="faq-row">
+            <p class="faq-q">1. その基本料金に、データ移行と手順書は含まれますか？</p>
+            <p class="faq-a">別料金だと、あとから数万円ずつ足されていきます。つみきは、上の表のとおり先に金額を出しています。</p>
+          </div>
+          <div class="faq-row">
+            <p class="faq-q">2. 着手したあと、金額は変わりますか？</p>
+            <p class="faq-a">つみきは変わりません。ご要望が増えたときは値上げをせず、「次のぶん」として別に固定でお見積りします。</p>
+          </div>
+          <div class="faq-row">
+            <p class="faq-q">3. 月額はかかりますか。やめたら、アプリは止まりますか？</p>
+            <p class="faq-a">つみきに月額の縛りはありません。見守りの月額は任意で、入らなくてもアプリは動き続けます。止まる仕組みにはしていません。</p>
+          </div>
+          <div class="faq-row">
+            <p class="faq-q">4. ソースコードはもらえますか。他社に引き継げますか？</p>
+            <p class="faq-a">つみきは一式お渡しします。1枚のHTMLで作るので、他の開発者が読めます。つみきが居なくなっても動き続けます。</p>
+          </div>
+        </div>
+        <p class="note">この4つすべてに「はい」と答えられて、なおつみきより安いところがあれば、<strong>そちらをお選びください。</strong>そのほうが、御社にとって良い買い物です。</p>
+      </div>
+
+      <p class="h3">後から増えない仕組み<span class="h3-en">HOW IT'S PRICED</span></p>
       <!-- 決まり方：文章の表をやめ、数式1本＋お金の流れ3歩で見せる -->
       <div class="fx" role="img" aria-label="制作費は、作る機能の数と扱う情報の量で決まります">
         <div class="fx-item"><svg class="ico" aria-hidden="true"><use href="#ico-blocks-good"/></svg><p class="fx-lbl">作る機能の数</p></div>
@@ -1914,29 +1974,33 @@
       </div>
       <p class="note"><strong>着手までは、一円もかかりません。着手後は、金額が変わりません。</strong>小さく1機能から始めることもできます。</p>
 
-      <p class="h3">料金に含まれるもの／別途になるもの<span class="h3-en">WHAT'S INCLUDED</span></p>
+      <p class="h3">納品したあと（任意）<span class="h3-en">AFTER DELIVERY</span></p>
+      <div class="price-grid one">
+        <div class="price-card is-mini">
+          <div class="pc-head">
+            <p class="pc-name">見守りと、小さな改修</p>
+            <p class="pc-amt"><span class="pc-num">1</span>万円<span class="pc-from">〜／月</span></p>
+          </div>
+          <p class="pc-sub">動作の見守りと、月1回までの小さな直し（文言や項目の追加など）を承ります。改修の時間を増やしたプランもご用意しています。</p>
+        </div>
+      </div>
       <div class="panel">
         <ul class="can yes">
-          <li>課題の整理とご提案</li>
-          <li>アプリの制作</li>
-          <li>あなた専用の鍵（プロダクトキー）でのお渡し</li>
-          <li>制作中の修正（違和感を直すところまで）</li>
-          <li>お渡し時の使い方のご説明</li>
+          <li>いつでもやめられます（縛りはありません）</li>
+          <li>入らなくても、アプリはそのまま動き続けます（止まる仕組みにはしていません）</li>
+          <li>納品後1か月の不具合対応は、この契約が無くても無償です</li>
         </ul>
-        <ul class="can no">
-          <li>納品後の機能追加・大きな仕様変更</li>
-          <li>継続的な運用サポート（別途ご相談ください）</li>
-        </ul>
+        <p class="note">「作って終わり」にしないための、任意のプランです。<strong>お勧めはしますが、必須ではありません。</strong></p>
       </div>
 
       <p class="h3">進行イメージ<span class="h3-en">SCHEDULE</span></p>
       <div class="panel">
         <div class="tl">
           <div class="tl-row">
-            <div class="tl-lbl"><span class="tl-name">小規模</span><span class="tl-dur">約2〜3週間</span></div>
+            <div class="tl-lbl"><span class="tl-name">小規模</span><span class="tl-dur">約2〜4週間</span></div>
             <div class="tl-track">
               <div class="tl-bar" style="left:0;width:25%"></div>
-              <div class="tl-bar is-range" style="left:25%;width:12.5%"></div>
+              <div class="tl-bar is-range" style="left:25%;width:25%"></div>
             </div>
           </div>
           <div class="tl-row">
@@ -1988,7 +2052,11 @@
           </div>
           <div class="faq-row">
             <p class="faq-q">月額は必ずかかりますか？</p>
-            <p class="faq-a">いいえ。納品して終わりで構いません（AI利用料などの実費のみ、事前にお伝えします）。</p>
+            <p class="faq-a">いいえ。納品して終わりで構いません（AI利用料などの実費のみ、事前にお伝えします）。見守りの月額プランはご用意していますが、任意です。入らなくてもアプリは動き続けます。</p>
+          </div>
+          <div class="faq-row">
+            <p class="faq-q">他社さんより、高く見えるのですが。</p>
+            <p class="faq-a">基本料金だけを並べると、そう見えることがあります。上の「お見積りを見比べるときは」の4つで、<strong>総額</strong>を比べてみてください。それでもよそが安ければ、そちらをお選びいただくのが正解です。</p>
           </div>
           <div class="faq-row">
             <p class="faq-q">うちの業種でも大丈夫ですか？</p>
@@ -2094,7 +2162,7 @@
 
       <div class="panel">
         <div class="dl">
-          <div class="dl-row"><div class="dl-k">01　ご返信</div><div class="dl-v"><strong>2〜3日以内を目安に、私が直接お返事します。</strong>日程のご相談だけです。</div></div>
+          <div class="dl-row"><div class="dl-k">01　ご返信</div><div class="dl-v"><strong>平日なら当日〜翌営業日を目安に、私が直接お返事します。</strong>日程のご相談だけです。</div></div>
           <div class="dl-row"><div class="dl-k">02　ヒアリング</div><div class="dl-v"><strong>1〜2時間、1回。無料です。</strong>オンラインでも、お伺いしても構いません。いまのやり方を、いつもどおり見せていただくだけで大丈夫です。</div></div>
           <div class="dl-row"><div class="dl-k">03　ご提案</div><div class="dl-v">何が解決できそうかと、お見積りをお出しします。<strong>ここまで無料です。</strong>ここで終わっても構いません。</div></div>
         </div>
@@ -2169,7 +2237,7 @@
             </g>
           </svg>
           <p class="hf-done-ttl">送信しました。ありがとうございます。</p>
-          <p class="hf-done-body">2〜3日以内を目安に、いただいたメールアドレス宛に私から直接お返事します。日程のご相談だけです。どうぞお気軽に。</p>
+          <p class="hf-done-body">平日なら当日〜翌営業日を目安に、いただいたメールアドレス宛に私から直接お返事します。日程のご相談だけです。どうぞお気軽に。</p>
         </div>
 
         <p class="note hf-alt">フォームがうまく動かないときは、<a href="mailto:support.tsumiki@gmail.com?subject=%E7%84%A1%E6%96%99%E3%83%92%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0%E5%B8%8C%E6%9C%9B&body=%EF%BC%88%E5%88%86%E3%81%8B%E3%82%8B%E7%AF%84%E5%9B%B2%E3%81%A7%E5%A4%A7%E4%B8%88%E5%A4%AB%E3%81%A7%E3%81%99%E3%80%82%E7%A9%BA%E6%AC%84%E3%81%AE%E3%81%BE%E3%81%BE%E9%80%81%E3%81%A3%E3%81%A6%E3%81%84%E3%81%9F%E3%81%A0%E3%81%84%E3%81%A6%E3%82%82%E6%A7%8B%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%EF%BC%89%0A%0A%E2%96%A0%20%E4%BC%9A%E7%A4%BE%E5%90%8D%EF%BC%9A%0A%E2%96%A0%20%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0A%E2%96%A0%20%E3%81%94%E9%80%A3%E7%B5%A1%E5%85%88%EF%BC%88%E3%81%8A%E9%9B%BB%E8%A9%B1%E7%95%AA%E5%8F%B7%E3%81%AA%E3%81%A9%EF%BC%89%EF%BC%9A%0A%0A%E2%96%A0%20%E3%81%84%E3%81%BE%E5%9B%B0%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%93%E3%81%A8%EF%BC%9A%0A%E3%80%80%E4%BE%8B%EF%BC%89%E6%AF%8E%E6%97%A5%E3%80%81%E5%90%8C%E3%81%98%E6%95%B0%E5%AD%97%E3%82%92%E5%88%A5%E3%81%AE%E8%A1%A8%E3%81%AB%E6%89%93%E3%81%A1%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%0A%0A%E2%96%A0%20%E3%83%92%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0%E3%81%AE%E3%81%94%E5%B8%8C%E6%9C%9B%EF%BC%9A%0A%E3%80%80%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%20%EF%BC%8F%20%E8%A8%AA%E5%95%8F%20%EF%BC%8F%20%E3%81%A9%E3%81%A1%E3%82%89%E3%81%A7%E3%82%82%0A">メールアプリから送る</a> こともできます。届け先は support.tsumiki@gmail.com です。</p>
