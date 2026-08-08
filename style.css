@@ -1141,6 +1141,12 @@ body.on-dark .tb-brand{color:#F4F2EE;
   border:1px dashed var(--line); border-radius:10px; padding:9px; letter-spacing:.04em;}
 
 /* 紹介文 */
+/* 要約カバー（紙×墨の1枚。tools/make_app_covers.py で生成）。
+   画像の地色が紙と同じなので、縁が無いと輪郭が消える → 罫線＋角丸でカード化する */
+.as-cover{margin-top:20px;}
+.as-cover img{display:block; width:100%; height:auto;
+  border:1px solid var(--line); border-radius:var(--radius);}
+
 .as-about{font-size:14px; line-height:1.95; color:#3a3833; margin-top:14px;}
 
 /* つかいかた（番号つき3ステップ） */
