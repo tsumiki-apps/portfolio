@@ -1149,7 +1149,12 @@ body.on-dark .tb-brand{color:#F4F2EE;
 /* 要約カバー（紙×墨の1枚。tools/make_app_covers.py で生成）。
    画像の地色が紙と同じなので、縁が無いと輪郭が消える → 罫線＋角丸でカード化する */
 .as-cover{margin-top:20px;}
-.as-cover img{display:block; width:100%; height:auto;
+/* ⚠️ max-width が要。画像は容器に合わせて伸びるが、ページの文字は伸びない。
+   幅100%のままだと desktop(容器860px)で画像内の見出しが44.6pxになり、
+   ページで最大の .as-name 26px を大きく超えて浮く（2026-08-08 実測）。
+   440px に留めると 見出し22.8px / 要点16.3px ＝ .as-name 26 と .as-about 16 に収まる。
+   375px では描画335pxなので、この上限は効かない（モバイルの見えは変わらない） */
+.as-cover img{display:block; width:100%; max-width:440px; height:auto;
   border:1px solid var(--line); border-radius:var(--radius);}
 /* 節の冒頭に置く版（料金ページ）。リード文のすぐ下なので上の間隔を詰める */
 .as-cover.is-opener{margin-top:16px;}

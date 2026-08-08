@@ -4,27 +4,45 @@
   実行: DYLD_LIBRARY_PATH=/opt/homebrew/lib python3 tools/make_app_covers.py
   出力: assets/covers/cover-<app>.png
 
-## なぜ横1080pxで、なぜ文字がこんなに大きいのか
+## 文字サイズの決め方（この節が本体。数字を触る前に必ず読む）
 
-ランサーズ用のバナーは 1220x686（16:9）で本文19px。あれは一覧で小さく出て
-から拡大される前提なので成立していたが、**サイトの本文に置くと iPhone で潰れる**。
-iPhone（横375px）ではシート本文の幅が約335px しかないため、
+画像は本文の中に置くので、**画像の中の文字はページの文字階層に収まっていないと
+浮く**。ズレると「画像だけ大きすぎる」と感じられる（2026-08-08、実際にそうなった）。
 
-    画面上の文字サイズ = 画像内の文字サイズ x (335 / 画像の横幅)
+    画面上の文字サイズ = 画像内の文字サイズ x (描画幅 / 画像の横幅)
 
-16:9・幅1220 なら倍率 0.27 で、本文19px は **画面上5px**。読めない。
-そこで本文の下限を13px と決め、幅1080 の倍率 0.31 から逆算して
+iPhone（横375px）での描画幅は、シート本文＝**335px**、一覧カードの帯＝**306px**。
+幅1080なら倍率はそれぞれ 0.310 / 0.283。
 
-    本文 42px / 見出し 65px / キッカー 34px
+**ページ側の実測値（375px・アプリ詳細）**
 
-を下限にしている。**この数字を小さくすると iPhone で読めなくなる**ので、
-文字を増やしたくなったら「サイズを下げる」のではなく「言葉を削る」こと。
-縦は固定せず、中身（見出しの行数＋要点の行数）から算出している。16:9 に
-戻すとこの文字サイズでは入りきらない。
+    アプリ名 .as-name    23px  ← ページで最大
+    見出し   .as-h       15px
+    本文     .as-about   14px
+    キャプション figcaption 12px
+    一覧カード名 .app-card-name 17px ／ 説明 .app-card-desc 12.5px
 
-## 実機スクショを入れていない理由
-アプリ詳細ページには「プレビュー」節にスマホ実機のスクショが既に10枚ある。
-カバーにも実機を置くと重複し、そのぶん文字が小さくなる。ここは文字に振る。
+**画像の中はこの範囲に収める。** はみ出すと階層が壊れる：
+
+    カバーの見出し  → 17〜18px（.as-name 23 より小さく、.as-h 15 より大きく）
+    カバーの要点    → 12〜13px（figcaption 12 と同じ「キャプションの段」）
+    カバーのキッカー→ 11〜12px
+    帯の見出し      → 14px前後（.app-card-name 17 より小さく）
+    帯のキッカー    →  9〜10px
+
+→ 上の倍率で割り戻したのが下の SIZES。**下限は 12px**（サイトが figcaption で
+使っている最小の可読サイズ）。文字を増やしたくなったらサイズを下げず、言葉を削る。
+
+### 過去にやった失敗
+- 16:9・幅1220・本文19px（ランサーズ用）をそのまま置いた → iPhone で本文5px。読めない
+- 逆に振りすぎて 見出し65px（画面上20.2px）にした → **ページのどの見出しより大きく**
+  なり、しかも一番太い書体なので浮いた。キッカーは22px（画面上6.8px）で小さすぎ、
+  画像の中だけ 6.8〜20.2px という別の階層ができていた
+
+## 入れていないもの（サイト内に置く画像なので不要）
+- **ロゴ「つみき」・URL** … サイト自体がつみき。外に出す用（ランサーズ・SNS）だけ必要
+- **アプリ名** … 詳細ページは真上の `.as-name`、一覧はカード内の名前が出している
+- **実機スクショ** … 「プレビュー」節に既に10枚ある。重複するうえ文字が縮む
 """
 import io
 import os
@@ -32,11 +50,17 @@ import os
 import cairosvg
 from PIL import Image, ImageDraw, ImageFont
 
-W = 1080                   # 横幅。iPhone で本文13px を確保できる最小値（下記の計算）
-BULLETS_TOP = 626          # 要点の1行目の y（見出し2行＋罫線の下）
+W = 1080                   # 横幅（固定）。縦は中身の行数から自動で決まる
 S = 2                      # 2倍でレンダ→縮小（文字を締める）
-# 縦は中身に合わせて自動で決まる（余白を作りすぎないため）。
-# 現行の5枚は 見出し2行＋要点4行 なので、いずれも 1080x1154 前後になる。
+
+# 画像内のフォントサイズ。右のコメントが iPhone375px での実効サイズ＝これが正。
+# 冒頭のページ側実測値と突き合わせて決めてある。変えるときは必ず両方見ること。
+COVER_HEAD = 56            # /0.310 → 17.4px（.as-name 23 と .as-h 15 のあいだ）
+COVER_BODY = 40            # /0.310 → 12.4px（figcaption 12 と同じ段）
+COVER_KICK = 38            # /0.310 → 11.8px
+STRIP_HEAD = 46            # /0.283 → 13.0px（desktopは帯が390pxに伸びて16.6px。
+                           #  どちらも .app-card-name 17 を超えないこの値にしてある）
+STRIP_KICK = 34            # /0.283 →  9.6px
 
 PAPER = (244, 242, 238)    # #F4F2EE 紙
 INK = (36, 35, 33)         # #242321 墨
@@ -108,98 +132,89 @@ def save(im, H, path):
 
 
 def strip(slug, kicker, head):
-    """一覧カード用の帯（1080x432＝5:2）。
+    """一覧カード用の帯（1080x336）。iPhone375px で 306x95 に描画される。
 
     一覧の仕事は「explanation」ではなく「recognition」なので、要点は載せない。
     キッカーと見出しだけ。載せると下の1行説明と重複するうえ、カードが縦に伸びて
-    一覧が一覧でなくなる。ロゴとURLも省く（自分のサイトの中なので不要）。
+    一覧が一覧でなくなる。
     """
-    HS = 432
-    M = 76 * S
+    HS = 336
+    M = 64 * S
     im = Image.new("RGB", (W * S, HS * S), PAPER)
     d = ImageDraw.Draw(im)
 
-    big = logo(300 * S, stroke="#E7E3DB", sw=3.4)
-    im.paste(big, (W * S - big.width + 40 * S, HS * S - big.height + 34 * S), big)
+    big = logo(230 * S, stroke="#E7E3DB", sw=3.6)
+    im.paste(big, (W * S - big.width + 30 * S, HS * S - big.height + 26 * S), big)
 
-    kf = f(FONT_BODB, 22)
+    kf = f(FONT_BODB, STRIP_KICK)
     kw = d.textlength(kicker, font=kf)
-    d.rectangle([M, 62 * S, M + kw + 32 * S, 62 * S + 50 * S], fill=INK)
-    d.text((M + 16 * S, 72 * S), kicker, font=kf, fill=PAPER)
+    d.rectangle([M, 48 * S, M + kw + 26 * S, 48 * S + 52 * S], fill=INK)
+    d.text((M + 13 * S, 58 * S), kicker, font=kf, fill=PAPER)
 
-    y = 158 * S
-    hf = f(FONT_DISP, 65)
+    y = 136 * S
+    hf = f(FONT_DISP, STRIP_HEAD)
     for ln in head:
         d.text((M, y), ln, font=hf, fill=INK)
-        y += 90 * S
+        y += 70 * S
 
     os.makedirs(OUT, exist_ok=True)
-    path = os.path.join(OUT, f"strip-{slug}.png")
-    save(im, HS, path)
+    save(im, HS, os.path.join(OUT, f"strip-{slug}.png"))
 
 
-def cover(slug, kicker, appname, head, bullets):
-    M = 88 * S
-    right = (W - 88) * S
+def cover(slug, kicker, head, bullets):
+    """詳細ページ先頭の要約カバー。iPhone375px で 335 x 約233px に描画される。
+
+    ロゴ・アプリ名・URL は入れない（冒頭の「入れていないもの」参照）。そのぶん
+    縦が 1154 → 750前後 まで縮み、ページの中で浮かなくなる。
+    """
+    M = 72 * S
+    right = (W - 72) * S
+    KICK_TOP, HEAD_TOP, HEAD_STEP = 64, 168, 78
+    LINE_H, GAP = 56, 20                       # 要点の行送りと項目間
+
+    if len(head) > 2:
+        raise ValueError(f"{slug}: 見出しは2行まで（ページの見出し階層を超える）")
 
     # --- 1パス目：高さを測る（余白を作りすぎないよう、中身に合わせて縦を決める） ---
     probe = ImageDraw.Draw(Image.new("RGB", (10, 10)))
-    bf = f(FONT_BODY, 42)
-    bullet_lines = [wrap(probe, b, bf, right - M - 40 * S) for b in bullets]
-    body_end = (BULLETS_TOP * S
-                + sum(len(ls) * 60 * S + 22 * S for ls in bullet_lines))
-    H = (body_end + 200 * S) // S          # 要点の下端＋フッター帯
-    if len(head) > 2:
-        raise ValueError(f"{slug}: 見出しは2行まで（iPhoneで潰れる）")
+    bf = f(FONT_BODY, COVER_BODY)
+    bullet_lines = [wrap(probe, b, bf, right - M - 34 * S) for b in bullets]
+    rule_y = HEAD_TOP + HEAD_STEP * len(head) + 20
+    bullets_top = rule_y + 44
+    H = bullets_top + sum(len(ls) * LINE_H + GAP for ls in bullet_lines) + 56
 
     im = Image.new("RGB", (W * S, H * S), PAPER)
     d = ImageDraw.Draw(im)
 
-    # 右下の余白に淡い積み木（紙の質感の代わり。pkgバナーと同じ手）
-    # ⚠️ 要点と重なると読みにくくなるので、要点の下端より下から始める
-    big = logo(400 * S, stroke="#E7E3DB", sw=3.0)
-    im.paste(big, (W * S - big.width + 55 * S, H * S - big.height + 45 * S), big)
-
-    # 上部：ロゴ＋屋号
-    mark = logo(52 * S, sw=6.5)
-    im.paste(mark, (M, 78 * S), mark)
-    d.text((M + 64 * S, 88 * S), "つみき", font=f(FONT_DISP, 24), fill=INK)
-    d.text((M + 64 * S, 120 * S), "TSUMIKI", font=f(FONT_NUM, 12), fill=GHOST)
+    # 右下の余白に淡い積み木（紙の質感の代わり）
+    big = logo(300 * S, stroke="#E7E3DB", sw=3.4)
+    im.paste(big, (W * S - big.width + 40 * S, H * S - big.height + 34 * S), big)
 
     # キッカー（黒地の小さなラベル）
-    kf = f(FONT_BODB, 22)
+    kf = f(FONT_BODB, COVER_KICK)
     kw = d.textlength(kicker, font=kf)
-    d.rectangle([M, 200 * S, M + kw + 32 * S, 200 * S + 50 * S], fill=INK)
-    d.text((M + 16 * S, 210 * S), kicker, font=kf, fill=PAPER)
-
-    # アプリ名（料金バナーのように名前が無い版では空文字を渡す）
-    if appname:
-        d.text((M, 288 * S), appname, font=f(FONT_BODB, 30), fill=SUB)
+    d.rectangle([M, KICK_TOP * S, M + kw + 28 * S, (KICK_TOP + 58) * S], fill=INK)
+    d.text((M + 14 * S, (KICK_TOP + 12) * S), kicker, font=kf, fill=PAPER)
 
     # 見出し（A1ゴシック・最大2行）
-    y = 366 * S
-    hf = f(FONT_DISP, 65)
+    y = HEAD_TOP * S
+    hf = f(FONT_DISP, COVER_HEAD)
     for ln in head:
         d.text((M, y), ln, font=hf, fill=INK)
-        y += 90 * S
+        y += HEAD_STEP * S
 
-    # 罫線
-    y += 22 * S
-    d.line([M, y, M + 240 * S, y], fill=LINE, width=2 * S)
+    d.line([M, rule_y * S, M + 200 * S, rule_y * S], fill=LINE, width=2 * S)
 
     # 要点（折り返しあり）
-    y = BULLETS_TOP * S
-    indent = 40 * S
+    y = bullets_top * S
+    indent = 34 * S
     for lines in bullet_lines:
         for i, ln in enumerate(lines):
             if i == 0:
-                d.ellipse([M + 4 * S, y + 20 * S, M + 17 * S, y + 33 * S], fill=GHOST)
+                d.ellipse([M + 3 * S, y + 19 * S, M + 15 * S, y + 31 * S], fill=GHOST)
             d.text((M + indent, y), ln, font=bf, fill=SUB)
-            y += 60 * S
-        y += 22 * S
-
-    # フッター
-    d.text((M, (H - 110) * S), "tsumiki-apps.com", font=f(FONT_NUM, 30), fill=GHOST)
+            y += LINE_H * S
+        y += GAP * S
 
     os.makedirs(OUT, exist_ok=True)
     save(im, H, os.path.join(OUT, f"cover-{slug}.png"))
@@ -209,35 +224,35 @@ def cover(slug, kicker, appname, head, bullets):
 # 文言はサイト本文とランサーズ ポートフォリオ（本人承認済み）から起こしている。
 # 事実でないことは書かないこと。
 
-cover("kouban", "舞台・稽古／スケジュール", "香盤メーカー",
+cover("kouban", "舞台・稽古／スケジュール",
       ["欠席者を選ぶだけで", "「今日できる場面」が出る"],
       ["各場面の出演者を、一度だけ登録",
        "欠席をタップ → できる場面を自動抽出",
        "香盤表をA4のPDFで書き出し",
        "ブラウザだけで動く。インストール不要"])
 
-cover("mazeiro", "美容室／ヘアカラー配合", "まぜいろ",
+cover("mazeiro", "美容室／ヘアカラー配合",
       ["レシピの比率から、", "必要なグラムを即計算"],
       ["比率と作りたい総量を入れるだけ",
        "2剤（オキシ）の倍率にも対応",
        "総量からの逆算もできる",
        "混ぜ間違いによる材料のロスを減らす"])
 
-cover("credit", "経理・家計／明細の自動集計", "クレカ明細",
+cover("credit", "経理・家計／明細の自動集計",
       ["明細CSVを読み込むだけで、", "カテゴリ別に自動集計"],
       ["CSVを放り込むと、カテゴリ別に自動集計",
        "立て替えと分割払いを切り分け",
        "「自分の実質支出」と前月比を自動算出",
        "手作業の仕分けを、ゼロにする"])
 
-cover("dakoku", "人材派遣／勤怠・労働者用", "打刻",
+cover("dakoku", "人材派遣／勤怠・労働者用",
       ["出勤と退勤を、", "大きなボタンでタップ"],
       ["打刻はタップ1回。紙のシートが不要",
        "自分の勤務記録と月の合計をその場で確認",
        "交通費・定期もそのまま残せる",
        "打刻はクラウドで会社と共有される"])
 
-cover("dakoku-kanri", "人材派遣／勤怠・管理者用", "打刻管理",
+cover("dakoku-kanri", "人材派遣／勤怠・管理者用",
       ["現場の打刻から、", "請求算定まで一本に"],
       ["従業員ごとに打刻コードを発行するだけ",
        "全員の打刻が集まり、月度で自動集計",
@@ -245,14 +260,14 @@ cover("dakoku-kanri", "人材派遣／勤怠・管理者用", "打刻管理",
        "請求算定まで、そのまま通る"])
 
 # 看板プロダクト（趣味で制作したiOSアプリ2本）
-cover("itsutsu", "iOSアプリ／動画日記", "いつつ",
+cover("itsutsu", "iOSアプリ／動画日記",
       ["1日に5回、各2秒。", "夜、1本の動画になる"],
       ["撮るのは1回2秒。身構えずに済む",
        "5つ撮ると、今日が満ちる",
        "夜に自動で1本（最大10秒）に連結",
        "文字のない、モノクロの動画日記"])
 
-cover("koegaki", "iOSキーボード／音声入力", "こえがき",
+cover("koegaki", "iOSキーボード／音声入力",
       ["話すだけで、", "整った文章になる"],
       ["キーボードのマイクをタップして話すだけ",
        "AIがフィラーを消し、句読点を整える",
@@ -262,7 +277,7 @@ cover("koegaki", "iOSキーボード／音声入力", "こえがき",
 # 料金ページの先頭バナー
 # ⚠️ 金額は入れないこと。入れると値段を直すたびに画像の再生成が要るうえ、
 #    Google検索にも出ない数字が公開ページの一次情報になってしまう。約束だけを載せる。
-cover("pricing", "料金について", "",
+cover("pricing", "料金について",
       ["金額は、あとから", "膨らみません。"],
       ["ヒアリングとお見積りは無料です",
        "着手後、金額は変わりません",
@@ -278,3 +293,34 @@ strip("dakoku", "人材派遣／勤怠・労働者用", ["出勤と退勤を、"
 strip("dakoku-kanri", "人材派遣／勤怠・管理者用", ["現場の打刻から、", "請求算定まで一本に"])
 strip("itsutsu", "iOSアプリ／動画日記", ["1日に5回、各2秒。", "夜、1本の動画になる"])
 strip("koegaki", "iOSキーボード／音声入力", ["話すだけで、", "整った文章になる"])
+
+
+# ---------------------------------------------------------------- index.html の寸法を同期
+# 画像の縦は中身から自動で決まるので、HTML の width/height を手で書くと必ずずれる。
+# ずれると読み込み中のレイアウトが跳ねる（CLS）。ここで実ファイルから書き戻す。
+def sync_html():
+    import re
+    from PIL import Image as _Im
+    path = os.path.join(ROOT, "index.html")
+    html = open(path, encoding="utf-8").read()
+    fixed = 0
+
+    def repl(m):
+        nonlocal fixed
+        head, fname, mid, w, h, tail = m.groups()
+        with _Im.open(os.path.join(OUT, fname)) as im:
+            nw, nh = im.size
+        if (int(w), int(h)) == (nw, nh):
+            return m.group(0)
+        fixed += 1
+        return f'{head}{fname}{mid}width="{nw}" height="{nh}"{tail}'
+
+    html = re.sub(
+        r'(src="assets/covers/)([\w-]+\.png)(\?v=\d+"\s*\n?\s*)width="(\d+)" height="(\d+)"()',
+        repl, html)
+    if fixed:
+        open(path, "w", encoding="utf-8").write(html)
+    print(f"index.html の width/height を {fixed} 箇所そろえた")
+
+
+sync_html()
