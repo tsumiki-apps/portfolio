@@ -791,6 +791,11 @@ body.on-dark .tb-brand{color:#F4F2EE;
   color:var(--sub); background:var(--surface); border-radius:999px; padding:4px 11px;
 }
 @media(max-width:480px){ .flag-tag{margin-top:9px;} }
+/* ⚠️ .flag-tag は看板2枚の帯導入（2026-08-08）で外した。帯の黒いチップが同じ文字を
+   出しており、本文カラム165pxに対して「iOSキーボード ／ 音声入力」が169px必要で
+   2行に折れていた。字間やpaddingで数px稼ぐ直し方は360pxで再発したのでやめ、
+   重複そのものを消した。カテゴリの文字は帯画像の alt が持っている。
+   別のカードで .flag-tag を復活させるなら、この幅の問題が再発することに注意 */
 .flag-ar{font-size:20px; color:var(--ghost); transition:transform .2s ease, color .2s ease;}
 .flag-card:active .flag-ar{transform:translateX(4px); color:var(--ink);}
 @media(hover:hover){ .flag-card:hover .flag-ar{transform:translateX(4px); color:var(--ink);} }
