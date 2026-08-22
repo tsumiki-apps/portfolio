@@ -1145,32 +1145,6 @@ body.on-dark .tb-brand{color:#F4F2EE;
 .pv-dadd{margin-top:12px; text-align:center; font-size:11px; font-weight:700; color:var(--sub);
   border:1px dashed var(--line); border-radius:10px; padding:9px; letter-spacing:.04em;}
 
-/* 紹介文 */
-/* 要約カバー（紙×墨の1枚。tools/make_app_covers.py で生成）。
-   画像の地色が紙と同じなので、縁が無いと輪郭が消える → 罫線＋角丸でカード化する */
-.as-cover{margin-top:20px;}
-/* ⚠️ max-width が要。画像は容器に合わせて伸びるが、ページの文字は伸びない。
-   上限を外すと desktop(容器860px)で画像内の見出しが44.6pxになり、ページで最大の
-   .as-name 26px を大きく超えて浮く（2026-08-08 実測）。スマホとPCで別に持つ：
-     スマホ 300px … 本文335pxより一段内側。画像内は 見出し17.5 / 要点12.5px
-     PC     380px … 画像内は 見出し22.2 / 要点15.8px（ページ本文16pxと釣り合う）
-   中央寄せなのは、左寄せだと右だけ35px空いて崩れて見えるため。
-   ⚠️ 幅を変えるときは tools/make_app_covers.py の W_COVER も同じ比率で変える
-      （画像の解像度を据え置くと、画面上の文字まで一緒に縮む） */
-.as-cover picture{display:block;}
-.as-cover img{display:block; width:100%; max-width:300px; height:auto; margin:0 auto;
-  border:1px solid var(--line); border-radius:var(--radius);}
-/* 3段に分ける。⚠️ index.html の <source media> と必ずそろえること（760px）
-   ①〜480px    縦長版 300px・中央寄せ
-   ②481〜759px 縦長版 380px・左寄せ（容器が440〜720pxしかなく、ここで横長版に
-                すると画像内の要点が8〜11pxまで潰れる。横長版は容器660px以上から）
-   ③760px〜    横長版 cover-*-wide.png（2150x517・見出し左／要点右）を容器いっぱいに。
-                縦長版(960幅)を伸ばしているのではない。伸ばすと画像内の見出しが50pxになり
-                ページ最大の .as-name 26px を超えて浮くため、別レイアウトで作ってある */
-@media(min-width:481px){ .as-cover img{max-width:380px; margin-left:0;} }
-@media(min-width:760px){ .as-cover img{max-width:100%;} }
-/* 節の冒頭に置く版（料金ページ）。リード文のすぐ下なので上の間隔を詰める */
-.as-cover.is-opener{margin-top:16px;}
 
 /* 一覧カードの帯（5:2）。カードの中身は「帯 → アイコン＋名前」の2段になる。
    帯は recognition 用で、文言は下の1行説明とほぼ同義＝装飾なので alt="" にしてある */
