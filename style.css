@@ -534,6 +534,23 @@ body.on-dark .tb-brand{color:#F4F2EE;
 .screen.is-active .sc-shield > *{animation:sc-draw 1.9s ease-out forwards, sc-glow 3.4s ease-in-out 1.9s infinite;}
 @keyframes sc-glow{0%,100%{opacity:.6;}50%{opacity:1;}}
 
+/* VOICE：稽古の予定が、先の日まで順に埋まっていく。
+   最後の1つだけ朱＝「最終日まで立ち切った」印（落款のように小さく1点だけ）。 */
+.sc-tick{opacity:0; transform-box:fill-box; transform-origin:50% 50%;}
+.screen.is-active .sc-tick{animation:sc-tick 7s ease-in-out infinite;}
+.screen.is-active .sc-tick2{animation-delay:.45s;}
+.screen.is-active .sc-tick3{animation-delay:.9s;}
+.screen.is-active .sc-tick4{animation-delay:1.35s;}
+.screen.is-active .sc-tick5{animation-delay:1.8s;}
+.screen.is-active .sc-tick6{animation-delay:2.25s;}
+@keyframes sc-tick{
+  0%      {opacity:0; transform:scale(.55);}
+  7%      {opacity:1; transform:scale(1);}
+  10%     {transform:scale(.95);}          /* 出きったあとの小さな揺り戻し */
+  13%,72% {opacity:1; transform:scale(1);}
+  82%,100%{opacity:0; transform:scale(.9);}
+}
+
 @media (prefers-reduced-motion:reduce){
   .scene{opacity:1; transform:none; transition:none;}
   .sc-bub{opacity:1;}
@@ -541,6 +558,7 @@ body.on-dark .tb-brand{color:#F4F2EE;
   .sc-connect{stroke-dashoffset:0;}
   .sc-dot{opacity:0;}
   .sc-arrive{opacity:1; transform:none;}
+  .sc-tick{opacity:1; transform:none;}
   .sc-carry{opacity:1; transform:translate(198px,62px);}
   .sc-fit{opacity:1; transform:none;}
   .sc-drawin > *, .sc-shield > *{stroke-dashoffset:0;}
@@ -550,6 +568,7 @@ body.on-dark .tb-brand{color:#F4F2EE;
   .screen.is-active .sc-connect,
   .screen.is-active .sc-dot,
   .screen.is-active .sc-arrive,
+  .screen.is-active .sc-tick,
   .screen.is-active .sc-carry,
   .screen.is-active .sc-fit,
   .screen.is-active .sc-spin,

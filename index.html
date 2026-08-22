@@ -2085,6 +2085,58 @@
       <p class="sheet-label"><span class="sl-jp">お客様の声</span><span class="sl-en">VOICE</span></p>
       <p class="sheet-lead">実際の現場でお使いいただいた、そのままのお言葉を載せています。</p>
 
+      <!-- 挿絵：お話しくださる人と、左から順に埋まっていく稽古日。
+           動くのは吹き出しと、埋まっていくチェックだけ（人と枠は静止）。
+           最後の1つだけ朱＝「最終日まで予定が立った」印。JSは使っていない。 -->
+      <div class="scene scene-voice" aria-hidden="true">
+        <svg viewBox="0 0 320 128" role="img">
+          <!-- 出演者から届いた予定（ゆっくり漂う） -->
+          <g class="sc-line sc-soft">
+            <g class="sc-paper sc-paper1"><g transform="rotate(-10 24 74)">
+              <rect x="14" y="61" width="18" height="24" rx="2.5"/>
+              <path d="M19 69h8M19 74h6"/>
+            </g></g>
+            <g class="sc-paper sc-paper2"><g transform="rotate(9 30 104)">
+              <rect x="21" y="92" width="18" height="24" rx="2.5"/>
+              <path d="M26 100h8M26 105h6"/>
+            </g></g>
+          </g>
+
+          <!-- お話しくださる方（静止） -->
+          <g class="sc-line">
+            <circle cx="72" cy="52" r="9"/>
+            <path d="M59 96c-1-18 5-31 13-31s14 13 14 27"/>
+            <path d="M83 74c8 2 15 5 21 9"/>
+          </g>
+
+          <!-- お言葉 -->
+          <g class="sc-line">
+            <g class="sc-bub sc-bub1">
+              <rect x="48" y="2" width="52" height="27" rx="9"/>
+              <path d="M62 29l-6 8 14-8"/>
+              <path d="M56 13h32M56 20h20" class="sc-soft"/>
+            </g>
+          </g>
+
+          <!-- 稽古日の並び -->
+          <g class="sc-line">
+            <rect x="118" y="52" width="186" height="52" rx="5"/>
+            <path d="M118 66h186" class="sc-soft"/>
+            <path d="M149 66v38M180 66v38M211 66v38M242 66v38M273 66v38" class="sc-soft"/>
+            <path d="M126 60h10M157 60h10M188 60h10M219 60h10M250 60h10M281 60h10" class="sc-soft"/>
+          </g>
+          <!-- 左から順に埋まる。最後の1つだけ朱 -->
+          <g class="sc-line">
+            <path class="sc-tick sc-tick1" d="M127 86l4 4 8-9"/>
+            <path class="sc-tick sc-tick2" d="M158 86l4 4 8-9"/>
+            <path class="sc-tick sc-tick3" d="M189 86l4 4 8-9"/>
+            <path class="sc-tick sc-tick4" d="M220 86l4 4 8-9"/>
+            <path class="sc-tick sc-tick5" d="M251 86l4 4 8-9"/>
+            <path class="sc-tick sc-tick6 sc-accent" d="M282 86l4 4 8-9"/>
+          </g>
+        </svg>
+      </div>
+
       <!-- 事例の見出し -->
       <p class="case-k">導入事例<span class="case-en">CASE 01</span></p>
       <p class="case-t">夏の本多劇場公演／稽古スケジュールの作成</p>
