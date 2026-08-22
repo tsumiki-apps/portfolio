@@ -1145,18 +1145,7 @@ body.on-dark .tb-brand{color:#F4F2EE;
 .pv-dadd{margin-top:12px; text-align:center; font-size:11px; font-weight:700; color:var(--sub);
   border:1px dashed var(--line); border-radius:10px; padding:9px; letter-spacing:.04em;}
 
-
-/* 一覧カードの帯（5:2）。カードの中身は「帯 → アイコン＋名前」の2段になる。
-   帯は recognition 用で、文言は下の1行説明とほぼ同義＝装飾なので alt="" にしてある */
-/* ⚠️ flex-wrap:wrap で帯を1行目に置くのは失敗する。カードの中身（アイコン／本文／矢印）
-   まで一緒に折り返され、アイコンだけ別行に落ちる。帯の行だけを分けるにはグリッドにする */
-.app-card.has-strip{display:grid; grid-template-columns:72px minmax(0,1fr) auto;
-  grid-template-rows:auto auto; align-items:center; gap:0 14px;}
-.app-card-strip{grid-column:1 / -1; width:100%; height:auto; display:block; margin-bottom:13px;
-  border:1px solid var(--line); border-radius:12px;}
-.flag-card.has-strip .flag-strip{grid-column:1 / -1; width:100%; height:auto; display:block;
-  margin-bottom:4px; border:1px solid var(--line); border-radius:14px;}
-
+/* 紹介文 */
 .as-about{font-size:14px; line-height:1.95; color:#3a3833; margin-top:14px;}
 
 /* つかいかた（番号つき3ステップ） */
