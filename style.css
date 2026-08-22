@@ -281,6 +281,13 @@ body.on-dark .tb-brand{color:#F4F2EE;
   background:var(--card); color:var(--ghost); font-size:13px; letter-spacing:.14em;
 }
 
+/* ---------- お客様の声：事例の見出し ---------- */
+.case-k{display:flex; align-items:baseline; gap:10px; margin-top:38px;
+  font-size:12px; font-weight:700; letter-spacing:.14em; color:var(--accent);}
+.case-en{font-size:10px; letter-spacing:.22em; color:var(--sub); font-weight:600;}
+.case-t{font-size:19px; font-weight:700; line-height:1.65; letter-spacing:.01em; margin-top:8px;}
+.case-by{font-size:13.5px; color:var(--sub); margin-top:6px; letter-spacing:.02em;}
+
 /* ---------- お客様の声 ---------- */
 .voice{background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
   padding:22px 20px; margin-top:18px;}
