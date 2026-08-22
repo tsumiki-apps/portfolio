@@ -281,6 +281,17 @@ body.on-dark .tb-brand{color:#F4F2EE;
   background:var(--card); color:var(--ghost); font-size:13px; letter-spacing:.14em;
 }
 
+/* ---------- お客様の声 ---------- */
+.voice{background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:22px 20px; margin-top:18px;}
+.voice-q{border-left:2px solid var(--accent-soft); padding-left:14px;}
+.voice-q p{font-size:14.5px; line-height:2; color:#3a3833;}
+.voice-q p + p{margin-top:12px;}
+.voice-by{margin-top:18px; padding-top:14px; border-top:1px solid var(--line);
+  font-size:13.5px; font-weight:700; letter-spacing:.02em; line-height:1.7;}
+.voice-sub{display:block; font-size:12px; font-weight:400; color:var(--sub);
+  margin-top:4px; line-height:1.7;}
+
 /* ---------- 線画アイコン（スプライトを currentColor で着色） ---------- */
 .ico{width:34px; height:34px; flex:0 0 auto; display:block; color:var(--ink); overflow:visible;}
 .ico.is-soft{color:var(--ghost);}   /* 既製ツール側＝淡墨で「主役ではない」ことを示す */
