@@ -724,6 +724,36 @@ body.on-dark .tb-brand{color:#F4F2EE;
 .flow-step .fs-jp{font-size:16px; font-weight:700; letter-spacing:.02em;}
 .flow-step .fs-desc{font-size:12.5px; color:var(--sub); line-height:1.7; margin-top:2px;}
 
+/* ---------- お客様の声：お渡しまでの日数（時系列） ----------
+   進め方の .flow と同じ「カードを縦線でつなぐ」語彙。番号の丸ではなく
+   日数のラベルなので、丸ではなく横長の錠剤にしている。
+   接続線 left は「カード左padding 16px ＋ ラベル幅の半分 23px」＝39px。
+   ラベルの幅を変えたら、この線の位置も直すこと。 */
+.tlx{list-style:none; margin-top:18px; display:flex; flex-direction:column; gap:12px;}
+.tlx-i{
+  position:relative;
+  display:grid; grid-template-columns:auto minmax(0,1fr); align-items:start; gap:14px;
+  background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px;
+}
+.tlx-i:not(:last-child)::after{
+  content:""; position:absolute; left:39px; bottom:-13px; width:1px; height:13px; background:var(--line);
+}
+.tlx-d{
+  width:46px; height:26px; border-radius:999px; flex:0 0 auto; margin-top:1px;
+  background:var(--ink); color:var(--paper);
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:700; letter-spacing:.02em; white-space:nowrap;
+}
+.tlx-t{font-size:14px; font-weight:700; letter-spacing:.02em; line-height:1.6;}
+.tlx-s{font-size:12.5px; color:var(--sub); line-height:1.75; margin-top:4px;}
+/* 最後の1つ＝千穐楽まで使い切った印。挿絵の「最後のチェックだけ朱」と揃える */
+.tlx-i:last-child .tlx-d{background:var(--accent);}
+/* 広い画面ではラベルを少し離し、本文を読みやすい幅に保つ */
+@media(min-width:640px){
+  .tlx-i{gap:18px; padding:16px 18px;}
+  .tlx-i:not(:last-child)::after{left:41px;}
+}
+
 /* ---------- シート：CTA（無料ヒアリング） ---------- */
 .cta{
   display:inline-flex; align-items:center; gap:10px; margin-top:20px;
