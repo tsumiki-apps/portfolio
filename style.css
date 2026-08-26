@@ -562,6 +562,9 @@ body.on-dark .tb-brand{color:#F4F2EE;
   .sc-carry{opacity:1; transform:translate(198px,62px);}
   .sc-fit{opacity:1; transform:none;}
   .sc-drawin > *, .sc-shield > *{stroke-dashoffset:0;}
+  .sk-scan{transform:none;}
+  .sk-m, .sk-dot{opacity:1; transform:none;}
+  .sk-use{stroke-dashoffset:0;}
   .screen.is-active .sc-bub,
   .screen.is-active .sc-paper,
   .screen.is-active .sc-reveal,
@@ -576,7 +579,11 @@ body.on-dark .tb-brand{color:#F4F2EE;
   .screen.is-active .sc-sway,
   .screen.is-active .sc-pulse,
   .screen.is-active .sc-drawin > *,
-  .screen.is-active .sc-shield > *{animation:none;}
+  .screen.is-active .sc-shield > *,
+  .screen.is-active .sk-scan,
+  .screen.is-active .sk-m,
+  .screen.is-active .sk-dot,
+  .screen.is-active .sk-use{animation:none;}
 }
 
 /* 課題リスト */
@@ -724,35 +731,68 @@ body.on-dark .tb-brand{color:#F4F2EE;
 .flow-step .fs-jp{font-size:16px; font-weight:700; letter-spacing:.02em;}
 .flow-step .fs-desc{font-size:12.5px; color:var(--sub); line-height:1.7; margin-top:2px;}
 
-/* ---------- お客様の声：お渡しまでの日数（時系列） ----------
-   進め方の .flow と同じ「カードを縦線でつなぐ」語彙。番号の丸ではなく
-   日数のラベルなので、丸ではなく横長の錠剤にしている。
-   接続線 left は「カード左padding 16px ＋ ラベル幅の半分 23px」＝39px。
-   ラベルの幅を変えたら、この線の位置も直すこと。 */
-.tlx{list-style:none; margin-top:18px; display:flex; flex-direction:column; gap:12px;}
-.tlx-i{
-  position:relative;
-  display:grid; grid-template-columns:auto minmax(0,1fr); align-items:start; gap:14px;
-  background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px;
+/* ---------- お客様の声：数字の並び・図の説明・凡例 ----------
+   文字で説明せず、図と数字で見せるための小さな部品。
+   固定px幅を作らず、狭い幅では列を減らして畳む。 */
+.nums{list-style:none; display:grid; gap:9px; margin-top:16px;
+  grid-template-columns:repeat(2,minmax(0,1fr));}
+.nums li{background:var(--card); border:1px solid var(--line); border-radius:14px;
+  padding:13px 8px; text-align:center;}
+.nums b{display:block; font-size:23px; font-weight:700; line-height:1.2; letter-spacing:.01em;}
+.nums span{display:block; font-size:11px; color:var(--sub); margin-top:6px; line-height:1.5;}
+.nums-3{grid-template-columns:repeat(3,minmax(0,1fr));}
+@media(min-width:600px){ .nums-4{grid-template-columns:repeat(4,minmax(0,1fr));} }
+
+/* 図の下に置く一行の説明。図の一部として読ませたいので中央寄せにする */
+.cap{font-size:12.5px; color:var(--sub); line-height:1.85; margin-top:12px; text-align:center;}
+.cap strong{color:var(--ink); font-weight:700;}
+
+/* 日数の図の凡例 */
+.sk-leg{list-style:none; display:flex; flex-wrap:wrap; justify-content:center;
+  gap:7px 15px; margin-top:12px;}
+.sk-leg li{display:flex; align-items:center; gap:7px; font-size:11.5px; color:var(--sub);}
+.sk-k{width:9px; height:9px; border-radius:50%; border:1.7px solid var(--ink); flex:0 0 auto;}
+.sk-k2{border-color:var(--accent); background:var(--accent);}
+.sk-k3{border-radius:2px; background:var(--ink);}
+.sk-k4{width:16px; height:0; border:0; border-top:1.7px dashed var(--ghost); border-radius:0;}
+
+/* ---------- お客様の声：図解の動き ----------
+   動くのは「突き合わせに行く虫めがね」と「使われた期間の朱の線」だけ。
+   表・帯・印は静止させる（線が多いので動かすと騒がしくなる）。 */
+.sk-scan{transform-box:view-box;}
+.screen.is-active .sk-scan{animation:sk-scan 6s ease-in-out infinite;}
+@keyframes sk-scan{
+  0%,100%{transform:translateX(-62px);}
+  46%,54%{transform:translateX(62px);}
 }
-.tlx-i:not(:last-child)::after{
-  content:""; position:absolute; left:39px; bottom:-13px; width:1px; height:13px; background:var(--line);
+/* ご面談 → お渡し → お直し の順に、印が置かれる。
+   ここは1回きりで、置かれたら残す（点滅させない）。印が消えている瞬間があると
+   下の凡例が指すものが無くなり、図として読めなくなるため。 */
+.sk-m{opacity:0;}
+.screen.is-active .sk-m{animation:sk-in .5s ease-out both;}
+.sk-dot{transform-box:fill-box; transform-origin:50% 50%;}
+.screen.is-active .sk-dot{animation:sk-pop .55s cubic-bezier(.2,.9,.3,1) both;}
+.screen.is-active .sk-m1{animation-delay:.25s;}
+.screen.is-active .sk-m2{animation-delay:.75s;}
+.screen.is-active .sk-m3{animation-delay:1.35s;}
+.screen.is-active .sk-m4{animation-delay:1.6s;}
+.screen.is-active .sk-m5{animation-delay:1.85s;}
+@keyframes sk-in{from{opacity:0;} to{opacity:1;}}
+@keyframes sk-pop{
+  0%  {opacity:0; transform:scale(.5);}
+  70% {opacity:1; transform:scale(1.08);}
+  100%{opacity:1; transform:scale(1);}
 }
-.tlx-d{
-  width:46px; height:26px; border-radius:999px; flex:0 0 auto; margin-top:1px;
-  background:var(--ink); color:var(--paper);
-  display:flex; align-items:center; justify-content:center;
-  font-size:11px; font-weight:700; letter-spacing:.02em; white-space:nowrap;
-}
-.tlx-t{font-size:14px; font-weight:700; letter-spacing:.02em; line-height:1.6;}
-.tlx-s{font-size:12.5px; color:var(--sub); line-height:1.75; margin-top:4px;}
-/* 最後の1つ＝千穐楽まで使い切った印。挿絵の「最後のチェックだけ朱」と揃える */
-.tlx-i:last-child .tlx-d{background:var(--accent);}
-/* 広い画面ではラベルを少し離し、本文を読みやすい幅に保つ */
-@media(min-width:640px){
-  .tlx-i{gap:18px; padding:16px 18px;}
-  .tlx-i:not(:last-child)::after{left:41px;}
-}
+/* 使っていただいた期間。お渡しの日から稽古の最終日へ、1回だけ引かれて残る */
+.sk-use{fill:none; stroke-width:1.7; stroke-linecap:round;
+  stroke-dasharray:100; stroke-dashoffset:100;}
+.screen.is-active .sk-use{animation:sk-use 1.5s ease-out .95s both;}
+@keyframes sk-use{to{stroke-dashoffset:0;}}
+
+/* 細かいお断り。読み飛ばしてよいものとして、小さく淡く、行で分ける */
+.fine{list-style:none; margin-top:14px; border-left:2px solid var(--ghost); padding:2px 0 2px 13px;
+  display:flex; flex-direction:column; gap:6px;}
+.fine li{font-size:11.5px; color:var(--sub); line-height:1.75;}
 
 /* ---------- シート：CTA（無料ヒアリング） ---------- */
 .cta{
