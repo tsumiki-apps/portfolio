@@ -1732,3 +1732,91 @@ footer.foot{
 }
 /* 比較ヒーローはモバイルで全体を見せる（切り抜きせず縦も詰める） */
 @media(max-width:640px){ .cmp-fhero svg{height:auto; max-height:none;} }
+
+/* ==================== 折りたたみ（fold）====================
+   2026-08-30：サービスを6項目→4項目に集約したときに追加。
+   1ページが長くなりすぎないよう、詳細は <details> で畳んでおき、見出しだけを並べる。
+   JSなし・ネイティブの details/summary（キーボード操作と検索も効く）。
+   使い場所＝つみきの特長（FEATURE 01〜06／3つの違い）、料金（含まれるもの・別途・見比べ方・
+   納品後・できること／できないこと・FAQ）。 */
+.fold{border-top:1px solid var(--line);}
+.fold + .fold{border-top:1px solid var(--line);}
+.fold:last-of-type{border-bottom:1px solid var(--line);}
+.fold > summary{
+  list-style:none; cursor:pointer;
+  display:grid; grid-template-columns:minmax(0,1fr) 16px;
+  grid-template-areas:"ttl mk" "en mk";           /* 見出しの下に英字（.h3 / .h3-en と同じ組み） */
+  align-items:center; gap:0 12px;
+  min-height:44px; padding:14px 2px;              /* タップ44px以上 */
+  -webkit-tap-highlight-color:transparent;
+}
+.fold > summary::-webkit-details-marker{display:none;}
+.fold > summary:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:6px;}
+.fold-ttl{grid-area:ttl; font-size:15.5px; font-weight:700; line-height:1.55; letter-spacing:.01em;}
+.fold-en{grid-area:en; font-size:10px; letter-spacing:.22em; color:var(--accent); margin-top:4px;}
+/* ＋／− の印（開くと横棒だけになる） */
+.fold-mk{grid-area:mk; position:relative; width:16px; height:16px; align-self:center;}
+.fold-mk::before, .fold-mk::after{
+  content:""; position:absolute; left:50%; top:50%; background:var(--sub);
+  transform:translate(-50%,-50%); transition:transform .28s ease, opacity .28s ease;
+}
+.fold-mk::before{width:14px; height:1.4px;}
+.fold-mk::after{width:1.4px; height:14px;}
+.fold[open] > summary .fold-mk::after{transform:translate(-50%,-50%) rotate(90deg); opacity:0;}
+.fold[open] > summary .fold-ttl{color:var(--ink);}
+.fold-in{padding:2px 0 22px; animation:fold-in .38s ease both;}
+.fold-in > .h3:first-child, .fold-in > .sheet-sub:first-child{margin-top:0;}
+@keyframes fold-in{ from{opacity:0; transform:translateY(-4px);} to{opacity:1; transform:none;} }
+@media(hover:hover){ .fold > summary:hover .fold-ttl{color:var(--accent);} }
+@media(prefers-reduced-motion:reduce){ .fold-in{animation:none;} }
+@media(min-width:600px){ .fold-ttl{font-size:16.5px;} }
+
+/* 特長01〜06：カードではなく、畳んだ行として並べる */
+.feats{gap:0; margin-top:18px;}
+.feat.fold{display:block; border-top:1px solid var(--line);}  /* 旧 .feat の 2カラムgrid は .feat-in へ移した */
+.feat.fold:last-of-type{border-bottom:1px solid var(--line);}
+/* .fold > summary（flex）より強い指定にする。同じ要素なので詳細度で勝たないと display が上書きされない */
+.fold > summary.feat-sum{list-style:none; cursor:pointer;
+  display:grid; grid-template-columns:minmax(0,1fr) 16px;
+  grid-template-areas:"k mk" "ttl mk";          /* 上にFEATURE番号・下に見出し・右に＋ */
+  align-items:center; gap:0 12px;
+  min-height:44px; padding:15px 2px; -webkit-tap-highlight-color:transparent;}
+.feat-sum::-webkit-details-marker{display:none;}
+.feat-sum:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:6px;}
+.feat-sum .feat-k{grid-area:k; font-size:10px; font-weight:700; letter-spacing:.2em;}  /* 色は既存の .feat-k（朱）のまま */
+.feat-sum .feat-ttl{grid-area:ttl; font-size:16.5px; font-weight:700; line-height:1.55; margin-top:5px;}
+.feat-sum .fold-mk{grid-area:mk; margin-left:0; align-self:center;}
+.feat.fold[open] .feat-sum .feat-ttl{color:var(--ink);}
+@media(hover:hover){ .feat-sum:hover .feat-ttl{color:var(--accent);} }
+.feat-in{padding-bottom:24px; animation:fold-in .38s ease both;}
+.feat-in .feat-body{margin-top:13px;}
+.feat-in .feat-txt{margin-top:0;}
+@media(prefers-reduced-motion:reduce){ .feat-in{animation:none;} }
+@media(min-width:1024px){
+  .feat-in{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:44px; align-items:center;}
+  .feat-in .feat-illust .scene{margin:0;}
+  .feat-in .feat-body{margin-top:0;}
+  .feat-sum .feat-ttl{font-size:19px;}
+}
+
+/* 比較のイラストを、ページ途中に置くとき（先頭ヒーローではないので上余白を持たない） */
+.fhero.is-inline{padding-top:0; margin:16px 0 0; width:100%;}  /* 本文カラムに揃える（先頭ヒーローの全幅ぶち抜きは打ち消す） */
+.fhero.is-inline svg{max-height:34vh;}
+@media(max-width:640px){ .fhero.is-inline svg{height:auto; max-height:none;} }
+
+/* 320px幅：料金ページの「無料→無料→ここで確定」の帯が21px はみ出していた（従来からの不具合）。
+   折り返すと流れが読めなくなるので、余白と錠前だけを詰めて1本のまま収める。 */
+@media(max-width:359px){
+  .pay{gap:4px;}
+  .pay-step{padding:9px 7px;}
+  .pay-badge{padding:2px 7px;}
+  .pay-lock{width:24px;}
+  .pay-lock svg{width:24px; height:24px;}
+}
+
+/* サービスの子項目は1行に1つ（PC幅の2行組だけ inline-grid のまま）。
+   2026-08-30：「料金・進行イメージ」→「料金」と短くしたら、スマホで
+   「進め方／制作フロー」と同じ行に並んでしまい、上2つとリズムが揃わなくなったため。 */
+@media(max-width:1023px){
+  .sub-item{display:grid; width:-moz-fit-content; width:fit-content;}
+}

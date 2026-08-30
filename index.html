@@ -179,13 +179,13 @@
           <span class="mi-jp">サービス</span><span class="mi-en">SERVICE</span><span class="mi-ar">→</span>
         </button>
         <div class="submenu">
-          <a class="sub-item" data-go="features" href="#"><span class="su-jp">つみきの特長</span><span class="su-en">FEATURES</span><span class="su-ar">→</span></a>
-          <a class="sub-item" data-go="value" href="#"><span class="su-jp">提供価値</span><span class="su-en">VALUE</span><span class="su-ar">→</span></a>
-          <a class="sub-item" data-go="compare" href="#"><span class="su-jp">他社との比較</span><span class="su-en">COMPARE</span><span class="su-ar">→</span></a>
-          <span class="su-break" aria-hidden="true"></span><!-- PC幅のみ：ここで意図的に改行（特長・価値・比較／課題・進め方・料金 の2行組に） -->
+          <!-- 2026-08-30：6項目→4項目に集約。お客様が知りたい順（困りごと→中身→進め方→料金）。
+               旧「提供価値」「他社との比較」は「つみきの特長」に合流（#value / #compare は自動転送）。 -->
           <a class="sub-item" data-go="issues" href="#"><span class="su-jp">こんな課題ありませんか？</span><span class="su-en">ISSUES</span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="features" href="#"><span class="su-jp">つみきの特長</span><span class="su-en">FEATURES</span><span class="su-ar">→</span></a>
+          <span class="su-break" aria-hidden="true"></span><!-- PC幅のみ：ここで意図的に改行（課題・特長／進め方・料金 の2行組に） -->
           <a class="sub-item" data-go="process" href="#"><span class="su-jp">進め方／制作フロー</span><span class="su-en">PROCESS</span><span class="su-ar">→</span></a>
-          <a class="sub-item" data-go="pricing" href="#"><span class="su-jp">料金・進行イメージ</span><span class="su-en">PRICING</span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="pricing" href="#"><span class="su-jp">料金</span><span class="su-en">PRICING</span><span class="su-ar">→</span></a>
         </div>
       </div>
 
@@ -1022,180 +1022,6 @@
 
     <div class="sheet-inner">
       <p class="sheet-label"><span class="sl-jp">つみきの特長</span><span class="sl-en">FEATURES</span></p>
-      <p class="sheet-lead">オーダーメイドだからできる、6つのお約束。ひとつずつご紹介します。</p>
-
-      <div class="feats">
-
-        <!-- 01 あなた専用に鍵つきでお渡し -->
-        <div class="feat">
-          <div class="feat-illust">
-            <div class="scene" aria-hidden="true"><svg viewBox="0 4 300 176" role="img">
-              <!-- 左：私（作り手） -->
-              <g class="sc-line"><circle cx="46" cy="74" r="11"/><path d="M28 134c-2-20 8-34 18-34s18 14 18 30"/></g>
-              <!-- 右：御社（建物） -->
-              <g class="sc-line">
-                <path d="M196 70l38-20 38 20"/>
-                <rect x="204" y="70" width="60" height="64" rx="3"/>
-                <path d="M226 134v-24h16v24" class="sc-soft"/>
-                <path d="M212 84h10M242 84h10M212 98h10M242 98h10" class="sc-soft"/>
-              </g>
-              <!-- 受け渡すアプリのカード（左→右へ運ばれる） -->
-              <g class="sc-line sc-carry">
-                <rect x="0" y="0" width="26" height="20" rx="3" class="sc-fillsoft"/>
-                <path d="M5 7h16M5 12h11" class="sc-soft"/>
-              </g>
-              <!-- 届いた印（建物にチェック・朱＝約束の印） -->
-              <g class="sc-line sc-arrive sc-accent"><path d="M226 60l6 6 12-13"/></g>
-            </svg></div>
-          </div>
-          <div class="feat-body">
-            <p class="feat-k">FEATURE 01</p>
-            <h3 class="feat-ttl">あなた専用に、鍵つきでお渡し</h3>
-            <p class="feat-txt">あなたのために作ったアプリを、あなた専用の鍵（＝プロダクトキー。合言葉のようなもの）でお渡しします。無断でコピーされたり、同業に横流しされたりしません。（ご希望の方には、ソースコードのお渡し＝買い取りもご相談に応じます）</p>
-          </div>
-        </div>
-
-        <!-- 02 やり方を変えない -->
-        <div class="feat">
-          <div class="feat-illust">
-            <div class="scene" aria-hidden="true"><svg viewBox="-30 0 300 176" role="img">
-              <!-- いまの仕事の形（穴あきの枠） -->
-              <g class="sc-line">
-                <path d="M64 44h112a10 10 0 0 1 10 10v20h-24a14 14 0 0 0 0 28h24v20a10 10 0 0 1-10 10H64a10 10 0 0 1-10-10V54a10 10 0 0 1 10-10z"/>
-              </g>
-              <!-- 道具のほうが、形に合わせて入る（朱＝ぴったりはまる部品） -->
-              <g class="sc-line sc-fit sc-accent">
-                <path d="M162 74a14 14 0 0 1 0 28h24a6 6 0 0 0 6-6V80a6 6 0 0 0-6-6z"/>
-                <path d="M172 84h10" class="sc-soft"/>
-              </g>
-            </svg></div>
-          </div>
-          <div class="feat-body">
-            <p class="feat-k">FEATURE 02</p>
-            <h3 class="feat-ttl">道具のほうを、仕事に合わせる</h3>
-            <p class="feat-txt">いまの手順は、そのままで大丈夫。慣れたやり方を変えずに、道具の側をぴったり合わせて作ります。</p>
-          </div>
-        </div>
-
-        <!-- 03 守る（無断コピー・横流しを防ぐ） -->
-        <div class="feat">
-          <div class="feat-illust">
-            <div class="scene" aria-hidden="true"><svg viewBox="0 0 300 176" role="img">
-              <!-- あなた専用のアプリ（本体） -->
-              <g class="sc-line">
-                <rect x="92" y="36" width="64" height="104" rx="11"/>
-                <circle cx="124" cy="46" r="1.7" fill="currentColor" stroke="none"/>
-                <path d="M104 64h40M104 74h26" class="sc-soft"/>
-              </g>
-              <!-- 「◯◯さま専用」の朱印（角印・そっと脈打つ＝あなた専用の印） -->
-              <g class="sc-line sc-pulse sc-accent" transform="rotate(-7 124 105)">
-                <rect x="108" y="90" width="32" height="30" rx="4"/>
-                <rect x="114" y="96" width="20" height="18" rx="2" class="sc-soft"/>
-                <path d="M119 105h10" class="sc-soft"/>
-              </g>
-              <!-- 無断コピー（薄いゴースト）＝横流しされようとするアプリ -->
-              <g class="sc-line sc-soft">
-                <rect x="198" y="52" width="52" height="84" rx="9" stroke-dasharray="5 6"/>
-                <path d="M210 72h28M210 82h18M210 92h28"/>
-              </g>
-              <!-- 禁止マーク（朱）＝横流しを止める -->
-              <g class="sc-line sc-accent">
-                <circle cx="224" cy="94" r="27"/>
-                <path d="M205 75l38 38"/>
-              </g>
-            </svg></div>
-          </div>
-          <div class="feat-body">
-            <p class="feat-k">FEATURE 03</p>
-            <h3 class="feat-ttl">無断コピー・横流しを防ぐ</h3>
-            <p class="feat-txt">アプリはあなた専用の鍵つき。使える端末数の制限と「◯◯さま専用」の印で守ります。万一よそに出回っても、その鍵だけ止める（＝失効させる）ことができます。</p>
-          </div>
-        </div>
-
-        <!-- 04 金額が変わらない -->
-        <div class="feat">
-          <div class="feat-illust">
-            <div class="scene" aria-hidden="true"><svg viewBox="16 19 300 176" role="img">
-              <!-- 値札（ゆっくり揺れる） -->
-              <g class="sc-line sc-sway">
-                <path d="M96 58l58 0 40 40-58 58-40-40z"/>
-                <circle cx="116" cy="78" r="6"/>
-                <path d="M132 108l16 16m8-8l-16-16" class="sc-soft"/>
-                <path d="M150 96l14 14" class="sc-soft"/>
-              </g>
-              <!-- 錠前（変わらない印・軽く脈打つ・朱＝約束の印） -->
-              <g class="sc-line sc-pulse sc-accent">
-                <rect x="196" y="104" width="40" height="30" rx="5"/>
-                <path d="M203 104v-7a13 13 0 0 1 26 0v7"/>
-                <circle cx="216" cy="118" r="3" fill="currentColor" stroke="none"/>
-              </g>
-            </svg></div>
-          </div>
-          <div class="feat-body">
-            <p class="feat-k">FEATURE 04</p>
-            <h3 class="feat-ttl">着手後、金額は増えない</h3>
-            <p class="feat-txt">ご納得いただいた金額で着手し、あとから膨らむことはありません。ヒアリングもお見積りも無料です。</p>
-          </div>
-        </div>
-
-        <!-- 05 小さく作って見せる -->
-        <div class="feat">
-          <div class="feat-illust">
-            <div class="scene" aria-hidden="true"><svg viewBox="0 0 300 176" role="img">
-              <!-- 端末 -->
-              <g class="sc-line"><rect x="118" y="26" width="64" height="124" rx="12"/><circle cx="150" cy="36" r="1.7" fill="currentColor" stroke="none"/></g>
-              <!-- 中身が少しずつ描かれていく（試作→形になる） -->
-              <g class="sc-line sc-drawin">
-                <path d="M130 54h40" pathLength="100"/>
-                <path d="M130 68h40" pathLength="100"/>
-                <path d="M130 82h26" pathLength="100"/>
-                <rect x="130" y="98" width="40" height="22" rx="4" pathLength="100"/>
-              </g>
-              <!-- 完成の印 -->
-              <g class="sc-line sc-arrive sc-accent"><path d="M140 130l6 6 12-13"/></g>
-            </svg></div>
-          </div>
-          <div class="feat-body">
-            <p class="feat-k">FEATURE 05</p>
-            <h3 class="feat-ttl">いきなり、完成させない</h3>
-            <p class="feat-txt">まず動く形をお見せします。実際に触った感想をもとに、少しずつ整えていきます。</p>
-          </div>
-        </div>
-
-        <!-- 06 情報を守る -->
-        <div class="feat">
-          <div class="feat-illust">
-            <div class="scene" aria-hidden="true"><svg viewBox="0 -6 300 176" role="img">
-              <!-- 書類 -->
-              <g class="sc-line sc-soft"><rect x="132" y="60" width="36" height="46" rx="3"/><path d="M139 72h22M139 80h22M139 88h14"/></g>
-              <!-- 守る盾（外周が描かれ、静かに脈打つ） -->
-              <g class="sc-line sc-shield">
-                <path d="M150 30l44 16v28c0 30-22 50-44 60-22-10-44-30-44-60V46z" pathLength="100"/>
-              </g>
-              <!-- 守られた印 -->
-              <g class="sc-line sc-arrive sc-accent"><path d="M138 86l8 8 16-18"/></g>
-            </svg></div>
-          </div>
-          <div class="feat-body">
-            <p class="feat-k">FEATURE 06</p>
-            <h3 class="feat-ttl">伺った情報は、守る</h3>
-            <p class="feat-txt">業務を深く伺う仕事だからこそ。ご希望に応じてNDA（秘密保持契約）も締結します。</p>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="cta-wrap">
-        <p class="cta-lead">「うちのこれ、なんとかなりますか？」だけで大丈夫です。初回のヒアリングは無料です。</p>
-        <a class="cta" data-go="hearing" href="#">無料で相談する<span class="cta-ar">→</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- サービス：提供価値 -->
-  <section class="screen sheet" id="s-value" data-screen="value">
-    <div class="sheet-inner">
-      <p class="sheet-label"><span class="sl-jp">提供価値</span><span class="sl-en">VALUE</span></p>
 
       <p class="vp">あなたの会社の業務を<span class="hl">1〜2時間じっくり伺って</span>、その会社だけの専用アプリを作ります。</p>
       <p class="vp-sub">仕事のやり方は、そのまま。道具のほうを合わせます。</p>
@@ -1245,24 +1071,247 @@
         </svg>
       </div>
 
-      <p class="h3">3つのお約束<span class="h3-en">OUR PROMISES</span></p>
-      <div class="promises is-compact">
-        <div class="promise">
-          <svg class="ico" aria-hidden="true"><use href="#ico-handover"/></svg>
-          <p class="pr-ttl">あなた専用に、鍵つきでお渡し</p>
-        </div>
-        <div class="promise">
-          <svg class="ico" aria-hidden="true"><use href="#ico-blocks-good"/></svg>
-          <p class="pr-ttl">道具のほうを、仕事に合わせる</p>
-        </div>
-        <div class="promise">
-          <svg class="ico" aria-hidden="true"><use href="#ico-price"/></svg>
-          <p class="pr-ttl">着手後、金額は変わらない</p>
-        </div>
-      </div>
-      <p class="note">→ それぞれの詳しい中身は <a data-go="features" href="#">つみきの特長</a> でご紹介しています。</p>
 
-      <p class="h3">既製のツールに、仕事を合わせていませんか<span class="h3-en">WHY MADE-TO-ORDER</span></p>
+      <p class="h3">オーダーメイドだからできる、6つのお約束<span class="h3-en">OUR PROMISES</span></p>
+      <p class="sheet-sub">見出しを押すと、それぞれの詳しい中身とイラストが開きます。</p>
+      <div class="feats">
+
+        <!-- 01 あなた専用に鍵つきでお渡し -->
+        <details class="feat fold">
+          <summary class="feat-sum">
+            <span class="feat-k">FEATURE 01</span>
+            <span class="feat-ttl">あなた専用に、鍵つきでお渡し</span>
+            <span class="fold-mk" aria-hidden="true"></span>
+          </summary>
+          <div class="feat-in">
+          <div class="feat-illust">
+            <div class="scene" aria-hidden="true"><svg viewBox="0 4 300 176" role="img">
+              <!-- 左：私（作り手） -->
+              <g class="sc-line"><circle cx="46" cy="74" r="11"/><path d="M28 134c-2-20 8-34 18-34s18 14 18 30"/></g>
+              <!-- 右：御社（建物） -->
+              <g class="sc-line">
+                <path d="M196 70l38-20 38 20"/>
+                <rect x="204" y="70" width="60" height="64" rx="3"/>
+                <path d="M226 134v-24h16v24" class="sc-soft"/>
+                <path d="M212 84h10M242 84h10M212 98h10M242 98h10" class="sc-soft"/>
+              </g>
+              <!-- 受け渡すアプリのカード（左→右へ運ばれる） -->
+              <g class="sc-line sc-carry">
+                <rect x="0" y="0" width="26" height="20" rx="3" class="sc-fillsoft"/>
+                <path d="M5 7h16M5 12h11" class="sc-soft"/>
+              </g>
+              <!-- 届いた印（建物にチェック・朱＝約束の印） -->
+              <g class="sc-line sc-arrive sc-accent"><path d="M226 60l6 6 12-13"/></g>
+            </svg></div>
+          </div>
+            <div class="feat-body">
+              <p class="feat-txt">あなたのために作ったアプリを、あなた専用の鍵（＝プロダクトキー。合言葉のようなもの）でお渡しします。無断でコピーされたり、同業に横流しされたりしません。（ご希望の方には、ソースコードのお渡し＝買い取りもご相談に応じます）</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- 02 やり方を変えない -->
+        <details class="feat fold">
+          <summary class="feat-sum">
+            <span class="feat-k">FEATURE 02</span>
+            <span class="feat-ttl">道具のほうを、仕事に合わせる</span>
+            <span class="fold-mk" aria-hidden="true"></span>
+          </summary>
+          <div class="feat-in">
+          <div class="feat-illust">
+            <div class="scene" aria-hidden="true"><svg viewBox="-30 0 300 176" role="img">
+              <!-- いまの仕事の形（穴あきの枠） -->
+              <g class="sc-line">
+                <path d="M64 44h112a10 10 0 0 1 10 10v20h-24a14 14 0 0 0 0 28h24v20a10 10 0 0 1-10 10H64a10 10 0 0 1-10-10V54a10 10 0 0 1 10-10z"/>
+              </g>
+              <!-- 道具のほうが、形に合わせて入る（朱＝ぴったりはまる部品） -->
+              <g class="sc-line sc-fit sc-accent">
+                <path d="M162 74a14 14 0 0 1 0 28h24a6 6 0 0 0 6-6V80a6 6 0 0 0-6-6z"/>
+                <path d="M172 84h10" class="sc-soft"/>
+              </g>
+            </svg></div>
+          </div>
+            <div class="feat-body">
+              <p class="feat-txt">いまの手順は、そのままで大丈夫。慣れたやり方を変えずに、道具の側をぴったり合わせて作ります。</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- 03 守る（無断コピー・横流しを防ぐ） -->
+        <details class="feat fold">
+          <summary class="feat-sum">
+            <span class="feat-k">FEATURE 03</span>
+            <span class="feat-ttl">無断コピー・横流しを防ぐ</span>
+            <span class="fold-mk" aria-hidden="true"></span>
+          </summary>
+          <div class="feat-in">
+          <div class="feat-illust">
+            <div class="scene" aria-hidden="true"><svg viewBox="0 0 300 176" role="img">
+              <!-- あなた専用のアプリ（本体） -->
+              <g class="sc-line">
+                <rect x="92" y="36" width="64" height="104" rx="11"/>
+                <circle cx="124" cy="46" r="1.7" fill="currentColor" stroke="none"/>
+                <path d="M104 64h40M104 74h26" class="sc-soft"/>
+              </g>
+              <!-- 「◯◯さま専用」の朱印（角印・そっと脈打つ＝あなた専用の印） -->
+              <g class="sc-line sc-pulse sc-accent" transform="rotate(-7 124 105)">
+                <rect x="108" y="90" width="32" height="30" rx="4"/>
+                <rect x="114" y="96" width="20" height="18" rx="2" class="sc-soft"/>
+                <path d="M119 105h10" class="sc-soft"/>
+              </g>
+              <!-- 無断コピー（薄いゴースト）＝横流しされようとするアプリ -->
+              <g class="sc-line sc-soft">
+                <rect x="198" y="52" width="52" height="84" rx="9" stroke-dasharray="5 6"/>
+                <path d="M210 72h28M210 82h18M210 92h28"/>
+              </g>
+              <!-- 禁止マーク（朱）＝横流しを止める -->
+              <g class="sc-line sc-accent">
+                <circle cx="224" cy="94" r="27"/>
+                <path d="M205 75l38 38"/>
+              </g>
+            </svg></div>
+          </div>
+            <div class="feat-body">
+              <p class="feat-txt">アプリはあなた専用の鍵つき。使える端末数の制限と「◯◯さま専用」の印で守ります。万一よそに出回っても、その鍵だけ止める（＝失効させる）ことができます。</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- 04 金額が変わらない -->
+        <details class="feat fold">
+          <summary class="feat-sum">
+            <span class="feat-k">FEATURE 04</span>
+            <span class="feat-ttl">着手後、金額は増えない</span>
+            <span class="fold-mk" aria-hidden="true"></span>
+          </summary>
+          <div class="feat-in">
+          <div class="feat-illust">
+            <div class="scene" aria-hidden="true"><svg viewBox="16 19 300 176" role="img">
+              <!-- 値札（ゆっくり揺れる） -->
+              <g class="sc-line sc-sway">
+                <path d="M96 58l58 0 40 40-58 58-40-40z"/>
+                <circle cx="116" cy="78" r="6"/>
+                <path d="M132 108l16 16m8-8l-16-16" class="sc-soft"/>
+                <path d="M150 96l14 14" class="sc-soft"/>
+              </g>
+              <!-- 錠前（変わらない印・軽く脈打つ・朱＝約束の印） -->
+              <g class="sc-line sc-pulse sc-accent">
+                <rect x="196" y="104" width="40" height="30" rx="5"/>
+                <path d="M203 104v-7a13 13 0 0 1 26 0v7"/>
+                <circle cx="216" cy="118" r="3" fill="currentColor" stroke="none"/>
+              </g>
+            </svg></div>
+          </div>
+            <div class="feat-body">
+              <p class="feat-txt">ご納得いただいた金額で着手し、あとから膨らむことはありません。ヒアリングもお見積りも無料です。</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- 05 小さく作って見せる -->
+        <details class="feat fold">
+          <summary class="feat-sum">
+            <span class="feat-k">FEATURE 05</span>
+            <span class="feat-ttl">いきなり、完成させない</span>
+            <span class="fold-mk" aria-hidden="true"></span>
+          </summary>
+          <div class="feat-in">
+          <div class="feat-illust">
+            <div class="scene" aria-hidden="true"><svg viewBox="0 0 300 176" role="img">
+              <!-- 端末 -->
+              <g class="sc-line"><rect x="118" y="26" width="64" height="124" rx="12"/><circle cx="150" cy="36" r="1.7" fill="currentColor" stroke="none"/></g>
+              <!-- 中身が少しずつ描かれていく（試作→形になる） -->
+              <g class="sc-line sc-drawin">
+                <path d="M130 54h40" pathLength="100"/>
+                <path d="M130 68h40" pathLength="100"/>
+                <path d="M130 82h26" pathLength="100"/>
+                <rect x="130" y="98" width="40" height="22" rx="4" pathLength="100"/>
+              </g>
+              <!-- 完成の印 -->
+              <g class="sc-line sc-arrive sc-accent"><path d="M140 130l6 6 12-13"/></g>
+            </svg></div>
+          </div>
+            <div class="feat-body">
+              <p class="feat-txt">まず動く形をお見せします。実際に触った感想をもとに、少しずつ整えていきます。</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- 06 情報を守る -->
+        <details class="feat fold">
+          <summary class="feat-sum">
+            <span class="feat-k">FEATURE 06</span>
+            <span class="feat-ttl">伺った情報は、守る</span>
+            <span class="fold-mk" aria-hidden="true"></span>
+          </summary>
+          <div class="feat-in">
+          <div class="feat-illust">
+            <div class="scene" aria-hidden="true"><svg viewBox="0 -6 300 176" role="img">
+              <!-- 書類 -->
+              <g class="sc-line sc-soft"><rect x="132" y="60" width="36" height="46" rx="3"/><path d="M139 72h22M139 80h22M139 88h14"/></g>
+              <!-- 守る盾（外周が描かれ、静かに脈打つ） -->
+              <g class="sc-line sc-shield">
+                <path d="M150 30l44 16v28c0 30-22 50-44 60-22-10-44-30-44-60V46z" pathLength="100"/>
+              </g>
+              <!-- 守られた印 -->
+              <g class="sc-line sc-arrive sc-accent"><path d="M138 86l8 8 16-18"/></g>
+            </svg></div>
+          </div>
+            <div class="feat-body">
+              <p class="feat-txt">業務を深く伺う仕事だからこそ。ご希望に応じてNDA（秘密保持契約）も締結します。</p>
+            </div>
+          </div>
+        </details>
+
+      </div>
+
+
+      <p class="h3">あなた専用に、守ってお渡し<span class="h3-en">PROTECTED FOR YOU</span></p>
+      <div class="chips">
+        <span class="chip">あなた専用の鍵つきでお渡し</span>
+        <span class="chip">無断コピー・横流しを防ぐ</span>
+        <span class="chip">「◯◯さま専用」の印を添えて</span>
+        <span class="chip">買い切り・月額の縛りなし</span>
+        <span class="chip">万一の流出も、止められる</span>
+      </div>
+      <p class="note">「よそに無断で渡らない」安心を、仕組みでお約束します。ご希望の方には、ソースコードのお渡し（＝買い取り・著作権譲渡）もご相談に応じます。</p>
+
+
+      <!-- 既製ツールとの違い（旧「他社との比較」＋旧「提供価値」の積み木の対比を、ここに一本化） -->
+      <p class="h3">既製ツールとの違い<span class="h3-en">VS SUBSCRIPTION TOOLS</span></p>
+      <div class="fhero cmp-fhero is-inline" aria-hidden="true">
+        <svg viewBox="0 0 1200 300" preserveAspectRatio="xMidYMid meet" role="img">
+          <!-- 中央の仕切り -->
+          <path d="M600 54 V248" class="sc-line sc-soft" stroke-dasharray="1 11"/>
+
+          <!-- 左：サブスク＝毎月ずっと出ていく -->
+          <text x="300" y="70" class="cmp-cap">毎月ずっと</text>
+          <text x="300" y="91" class="cmp-sub">SUBSCRIPTION</text>
+          <g class="sc-line">
+            <rect x="228" y="116" width="144" height="90" rx="12" class="sc-fillsoft"/>
+            <path d="M228 140 H372" class="sc-soft"/>
+            <circle cx="244" cy="128" r="3.2" fill="currentColor" stroke="none"/>
+            <path d="M246 162 H346 M246 182 H322" class="sc-soft"/>
+          </g>
+          <!-- 毎月、下へ流れ続けるコイン（3枚を時間差でループ） -->
+          <g class="cmp-drip cmp-d1"><circle cx="300" cy="212" r="13" class="cmp-coin"/><text x="300" y="217" class="cmp-yen">¥</text></g>
+          <g class="cmp-drip cmp-d2"><circle cx="300" cy="234" r="12" class="cmp-coin"/><text x="300" y="239" class="cmp-yen">¥</text></g>
+          <g class="cmp-drip cmp-d3"><circle cx="300" cy="256" r="11" class="cmp-coin"/><text x="300" y="260" class="cmp-yen">¥</text></g>
+
+          <!-- 右：つみき＝一度きり払って、あとは手元に -->
+          <text x="900" y="70" class="cmp-cap">一度きり</text>
+          <text x="900" y="91" class="cmp-sub">TSUMIKI</text>
+          <!-- 一度だけ上に乗るコイン（静止） -->
+          <g class="cmp-once"><circle cx="900" cy="108" r="13" class="cmp-coin"/><text x="900" y="113" class="cmp-yen">¥</text></g>
+          <g class="sc-line">
+            <rect x="828" y="116" width="144" height="90" rx="12" class="sc-fillsoft"/>
+            <path d="M828 140 H972" class="sc-soft"/>
+            <circle cx="844" cy="128" r="3.2" fill="currentColor" stroke="none"/>
+          </g>
+          <!-- 済んだ印（朱チェック・以後の支払いなし） -->
+          <g class="sc-line sc-accent sc-arrive"><path d="M880 172 l11 11 22 -24"/></g>
+        </svg>
+      </div>
       <!-- 比較：文章の表をやめ、積み木の絵で見せる。
            左＝既製（傾いて乗らない・淡墨）／右＝つみき（順に積み上がる・墨＋朱の印） -->
       <div class="vs2">
@@ -1305,39 +1354,60 @@
         </div>
       </div>
 
-      <p class="h3">導入すると、こう変わります<span class="h3-en">BEFORE → AFTER</span></p>
-      <div class="ba">
-        <div class="ba-row">
-          <div class="ba-b"><span class="ba-tag">BEFORE</span>毎朝、同じ数字を3つの表に打ち直し。</div>
-          <div class="ba-a">1回の入力で、自動でそろう。毎日30分がゼロに。</div>
-        </div>
-        <div class="ba-row">
-          <div class="ba-b"><span class="ba-tag">BEFORE</span>情報がメール・表計算・チャットに散らばる。</div>
-          <div class="ba-a">探す場所が、ひとつになる。</div>
-        </div>
-        <div class="ba-row">
-          <div class="ba-b"><span class="ba-tag">BEFORE</span>週次の報告書に、毎回1時間。</div>
-          <div class="ba-a">下書きは自動。目を通して直すだけ。</div>
-        </div>
-      </div>
-      <p class="note">※ 一例です。何がどれだけ楽になるかは、ヒアリングでご一緒に確かめます。</p>
+      <details class="fold">
+        <summary class="fold-sum">
+          <span class="fold-ttl">3つの違いを、くわしく</span>
+          <span class="fold-en">IN DETAIL</span>
+          <span class="fold-mk" aria-hidden="true"></span>
+        </summary>
+        <div class="fold-in">
+      <p class="sheet-sub">既製のサブスク型ツールと、つみきのオーダーメイド。迷ったときの判断材料に、3つの違いを正直にまとめました。</p>
 
-      <p class="h3">あなた専用に、守ってお渡し<span class="h3-en">PROTECTED FOR YOU</span></p>
-      <div class="chips">
-        <span class="chip">あなた専用の鍵つきでお渡し</span>
-        <span class="chip">無断コピー・横流しを防ぐ</span>
-        <span class="chip">「◯◯さま専用」の印を添えて</span>
-        <span class="chip">買い切り・月額の縛りなし</span>
-        <span class="chip">万一の流出も、止められる</span>
+      <!-- 3つの強み -->
+      <div class="cmp-points">
+        <div class="cmp-point">
+          <span class="cmp-no">01</span>
+          <div class="cmp-pbody">
+            <h3 class="cmp-pttl">買い切りだから、続く費用がかからない</h3>
+            <p class="cmp-ptxt">サブスクは使い続けるかぎり、毎月・毎年の支払いが続きます。つみきは一度お渡ししたら<strong>月額なし</strong>。長く使うほど、差は開いていきます。</p>
+          </div>
+        </div>
+        <div class="cmp-point">
+          <span class="cmp-no">02</span>
+          <div class="cmp-pbody">
+            <h3 class="cmp-pttl">オーダーメイドだから、いまのやり方に乗る</h3>
+            <p class="cmp-ptxt">既製ツールは多機能でも“あなたの業務にちょうど”ではなく、結局ツールに合わせて手順を変えがち。つみきは<strong>いまのやり方に合わせて</strong>作るので、余計な操作がありません。</p>
+          </div>
+        </div>
+        <div class="cmp-point">
+          <span class="cmp-no">03</span>
+          <div class="cmp-pbody">
+            <h3 class="cmp-pttl">データが、あなたの手元に残る</h3>
+            <p class="cmp-ptxt">多くのサービスはデータを預ける前提。つみきのアプリはお手元のブラウザの中で動き、プロダクトキーでお渡しします。<strong>あなたの情報が、外に出ていきません。</strong></p>
+          </div>
+        </div>
       </div>
-      <p class="note">「よそに無断で渡らない」安心を、仕組みでお約束します。ご希望の方には、ソースコードのお渡し（＝買い取り・著作権譲渡）もご相談に応じます。</p>
+
+      <!-- 比較表 -->
+      <p class="as-h">ひと目で<span class="as-h-en">AT A GLANCE</span></p>
+      <div class="cmp-table">
+        <div class="cmp-thead"><span class="cmp-th-k"></span><span class="cmp-th-us">つみき</span><span class="cmp-th-them">一般的なサブスク型</span></div>
+        <div class="cmp-trow"><span class="cmp-c-k">費用</span><span class="cmp-c-us"><span class="cmp-mk ok">◎</span>買い切り・月額なし</span><span class="cmp-c-them"><span class="cmp-mk no">△</span>毎月・毎年つづく</span></div>
+        <div class="cmp-trow"><span class="cmp-c-k">フィット</span><span class="cmp-c-us"><span class="cmp-mk ok">◎</span>業務に合わせて作る</span><span class="cmp-c-them"><span class="cmp-mk no">△</span>ツールに合わせて使う</span></div>
+        <div class="cmp-trow"><span class="cmp-c-k">データ</span><span class="cmp-c-us"><span class="cmp-mk ok">◎</span>お手元で完結</span><span class="cmp-c-them"><span class="cmp-mk no">△</span>預ける前提</span></div>
+      </div>
+      <p class="note">※ サブスク型にも、常に最新・大規模チームでの共同利用に強いといった良さがあります。小さく確実に・費用を抑えて、が合う方につみきは向いています。</p>
+
+        </div>
+      </details>
 
       <div class="cta-wrap">
-        <p class="cta-lead">まずは、いまの困りごとを聞かせてください。初回のヒアリングは無料です。</p>
+        <p class="cta-lead">「うちのこれ、なんとかなりますか？」だけで大丈夫です。初回のヒアリングは無料です。</p>
         <a class="cta" data-go="hearing" href="#">無料で相談する<span class="cta-ar">→</span></a>
       </div>
     </div>
   </section>
+
 
   <!-- つくりて -->
   <section class="screen sheet" id="s-profile" data-screen="profile">
@@ -1534,90 +1604,6 @@
     </div>
   </section>
 
-  <!-- サービス：他社との比較 -->
-  <section class="screen sheet" id="s-compare" data-screen="compare">
-
-    <!-- 動くイラスト：同じ道具を左右に置き、払い方の違いだけを対比する。
-         左＝毎月コインが下へ流れ続ける／右＝一度だけ乗って朱チェック（以後なし）。 -->
-    <div class="fhero cmp-fhero" aria-hidden="true">
-      <svg viewBox="0 0 1200 300" preserveAspectRatio="xMidYMid meet" role="img">
-        <!-- 中央の仕切り -->
-        <path d="M600 54 V248" class="sc-line sc-soft" stroke-dasharray="1 11"/>
-
-        <!-- 左：サブスク＝毎月ずっと出ていく -->
-        <text x="300" y="70" class="cmp-cap">毎月ずっと</text>
-        <text x="300" y="91" class="cmp-sub">SUBSCRIPTION</text>
-        <g class="sc-line">
-          <rect x="228" y="116" width="144" height="90" rx="12" class="sc-fillsoft"/>
-          <path d="M228 140 H372" class="sc-soft"/>
-          <circle cx="244" cy="128" r="3.2" fill="currentColor" stroke="none"/>
-          <path d="M246 162 H346 M246 182 H322" class="sc-soft"/>
-        </g>
-        <!-- 毎月、下へ流れ続けるコイン（3枚を時間差でループ） -->
-        <g class="cmp-drip cmp-d1"><circle cx="300" cy="212" r="13" class="cmp-coin"/><text x="300" y="217" class="cmp-yen">¥</text></g>
-        <g class="cmp-drip cmp-d2"><circle cx="300" cy="234" r="12" class="cmp-coin"/><text x="300" y="239" class="cmp-yen">¥</text></g>
-        <g class="cmp-drip cmp-d3"><circle cx="300" cy="256" r="11" class="cmp-coin"/><text x="300" y="260" class="cmp-yen">¥</text></g>
-
-        <!-- 右：つみき＝一度きり払って、あとは手元に -->
-        <text x="900" y="70" class="cmp-cap">一度きり</text>
-        <text x="900" y="91" class="cmp-sub">TSUMIKI</text>
-        <!-- 一度だけ上に乗るコイン（静止） -->
-        <g class="cmp-once"><circle cx="900" cy="108" r="13" class="cmp-coin"/><text x="900" y="113" class="cmp-yen">¥</text></g>
-        <g class="sc-line">
-          <rect x="828" y="116" width="144" height="90" rx="12" class="sc-fillsoft"/>
-          <path d="M828 140 H972" class="sc-soft"/>
-          <circle cx="844" cy="128" r="3.2" fill="currentColor" stroke="none"/>
-        </g>
-        <!-- 済んだ印（朱チェック・以後の支払いなし） -->
-        <g class="sc-line sc-accent sc-arrive"><path d="M880 172 l11 11 22 -24"/></g>
-      </svg>
-    </div>
-
-    <div class="sheet-inner">
-      <p class="sheet-label"><span class="sl-jp">他社との比較</span><span class="sl-en">COMPARE</span></p>
-      <p class="sheet-lead">既製のサブスク型ツールと、つみきのオーダーメイド。迷ったときの判断材料に、3つの違いを正直にまとめました。</p>
-
-      <!-- 3つの強み -->
-      <div class="cmp-points">
-        <div class="cmp-point">
-          <span class="cmp-no">01</span>
-          <div class="cmp-pbody">
-            <h3 class="cmp-pttl">買い切りだから、続く費用がかからない</h3>
-            <p class="cmp-ptxt">サブスクは使い続けるかぎり、毎月・毎年の支払いが続きます。つみきは一度お渡ししたら<strong>月額なし</strong>。長く使うほど、差は開いていきます。</p>
-          </div>
-        </div>
-        <div class="cmp-point">
-          <span class="cmp-no">02</span>
-          <div class="cmp-pbody">
-            <h3 class="cmp-pttl">オーダーメイドだから、いまのやり方に乗る</h3>
-            <p class="cmp-ptxt">既製ツールは多機能でも“あなたの業務にちょうど”ではなく、結局ツールに合わせて手順を変えがち。つみきは<strong>いまのやり方に合わせて</strong>作るので、余計な操作がありません。</p>
-          </div>
-        </div>
-        <div class="cmp-point">
-          <span class="cmp-no">03</span>
-          <div class="cmp-pbody">
-            <h3 class="cmp-pttl">データが、あなたの手元に残る</h3>
-            <p class="cmp-ptxt">多くのサービスはデータを預ける前提。つみきのアプリはお手元のブラウザの中で動き、プロダクトキーでお渡しします。<strong>あなたの情報が、外に出ていきません。</strong></p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 比較表 -->
-      <p class="as-h">ひと目で<span class="as-h-en">AT A GLANCE</span></p>
-      <div class="cmp-table">
-        <div class="cmp-thead"><span class="cmp-th-k"></span><span class="cmp-th-us">つみき</span><span class="cmp-th-them">一般的なサブスク型</span></div>
-        <div class="cmp-trow"><span class="cmp-c-k">費用</span><span class="cmp-c-us"><span class="cmp-mk ok">◎</span>買い切り・月額なし</span><span class="cmp-c-them"><span class="cmp-mk no">△</span>毎月・毎年つづく</span></div>
-        <div class="cmp-trow"><span class="cmp-c-k">フィット</span><span class="cmp-c-us"><span class="cmp-mk ok">◎</span>業務に合わせて作る</span><span class="cmp-c-them"><span class="cmp-mk no">△</span>ツールに合わせて使う</span></div>
-        <div class="cmp-trow"><span class="cmp-c-k">データ</span><span class="cmp-c-us"><span class="cmp-mk ok">◎</span>お手元で完結</span><span class="cmp-c-them"><span class="cmp-mk no">△</span>預ける前提</span></div>
-      </div>
-      <p class="note">※ サブスク型にも、常に最新・大規模チームでの共同利用に強いといった良さがあります。小さく確実に・費用を抑えて、が合う方につみきは向いています。</p>
-
-      <div class="cta-wrap">
-        <p class="cta-lead">「うちのやり方に合う道具がほしい」と思ったら。初回のご相談は無料です。</p>
-        <a class="cta" data-go="hearing" href="#">無料で相談する<span class="cta-ar">→</span></a>
-      </div>
-    </div>
-  </section>
 
   <!-- サービス：こんな課題ありませんか？ -->
   <section class="screen sheet" id="s-issues" data-screen="issues">
@@ -1718,7 +1704,26 @@
 
       <p class="h3">ひとつでも当てはまったら、専用アプリで解決できます<span class="h3-en">WE CAN HELP</span></p>
       <p class="vp-sub">どれも、いまの業務のやり方を変えずに解けるものばかりです。まず何に困っているのかを伺うところから始めます。うまく言葉にできなくても大丈夫です。一緒に整理します。</p>
-      <p class="note">→ 何ができるかは <a data-go="value" href="#">提供価値</a>、どう進むかは <a data-go="process" href="#">進め方／制作フロー</a> をご覧ください。</p>
+
+      <p class="h3">導入すると、こう変わります<span class="h3-en">BEFORE → AFTER</span></p>
+      <div class="ba">
+        <div class="ba-row">
+          <div class="ba-b"><span class="ba-tag">BEFORE</span>毎朝、同じ数字を3つの表に打ち直し。</div>
+          <div class="ba-a">1回の入力で、自動でそろう。毎日30分がゼロに。</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-b"><span class="ba-tag">BEFORE</span>情報がメール・表計算・チャットに散らばる。</div>
+          <div class="ba-a">探す場所が、ひとつになる。</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-b"><span class="ba-tag">BEFORE</span>週次の報告書に、毎回1時間。</div>
+          <div class="ba-a">下書きは自動。目を通して直すだけ。</div>
+        </div>
+      </div>
+      <p class="note">※ 一例です。何がどれだけ楽になるかは、ヒアリングでご一緒に確かめます。</p>
+
+
+      <p class="note">→ 何ができるかは <a data-go="features" href="#">つみきの特長</a>、どう進むかは <a data-go="process" href="#">進め方／制作フロー</a> をご覧ください。</p>
 
       <div class="cta-wrap">
         <p class="cta-lead">「うちのこれ、なんとかなりますか？」だけで大丈夫です。初回のヒアリングは無料です。</p>
@@ -1843,7 +1848,7 @@
   <!-- サービス：料金・進行イメージ -->
   <section class="screen sheet" id="s-pricing" data-screen="pricing">
     <div class="sheet-inner">
-      <p class="sheet-label"><span class="sl-jp">料金・進行イメージ</span><span class="sl-en">PRICING</span></p>
+      <p class="sheet-label"><span class="sl-jp">料金</span><span class="sl-en">PRICING</span></p>
       <p class="sheet-lead">下の目安は「これ一式でいくらか」という<strong>総額</strong>です。ヒアリングとお見積りは無料です。</p>
 
       <p class="h3">料金の目安（総額）<span class="h3-en">TOTAL COST</span></p>
@@ -1885,58 +1890,87 @@
       </div>
       <p class="note">幅があるのは、作る画面の数と扱う情報の量で変わるためです。<strong>多くの場合、この幅に収まります。</strong>超えそうなときは、お見積りをお出しする前に、正直にそうお伝えします。</p>
       <p class="note">つみきは<strong>時間単価では販売していません。</strong>「何時間かかったか」ではなく、はじめにお出しした総額でお約束します。作業が長引いても、追加でいただくことはありません。</p>
+      <p class="sheet-sub">この下は、見出しを押すと開きます。必要なところだけご覧ください。</p>
 
-      <p class="h3">この金額に、含まれるもの<span class="h3-en">WHAT'S INCLUDED</span></p>
-      <div class="panel">
-        <ul class="can yes">
-          <li>業務のヒアリングと、課題の整理・ご提案</li>
-          <li>アプリの制作（入力・一覧・検索・出力まで）</li>
-          <li>ソースコード一式と、かんたんな運用手順書</li>
-          <li>あなた専用の鍵（プロダクトキー）でのお渡し</li>
-          <li>お渡し時の、使い方のご説明</li>
-          <li>制作中の修正（違和感を直すところまで）</li>
-          <li>納品後1か月の、不具合対応（無償）</li>
-        </ul>
-        <p class="note">ヒアリングとお見積りは無料です。<strong>着手までは、一円もかかりません。</strong></p>
-      </div>
 
-      <p class="h3">別途になるもの<span class="h3-en">OPTIONS</span></p>
-      <p class="sheet-sub">はじめから総額が読めるように、追加になるものも先に出しておきます。</p>
-      <div class="panel">
-        <div class="opt">
-          <div class="opt-row"><p class="opt-n">図解入りの操作手順書（PDF）</p><p class="opt-p">3万円<span class="opt-d">＋3日</span></p></div>
-          <div class="opt-row"><p class="opt-n">既存のエクセル・CSVからのデータ移行</p><p class="opt-p">5万円<span class="opt-d">＋3日</span></p></div>
-          <div class="opt-row"><p class="opt-n">台帳・画面の追加（1台帳＋3画面あたり）</p><p class="opt-p">10万円<span class="opt-d">＋7日</span></p></div>
-          <div class="opt-row"><p class="opt-n">現地での導入立ち会い・操作説明（1回）</p><p class="opt-p">3万円<span class="opt-d">＋1日</span></p></div>
-          <div class="opt-row"><p class="opt-n">会計ソフト・決済など、外部サービスとの連携</p><p class="opt-p">応相談</p></div>
-          <div class="opt-row"><p class="opt-n">ソースコードと著作権の買い取り</p><p class="opt-p">応相談</p></div>
+      <details class="fold">
+        <summary class="fold-sum">
+          <span class="fold-ttl">この金額に、含まれるもの</span>
+          <span class="fold-en">WHAT'S INCLUDED</span>
+          <span class="fold-mk" aria-hidden="true"></span>
+        </summary>
+        <div class="fold-in">
+        <div class="panel">
+          <ul class="can yes">
+            <li>業務のヒアリングと、課題の整理・ご提案</li>
+            <li>アプリの制作（入力・一覧・検索・出力まで）</li>
+            <li>ソースコード一式と、かんたんな運用手順書</li>
+            <li>あなた専用の鍵（プロダクトキー）でのお渡し</li>
+            <li>お渡し時の、使い方のご説明</li>
+            <li>制作中の修正（違和感を直すところまで）</li>
+            <li>納品後1か月の、不具合対応（無償）</li>
+          </ul>
+          <p class="note">ヒアリングとお見積りは無料です。<strong>着手までは、一円もかかりません。</strong></p>
         </div>
-        <p class="note">いずれも、着手前のお見積りに載せます。<strong>作業を始めてから追加になることはありません。</strong></p>
-      </div>
 
-      <p class="h3">お見積りを見比べるときは<span class="h3-en">HOW TO COMPARE</span></p>
-      <p class="sheet-sub">つみき以外からも、ぜひお見積りをお取りください。そのとき、この4つを聞いてみてください。<strong>基本料金だけを見比べると、あとで総額が入れ替わることがあります。</strong></p>
-      <div class="panel">
-        <div class="faq">
-          <div class="faq-row">
-            <p class="faq-q">1. その基本料金に、データ移行と手順書は含まれますか？</p>
-            <p class="faq-a">別料金だと、あとから数万円ずつ足されていきます。つみきは、上の表のとおり先に金額を出しています。</p>
-          </div>
-          <div class="faq-row">
-            <p class="faq-q">2. 着手したあと、金額は変わりますか？</p>
-            <p class="faq-a">つみきは変わりません。ご要望が増えたときは値上げをせず、「次のぶん」として別に固定でお見積りします。</p>
-          </div>
-          <div class="faq-row">
-            <p class="faq-q">3. 月額はかかりますか。やめたら、アプリは止まりますか？</p>
-            <p class="faq-a">つみきに月額の縛りはありません。見守りの月額は任意で、入らなくてもアプリは動き続けます。止まる仕組みにはしていません。</p>
-          </div>
-          <div class="faq-row">
-            <p class="faq-q">4. ソースコードはもらえますか。他社に引き継げますか？</p>
-            <p class="faq-a">つみきは一式お渡しします。1枚のHTMLで作るので、他の開発者が読めます。つみきが居なくなっても動き続けます。</p>
-          </div>
         </div>
-        <p class="note">この4つすべてに「はい」と答えられて、なおつみきより安いところがあれば、<strong>そちらをお選びください。</strong>そのほうが、御社にとって良い買い物です。</p>
-      </div>
+      </details>
+
+      <details class="fold">
+        <summary class="fold-sum">
+          <span class="fold-ttl">別途になるもの</span>
+          <span class="fold-en">OPTIONS</span>
+          <span class="fold-mk" aria-hidden="true"></span>
+        </summary>
+        <div class="fold-in">
+        <p class="sheet-sub">はじめから総額が読めるように、追加になるものも先に出しておきます。</p>
+        <div class="panel">
+          <div class="opt">
+            <div class="opt-row"><p class="opt-n">図解入りの操作手順書（PDF）</p><p class="opt-p">3万円<span class="opt-d">＋3日</span></p></div>
+            <div class="opt-row"><p class="opt-n">既存のエクセル・CSVからのデータ移行</p><p class="opt-p">5万円<span class="opt-d">＋3日</span></p></div>
+            <div class="opt-row"><p class="opt-n">台帳・画面の追加（1台帳＋3画面あたり）</p><p class="opt-p">10万円<span class="opt-d">＋7日</span></p></div>
+            <div class="opt-row"><p class="opt-n">現地での導入立ち会い・操作説明（1回）</p><p class="opt-p">3万円<span class="opt-d">＋1日</span></p></div>
+            <div class="opt-row"><p class="opt-n">会計ソフト・決済など、外部サービスとの連携</p><p class="opt-p">応相談</p></div>
+            <div class="opt-row"><p class="opt-n">ソースコードと著作権の買い取り</p><p class="opt-p">応相談</p></div>
+          </div>
+          <p class="note">いずれも、着手前のお見積りに載せます。<strong>作業を始めてから追加になることはありません。</strong></p>
+        </div>
+
+        </div>
+      </details>
+
+      <details class="fold">
+        <summary class="fold-sum">
+          <span class="fold-ttl">お見積りを見比べるときは</span>
+          <span class="fold-en">HOW TO COMPARE</span>
+          <span class="fold-mk" aria-hidden="true"></span>
+        </summary>
+        <div class="fold-in">
+        <p class="sheet-sub">つみき以外からも、ぜひお見積りをお取りください。そのとき、この4つを聞いてみてください。<strong>基本料金だけを見比べると、あとで総額が入れ替わることがあります。</strong></p>
+        <div class="panel">
+          <div class="faq">
+            <div class="faq-row">
+              <p class="faq-q">1. その基本料金に、データ移行と手順書は含まれますか？</p>
+              <p class="faq-a">別料金だと、あとから数万円ずつ足されていきます。つみきは、上の表のとおり先に金額を出しています。</p>
+            </div>
+            <div class="faq-row">
+              <p class="faq-q">2. 着手したあと、金額は変わりますか？</p>
+              <p class="faq-a">つみきは変わりません。ご要望が増えたときは値上げをせず、「次のぶん」として別に固定でお見積りします。</p>
+            </div>
+            <div class="faq-row">
+              <p class="faq-q">3. 月額はかかりますか。やめたら、アプリは止まりますか？</p>
+              <p class="faq-a">つみきに月額の縛りはありません。見守りの月額は任意で、入らなくてもアプリは動き続けます。止まる仕組みにはしていません。</p>
+            </div>
+            <div class="faq-row">
+              <p class="faq-q">4. ソースコードはもらえますか。他社に引き継げますか？</p>
+              <p class="faq-a">つみきは一式お渡しします。1枚のHTMLで作るので、他の開発者が読めます。つみきが居なくなっても動き続けます。</p>
+            </div>
+          </div>
+          <p class="note">この4つすべてに「はい」と答えられて、なおつみきより安いところがあれば、<strong>そちらをお選びください。</strong>そのほうが、御社にとって良い買い物です。</p>
+        </div>
+
+        </div>
+      </details>
 
       <p class="h3">後から増えない仕組み<span class="h3-en">HOW IT'S PRICED</span></p>
       <!-- 決まり方：文章の表をやめ、数式1本＋お金の流れ3歩で見せる -->
@@ -1973,46 +2007,35 @@
       </div>
       <p class="note"><strong>着手までは、一円もかかりません。着手後は、金額が変わりません。</strong>小さく1機能から始めることもできます。</p>
 
-      <p class="h3">納品したあと（任意）<span class="h3-en">AFTER DELIVERY</span></p>
-      <div class="price-grid one">
-        <div class="price-card is-mini">
-          <div class="pc-head">
-            <p class="pc-name">見守りと、小さな改修</p>
-            <p class="pc-amt"><span class="pc-num">1</span>万円<span class="pc-from">〜／月</span></p>
+      <details class="fold">
+        <summary class="fold-sum">
+          <span class="fold-ttl">納品したあと（任意）</span>
+          <span class="fold-en">AFTER DELIVERY</span>
+          <span class="fold-mk" aria-hidden="true"></span>
+        </summary>
+        <div class="fold-in">
+        <div class="price-grid one">
+          <div class="price-card is-mini">
+            <div class="pc-head">
+              <p class="pc-name">見守りと、小さな改修</p>
+              <p class="pc-amt"><span class="pc-num">1</span>万円<span class="pc-from">〜／月</span></p>
+            </div>
+            <p class="pc-sub">動作の見守りと、月1回までの小さな直し（文言や項目の追加など）を承ります。改修の時間を増やしたプランもご用意しています。</p>
           </div>
-          <p class="pc-sub">動作の見守りと、月1回までの小さな直し（文言や項目の追加など）を承ります。改修の時間を増やしたプランもご用意しています。</p>
         </div>
-      </div>
-      <div class="panel">
-        <ul class="can yes">
-          <li>いつでもやめられます（縛りはありません）</li>
-          <li>入らなくても、アプリはそのまま動き続けます（止まる仕組みにはしていません）</li>
-          <li>納品後1か月の不具合対応は、この契約が無くても無償です</li>
-        </ul>
-        <p class="note">「作って終わり」にしないための、任意のプランです。<strong>お勧めはしますが、必須ではありません。</strong></p>
-      </div>
+        <div class="panel">
+          <ul class="can yes">
+            <li>いつでもやめられます（縛りはありません）</li>
+            <li>入らなくても、アプリはそのまま動き続けます（止まる仕組みにはしていません）</li>
+            <li>納品後1か月の不具合対応は、この契約が無くても無償です</li>
+          </ul>
+          <p class="note">「作って終わり」にしないための、任意のプランです。<strong>お勧めはしますが、必須ではありません。</strong></p>
+        </div>
 
-      <p class="h3">進行イメージ<span class="h3-en">SCHEDULE</span></p>
-      <div class="panel">
-        <div class="tl">
-          <div class="tl-row">
-            <div class="tl-lbl"><span class="tl-name">小規模</span><span class="tl-dur">約2〜4週間</span></div>
-            <div class="tl-track">
-              <div class="tl-bar" style="left:0;width:25%"></div>
-              <div class="tl-bar is-range" style="left:25%;width:25%"></div>
-            </div>
-          </div>
-          <div class="tl-row">
-            <div class="tl-lbl"><span class="tl-name">本格的なもの</span><span class="tl-dur">約1〜2か月</span></div>
-            <div class="tl-track">
-              <div class="tl-bar" style="left:0;width:50%"></div>
-              <div class="tl-bar is-range" style="left:50%;width:50%"></div>
-            </div>
-          </div>
-          <div class="tl-axis"><span>0</span><span>2</span><span>4</span><span>6</span><span>8週</span></div>
-          <p class="tl-note">いずれもヒアリングから納品までの目安です。<span class="tl-key"></span> の部分は、内容によって前後する幅を表しています。</p>
+        <p class="note">→ 着手から納品までの進行イメージ（小規模 約2〜4週間／本格的なもの 約1〜2か月）は <a data-go="process" href="#">進め方／制作フロー</a> にまとめています。</p>
+
         </div>
-      </div>
+      </details>
 
       <p class="h3">稼働・ご連絡<span class="h3-en">AVAILABILITY</span></p>
       <div class="chips">
@@ -2022,55 +2045,73 @@
       </div>
       <p class="note">本業のかたわらのため、この形をとっています。</p>
 
-      <p class="h3">できること／できないこと<span class="h3-en">SCOPE</span></p>
-      <div class="panel">
-        <ul class="can yes">
-          <li>手入力・転記の自動化</li>
-          <li>散らばった情報を、ひとつの場所に集約</li>
-          <li>報告書や議事録の下書きを自動で用意</li>
-          <li>業務に合わせた、小さな専用アプリ全般</li>
-        </ul>
-        <ul class="can no">
-          <li>大規模な基幹システムの開発</li>
-          <li>24時間365日の運用保守</li>
-          <li>既存システムそのものの改修</li>
-        </ul>
-        <p class="note">合わないときは、正直にそうお伝えします。無理にお受けしません。</p>
-      </div>
+      <details class="fold">
+        <summary class="fold-sum">
+          <span class="fold-ttl">できること／できないこと</span>
+          <span class="fold-en">SCOPE</span>
+          <span class="fold-mk" aria-hidden="true"></span>
+        </summary>
+        <div class="fold-in">
+        <div class="panel">
+          <ul class="can yes">
+            <li>手入力・転記の自動化</li>
+            <li>散らばった情報を、ひとつの場所に集約</li>
+            <li>報告書や議事録の下書きを自動で用意</li>
+            <li>業務に合わせた、小さな専用アプリ全般</li>
+          </ul>
+          <ul class="can no">
+            <li>大規模な基幹システムの開発</li>
+            <li>24時間365日の運用保守</li>
+            <li>既存システムそのものの改修</li>
+          </ul>
+          <p class="note">合わないときは、正直にそうお伝えします。無理にお受けしません。</p>
+        </div>
 
-      <p class="h3">よくあるご質問<span class="h3-en">FAQ</span></p>
-      <div class="panel">
-        <div class="faq">
-          <div class="faq-row">
-            <p class="faq-q">途中で仕様を変えられますか？</p>
-            <p class="faq-a">変えられます。小さく作ってお見せしながら進めるので、「やっぱりこうしたい」が前提です。</p>
-          </div>
-          <div class="faq-row">
-            <p class="faq-q">勝手にコピーして、他の人に配られませんか？</p>
-            <p class="faq-a">配られないよう、仕組みで守ります。あなた専用の鍵・使える端末数の制限・「◯◯さま専用」の印を添えてお渡しし、万一よそに出回っても、その鍵だけ止められます。（ソースごと他社へ引き継ぎたい場合は、買い取りを別途ご相談ください。）</p>
-          </div>
-          <div class="faq-row">
-            <p class="faq-q">月額は必ずかかりますか？</p>
-            <p class="faq-a">いいえ。納品して終わりで構いません（AI利用料などの実費のみ、事前にお伝えします）。見守りの月額プランはご用意していますが、任意です。入らなくてもアプリは動き続けます。</p>
-          </div>
-          <div class="faq-row">
-            <p class="faq-q">他社さんより、高く見えるのですが。</p>
-            <p class="faq-a">基本料金だけを並べると、そう見えることがあります。上の「お見積りを見比べるときは」の4つで、<strong>総額</strong>を比べてみてください。それでもよそが安ければ、そちらをお選びいただくのが正解です。</p>
-          </div>
-          <div class="faq-row">
-            <p class="faq-q">うちの業種でも大丈夫ですか？</p>
-            <p class="faq-a">問いません。専門知識がこちらにない業務ほど、先入観なく伺います。</p>
-          </div>
-          <div class="faq-row">
-            <p class="faq-q">伺った内容が外に出ませんか？</p>
-            <p class="faq-a">他言しません。ご希望であればNDA（秘密保持契約）も締結します。</p>
-          </div>
-          <div class="faq-row">
-            <p class="faq-q">何から始めればいいですか？</p>
-            <p class="faq-a">無料ヒアリングから。「うちのこれ、なんとかなりますか？」だけで大丈夫です。</p>
+        </div>
+      </details>
+
+      <details class="fold">
+        <summary class="fold-sum">
+          <span class="fold-ttl">よくあるご質問</span>
+          <span class="fold-en">FAQ</span>
+          <span class="fold-mk" aria-hidden="true"></span>
+        </summary>
+        <div class="fold-in">
+        <div class="panel">
+          <div class="faq">
+            <div class="faq-row">
+              <p class="faq-q">途中で仕様を変えられますか？</p>
+              <p class="faq-a">変えられます。小さく作ってお見せしながら進めるので、「やっぱりこうしたい」が前提です。</p>
+            </div>
+            <div class="faq-row">
+              <p class="faq-q">勝手にコピーして、他の人に配られませんか？</p>
+              <p class="faq-a">配られないよう、仕組みで守ります。あなた専用の鍵・使える端末数の制限・「◯◯さま専用」の印を添えてお渡しし、万一よそに出回っても、その鍵だけ止められます。（ソースごと他社へ引き継ぎたい場合は、買い取りを別途ご相談ください。）</p>
+            </div>
+            <div class="faq-row">
+              <p class="faq-q">月額は必ずかかりますか？</p>
+              <p class="faq-a">いいえ。納品して終わりで構いません（AI利用料などの実費のみ、事前にお伝えします）。見守りの月額プランはご用意していますが、任意です。入らなくてもアプリは動き続けます。</p>
+            </div>
+            <div class="faq-row">
+              <p class="faq-q">他社さんより、高く見えるのですが。</p>
+              <p class="faq-a">基本料金だけを並べると、そう見えることがあります。上の「お見積りを見比べるときは」の4つで、<strong>総額</strong>を比べてみてください。それでもよそが安ければ、そちらをお選びいただくのが正解です。</p>
+            </div>
+            <div class="faq-row">
+              <p class="faq-q">うちの業種でも大丈夫ですか？</p>
+              <p class="faq-a">問いません。専門知識がこちらにない業務ほど、先入観なく伺います。</p>
+            </div>
+            <div class="faq-row">
+              <p class="faq-q">伺った内容が外に出ませんか？</p>
+              <p class="faq-a">他言しません。ご希望であればNDA（秘密保持契約）も締結します。</p>
+            </div>
+            <div class="faq-row">
+              <p class="faq-q">何から始めればいいですか？</p>
+              <p class="faq-a">無料ヒアリングから。「うちのこれ、なんとかなりますか？」だけで大丈夫です。</p>
+            </div>
           </div>
         </div>
-      </div>
+
+        </div>
+      </details>
 
       <div class="cta-wrap">
         <p class="cta-lead">金額をお出しする前に、まず業務を伺います。ヒアリングとお見積りまで無料です。</p>
@@ -2534,12 +2575,10 @@
       <nav class="sfoot-cols" aria-label="サイト内リンク">
         <div class="sfoot-col">
           <p class="sfoot-h">サービス</p>
-          <a data-go="features" href="#">つみきの特長</a>
-          <a data-go="value" href="#">提供価値</a>
-          <a data-go="compare" href="#">他社との比較</a>
           <a data-go="issues" href="#">こんな課題ありませんか？</a>
+          <a data-go="features" href="#">つみきの特長</a>
           <a data-go="process" href="#">進め方／制作フロー</a>
-          <a data-go="pricing" href="#">料金・進行イメージ</a>
+          <a data-go="pricing" href="#">料金</a>
         </div>
         <div class="sfoot-col">
           <p class="sfoot-h">実績</p>
@@ -2798,7 +2837,7 @@
     let animating = false;
     let popNav = false;   // 履歴の戻る操作中は pushState しない
     const childToGroup = {   // 子シート → 属する親カテゴリー
-      features:'service', value:'service', compare:'service', issues:'service', process:'service', pricing:'service',
+      features:'service', issues:'service', process:'service', pricing:'service',
       flagship:'works', 'flagship-itsutsu':'works', 'flagship-koegaki':'works',
       collection:'works', 'app-kouban':'works', 'app-mazeiro':'works', 'app-credit':'works', 'app-dakoku':'works', 'app-dakoku-kanri':'works', voice:'works',
       profile:'contact', company:'contact', hearing:'contact', privacy:'contact'
@@ -2815,7 +2854,13 @@
       b.toggle('calm', id === 'flagship-itsutsu' || id === 'flagship-koegaki' || id === 'app-kouban' || id === 'app-mazeiro' || id === 'app-credit' || id === 'app-dakoku' || id === 'app-dakoku-kanri'); // アプリ詳細は動く墨を止めて紙色に
     }
 
+    // 旧URLの転送：2026-08-30 に「提供価値」「他社との比較」を「つみきの特長」へ統合した。
+    // 既に貼られている #value / #compare のリンクが 404 相当にならないよう、ここで読み替える。
+    const ALIAS = { value:'features', compare:'features' };
+    window.__alias = ALIAS;
+
     function go(id, dir){
+      id = ALIAS[id] || id;
       if (id === current || animating || !screens[id]) return;
       animating = true;
       const from = screens[current], to = screens[id];
@@ -2946,6 +2991,7 @@
     (function restoreFromHash(){
       let id = '';
       try { id = decodeURIComponent((location.hash || '').replace(/^#/, '')); } catch(_){}
+      id = (window.__alias && window.__alias[id]) || id;   // 旧ハッシュ(#value/#compare)を読み替え
       if (!id || id === 'intro' || !screens[id]){
         // ハッシュなし＝通常の入口。初期状態を履歴に記録しておく（最初の戻るで state を持てるように）
         try { history.replaceState({screen: current}, '', location.pathname); } catch(_){}
