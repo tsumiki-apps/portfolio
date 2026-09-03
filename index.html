@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=95">
+<link rel="stylesheet" href="style.css?v=96">
 <link rel="icon" type="image/png" href="icons/icon-index.png?v=2">
 <link rel="apple-touch-icon" href="icons/icon-index.png?v=2">
 <meta name="apple-mobile-web-app-title" content="つみき">
@@ -162,7 +162,7 @@
 
   <!-- 画面2：墨が画面全体を覆い、同じ位置の文字が白に反転する -->
   <section class="screen" id="s-brand" data-screen="brand">
-    <h1 class="wordmark on-ink">Tsumiki</h1>
+    <p class="wordmark on-ink" aria-hidden="true">Tsumiki</p>
     <button class="scrollcue on-ink" data-go="menu" aria-label="メニューへ">
       <span class="sc-text">SCROLL</span>
       <span class="sc-line"></span>
@@ -231,7 +231,7 @@
   <!-- かんばん（索引：2枚のカードから各詳細へ） -->
   <section class="screen sheet" id="s-flagship" data-screen="flagship">
     <div class="sheet-inner">
-      <p class="sheet-label"><span class="sl-jp">趣味で制作したアプリたち</span><span class="sl-en">SIDE PROJECTS</span></p>
+      <h2 class="sheet-label"><span class="sl-jp">趣味で制作したアプリたち</span><span class="sl-en">SIDE PROJECTS</span></h2>
       <p class="sheet-lead">仕事とは別に、自分が本当に欲しくてつくった2つのiOSアプリ。ゼロから設計・デザイン・実装まで手がけました。カードをタップすると、それぞれの詳しい紹介が開きます。</p>
       <div class="flagship">
         <a class="flag-card" data-go="flagship-itsutsu" href="#">
@@ -239,7 +239,7 @@
           <div class="flag-body">
             <div class="flag-name">いつつ</div>
             <div class="flag-catch">今日を、5つだけ。</div>
-            <p class="flag-desc">1日に5回、各2秒。撮りためた今日の断片が、夜にそっと1本の動画になる。文字のない、やさしいモノクロの動画日記。</p>
+            <p class="flag-desc">1日に5回、各2秒。撮りためた今日の断片が、夜にそっと1本の動画になる。文字のない、優しいモノクロの動画日記。</p>
           </div>
           <span class="flag-ar" aria-hidden="true">→</span>
         </a>
@@ -283,7 +283,7 @@
       <figure class="as-video">
         <div class="pv pv-photo pv-lg">
           <video class="pv-vid" src="assets/itsutsu-preview.mp4" poster="assets/itsutsu-video-poster.jpg"
-                 autoplay muted loop playsinline preload="metadata" aria-label="いつつで書き出した1日の動画"></video>
+                 muted loop playsinline preload="none" aria-label="いつつで書き出した1日の動画"></video>
         </div>
         <figcaption>実際に書き出した「今日」（約7秒・ミュートで再生）</figcaption>
       </figure>
@@ -466,7 +466,7 @@
   <!-- どうぐばこ（この画面だけ縦スクロール） -->
   <section class="screen sheet" id="s-collection" data-screen="collection">
     <div class="sheet-inner">
-      <p class="sheet-label"><span class="sl-jp">つみきアプリたち</span><span class="sl-en">TSUMIKI APPS</span></p>
+      <h2 class="sheet-label"><span class="sl-jp">つみきアプリたち</span><span class="sl-en">TSUMIKI APPS</span></h2>
       <p class="sheet-lead">現場の“ちょっと困った”に合わせてつくった、つみきのアプリ。カードをタップすると、それぞれの詳しい紹介ページが開きます。</p>
 
       <div class="app-feature">
@@ -561,19 +561,19 @@
       <p class="as-h">プレビュー<span class="as-h-en">PREVIEW</span></p>
       <p class="pv-group-k">スマホ版<span class="pv-group-en">iPhone</span></p>
       <div class="as-shots">
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/kouban-ph-cast.png?v=2" alt="香盤メーカーのキャスト（役）の登録画面" loading="lazy" width="600" height="1298"></div><figcaption>キャストを登録</figcaption></figure>
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/kouban-ph-scene.png?v=2" alt="香盤メーカーの台本の場面の登録画面" loading="lazy" width="600" height="1298"></div><figcaption>台本の場面を登録</figcaption></figure>
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/kouban-ph-board.png?v=2" alt="香盤メーカーのてっぱり表（出られない日）の入力画面" loading="lazy" width="600" height="1298"></div><figcaption>出られない日を、表に入れる</figcaption></figure>
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/kouban-ph-kouban.png?v=2" alt="香盤メーカーの香盤表（場面ごとの出番）の画面" loading="lazy" width="600" height="1298"></div><figcaption>今日できる場面が、色でわかる</figcaption></figure>
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/kouban-ph-day.png?v=2" alt="香盤メーカーの時間帯ごとにできる場面を出した画面" loading="lazy" width="600" height="1298"></div><figcaption>時間帯ごとに、できる場面を出す</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/kouban-ph-cast.png?v=2" alt="香盤メーカーのキャスト（役）の登録画面" loading="lazy" width="600" height="1298"></div><figcaption>キャストを登録</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/kouban-ph-scene.png?v=2" alt="香盤メーカーの台本の場面の登録画面" loading="lazy" width="600" height="1298"></div><figcaption>台本の場面を登録</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/kouban-ph-board.png?v=2" alt="香盤メーカーのてっぱり表（出られない日）の入力画面" loading="lazy" width="600" height="1298"></div><figcaption>出られない日を、表に入れる</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/kouban-ph-kouban.png?v=2" alt="香盤メーカーの香盤表（場面ごとの出番）の画面" loading="lazy" width="600" height="1298"></div><figcaption>今日できる場面が、色でわかる</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/kouban-ph-day.png?v=2" alt="香盤メーカーの時間帯ごとにできる場面を出した画面" loading="lazy" width="600" height="1298"></div><figcaption>時間帯ごとに、できる場面を出す</figcaption></figure>
       </div>
       <p class="pv-group-k">PC版<span class="pv-group-en">Desktop</span></p>
       <div class="as-shots">
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/kouban-pc-cast.png?v=2" alt="香盤メーカー PC版のキャスト（役）の登録画面" loading="lazy" width="1200" height="750"></div><figcaption>キャストを登録</figcaption></figure>
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/kouban-pc-scene.png?v=2" alt="香盤メーカー PC版の台本の場面の登録画面" loading="lazy" width="1200" height="750"></div><figcaption>台本の場面を登録</figcaption></figure>
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/kouban-pc-board.png?v=2" alt="香盤メーカー PC版のてっぱり表（出られない日）の入力画面" loading="lazy" width="1200" height="750"></div><figcaption>出られない日を、表に入れる</figcaption></figure>
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/kouban-pc-kouban.png?v=2" alt="香盤メーカー PC版の香盤表（場面ごとの出番）の画面" loading="lazy" width="1200" height="750"></div><figcaption>今日できる場面が、色でわかる</figcaption></figure>
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/kouban-pc-day.png?v=2" alt="香盤メーカー PC版の時間帯ごとにできる場面を出した画面" loading="lazy" width="1200" height="750"></div><figcaption>時間帯ごとに、できる場面を出す</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/kouban-pc-cast.png?v=2" alt="香盤メーカー PC版のキャスト（役）の登録画面" loading="lazy" width="1200" height="750"></div><figcaption>キャストを登録</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/kouban-pc-scene.png?v=2" alt="香盤メーカー PC版の台本の場面の登録画面" loading="lazy" width="1200" height="750"></div><figcaption>台本の場面を登録</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/kouban-pc-board.png?v=2" alt="香盤メーカー PC版のてっぱり表（出られない日）の入力画面" loading="lazy" width="1200" height="750"></div><figcaption>出られない日を、表に入れる</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/kouban-pc-kouban.png?v=2" alt="香盤メーカー PC版の香盤表（場面ごとの出番）の画面" loading="lazy" width="1200" height="750"></div><figcaption>今日できる場面が、色でわかる</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/kouban-pc-day.png?v=2" alt="香盤メーカー PC版の時間帯ごとにできる場面を出した画面" loading="lazy" width="1200" height="750"></div><figcaption>時間帯ごとに、できる場面を出す</figcaption></figure>
       </div>
       <p class="note">実際の「香盤メーカー」の画面です（サンプルは『ロミオとジュリエット』）。</p>
 
@@ -581,7 +581,7 @@
       <p class="pv-group-k">書き出したPDF<span class="pv-group-en">OUTPUT</span></p>
       <div class="as-shots as-shots-solo">
         <figure class="as-shot as-shot-doc">
-          <div class="pv pv-doc pv-doc-kouban"><img class="pv-img" src="assets/shots/kouban-doc.png?v=2" alt="香盤メーカーで書き出した「きょう稽古できる場面」（PDF・サンプル）" loading="lazy" width="794" height="878"></div>
+          <div class="pv pv-doc pv-doc-kouban"><img class="pv-img" data-src="assets/shots/kouban-doc.png?v=2" alt="香盤メーカーで書き出した「きょう稽古できる場面」（PDF・サンプル）" loading="lazy" width="794" height="878"></div>
           <figcaption>タップで拡大：きょう稽古できる場面（A4・稽古場に貼り出す用）</figcaption>
         </figure>
       </div>
@@ -657,15 +657,15 @@
       <p class="as-h">プレビュー<span class="as-h-en">PREVIEW</span></p>
       <p class="pv-group-k">スマホ版<span class="pv-group-en">iPhone</span></p>
       <div class="as-shots as-shots-solo">
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/mazeiro-ph-two.png?v=1" alt="まぜいろの2色配合画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>比率と量を入れると、必要グラム</figcaption></figure>
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/mazeiro-ph-three.png?v=1" alt="まぜいろの3色ミックス画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>何色でも、比率のまま自動計算</figcaption></figure>
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/mazeiro-ph-mult.png?v=1" alt="まぜいろの2剤倍率調整画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>2剤は倍率でサッと増減</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/mazeiro-ph-two.png?v=1" alt="まぜいろの2色配合画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>比率と量を入れると、必要グラム</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/mazeiro-ph-three.png?v=1" alt="まぜいろの3色ミックス画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>何色でも、比率のまま自動計算</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/mazeiro-ph-mult.png?v=1" alt="まぜいろの2剤倍率調整画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>2剤は倍率でサッと増減</figcaption></figure>
       </div>
       <p class="pv-group-k">PC版<span class="pv-group-en">Desktop</span></p>
       <div class="as-shots as-shots-solo">
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/mazeiro-pc-two.png?v=1" alt="まぜいろの2色配合画面（PC）" loading="lazy" width="1200" height="750"></div><figcaption>比率と量を入れると、必要グラム</figcaption></figure>
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/mazeiro-pc-three.png?v=1" alt="まぜいろの3色ミックス画面（PC）" loading="lazy" width="1200" height="750"></div><figcaption>何色でも、比率のまま自動計算</figcaption></figure>
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/mazeiro-pc-mult.png?v=1" alt="まぜいろの2剤倍率調整画面（PC）" loading="lazy" width="1200" height="750"></div><figcaption>2剤は倍率でサッと増減</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/mazeiro-pc-two.png?v=1" alt="まぜいろの2色配合画面（PC）" loading="lazy" width="1200" height="750"></div><figcaption>比率と量を入れると、必要グラム</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/mazeiro-pc-three.png?v=1" alt="まぜいろの3色ミックス画面（PC）" loading="lazy" width="1200" height="750"></div><figcaption>何色でも、比率のまま自動計算</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/mazeiro-pc-mult.png?v=1" alt="まぜいろの2剤倍率調整画面（PC）" loading="lazy" width="1200" height="750"></div><figcaption>2剤は倍率でサッと増減</figcaption></figure>
       </div>
       <p class="note">実際の「まぜいろ」の画面です（数値はサンプルの配合例）。</p>
 
@@ -686,7 +686,7 @@
         </div>
         <div class="star-row is-result">
           <p class="star-k">こう変わる<span class="star-en">RESULT</span></p>
-          <p class="star-v">調合前の計算がゼロに。ミスと材料のロスが減り、手を止めずに施術へ集中できる。（※ここには実際の声・成果が入ります）</p>
+          <p class="star-v">調合前の計算がゼロに。ミスと材料のロスが減り、手を止めずに施術へ集中できる。</p>
         </div>
       </div>
 
@@ -724,25 +724,25 @@
 
       <!-- 制作の背景 -->
       <p class="as-h">制作の背景<span class="as-h-en">BACKGROUND</span></p>
-      <p class="as-bg">毎月クレカの明細が届いても、金額が並んでいるだけで『結局いくら使ったのか』『どれが立て替えで、どれが自分の分か』が分からずモヤモヤしていました。表計算で仕分けるのも長続きしない。<br><br>その<strong>“明細の見えなさ”を解消するために、このツールをつくりました。</strong>CSVを放り込むだけで、立て替えを差し引いた「自分の実質支出」と前月比まで自動で出る——判断に必要な数字だけが残るように、と考えて形にしました。</p>
+      <p class="as-bg">毎月クレカの明細が届いても、金額が並んでいるだけで『結局いくら使ったのか』『どれが立て替えで、どれが自分の分か』が分からずモヤモヤしていました。表計算で仕分けるのも長続きしない。<br><br>その<strong>“明細の見えなさ”を解消するために、このアプリをつくりました。</strong>CSVを放り込むだけで、立て替えを差し引いた「自分の実質支出」と前月比まで自動で出る——判断に必要な数字だけが残るように、と考えて形にしました。</p>
 
       <!-- ② プレビュー -->
       <p class="as-h">プレビュー<span class="as-h-en">PREVIEW</span></p>
       <p class="pv-group-k">スマホ版<span class="pv-group-en">iPhone</span></p>
       <div class="as-shots as-shots-solo">
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/credit-ph-sum.png?v=1" alt="クレカ明細ツールの集計画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>実質支出・前月比がひと目で</figcaption></figure>
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/credit-ph-cat.png?v=1" alt="クレカ明細ツールのカテゴリ内訳画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>カテゴリ別に自動集計</figcaption></figure>
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/credit-ph-detail.png?v=1" alt="クレカ明細ツールの仕分け画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>明細を立て替え・分割に仕分け</figcaption></figure>
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/credit-ph-loan.png?v=1" alt="クレカ明細ツールの立て替え台帳（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>立て替えを人ごとに管理</figcaption></figure>
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/credit-ph-upload.png?v=1" alt="クレカ明細ツールのCSV読み込み画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>CSVを放り込むだけ</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/credit-ph-sum.png?v=1" alt="クレカ明細の集計画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>実質支出・前月比がひと目で</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/credit-ph-cat.png?v=1" alt="クレカ明細のカテゴリ内訳画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>カテゴリ別に自動集計</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/credit-ph-detail.png?v=1" alt="クレカ明細の仕分け画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>明細を立て替え・分割に仕分け</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/credit-ph-loan.png?v=1" alt="クレカ明細の立て替え台帳（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>立て替えを人ごとに管理</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/credit-ph-upload.png?v=1" alt="クレカ明細のCSV読み込み画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>CSVを放り込むだけ</figcaption></figure>
       </div>
       <p class="pv-group-k">PC版<span class="pv-group-en">Desktop</span></p>
       <div class="as-shots as-shots-solo">
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/credit-pc-sum.png?v=1" alt="クレカ明細ツールの集計画面（PC）" loading="lazy" width="1200" height="750"></div><figcaption>実質支出・前月比がひと目で</figcaption></figure>
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/credit-pc-cat.png?v=1" alt="クレカ明細ツールのカテゴリ内訳画面（PC）" loading="lazy" width="1200" height="750"></div><figcaption>カテゴリ別に自動集計</figcaption></figure>
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/credit-pc-detail.png?v=1" alt="クレカ明細ツールの仕分け画面（PC）" loading="lazy" width="1200" height="750"></div><figcaption>明細を立て替え・分割に仕分け</figcaption></figure>
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/credit-pc-loan.png?v=1" alt="クレカ明細ツールの立て替え台帳（PC）" loading="lazy" width="1200" height="750"></div><figcaption>立て替えを人ごとに管理</figcaption></figure>
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/credit-pc-upload.png?v=1" alt="クレカ明細ツールのCSV読み込み画面（PC）" loading="lazy" width="1200" height="750"></div><figcaption>CSVを放り込むだけ</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/credit-pc-sum.png?v=1" alt="クレカ明細の集計画面（PC）" loading="lazy" width="1200" height="750"></div><figcaption>実質支出・前月比がひと目で</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/credit-pc-cat.png?v=1" alt="クレカ明細のカテゴリ内訳画面（PC）" loading="lazy" width="1200" height="750"></div><figcaption>カテゴリ別に自動集計</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/credit-pc-detail.png?v=1" alt="クレカ明細の仕分け画面（PC）" loading="lazy" width="1200" height="750"></div><figcaption>明細を立て替え・分割に仕分け</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/credit-pc-loan.png?v=1" alt="クレカ明細の立て替え台帳（PC）" loading="lazy" width="1200" height="750"></div><figcaption>立て替えを人ごとに管理</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/credit-pc-upload.png?v=1" alt="クレカ明細のCSV読み込み画面（PC）" loading="lazy" width="1200" height="750"></div><figcaption>CSVを放り込むだけ</figcaption></figure>
       </div>
       <p class="note">実際の画面です。掲載しているデータは、動作確認用の<strong>サンプル明細</strong>です（実在の利用明細ではありません）。</p>
 
@@ -763,7 +763,7 @@
         </div>
         <div class="star-row is-result">
           <p class="star-k">こう変わる<span class="star-en">RESULT</span></p>
-          <p class="star-v">「今月いくら使ったか」がひと目で分かり、家計の判断が速くなる。（※ここには実際の声・成果が入ります）</p>
+          <p class="star-v">「今月いくら使ったか」がひと目で分かり、家計の判断が速くなる。</p>
         </div>
       </div>
 
@@ -814,17 +814,17 @@
       <p class="as-h">プレビュー<span class="as-h-en">PREVIEW</span></p>
       <p class="pv-group-k">スマホ版<span class="pv-group-en">iPhone</span></p>
       <div class="as-shots">
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/dakoku-ph-punch.png?v=1" alt="打刻アプリの出勤・退勤画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>出勤・退勤をタップ</figcaption></figure>
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/dakoku-ph-record.png?v=1" alt="打刻アプリの勤務記録画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>月の勤務記録を確認</figcaption></figure>
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/dakoku-ph-edit.png?v=1" alt="打刻アプリの記録修正画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>打ち忘れも自分で修正</figcaption></figure>
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/dakoku-ph-commute.png?v=1" alt="打刻アプリの交通費・定期設定画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>交通費・定期も登録</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/dakoku-ph-punch.png?v=1" alt="打刻アプリの出勤・退勤画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>出勤・退勤をタップ</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/dakoku-ph-record.png?v=1" alt="打刻アプリの勤務記録画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>月の勤務記録を確認</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/dakoku-ph-edit.png?v=1" alt="打刻アプリの記録修正画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>打ち忘れも自分で修正</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/dakoku-ph-commute.png?v=1" alt="打刻アプリの交通費・定期設定画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>交通費・定期も登録</figcaption></figure>
       </div>
       <p class="pv-group-k">PC版<span class="pv-group-en">Desktop</span></p>
       <div class="as-shots">
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/dakoku-pc-punch.png?v=1" alt="打刻アプリ PC版の出勤・退勤画面" loading="lazy" width="1200" height="750"></div><figcaption>出勤・退勤をタップ</figcaption></figure>
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/dakoku-pc-record.png?v=1" alt="打刻アプリ PC版の勤務記録画面" loading="lazy" width="1200" height="750"></div><figcaption>月の勤務記録を確認</figcaption></figure>
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/dakoku-pc-edit.png?v=1" alt="打刻アプリ PC版の記録修正画面" loading="lazy" width="1200" height="750"></div><figcaption>打ち忘れも自分で修正</figcaption></figure>
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/dakoku-pc-commute.png?v=1" alt="打刻アプリ PC版の交通費・定期設定画面" loading="lazy" width="1200" height="750"></div><figcaption>交通費・定期も登録</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/dakoku-pc-punch.png?v=1" alt="打刻アプリ PC版の出勤・退勤画面" loading="lazy" width="1200" height="750"></div><figcaption>出勤・退勤をタップ</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/dakoku-pc-record.png?v=1" alt="打刻アプリ PC版の勤務記録画面" loading="lazy" width="1200" height="750"></div><figcaption>月の勤務記録を確認</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/dakoku-pc-edit.png?v=1" alt="打刻アプリ PC版の記録修正画面" loading="lazy" width="1200" height="750"></div><figcaption>打ち忘れも自分で修正</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/dakoku-pc-commute.png?v=1" alt="打刻アプリ PC版の交通費・定期設定画面" loading="lazy" width="1200" height="750"></div><figcaption>交通費・定期も登録</figcaption></figure>
       </div>
       <p class="note">実際の「打刻」（労働者用）の画面です。掲載データはサンプルで、実在の従業員・勤怠ではありません。</p>
 
@@ -845,7 +845,7 @@
         </div>
         <div class="star-row is-result">
           <p class="star-k">こう変わる<span class="star-en">RESULT</span></p>
-          <p class="star-v">「打刻がめんどう」がなくなり、報告いらず。自分の勤務も、数字でいつでも確認できる。（※ここには実際の声・成果が入ります）</p>
+          <p class="star-v">「打刻がめんどう」がなくなり、報告いらず。自分の勤務も、数字でいつでも確認できる。</p>
         </div>
       </div>
 
@@ -903,19 +903,19 @@
       <p class="as-h">プレビュー<span class="as-h-en">PREVIEW</span></p>
       <p class="pv-group-k">スマホ版<span class="pv-group-en">iPhone</span></p>
       <div class="as-shots">
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/dakoku-kanri-ph-staff.png?v=1" alt="打刻管理アプリの従業員一覧画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>従業員とコードを一覧</figcaption></figure>
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/dakoku-kanri-ph-code.png?v=1" alt="打刻管理アプリの打刻コード発行画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>打刻コードを発行</figcaption></figure>
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/dakoku-kanri-ph-table.png?v=1" alt="打刻管理アプリの勤務表・集計画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>勤務表で自動集計</figcaption></figure>
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/dakoku-kanri-ph-billing.png?v=1" alt="打刻管理アプリのExcel・PDF書き出し／請求算定画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>請求算定・書き出し</figcaption></figure>
-        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" src="assets/shots/dakoku-kanri-ph-settings.png?v=1" alt="打刻管理アプリの会社名・提出先設定画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>提出先・倍率を設定</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/dakoku-kanri-ph-staff.png?v=1" alt="打刻管理アプリの従業員一覧画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>従業員とコードを一覧</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/dakoku-kanri-ph-code.png?v=1" alt="打刻管理アプリの打刻コード発行画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>打刻コードを発行</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/dakoku-kanri-ph-table.png?v=1" alt="打刻管理アプリの勤務表・集計画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>勤務表で自動集計</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/dakoku-kanri-ph-billing.png?v=1" alt="打刻管理アプリのExcel・PDF書き出し／請求算定画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>請求算定・書き出し</figcaption></figure>
+        <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/dakoku-kanri-ph-settings.png?v=1" alt="打刻管理アプリの会社名・提出先設定画面（スマホ）" loading="lazy" width="600" height="1298"></div><figcaption>提出先・倍率を設定</figcaption></figure>
       </div>
       <p class="pv-group-k">PC版<span class="pv-group-en">Desktop</span></p>
       <div class="as-shots">
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/dakoku-kanri-pc-staff.png?v=1" alt="打刻管理アプリ PC版の従業員一覧画面" loading="lazy" width="1200" height="750"></div><figcaption>従業員とコードを一覧</figcaption></figure>
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/dakoku-kanri-pc-code.png?v=1" alt="打刻管理アプリ PC版の打刻コード発行画面" loading="lazy" width="1200" height="750"></div><figcaption>打刻コードを発行</figcaption></figure>
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/dakoku-kanri-pc-table.png?v=1" alt="打刻管理アプリ PC版の勤務表・集計画面" loading="lazy" width="1200" height="750"></div><figcaption>勤務表で自動集計</figcaption></figure>
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/dakoku-kanri-pc-billing.png?v=1" alt="打刻管理アプリ PC版のExcel・PDF書き出し／請求算定画面" loading="lazy" width="1200" height="750"></div><figcaption>請求算定・書き出し</figcaption></figure>
-        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" src="assets/shots/dakoku-kanri-pc-settings.png?v=1" alt="打刻管理アプリ PC版の会社名・提出先設定画面" loading="lazy" width="1200" height="750"></div><figcaption>提出先・倍率を設定</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/dakoku-kanri-pc-staff.png?v=1" alt="打刻管理アプリ PC版の従業員一覧画面" loading="lazy" width="1200" height="750"></div><figcaption>従業員とコードを一覧</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/dakoku-kanri-pc-code.png?v=1" alt="打刻管理アプリ PC版の打刻コード発行画面" loading="lazy" width="1200" height="750"></div><figcaption>打刻コードを発行</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/dakoku-kanri-pc-table.png?v=1" alt="打刻管理アプリ PC版の勤務表・集計画面" loading="lazy" width="1200" height="750"></div><figcaption>勤務表で自動集計</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/dakoku-kanri-pc-billing.png?v=1" alt="打刻管理アプリ PC版のExcel・PDF書き出し／請求算定画面" loading="lazy" width="1200" height="750"></div><figcaption>請求算定・書き出し</figcaption></figure>
+        <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/dakoku-kanri-pc-settings.png?v=1" alt="打刻管理アプリ PC版の会社名・提出先設定画面" loading="lazy" width="1200" height="750"></div><figcaption>提出先・倍率を設定</figcaption></figure>
       </div>
       <p class="note">実際の「打刻管理」（管理者用）の画面です。掲載データはサンプルで、実在の従業員・勤怠ではありません。</p>
 
@@ -923,7 +923,7 @@
       <p class="pv-group-k">書き出したPDF<span class="pv-group-en">OUTPUT</span></p>
       <div class="as-shots as-shots-solo">
         <figure class="as-shot as-shot-doc">
-          <div class="pv pv-doc"><img class="pv-img" src="assets/shots/dakoku-kanri-doc.png?v=1" alt="打刻管理で書き出した派遣の勤怠管理表（PDF・サンプル）" loading="lazy" width="794" height="956"></div>
+          <div class="pv pv-doc"><img class="pv-img" data-src="assets/shots/dakoku-kanri-doc.png?v=1" alt="打刻管理で書き出した派遣の勤怠管理表（PDF・サンプル）" loading="lazy" width="794" height="956"></div>
           <figcaption>タップで拡大：派遣の勤怠管理表（A4・確認印つき）</figcaption>
         </figure>
       </div>
@@ -946,7 +946,7 @@
         </div>
         <div class="star-row is-result">
           <p class="star-k">こう変わる<span class="star-en">RESULT</span></p>
-          <p class="star-v">転記も清書もゼロに。締めが「選んで書き出す」だけになり、提出までの時間が大きく縮む。（※ここには実際の声・成果が入ります）</p>
+          <p class="star-v">転記も清書もゼロに。締めが「選んで書き出す」だけになり、提出までの時間が大きく縮む。</p>
         </div>
       </div>
 
@@ -1028,7 +1028,7 @@
     </div>
 
     <div class="sheet-inner">
-      <p class="sheet-label"><span class="sl-jp">つみきの特長</span><span class="sl-en">FEATURES</span></p>
+      <h2 class="sheet-label"><span class="sl-jp">つみきの特長</span><span class="sl-en">FEATURES</span></h2>
 
       <p class="vp">あなたの会社の業務を<span class="hl">1〜2時間じっくり伺って</span>、その会社だけの専用アプリを作ります。</p>
       <p class="vp-sub">仕事のやり方は、そのまま。道具のほうを合わせます。</p>
@@ -1079,7 +1079,7 @@
       </div>
 
 
-      <p class="h3">オーダーメイドだからできる、6つのお約束<span class="h3-en">OUR PROMISES</span></p>
+      <h3 class="h3">オーダーメイドだからできる、6つのお約束<span class="h3-en">OUR PROMISES</span></h3>
       <p class="sheet-sub">見出しを押すと、それぞれの詳しい中身とイラストが開きます。</p>
       <div class="feats">
 
@@ -1273,7 +1273,7 @@
       </div>
 
 
-      <p class="h3">あなた専用に、守ってお渡し<span class="h3-en">PROTECTED FOR YOU</span></p>
+      <h3 class="h3">あなた専用に、守ってお渡し<span class="h3-en">PROTECTED FOR YOU</span></h3>
       <div class="chips">
         <span class="chip">あなた専用の鍵つきでお渡し</span>
         <span class="chip">無断コピー・横流しを防ぐ</span>
@@ -1285,7 +1285,7 @@
 
 
       <!-- 既製ツールとの違い（旧「他社との比較」＋旧「提供価値」の積み木の対比を、ここに一本化） -->
-      <p class="h3">既製ツールとの違い<span class="h3-en">VS SUBSCRIPTION TOOLS</span></p>
+      <h3 class="h3">既製ツールとの違い<span class="h3-en">VS SUBSCRIPTION TOOLS</span></h3>
       <div class="fhero cmp-fhero is-inline" aria-hidden="true">
         <svg viewBox="0 0 1200 300" preserveAspectRatio="xMidYMid meet" role="img">
           <!-- 中央の仕切り -->
@@ -1419,7 +1419,7 @@
   <!-- つくりて -->
   <section class="screen sheet" id="s-profile" data-screen="profile">
     <div class="sheet-inner">
-      <p class="sheet-label"><span class="sl-jp">プロフィール</span><span class="sl-en">PROFILE</span></p>
+      <h2 class="sheet-label"><span class="sl-jp">プロフィール</span><span class="sl-en">PROFILE</span></h2>
       <p class="sheet-lead">「これ、なんとかならないかな」——その一言がうれしくて、小さなアプリを作っています。作るのは私ひとりなので、先にどんな人間かをお伝えしておきます。</p>
 
       <div class="profile">
@@ -1435,7 +1435,7 @@
 
       <!-- ごあいさつ：代表・髙橋弘大からの挨拶文（本人の言葉） -->
       <div class="credo">
-        <p class="sheet-label"><span class="sl-jp">ごあいさつ</span><span class="sl-en">GREETING</span></p>
+        <h2 class="sheet-label"><span class="sl-jp">ごあいさつ</span><span class="sl-en">GREETING</span></h2>
 
         <div class="panel">
           <p class="credo-p">はじめまして！<br>私は髙橋弘大（たかはしこうだい）といいます。<br>まずこちらの私のポートフォリオサイトを見てくださり、ありがとうございます。</p>
@@ -1454,14 +1454,14 @@
 
       <!-- 写真展示室：独立ページにするほどの量ではないため、プロフィールの一部として置く -->
       <div class="g-gallery">
-        <p class="sheet-label"><span class="sl-jp">写真展示室</span><span class="sl-en">GALLERY</span></p>
+        <h2 class="sheet-label"><span class="sl-jp">写真展示室</span><span class="sl-en">GALLERY</span></h2>
         <p class="sheet-lead">大切にしているカメラで情景を残しておくことが好きです。ぜひご覧になってください。</p>
 
       <div class="g-works">
         <div class="g-work">
           <div class="g-plate is-single">
             <button class="g-shot" type="button" data-full="assets/gallery/full/DSCF1255.jpg">
-              <img src="assets/gallery/thumb/DSCF1255.jpg" alt="なだらかな森の丘と、その上に広がる薄曇りの空" width="667" height="1000" loading="lazy" decoding="async">
+              <img data-src="assets/gallery/thumb/DSCF1255.jpg" alt="なだらかな森の丘と、その上に広がる薄曇りの空" width="667" height="1000" loading="lazy" decoding="async">
             </button>
           </div>
           <div class="g-label">
@@ -1473,7 +1473,7 @@
         <div class="g-work">
           <div class="g-plate is-single">
             <button class="g-shot" type="button" data-full="assets/gallery/full/DSCF2966.jpg">
-              <img src="assets/gallery/thumb/DSCF2966.jpg" alt="夜の渓谷。静かに流れる水面" width="667" height="1000" loading="lazy" decoding="async">
+              <img data-src="assets/gallery/thumb/DSCF2966.jpg" alt="夜の渓谷。静かに流れる水面" width="667" height="1000" loading="lazy" decoding="async">
             </button>
           </div>
           <div class="g-label">
@@ -1485,7 +1485,7 @@
         <div class="g-work">
           <div class="g-plate is-single">
             <button class="g-shot" type="button" data-full="assets/gallery/full/DSCF3075.jpg">
-              <img src="assets/gallery/thumb/DSCF3075.jpg" alt="窓ガラスに映り込んだ、夏の入道雲と青空" width="667" height="1000" loading="lazy" decoding="async">
+              <img data-src="assets/gallery/thumb/DSCF3075.jpg" alt="窓ガラスに映り込んだ、夏の入道雲と青空" width="667" height="1000" loading="lazy" decoding="async">
             </button>
           </div>
           <div class="g-label">
@@ -1497,10 +1497,10 @@
         <div class="g-work">
           <div class="g-plate is-set is-set-2">
             <button class="g-shot" type="button" data-full="assets/gallery/full/DSCF0663.jpg">
-              <img src="assets/gallery/thumb/DSCF0663.jpg" alt="雨上がりの濃い緑の葉に、無数の水滴が残っている" width="1000" height="667" loading="lazy" decoding="async">
+              <img data-src="assets/gallery/thumb/DSCF0663.jpg" alt="雨上がりの濃い緑の葉に、無数の水滴が残っている" width="1000" height="667" loading="lazy" decoding="async">
             </button>
             <button class="g-shot" type="button" data-full="assets/gallery/full/DSCF0962.jpg">
-              <img src="assets/gallery/thumb/DSCF0962.jpg" alt="淡い紫と青が混ざったあじさいの花" width="1000" height="667" loading="lazy" decoding="async">
+              <img data-src="assets/gallery/thumb/DSCF0962.jpg" alt="淡い紫と青が混ざったあじさいの花" width="1000" height="667" loading="lazy" decoding="async">
             </button>
           </div>
           <div class="g-label">
@@ -1513,22 +1513,22 @@
         <div class="g-work">
           <div class="g-plate is-set is-set-6">
             <button class="g-shot" type="button" data-full="assets/gallery/full/DSCF0715.jpg">
-              <img src="assets/gallery/thumb/DSCF0715.jpg" alt="雨の街路。傘をさす人の奥に東京タワーが立つ" width="667" height="1000" loading="lazy" decoding="async">
+              <img data-src="assets/gallery/thumb/DSCF0715.jpg" alt="雨の街路。傘をさす人の奥に東京タワーが立つ" width="667" height="1000" loading="lazy" decoding="async">
             </button>
             <button class="g-shot" type="button" data-full="assets/gallery/full/DSCF1361.jpg">
-              <img src="assets/gallery/thumb/DSCF1361.jpg" alt="石垣の上に建つ白い天守閣" width="1000" height="667" loading="lazy" decoding="async">
+              <img data-src="assets/gallery/thumb/DSCF1361.jpg" alt="石垣の上に建つ白い天守閣" width="1000" height="667" loading="lazy" decoding="async">
             </button>
             <button class="g-shot" type="button" data-full="assets/gallery/full/DSCF0897.jpg">
-              <img src="assets/gallery/thumb/DSCF0897.jpg" alt="青空の下、朱塗りの瓦屋根をもつ中国風の門" width="1000" height="667" loading="lazy" decoding="async">
+              <img data-src="assets/gallery/thumb/DSCF0897.jpg" alt="青空の下、朱塗りの瓦屋根をもつ中国風の門" width="1000" height="667" loading="lazy" decoding="async">
             </button>
             <button class="g-shot" type="button" data-full="assets/gallery/full/DSCF1626.jpg">
-              <img src="assets/gallery/thumb/DSCF1626.jpg" alt="巨大な石の手が下から支えているように見える橋" width="667" height="1000" loading="lazy" decoding="async">
+              <img data-src="assets/gallery/thumb/DSCF1626.jpg" alt="巨大な石の手が下から支えているように見える橋" width="667" height="1000" loading="lazy" decoding="async">
             </button>
             <button class="g-shot" type="button" data-full="assets/gallery/full/DSCF1325.jpg">
-              <img src="assets/gallery/thumb/DSCF1325.jpg" alt="木漏れ日の中、岩肌から幾筋も落ちる滝" width="1000" height="667" loading="lazy" decoding="async">
+              <img data-src="assets/gallery/thumb/DSCF1325.jpg" alt="木漏れ日の中、岩肌から幾筋も落ちる滝" width="1000" height="667" loading="lazy" decoding="async">
             </button>
             <button class="g-shot" type="button" data-full="assets/gallery/full/DSCF1983.jpg">
-              <img src="assets/gallery/thumb/DSCF1983.jpg" alt="赤い提灯が幾重にも連なる夜の路地" width="667" height="1000" loading="lazy" decoding="async">
+              <img data-src="assets/gallery/thumb/DSCF1983.jpg" alt="赤い提灯が幾重にも連なる夜の路地" width="667" height="1000" loading="lazy" decoding="async">
             </button>
           </div>
           <div class="g-label">
@@ -1576,7 +1576,7 @@
   <!-- お問い合わせ：事業者概要 -->
   <section class="screen sheet" id="s-company" data-screen="company">
     <div class="sheet-inner">
-      <p class="sheet-label"><span class="sl-jp">事業者概要</span><span class="sl-en">BUSINESS</span></p>
+      <h2 class="sheet-label"><span class="sl-jp">事業者概要</span><span class="sl-en">BUSINESS</span></h2>
       <p class="sheet-lead">安心してご相談いただけるよう、事業者の情報をひとつにまとめました。</p>
 
       <div class="panel">
@@ -1592,7 +1592,7 @@
         </div>
       </div>
 
-      <p class="h3">料金・お取引について<span class="h3-en">TERMS</span></p>
+      <h3 class="h3">料金・お取引について<span class="h3-en">TERMS</span></h3>
       <div class="panel">
         <div class="dl">
           <div class="dl-row"><div class="dl-k">サービス</div><div class="dl-v">業務内容を伺ったうえで制作する、オーダーメイドの専用アプリ。</div></div>
@@ -1617,7 +1617,7 @@
   <!-- サービス：こんな課題ありませんか？ -->
   <section class="screen sheet" id="s-issues" data-screen="issues">
     <div class="sheet-inner">
-      <p class="sheet-label"><span class="sl-jp">こんな課題ありませんか？</span><span class="sl-en">ISSUES</span></p>
+      <h2 class="sheet-label"><span class="sl-jp">こんな課題ありませんか？</span><span class="sl-en">ISSUES</span></h2>
       <p class="sheet-lead">お困りごと、ありますよね。法人のみなさまから、よく伺うのはこんなお話です。</p>
 
       <!-- 挿絵：机に向かう人。頭上の吹き出しが時間差でぽつぽつ浮かぶ。
@@ -1711,10 +1711,10 @@
         </div>
       </div>
 
-      <p class="h3">ひとつでも当てはまったら、専用アプリで解決できます<span class="h3-en">WE CAN HELP</span></p>
+      <h3 class="h3">ひとつでも当てはまったら、専用アプリで解決できます<span class="h3-en">WE CAN HELP</span></h3>
       <p class="vp-sub">どれも、いまの業務のやり方を変えずに解けるものばかりです。まず何に困っているのかを伺うところから始めます。うまく言葉にできなくても大丈夫です。一緒に整理します。</p>
 
-      <p class="h3">導入すると、こう変わります<span class="h3-en">BEFORE → AFTER</span></p>
+      <h3 class="h3">導入すると、こう変わります<span class="h3-en">BEFORE → AFTER</span></h3>
       <div class="ba">
         <div class="ba-row">
           <div class="ba-b"><span class="ba-tag">BEFORE</span>毎朝、同じ数字を3つの表に打ち直し。</div>
@@ -1744,7 +1744,7 @@
   <!-- サービス：進め方／制作フロー -->
   <section class="screen sheet" id="s-process" data-screen="process">
     <div class="sheet-inner">
-      <p class="sheet-label"><span class="sl-jp">進め方／制作フロー</span><span class="sl-en">PROCESS</span></p>
+      <h2 class="sheet-label"><span class="sl-jp">進め方／制作フロー</span><span class="sl-en">PROCESS</span></h2>
       <p class="sheet-lead">4つのステップで進めます。そちらの手間は、基本的に打合せだけです。残りはお任せください。</p>
 
       <!-- 挿絵：相談（左）から お渡し（右）へ、線がスッとつながる。
@@ -1823,7 +1823,7 @@
         </li>
       </ol>
 
-      <p class="h3">全体でどれくらいかかりますか<span class="h3-en">DURATION</span></p>
+      <h3 class="h3">全体でどれくらいかかりますか<span class="h3-en">DURATION</span></h3>
       <div class="panel">
         <div class="tl">
           <div class="tl-row">
@@ -1857,10 +1857,10 @@
   <!-- サービス：料金・進行イメージ -->
   <section class="screen sheet" id="s-pricing" data-screen="pricing">
     <div class="sheet-inner">
-      <p class="sheet-label"><span class="sl-jp">料金</span><span class="sl-en">PRICING</span></p>
+      <h2 class="sheet-label"><span class="sl-jp">料金</span><span class="sl-en">PRICING</span></h2>
       <p class="sheet-lead">下の目安は「これ一式でいくらか」という<strong>総額</strong>です（表示はすべて<strong>消費税別</strong>）。ヒアリングとお見積りは無料です。</p>
 
-      <p class="h3">料金の目安（総額）<span class="h3-en">TOTAL COST</span></p>
+      <h3 class="h3">料金の目安（総額）<span class="h3-en">TOTAL COST</span></h3>
 
       <p class="price-group">個人のみなさま<span class="pg-en">FOR INDIVIDUALS</span></p>
       <div class="price-grid one">
@@ -1914,7 +1914,7 @@
           <ul class="can yes">
             <li>業務のヒアリングと、課題の整理・ご提案</li>
             <li>アプリの制作（入力・一覧・検索・出力まで）</li>
-            <li>ソースコード一式と、かんたんな運用手順書</li>
+            <li>かんたんな運用手順書（ソースコード・著作権の買い取りは別途オプション）</li>
             <li>あなた専用の鍵（プロダクトキー）でのお渡し</li>
             <li>お渡し時の、使い方のご説明</li>
             <li>制作中の修正（違和感を直すところまで）</li>
@@ -1973,7 +1973,7 @@
             </div>
             <div class="faq-row">
               <p class="faq-q">4. ソースコードはもらえますか。他社に引き継げますか？</p>
-              <p class="faq-a">つみきは一式お渡しします。1枚のHTMLで作るので、他の開発者が読めます。つみきが居なくなっても動き続けます。</p>
+              <p class="faq-a">通常は、あなた専用の鍵つきでアプリ本体をお渡しします（鍵はつみきの都合で止まりません）。ソースコードと著作権の買い取りをご希望の場合は別途ご相談ください。1枚のHTMLで作っているので、買い取り後は他の開発者が読めて、他社にも引き継げます。</p>
             </div>
           </div>
           <p class="note">この4つすべてに「はい」と答えられて、なおつみきより安いところがあれば、<strong>そちらをお選びください。</strong>そのほうが、御社にとって良い買い物です。</p>
@@ -1982,7 +1982,7 @@
         </div>
       </details>
 
-      <p class="h3">後から増えない仕組み<span class="h3-en">HOW IT'S PRICED</span></p>
+      <h3 class="h3">後から増えない仕組み<span class="h3-en">HOW IT'S PRICED</span></h3>
       <!-- 決まり方：文章の表をやめ、数式1本＋お金の流れ3歩で見せる -->
       <div class="fx" role="img" aria-label="制作費は、作る機能の数と扱う情報の量で決まります">
         <div class="fx-item"><svg class="ico" aria-hidden="true"><use href="#ico-blocks-good"/></svg><p class="fx-lbl">作る機能の数</p></div>
@@ -2047,7 +2047,7 @@
         </div>
       </details>
 
-      <p class="h3">稼働・ご連絡<span class="h3-en">AVAILABILITY</span></p>
+      <h3 class="h3">稼働・ご連絡<span class="h3-en">AVAILABILITY</span></h3>
       <div class="chips">
         <span class="chip">平日夜・土日が中心</span>
         <span class="chip">やりとりはメール</span>
@@ -2133,7 +2133,7 @@
   <!-- 実績：お客様の声 -->
   <section class="screen sheet" id="s-voice" data-screen="voice">
     <div class="sheet-inner">
-      <p class="sheet-label"><span class="sl-jp">お客様の声</span><span class="sl-en">VOICE</span></p>
+      <h2 class="sheet-label"><span class="sl-jp">お客様の声</span><span class="sl-en">VOICE</span></h2>
       <p class="sheet-lead">実際の現場でお使いいただいた、そのままのお言葉を載せています。</p>
 
       <!-- 挿絵：お話しくださる人と、左から順に埋まっていく稽古日。
@@ -2335,7 +2335,7 @@
   <!-- お問い合わせ：無料ヒアリング申込 -->
   <section class="screen sheet" id="s-hearing" data-screen="hearing">
     <div class="sheet-inner">
-      <p class="sheet-label"><span class="sl-jp">無料ヒアリング申込</span><span class="sl-en">CONTACT</span></p>
+      <h2 class="sheet-label"><span class="sl-jp">無料ヒアリング申込</span><span class="sl-en">CONTACT</span></h2>
       <p class="sheet-lead">まずは無料でお話を伺います。現場の困りごとを、そのままお聞かせください。<strong>ご準備は不要です。</strong></p>
 
       <!-- 挿絵：向かい合ってお茶を飲みながら話す。人と机は静止、吹き出しだけが時間差で浮かぶ -->
@@ -2376,7 +2376,7 @@
         </g>
       </svg></div>
 
-      <p class="h3">お申し込みのあと、こう進みます<span class="h3-en">WHAT HAPPENS NEXT</span></p>
+      <h3 class="h3">お申し込みのあと、こう進みます<span class="h3-en">WHAT HAPPENS NEXT</span></h3>
 
       <!-- 挿絵：申込（封筒）→ヒアリング（会話）→ご提案（書類）。線が伸び、点が進み、最後にチェック -->
       <div class="scene scene-hsteps" aria-hidden="true"><svg viewBox="0 0 320 80" role="img">
@@ -2412,7 +2412,7 @@
         <p class="note">お見積りにご納得いただいてから着手します。後から金額が変わることはありません。</p>
       </div>
 
-      <p class="h3">ご安心いただきたいこと<span class="h3-en">OUR PROMISE</span></p>
+      <h3 class="h3">ご安心いただきたいこと<span class="h3-en">OUR PROMISE</span></h3>
       <div class="panel">
         <!-- 挿絵：盾が自分で描かれて、静かに明滅する -->
         <div class="scene scene-guard" aria-hidden="true"><svg viewBox="0 0 44 48" role="img">
@@ -2464,7 +2464,7 @@
           </div>
 
           <!-- Formspree（フォーム内容をメールへ届けるサービス）の設定 -->
-          <input type="hidden" name="_subject" value="【無料ヒアリング】新しいお申し込み">
+          <input type="hidden" name="_subject" value="【無料ヒアリング】お申し込み">
           <input class="hf-honey" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
 
           <button type="submit" class="cta hf-submit"><span class="cta-label">送信する</span><span class="cta-ar">→</span></button>
@@ -2483,7 +2483,7 @@
           <p class="hf-done-body">平日なら当日〜翌営業日を目安に、いただいたメールアドレス宛に私から直接お返事します。日程のご相談だけです。どうぞお気軽に。</p>
         </div>
 
-        <p class="note hf-alt">フォームがうまく動かないときは、<a href="mailto:support.tsumiki@gmail.com?subject=%E7%84%A1%E6%96%99%E3%83%92%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0%E5%B8%8C%E6%9C%9B&body=%EF%BC%88%E5%88%86%E3%81%8B%E3%82%8B%E7%AF%84%E5%9B%B2%E3%81%A7%E5%A4%A7%E4%B8%88%E5%A4%AB%E3%81%A7%E3%81%99%E3%80%82%E7%A9%BA%E6%AC%84%E3%81%AE%E3%81%BE%E3%81%BE%E9%80%81%E3%81%A3%E3%81%A6%E3%81%84%E3%81%9F%E3%81%A0%E3%81%84%E3%81%A6%E3%82%82%E6%A7%8B%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%EF%BC%89%0A%0A%E2%96%A0%20%E4%BC%9A%E7%A4%BE%E5%90%8D%EF%BC%9A%0A%E2%96%A0%20%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0A%E2%96%A0%20%E3%81%94%E9%80%A3%E7%B5%A1%E5%85%88%EF%BC%88%E3%81%8A%E9%9B%BB%E8%A9%B1%E7%95%AA%E5%8F%B7%E3%81%AA%E3%81%A9%EF%BC%89%EF%BC%9A%0A%0A%E2%96%A0%20%E3%81%84%E3%81%BE%E5%9B%B0%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%93%E3%81%A8%EF%BC%9A%0A%E3%80%80%E4%BE%8B%EF%BC%89%E6%AF%8E%E6%97%A5%E3%80%81%E5%90%8C%E3%81%98%E6%95%B0%E5%AD%97%E3%82%92%E5%88%A5%E3%81%AE%E8%A1%A8%E3%81%AB%E6%89%93%E3%81%A1%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%0A%0A%E2%96%A0%20%E3%83%92%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0%E3%81%AE%E3%81%94%E5%B8%8C%E6%9C%9B%EF%BC%9A%0A%E3%80%80%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%20%EF%BC%8F%20%E8%A8%AA%E5%95%8F%20%EF%BC%8F%20%E3%81%A9%E3%81%A1%E3%82%89%E3%81%A7%E3%82%82%0A">メールアプリから送る</a> こともできます。届け先は support.tsumiki@gmail.com です。</p>
+        <p class="note hf-alt">フォームがうまく動かないときは、<a href="mailto:support.tsumiki@gmail.com?subject=%E3%80%90%E7%84%A1%E6%96%99%E3%83%92%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0%E3%80%91%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF&body=%EF%BC%88%E5%88%86%E3%81%8B%E3%82%8B%E7%AF%84%E5%9B%B2%E3%81%A7%E5%A4%A7%E4%B8%88%E5%A4%AB%E3%81%A7%E3%81%99%E3%80%82%E7%A9%BA%E6%AC%84%E3%81%AE%E3%81%BE%E3%81%BE%E9%80%81%E3%81%A3%E3%81%A6%E3%81%84%E3%81%9F%E3%81%A0%E3%81%84%E3%81%A6%E3%82%82%E6%A7%8B%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%EF%BC%89%0A%0A%E2%96%A0%20%E4%BC%9A%E7%A4%BE%E5%90%8D%EF%BC%9A%0A%E2%96%A0%20%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0A%E2%96%A0%20%E3%81%94%E9%80%A3%E7%B5%A1%E5%85%88%EF%BC%88%E3%81%8A%E9%9B%BB%E8%A9%B1%E7%95%AA%E5%8F%B7%E3%81%AA%E3%81%A9%EF%BC%89%EF%BC%9A%0A%0A%E2%96%A0%20%E3%81%84%E3%81%BE%E5%9B%B0%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%93%E3%81%A8%EF%BC%9A%0A%E3%80%80%E4%BE%8B%EF%BC%89%E6%AF%8E%E6%97%A5%E3%80%81%E5%90%8C%E3%81%98%E6%95%B0%E5%AD%97%E3%82%92%E5%88%A5%E3%81%AE%E8%A1%A8%E3%81%AB%E6%89%93%E3%81%A1%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%0A%0A%E2%96%A0%20%E3%83%92%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0%E3%81%AE%E3%81%94%E5%B8%8C%E6%9C%9B%EF%BC%9A%0A%E3%80%80%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%20%EF%BC%8F%20%E8%A8%AA%E5%95%8F%20%EF%BC%8F%20%E3%81%A9%E3%81%A1%E3%82%89%E3%81%A7%E3%82%82%0A">メールアプリから送る</a> こともできます。届け先は support.tsumiki@gmail.com です。</p>
       </div>
     </div>
   </section>
@@ -2491,10 +2491,10 @@
   <!-- お問い合わせ：プライバシーポリシー -->
   <section class="screen sheet" id="s-privacy" data-screen="privacy">
     <div class="sheet-inner">
-      <p class="sheet-label"><span class="sl-jp">プライバシーポリシー</span><span class="sl-en">PRIVACY</span></p>
+      <h2 class="sheet-label"><span class="sl-jp">プライバシーポリシー</span><span class="sl-en">PRIVACY</span></h2>
       <p class="sheet-lead">つみきは、みなさまの業務を深く伺う仕事です。だからこそ、伺った情報をどう扱うかを、はっきりさせておきます。</p>
 
-      <p class="h3">このサイトが集めていないもの<span class="h3-en">WHAT WE DON'T COLLECT</span></p>
+      <h3 class="h3">このサイトが集めていないもの<span class="h3-en">WHAT WE DON'T COLLECT</span></h3>
       <div class="panel">
         <div class="dl">
           <div class="dl-row"><div class="dl-k">Cookie</div><div class="dl-v"><strong>使っていません。</strong></div></div>
@@ -2503,7 +2503,7 @@
         <p class="note">このサイトを見ていただくだけでは、あなたが誰かは分かりません。フォームに入力して送信いただいたときにだけ、内容が私に届きます。</p>
       </div>
 
-      <p class="h3">外部に送られるもの<span class="h3-en">THIRD PARTIES</span></p>
+      <h3 class="h3">外部に送られるもの<span class="h3-en">THIRD PARTIES</span></h3>
       <div class="panel">
         <div class="dl">
           <div class="dl-row"><div class="dl-k">Google Fonts</div><div class="dl-v">文字の表示に Google Fonts（Googleが提供する書体サービス）を使っています。そのためページを開くと、<strong>IPアドレスなどの通信情報がGoogleに送信されます</strong>。取り扱いは <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Googleのプライバシーポリシー</a> に従います。</div></div>
@@ -2512,7 +2512,7 @@
         <p class="note">フォームを使わず、<a href="mailto:support.tsumiki@gmail.com">support.tsumiki@gmail.com</a> へ直接メールをいただくこともできます。外部サービスを通したくない場合は、そちらをご利用ください。</p>
       </div>
 
-      <p class="h3">お預かりする情報<span class="h3-en">WHAT WE RECEIVE</span></p>
+      <h3 class="h3">お預かりする情報<span class="h3-en">WHAT WE RECEIVE</span></h3>
       <div class="panel">
         <ul class="can yes">
           <li>お問い合わせフォームに入力された内容、またはお問い合わせメールに書かれた内容（お名前・会社名・メールアドレス・お電話番号・ご相談内容など）</li>
@@ -2520,7 +2520,7 @@
         </ul>
       </div>
 
-      <p class="h3">何に使うか<span class="h3-en">HOW WE USE IT</span></p>
+      <h3 class="h3">何に使うか<span class="h3-en">HOW WE USE IT</span></h3>
       <div class="panel">
         <ul class="can yes">
           <li>ご相談へのご返信</li>
@@ -2533,12 +2533,12 @@
         </ul>
       </div>
 
-      <p class="h3">第三者に渡さないこと<span class="h3-en">NO SHARING</span></p>
+      <h3 class="h3">第三者に渡さないこと<span class="h3-en">NO SHARING</span></h3>
       <div class="panel">
         <p class="dl-v">お預かりした情報を第三者に提供することはありません（法令に基づき求められた場合を除きます）。<strong>伺った業務の内容を、他のお客様や第三者に話すこともありません。</strong>ご希望があればNDA（秘密保持契約）を締結します。</p>
       </div>
 
-      <p class="h3">安全に管理すること<span class="h3-en">SECURITY</span></p>
+      <h3 class="h3">安全に管理すること<span class="h3-en">SECURITY</span></h3>
       <div class="panel">
         <div class="dl">
           <div class="dl-row"><div class="dl-k">扱う人</div><div class="dl-v"><strong>代表の髙橋ひとりだけです。</strong>従業員も、外注先もいません。お預かりした情報を見る人が、他にいません。</div></div>
@@ -2546,7 +2546,7 @@
         </div>
       </div>
 
-      <p class="h3">保管と削除<span class="h3-en">RETENTION</span></p>
+      <h3 class="h3">保管と削除<span class="h3-en">RETENTION</span></h3>
       <div class="panel">
         <div class="dl">
           <div class="dl-row"><div class="dl-k">ご相談の情報</div><div class="dl-v"><strong>ご依頼に至らなかった場合は、その時点ですみやかに削除します。</strong>伺った業務のお話も、こちらには残しません。</div></div>
@@ -2556,10 +2556,10 @@
         </div>
       </div>
 
-      <p class="h3">事業者・お問い合わせ窓口<span class="h3-en">CONTACT</span></p>
+      <h3 class="h3">事業者・お問い合わせ窓口<span class="h3-en">CONTACT</span></h3>
       <div class="panel">
         <div class="dl">
-          <div class="dl-row"><div class="dl-k">事業者</div><div class="dl-v">つみき（屋号：Tsumiki）／ 個人事業主</div></div>
+          <div class="dl-row"><div class="dl-k">事業者</div><div class="dl-v">つみき（Tsumiki）／ 個人事業主</div></div>
           <div class="dl-row"><div class="dl-k">代表者</div><div class="dl-v">髙橋 弘大</div></div>
           <div class="dl-row"><div class="dl-k">事業内容</div><div class="dl-v">ソフトウェア開発業</div></div>
           <div class="dl-row"><div class="dl-k">連絡先</div><div class="dl-v"><a href="mailto:support.tsumiki@gmail.com">support.tsumiki@gmail.com</a></div></div>
@@ -2594,6 +2594,7 @@
           <p class="sfoot-h">実績</p>
           <a data-go="collection" href="#">つみきアプリたち</a>
           <a data-go="flagship" href="#">趣味で制作したアプリたち</a>
+          <a data-go="voice" href="#">お客様の声</a>
         </div>
         <div class="sfoot-col">
           <p class="sfoot-h">お問い合わせ</p>
@@ -3025,6 +3026,22 @@
   })();
 </script>
 <script>
+  /* 隠れているシートの写真は、その画面を開いたときに初めて読み込む（data-src → src）。
+     display:none の中の loading="lazy" は位置が計算できず即時読み込みになるため、初回表示が重くなっていた。 */
+  (function(){
+    function hydrate(sec){
+      Array.prototype.slice.call(sec.querySelectorAll('img[data-src]')).forEach(function(im){
+        im.src = im.getAttribute('data-src'); im.removeAttribute('data-src');
+      });
+    }
+    Array.prototype.slice.call(document.querySelectorAll('.screen.sheet')).forEach(function(sec){
+      if (sec.classList.contains('is-active')) hydrate(sec);
+      new MutationObserver(function(){ if (sec.classList.contains('is-active')) hydrate(sec); })
+        .observe(sec, { attributes:true, attributeFilter:['class'] });
+    });
+  })();
+</script>
+<script>
   /* いつつの動画：その画面が表示されている時だけミュート再生（切替時に確実に再生／離れたら停止） */
   (function(){
     var v = document.querySelector('.pv-vid');
@@ -3058,7 +3075,7 @@
       var body = [
         '■ お名前：' + val('#hf-name'),
         '■ 会社名・お店の名前：' + val('#hf-company'),
-        '■ ご連絡先メール：' + val('#hf-email'),
+        '■ メールアドレス：' + val('#hf-email'),
         '■ お電話番号：' + val('#hf-tel'),
         '',
         '■ いま困っていること：',
