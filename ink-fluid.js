@@ -605,13 +605,29 @@
     }
     pointerMove(e.clientX, e.clientY);
   }, { passive: true });
+  // 2本指以上（ピンチ＝ズーム操作）のときは墨を出さない。
+  // 以前は全部の指で pointerMove を回していたが、前回位置（lastPX/lastPY）が1つしかないため
+  // 指1→指2→指1…と交互に差分を取り、「指と指の距離」がそのまま勢いになって噴き出していた。
+  // ズーム中は window.innerWidth も変わるので座標も飛ぶ。演出は1本指のなぞりだけに限定する。
   window.addEventListener('touchstart', e => {
+    if (e.touches.length > 1) { lastPX = lastPY = null; return; }
     const t = e.touches[0]; if (!t) return;
     lastPX = t.clientX / window.innerWidth;          // 前回の指位置からの飛び線を防ぐ
     lastPY = 1.0 - t.clientY / window.innerHeight;
   }, { passive: true });
   window.addEventListener('touchmove', e => {
-    for (let i = 0; i < e.touches.length; i++) pointerMove(e.touches[i].clientX, e.touches[i].clientY);
+    if (e.touches.length > 1) { lastPX = lastPY = null; return; }
+    pointerMove(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: true });
+  // 2本指→1本指に戻ったとき、残った指の位置から描き直す（ズーム前の位置への飛び線を防ぐ）
+  window.addEventListener('touchend', e => {
+    if (e.touches.length === 1) {
+      const t = e.touches[0];
+      lastPX = t.clientX / window.innerWidth;
+      lastPY = 1.0 - t.clientY / window.innerHeight;
+    } else if (e.touches.length === 0) {
+      lastPX = lastPY = null;
+    }
   }, { passive: true });
   window.addEventListener('mouseleave', () => { lastPX = lastPY = null; });
 
