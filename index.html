@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=97">
+<link rel="stylesheet" href="style.css?v=98">
 <link rel="icon" type="image/png" href="icons/icon-index.png?v=2">
 <link rel="apple-touch-icon" href="icons/icon-index.png?v=2">
 <meta name="apple-mobile-web-app-title" content="つみき">
@@ -2481,10 +2481,20 @@
             </ul>
           </div>
 
-          <button type="submit" class="cta hf-submit"><span class="cta-label">この内容で送信する</span><span class="cta-ar">→</span></button>
-          <p class="hf-submit-note">確認画面はありません。押すと、そのまま私のメールへ届きます。</p>
-          <p id="hf-status" class="hf-status" role="status" aria-live="polite"></p>
+          <button type="submit" class="cta hf-submit"><span class="cta-label">入力内容を確認する</span><span class="cta-ar">→</span></button>
+          <p class="hf-submit-note">次の画面で内容を確認できます。ここではまだ送信されません。</p>
         </form>
+
+        <!-- 確認画面：送信の前に、入力した内容をそのまま見せる -->
+        <div id="hf-confirm" class="hf-confirm" hidden>
+          <h4 class="hf-confirm-ttl" id="hf-confirm-ttl" tabindex="-1">この内容で送信します</h4>
+          <p class="hf-confirm-lead">お間違いがなければ、下の「送信する」を押してください。まだ送信されていません。</p>
+          <dl class="hf-review" id="hf-review"></dl>
+          <button type="button" class="cta hf-submit hf-send" id="hf-send"><span class="cta-label">送信する</span><span class="cta-ar">→</span></button>
+          <p class="hf-submit-note">押すと、私のメールへ直接届きます。</p>
+          <p id="hf-status" class="hf-status" role="status" aria-live="polite"></p>
+          <button type="button" class="hf-back" id="hf-back">← 書き直す</button>
+        </div>
 
         <div id="hf-done" class="hf-done" hidden>
           <!-- 表示された瞬間に、丸→チェックの順で一筆書きされる（1回だけ） -->
@@ -3085,8 +3095,11 @@
     var form = document.getElementById('hearing-form');
     if (!form) return;
     var ENDPOINT = 'https://formspree.io/f/mlgqnwvw';
-    var btn = form.querySelector('.hf-submit');
-    var label = btn.querySelector('.cta-label');
+    var confirmEl = document.getElementById('hf-confirm');
+    var reviewEl = document.getElementById('hf-review');
+    var sendBtn = document.getElementById('hf-send');       // 「送信する」
+    var backBtn = document.getElementById('hf-back');
+    var label = sendBtn.querySelector('.cta-label');
     var statusEl = document.getElementById('hf-status');
     var doneEl = document.getElementById('hf-done');
     var honey = form.querySelector('.hf-honey');
@@ -3175,6 +3188,57 @@
         + '&body=' + encodeURIComponent(body);
     }
 
+    /* 確認画面に出す一覧。入力欄の並びのまま、任意で空のものも「ご記入なし」と見せる */
+    var REVIEW = [
+      { k:'お名前', id:'hf-name' },
+      { k:'会社名・お店の名前', id:'hf-company' },
+      { k:'メールアドレス', id:'hf-email' },
+      { k:'お電話番号', id:'hf-tel' },
+      { k:'いま困っていること', id:'hf-msg' },
+      { k:'ヒアリングのご希望', radio:'ヒアリングのご希望' }
+    ];
+    function buildReview(){
+      reviewEl.textContent = '';
+      REVIEW.forEach(function(f){
+        var v;
+        if (f.radio){
+          var picked = form.querySelector('input[name="' + f.radio + '"]:checked');
+          v = picked ? picked.value : '';
+        } else {
+          var el = document.getElementById(f.id);
+          v = el ? (el.value || '').trim() : '';
+        }
+        var row = document.createElement('div'); row.className = 'hf-review-row';
+        var dt = document.createElement('dt'); dt.className = 'hf-review-k'; dt.textContent = f.k;
+        var dd = document.createElement('dd'); dd.className = 'hf-review-v';
+        if (v){ dd.textContent = v; }                 // textContent で入れる（打った文字をそのまま見せる）
+        else  { dd.innerHTML = '<span class="hf-review-empty">ご記入なし</span>'; }
+        row.appendChild(dt); row.appendChild(dd); reviewEl.appendChild(row);
+      });
+    }
+
+    function showConfirm(){
+      buildReview();
+      form.hidden = true;
+      confirmEl.hidden = false;
+      statusEl.className = 'hf-status';
+      statusEl.textContent = '';
+      document.getElementById('hf-confirm-ttl').focus({ preventScroll: true });
+      confirmEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    function backToForm(){
+      confirmEl.hidden = true;
+      form.hidden = false;
+      statusEl.className = 'hf-status';
+      statusEl.textContent = '';
+      sendBtn.disabled = false;
+      label.textContent = '送信する';
+      document.getElementById('hf-name').focus({ preventScroll: true });
+      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    backBtn.addEventListener('click', backToForm);
+
+    /* 1段目：入力内容を確認する（ここではまだ送らない） */
     form.addEventListener('submit', function(e){
       e.preventDefault();
       if (honey && honey.value) return;                 // ボット除け（人間には見えない欄）
@@ -3187,18 +3251,20 @@
       });
       refreshRules();
       if (bad){
-        statusEl.className = 'hf-status';
-        statusEl.textContent = '';
         bad.el.focus({ preventScroll: true });
         bad.el.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
+      showConfirm();
+    });
 
+    /* 2段目：ここで初めて送信する */
+    sendBtn.addEventListener('click', function(){
+      if (honey && honey.value) return;
       var ticket = makeTicket();
       if (subjectEl) subjectEl.value = '【無料ヒアリング】お申し込み ' + ticket;
 
-      var original = label.textContent;
-      btn.disabled = true;
+      sendBtn.disabled = true;
       label.textContent = '送信中…';
       statusEl.className = 'hf-status';
       statusEl.textContent = '';
@@ -3227,13 +3293,14 @@
         if (t) t.textContent = ticket;
         if (m) m.textContent = (document.getElementById('hf-email').value || '').trim();
         form.hidden = true;
+        confirmEl.hidden = true;
         doneEl.hidden = false;
         var alt = document.querySelector('.hf-alt');
         if (alt) alt.hidden = true;   // 送れた後に「うまく動かないときは」を残さない
         doneEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }).catch(function(){
-        btn.disabled = false;
-        label.textContent = original;
+        sendBtn.disabled = false;
+        label.textContent = '送信する';
         var url = buildMailto(ticket);
         statusEl.className = 'hf-status is-error';
         statusEl.innerHTML =

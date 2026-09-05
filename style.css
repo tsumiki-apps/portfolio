@@ -836,6 +836,8 @@ body.on-dark .tb-brand{color:#F4F2EE;
 .hf-status{font-size:13px; line-height:1.7;}
 .hf-status.is-error{color:#B4432E;}
 .hf-status.is-error a{color:inherit;}
+/* 墨のボタンの中だけは、朱を継がせない（黒地に朱で読めなくなるため） */
+.hf-status.is-error a.hf-mailbtn{color:var(--paper);}
 .hf-mailbtn{display:block; margin-top:14px; padding:15px 18px; background:var(--ink); color:var(--paper);
   border-radius:999px; text-align:center; font-size:15px; font-weight:700; letter-spacing:.02em;
   text-decoration:none; line-height:1.4;}
@@ -895,6 +897,27 @@ body.on-dark .tb-brand{color:#F4F2EE;
   border:1px solid var(--ink); border-radius:999px; background:transparent;
   color:var(--ink); text-decoration:none; text-align:center;
   font-size:14.5px; font-weight:700; letter-spacing:.02em; line-height:1.4;}
+
+/* ---------- 確認画面：送る前に、打った内容をそのまま見せる ---------- */
+.hf-confirm{margin-top:18px; padding:22px 20px; background:var(--card);
+  border:1px solid var(--ink); border-radius:var(--radius);
+  display:flex; flex-direction:column;}
+.hf-confirm[hidden]{display:none;}
+.hf-confirm-ttl{font-size:16px; font-weight:700; letter-spacing:.02em;}
+.hf-confirm-ttl:focus{outline:none;}
+.hf-confirm-lead{margin-top:8px; font-size:13px; color:var(--sub); line-height:1.8;}
+.hf-review{margin-top:16px; border-top:1px solid var(--line);}
+.hf-review-row{padding:12px 0; border-bottom:1px solid var(--line);}
+.hf-review-k{font-size:11.5px; font-weight:700; letter-spacing:.04em; color:var(--sub); line-height:1.6;}
+.hf-review-v{margin-top:4px; font-size:14.5px; color:var(--ink); line-height:1.8;
+  white-space:pre-wrap; overflow-wrap:anywhere;}
+.hf-review-empty{color:var(--ghost); font-weight:400;}
+.hf-confirm .hf-submit{margin-top:18px;}
+.hf-confirm .hf-submit-note{margin-top:8px;}   /* .hform の gap が無いぶん、負の余白を打ち消す */
+.hf-back{display:block; margin:6px auto 0; padding:12px 20px;
+  background:none; border:none; cursor:pointer; font-family:inherit;
+  font-size:13.5px; font-weight:700; color:var(--sub);
+  text-decoration:underline; text-underline-offset:3px;}
 
 /* ---------- 無料ヒアリング：挿絵（既存 .scene / sc-* の語彙を流用） ---------- */
 /* タイムラインの点は、この画面の連結線に沿って進ませる（基底 .sc-dot の path を上書き） */
@@ -1603,6 +1626,10 @@ footer.foot{
   .hf-next-k{width:96px;}
   .hf-next-v{font-size:15px;}
   .hf-next-btn{font-size:15.5px;}
+  .hf-confirm-lead{font-size:14px;}
+  .hf-review-k{font-size:12.5px;}
+  .hf-review-v{font-size:15.5px;}
+  .hf-back{font-size:14.5px;}
 
   /* メニュー */
   .su-jp{font-size:18px;}
