@@ -844,6 +844,57 @@ body.on-dark .tb-brand{color:#F4F2EE;
 .hf-done-ttl{font-size:16px; font-weight:700; letter-spacing:.02em;}
 .hf-done-body{font-size:13.5px; color:#3a3833; line-height:1.9; margin-top:10px;}
 .hf-alt{margin-top:18px;}
+.hf-alt[hidden]{display:none;}
+
+/* ---------- 入力エラーは「その欄の直下」に出す ----------
+   ブラウザ標準のふきだし（reportValidity）は項目から離れた場所に一瞬だけ出て消えるため使わない。
+   何が違うかではなく「どう直すか」まで書く。 */
+.hf-error{display:flex; gap:7px; align-items:flex-start;
+  font-size:12.5px; font-weight:700; line-height:1.7; color:#B4432E;}
+.hf-error[hidden]{display:none;}
+.hf-error::before{content:'!'; flex:none; width:16px; height:16px; margin-top:2px;
+  border-radius:50%; background:#B4432E; color:var(--card);
+  font-size:11px; font-weight:700; line-height:16px; text-align:center;}
+.hf-input.is-invalid{border-color:#B4432E; background:#FCF5F3;}
+.hf-input.is-invalid:focus{border-color:#B4432E; box-shadow:0 0 0 3px rgba(180,67,46,.13);}
+
+/* ---------- 送信の条件を、押す前に見せる ----------
+   条件を満たした項目からチェックが点く。押してから叱らないための欄。 */
+.hf-rules{background:var(--surface); border:1px solid var(--line);
+  border-radius:14px; padding:14px 16px;}
+.hf-rules-ttl{font-size:12px; font-weight:700; letter-spacing:.02em; color:var(--sub); line-height:1.6;}
+.hf-rules-list{list-style:none; margin-top:9px; display:flex; flex-direction:column; gap:7px;}
+.hf-rule{display:flex; align-items:flex-start; gap:9px;
+  font-size:13px; line-height:1.6; color:var(--sub); transition:color .18s ease;}
+.hf-rule-mark{flex:none; position:relative; width:17px; height:17px; margin-top:1px;
+  border:1.5px solid var(--ghost); border-radius:50%; background:transparent;
+  transition:background .18s ease, border-color .18s ease;}
+.hf-rule-mark::after{content:''; position:absolute; left:5px; top:3.5px; width:5px; height:8px;
+  border:solid var(--card); border-width:0 1.8px 1.8px 0;
+  transform:rotate(45deg) scale(.4); transform-origin:center; opacity:0;
+  transition:opacity .18s ease, transform .18s ease;}
+.hf-rule.is-ok{color:var(--ink);}
+.hf-rule.is-ok .hf-rule-mark{background:var(--ink); border-color:var(--ink);}
+.hf-rule.is-ok .hf-rule-mark::after{opacity:1; transform:rotate(45deg) scale(1);}
+
+/* ボタンの言葉だけでは足りない分を、真下で補う（押した後に何が起きるか） */
+.hf-submit-note{margin-top:-8px; font-size:12.5px; color:var(--sub); line-height:1.7;
+  text-align:center; text-wrap:balance;}
+
+/* ---------- 送信したあとの「次」 ----------
+   受付番号・返信の目安・届け先・戻り先。送りっぱなしの不安を残さない。 */
+.hf-next{margin-top:16px; padding-top:14px; border-top:1px solid var(--line);
+  display:flex; flex-direction:column; gap:9px;}
+.hf-next-row{display:flex; gap:12px; align-items:baseline;}
+.hf-next-k{flex:none; width:88px; font-size:12px; font-weight:700;
+  letter-spacing:.02em; color:var(--sub); line-height:1.6;}
+.hf-next-v{font-size:14px; font-weight:700; color:var(--ink); line-height:1.6;
+  word-break:break-all; font-variant-numeric:tabular-nums; letter-spacing:.03em;}
+.hf-done-note{margin-top:12px; font-size:12px; color:var(--sub); line-height:1.7;}
+.hf-next-btn{display:block; margin-top:16px; padding:14px 18px;
+  border:1px solid var(--ink); border-radius:999px; background:transparent;
+  color:var(--ink); text-decoration:none; text-align:center;
+  font-size:14.5px; font-weight:700; letter-spacing:.02em; line-height:1.4;}
 
 /* ---------- 無料ヒアリング：挿絵（既存 .scene / sc-* の語彙を流用） ---------- */
 /* タイムラインの点は、この画面の連結線に沿って進ませる（基底 .sc-dot の path を上書き） */
@@ -1545,6 +1596,13 @@ footer.foot{
   .hf-input{font-size:16.5px;}
   .hf-hint, .hf-status{font-size:13.5px;}
   .hf-done-body{font-size:15px;}
+  .hf-error, .hf-submit-note{font-size:13.5px;}
+  .hf-rules-ttl{font-size:13px;}
+  .hf-rule{font-size:14.5px;}
+  .hf-next-k, .hf-done-note{font-size:13px;}
+  .hf-next-k{width:96px;}
+  .hf-next-v{font-size:15px;}
+  .hf-next-btn{font-size:15.5px;}
 
   /* メニュー */
   .su-jp{font-size:18px;}

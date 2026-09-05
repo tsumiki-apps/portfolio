@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=96">
+<link rel="stylesheet" href="style.css?v=97">
 <link rel="icon" type="image/png" href="icons/icon-index.png?v=2">
 <link rel="apple-touch-icon" href="icons/icon-index.png?v=2">
 <meta name="apple-mobile-web-app-title" content="つみき">
@@ -2435,7 +2435,8 @@
         <form id="hearing-form" class="hform" novalidate>
           <div class="hf-field">
             <label class="hf-label" for="hf-name">お名前<span class="hf-req">必須</span></label>
-            <input class="hf-input" id="hf-name" name="お名前" type="text" autocomplete="name" required placeholder="例）積木 太郎">
+            <input class="hf-input" id="hf-name" name="お名前" type="text" autocomplete="name" required placeholder="例）積木 太郎" aria-describedby="hf-err-name">
+            <p class="hf-error" id="hf-err-name" hidden></p>
           </div>
           <div class="hf-field">
             <label class="hf-label" for="hf-company">会社名・お店の名前<span class="hf-opt">任意</span></label>
@@ -2443,16 +2444,19 @@
           </div>
           <div class="hf-field">
             <label class="hf-label" for="hf-email">メールアドレス<span class="hf-req">必須</span></label>
-            <input class="hf-input" id="hf-email" name="email" type="email" autocomplete="email" inputmode="email" required placeholder="例）you@example.com">
-            <p class="hf-hint">このアドレス宛に、私から直接お返事します。</p>
+            <input class="hf-input" id="hf-email" name="email" type="email" autocomplete="email" inputmode="email" required placeholder="例）you@example.com" aria-describedby="hf-err-email hf-hint-email">
+            <p class="hf-error" id="hf-err-email" hidden></p>
+            <p class="hf-hint" id="hf-hint-email">このアドレス宛に、私から直接お返事します。</p>
           </div>
           <div class="hf-field">
             <label class="hf-label" for="hf-tel">お電話番号<span class="hf-opt">任意</span></label>
-            <input class="hf-input" id="hf-tel" name="お電話番号" type="tel" autocomplete="tel" inputmode="tel" placeholder="例）090-1234-5678">
+            <input class="hf-input" id="hf-tel" name="お電話番号" type="tel" autocomplete="tel" inputmode="tel" placeholder="例）090-1234-5678" aria-describedby="hf-hint-tel">
+            <p class="hf-hint" id="hf-hint-tel">お急ぎのときだけで構いません。ハイフンは有無どちらでも大丈夫です。</p>
           </div>
           <div class="hf-field">
             <label class="hf-label" for="hf-msg">いま困っていること<span class="hf-req">必須</span></label>
-            <textarea class="hf-input hf-textarea" id="hf-msg" name="いま困っていること" required placeholder="例）毎日、同じ数字を別の表に打ち直している。一行だけでも大丈夫です。"></textarea>
+            <textarea class="hf-input hf-textarea" id="hf-msg" name="いま困っていること" required placeholder="例）毎日、同じ数字を別の表に打ち直している。一行だけでも大丈夫です。" aria-describedby="hf-err-msg"></textarea>
+            <p class="hf-error" id="hf-err-msg" hidden></p>
           </div>
           <div class="hf-field">
             <span class="hf-label">ヒアリングのご希望</span>
@@ -2467,7 +2471,18 @@
           <input type="hidden" name="_subject" value="【無料ヒアリング】お申し込み">
           <input class="hf-honey" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-          <button type="submit" class="cta hf-submit"><span class="cta-label">送信する</span><span class="cta-ar">→</span></button>
+          <!-- 送信の条件を、押す前に見せる（押してから叱らない） -->
+          <div class="hf-rules" id="hf-rules">
+            <p class="hf-rules-ttl">送信に必要なのは、この3つだけです</p>
+            <ul class="hf-rules-list">
+              <li class="hf-rule" data-rule="hf-name"><span class="hf-rule-mark" aria-hidden="true"></span>お名前<span class="oc-alt hf-rule-state">：未入力</span></li>
+              <li class="hf-rule" data-rule="hf-email"><span class="hf-rule-mark" aria-hidden="true"></span>メールアドレス（＠を含む形）<span class="oc-alt hf-rule-state">：未入力</span></li>
+              <li class="hf-rule" data-rule="hf-msg"><span class="hf-rule-mark" aria-hidden="true"></span>いま困っていること（一行でも大丈夫です）<span class="oc-alt hf-rule-state">：未入力</span></li>
+            </ul>
+          </div>
+
+          <button type="submit" class="cta hf-submit"><span class="cta-label">この内容で送信する</span><span class="cta-ar">→</span></button>
+          <p class="hf-submit-note">確認画面はありません。押すと、そのまま私のメールへ届きます。</p>
           <p id="hf-status" class="hf-status" role="status" aria-live="polite"></p>
         </form>
 
@@ -2480,7 +2495,15 @@
             </g>
           </svg>
           <p class="hf-done-ttl">送信しました。ありがとうございます。</p>
-          <p class="hf-done-body">平日なら当日〜翌営業日を目安に、いただいたメールアドレス宛に私から直接お返事します。日程のご相談だけです。どうぞお気軽に。</p>
+          <p class="hf-done-body">お預かりした内容は、私のメールに届いています。日程のご相談だけですので、どうぞお気軽に。</p>
+          <!-- 送ったあとの不安を減らすため、受付番号・返信の目安・届け先・戻り先をここに出す -->
+          <dl class="hf-next">
+            <div class="hf-next-row"><dt class="hf-next-k">受付番号</dt><dd class="hf-next-v" id="hf-ticket">—</dd></div>
+            <div class="hf-next-row"><dt class="hf-next-k">ご返信の目安</dt><dd class="hf-next-v">平日なら当日〜翌営業日</dd></div>
+            <div class="hf-next-row"><dt class="hf-next-k">お届け先</dt><dd class="hf-next-v" id="hf-done-mail">—</dd></div>
+          </dl>
+          <p class="hf-done-note">この番号は、いまのお申し込みの控えです。行き違いがあったときにお伝えいただくと、すぐに分かります。</p>
+          <a class="hf-next-btn" data-go="menu" href="#">つみきのメニューへ戻る</a>
         </div>
 
         <p class="note hf-alt">フォームがうまく動かないときは、<a href="mailto:support.tsumiki@gmail.com?subject=%E3%80%90%E7%84%A1%E6%96%99%E3%83%92%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0%E3%80%91%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF&body=%EF%BC%88%E5%88%86%E3%81%8B%E3%82%8B%E7%AF%84%E5%9B%B2%E3%81%A7%E5%A4%A7%E4%B8%88%E5%A4%AB%E3%81%A7%E3%81%99%E3%80%82%E7%A9%BA%E6%AC%84%E3%81%AE%E3%81%BE%E3%81%BE%E9%80%81%E3%81%A3%E3%81%A6%E3%81%84%E3%81%9F%E3%81%A0%E3%81%84%E3%81%A6%E3%82%82%E6%A7%8B%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%EF%BC%89%0A%0A%E2%96%A0%20%E4%BC%9A%E7%A4%BE%E5%90%8D%EF%BC%9A%0A%E2%96%A0%20%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0A%E2%96%A0%20%E3%81%94%E9%80%A3%E7%B5%A1%E5%85%88%EF%BC%88%E3%81%8A%E9%9B%BB%E8%A9%B1%E7%95%AA%E5%8F%B7%E3%81%AA%E3%81%A9%EF%BC%89%EF%BC%9A%0A%0A%E2%96%A0%20%E3%81%84%E3%81%BE%E5%9B%B0%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%93%E3%81%A8%EF%BC%9A%0A%E3%80%80%E4%BE%8B%EF%BC%89%E6%AF%8E%E6%97%A5%E3%80%81%E5%90%8C%E3%81%98%E6%95%B0%E5%AD%97%E3%82%92%E5%88%A5%E3%81%AE%E8%A1%A8%E3%81%AB%E6%89%93%E3%81%A1%E7%9B%B4%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%0A%0A%E2%96%A0%20%E3%83%92%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0%E3%81%AE%E3%81%94%E5%B8%8C%E6%9C%9B%EF%BC%9A%0A%E3%80%80%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%20%EF%BC%8F%20%E8%A8%AA%E5%95%8F%20%EF%BC%8F%20%E3%81%A9%E3%81%A1%E3%82%89%E3%81%A7%E3%82%82%0A">メールアプリから送る</a> こともできます。届け先は support.tsumiki@gmail.com です。</p>
@@ -3067,12 +3090,76 @@
     var statusEl = document.getElementById('hf-status');
     var doneEl = document.getElementById('hf-done');
     var honey = form.querySelector('.hf-honey');
+    var subjectEl = form.querySelector('input[name="_subject"]');
+
+    /* 必須3項目の判定。エラー文は「何が違うか」ではなく「どう直すか」まで書く */
+    var RULES = [
+      { id:'hf-name',  err:'hf-err-name',
+        ok:  function(v){ return v.length > 0; },
+        msg: function(v){ return 'お名前を入力してください。'; } },
+      { id:'hf-email', err:'hf-err-email',
+        ok:  function(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); },
+        msg: function(v){ return v ? '＠とドメインを含む形で入力してください。（例）you@example.com'
+                                   : 'メールアドレスを入力してください。お返事はこの宛先にお送りします。'; } },
+      { id:'hf-msg',   err:'hf-err-msg',
+        ok:  function(v){ return v.length > 0; },
+        msg: function(v){ return '一行だけでも大丈夫です。困っていることを書いてください。'; } }
+    ];
+    RULES.forEach(function(r){
+      r.el   = document.getElementById(r.id);
+      r.errEl= document.getElementById(r.err);
+      r.li   = form.querySelector('.hf-rule[data-rule="' + r.id + '"]');
+      r.state= r.li ? r.li.querySelector('.hf-rule-state') : null;
+    });
+    function value(r){ return (r.el.value || '').trim(); }
+
+    /* 送信前チェックリスト：条件を満たした項目からチェックが点く */
+    function refreshRules(){
+      RULES.forEach(function(r){
+        var ok = r.ok(value(r));
+        if (r.li) r.li.classList.toggle('is-ok', ok);
+        if (r.state) r.state.textContent = ok ? '：入力済み' : '：未入力';
+      });
+    }
+    function clearError(r){
+      r.el.classList.remove('is-invalid');
+      r.el.removeAttribute('aria-invalid');
+      r.errEl.hidden = true;
+      r.errEl.textContent = '';
+    }
+    function showError(r){
+      r.el.classList.add('is-invalid');
+      r.el.setAttribute('aria-invalid', 'true');
+      r.errEl.textContent = r.msg(value(r));
+      r.errEl.hidden = false;
+    }
+    RULES.forEach(function(r){
+      r.el.addEventListener('input', function(){
+        refreshRules();
+        if (r.el.classList.contains('is-invalid') && r.ok(value(r))) clearError(r);
+      });
+      /* 欄を離れた時点で「その欄だけ」を見る（他の欄をまとめて赤くしない） */
+      r.el.addEventListener('blur', function(){
+        if (value(r) && !r.ok(value(r))) showError(r); else clearError(r);
+      });
+    });
+    refreshRules();
+
+    /* 受付番号。送信内容にも同じ番号を載せるので、控えとして実際に照合できる */
+    function makeTicket(){
+      var d = new Date();
+      function two(n){ return ('0' + n).slice(-2); }
+      var ymd = two(d.getFullYear() % 100) + two(d.getMonth() + 1) + two(d.getDate());
+      var rnd = String(Math.floor(1000 + Math.random() * 9000));
+      return 'TS-' + ymd + '-' + rnd;
+    }
 
     /* 送信に失敗しても打ち直しが要らないよう、入力内容をそのままメール本文に組み立てる */
-    function buildMailto(){
+    function buildMailto(ticket){
       function val(sel){ var el = form.querySelector(sel); return el ? el.value.trim() : ''; }
       var pref = form.querySelector('input[name="ヒアリングのご希望"]:checked');
       var body = [
+        '■ 受付番号：' + ticket,
         '■ お名前：' + val('#hf-name'),
         '■ 会社名・お店の名前：' + val('#hf-company'),
         '■ メールアドレス：' + val('#hf-email'),
@@ -3084,14 +3171,31 @@
         '■ ヒアリングのご希望：' + (pref ? pref.value : 'どちらでも')
       ].join('\n');
       return 'mailto:support.tsumiki@gmail.com'
-        + '?subject=' + encodeURIComponent('【無料ヒアリング】お申し込み')
+        + '?subject=' + encodeURIComponent('【無料ヒアリング】お申し込み ' + ticket)
         + '&body=' + encodeURIComponent(body);
     }
 
     form.addEventListener('submit', function(e){
       e.preventDefault();
       if (honey && honey.value) return;                 // ボット除け（人間には見えない欄）
-      if (!form.reportValidity()) return;               // 未入力・形式エラーはブラウザ標準の表示に任せる
+
+      // 未入力・形式エラーは、該当欄の直下に出す（ブラウザ標準のふきだしは項目から離れて消えるため使わない）
+      var bad = null;
+      RULES.forEach(function(r){
+        if (r.ok(value(r))) { clearError(r); }
+        else { showError(r); if (!bad) bad = r; }
+      });
+      refreshRules();
+      if (bad){
+        statusEl.className = 'hf-status';
+        statusEl.textContent = '';
+        bad.el.focus({ preventScroll: true });
+        bad.el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      var ticket = makeTicket();
+      if (subjectEl) subjectEl.value = '【無料ヒアリング】お申し込み ' + ticket;
 
       var original = label.textContent;
       btn.disabled = true;
@@ -3101,6 +3205,7 @@
 
       var data = {};
       new FormData(form).forEach(function(v, k){ data[k] = v; });
+      data['受付番号'] = ticket;
 
       fetch(ENDPOINT, {
         method: 'POST',
@@ -3117,20 +3222,26 @@
         var sent = r.ok && r.body && !r.body.errors
                    && (r.body.ok === true || typeof r.body.next === 'string');
         if (!sent) throw new Error('not sent');
+        var t = document.getElementById('hf-ticket');
+        var m = document.getElementById('hf-done-mail');
+        if (t) t.textContent = ticket;
+        if (m) m.textContent = (document.getElementById('hf-email').value || '').trim();
         form.hidden = true;
         doneEl.hidden = false;
+        var alt = document.querySelector('.hf-alt');
+        if (alt) alt.hidden = true;   // 送れた後に「うまく動かないときは」を残さない
         doneEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }).catch(function(){
         btn.disabled = false;
         label.textContent = original;
-        var url = buildMailto();
+        var url = buildMailto(ticket);
         statusEl.className = 'hf-status is-error';
         statusEl.innerHTML =
           'うまく送信できませんでした（ネットワークの環境によって、まれに届かないことがあります）。'
           + '<strong>入力いただいた内容はそのまま残しています。</strong>'
           + '下のボタンでメールアプリが開きますので、そのまま送信してください。'
           + '<a class="hf-mailbtn" href="' + url + '">入力内容そのままメールで送る →</a>';
-        try { window.location.href = url; } catch(_){}   // 可能なら自動でメールアプリを開く
+        try { window.location.href = url; } catch(_){}   // 可能ならメールアプリを開く
       });
     });
   })();
