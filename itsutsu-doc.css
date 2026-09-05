@@ -16,7 +16,9 @@ body{
 /* header（全ページ枠線なしで統一） */
 header{padding:22px 0; position:sticky; top:0; background:rgba(244,242,238,.86); backdrop-filter:blur(10px); z-index:10}
 .nav{display:flex; align-items:center; justify-content:space-between}
-.brand{display:flex; align-items:center; gap:11px; font-weight:700; letter-spacing:.04em; color:var(--ink); text-decoration:none}
+.brand{position:relative; display:flex; align-items:center; gap:11px; font-weight:700; letter-spacing:.04em; color:var(--ink); text-decoration:none}
+/* 見た目はそのまま、指で押せる範囲だけ 44px に広げる */
+.brand::after{content:''; position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); height:44px}
 .logo{display:flex; gap:5px; align-items:center}
 .logo i{border-radius:50%; background:var(--ink); display:block}
 .logo i:nth-child(1),.logo i:nth-child(5){width:5px; height:5px}
@@ -26,7 +28,8 @@ header{padding:22px 0; position:sticky; top:0; background:rgba(244,242,238,.86);
 .nav nav a:hover{color:var(--ink)}
 .lang-toggle{appearance:none; -webkit-appearance:none; background:none; border:1px solid var(--hair);
   color:var(--muted); font-family:inherit; font-size:12.5px; letter-spacing:.04em; line-height:1;
-  padding:6px 12px; border-radius:999px; cursor:pointer; margin-left:18px}
+  padding:6px 12px; border-radius:999px; cursor:pointer; margin-left:18px; position:relative}
+.lang-toggle::after{content:''; position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); height:44px}
 .lang-toggle:hover{color:var(--ink); border-color:var(--ghost)}
 
 /* JP/EN 切替：非表示側だけ display:none にし、表示側は各要素本来の display に任せる */

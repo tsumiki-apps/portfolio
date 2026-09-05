@@ -42,7 +42,9 @@
   .nav a:hover{color:var(--ink)}
   .lang-toggle{appearance:none; -webkit-appearance:none; background:none; border:1px solid var(--hair);
     color:var(--muted); font-family:inherit; font-size:12.5px; letter-spacing:.04em; line-height:1;
-    padding:6px 12px; border-radius:999px; cursor:pointer; margin-left:22px}
+    padding:6px 12px; border-radius:999px; cursor:pointer; margin-left:22px; position:relative}
+  /* 見た目はそのまま、指で押せる範囲だけ 44px に広げる */
+  .lang-toggle::after{content:''; position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); height:44px}
   .lang-toggle:hover{color:var(--ink); border-color:var(--ghost)}
 
   /* hero */

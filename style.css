@@ -74,9 +74,12 @@ body.calm .ink-fluid{opacity:0;}
   transition:opacity .5s ease, transform .5s ease;
 }
 body.chrome-hidden .topbar{opacity:0; transform:translateY(-8px); pointer-events:none;}
-.tb-brand{display:flex; align-items:center; gap:9px; text-decoration:none;
+.tb-brand{position:relative; display:flex; align-items:center; gap:9px; text-decoration:none;
   color:var(--ink); font-weight:700; font-size:15px; letter-spacing:.08em;
   transition:color .5s ease;}
+/* ロゴの寸法はそのままに、押せる範囲だけ 44px に */
+.tb-brand::after{content:''; position:absolute; left:0; right:0; top:50%;
+  transform:translateY(-50%); height:44px;}
 .tb-mark{width:30px; height:30px; display:block;}
 /* 戻る（子シートのみ表示・左上・線画シェブロン） */
 .tb-back{
@@ -276,6 +279,18 @@ body.on-dark .tb-brand{color:#F4F2EE;
 .menu-cta:active{opacity:.9;}
 .menu-cta:active .mc-ar{transform:translateX(4px);}
 @media(hover:hover){ .menu-cta:hover .mc-ar{transform:translateX(4px);} }
+
+/* 画面の短い端末（iPhone SE 等、横向きも含む）でのメニュー。
+   .screen は overflow:hidden でスクロールできないので、
+   分岐を開いたときに下の「無料ヒアリング申込」が切れないよう詰める。
+   著作表示は絶対位置なので、開いている間だけ退ける（閉じていれば従来どおり出る）。 */
+@media (max-height:640px){
+  .menu-item{padding:12px 6px;}
+  .mi-jp{font-size:25px;}
+  .sub-item{padding:7px 4px;}
+  .menu-cta{margin-top:14px; padding:13px 24px;}
+  #s-menu:has(.menu-group.open) .menu-foot{display:none;}
+}
 
 /* ---------- シート：近日追加のプレースホルダ ---------- */
 .soon{
@@ -992,8 +1007,11 @@ body.on-dark .tb-brand{color:#F4F2EE;
 .as-headrow{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:14px;}
 .as-badge{font-size:11.5px; font-weight:700; letter-spacing:.04em; color:var(--paper);
   background:var(--ink); border-radius:999px; padding:7px 15px;}
-.as-lp{display:inline-flex; align-items:center; gap:5px; font-size:12.5px; color:var(--ink);
+.as-lp{position:relative; display:inline-flex; align-items:center; gap:5px; font-size:12.5px; color:var(--ink);
   text-decoration:none; border:1px solid var(--line); border-radius:999px; padding:6px 14px;}
+/* 見た目は小さいまま、指で押せる範囲だけ 44px に広げる（隣のバッジとの釣り合いを崩さないため） */
+.as-lp::after{content:''; position:absolute; left:0; right:0; top:50%;
+  transform:translateY(-50%); height:44px;}
 .as-lp-ar{transition:transform .2s ease;}
 .as-lp:active .as-lp-ar{transform:translateX(3px);}
 @media(hover:hover){ .as-lp:hover{border-color:var(--ghost);} .as-lp:hover .as-lp-ar{transform:translateX(3px);} }
