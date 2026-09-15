@@ -1977,3 +1977,14 @@ html.lang-en .tb-lang svg{transform:rotate(180deg);}   /* 押した手応え。�
 /* 読み物ページ（子シート）では出さない＝本文との重なりが起きない */
 body.on-sheet .tb-lang{display:none;}
 @media(prefers-reduced-motion:reduce){ .tb-lang, .tb-lang svg{transition:none;} }
+
+/* 「動きを減らす」設定では、墨のキャンバスそのものが止まる（style.css の .ink-fluid の指定）。
+   背景が紙のままなので、紙色の線の地球儀は見えない（実測 1.00:1）。この設定のときだけ墨色に戻す。 */
+@media(prefers-reduced-motion:reduce){
+  body.on-dark .tb-lang{color:var(--ink); filter:none;}
+}
+
+/* 入口・画面2ではトップバーを隠しているが、opacity だけだと Tab で押せてしまう（実測で再現）。
+   消えたあとは visibility でも隠す（0.5秒のフェードが終わってから効くように遅らせる）。 */
+body.chrome-hidden .topbar{visibility:hidden;
+  transition:opacity .5s ease, transform .5s ease, visibility 0s linear .5s;}

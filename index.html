@@ -38,7 +38,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=101">
+<link rel="stylesheet" href="style.css?v=102">
 <link rel="icon" type="image/png" href="icons/icon-index.png?v=2">
 <link rel="apple-touch-icon" href="icons/icon-index.png?v=2">
 <meta name="apple-mobile-web-app-title" content="つみき">
@@ -52,6 +52,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="ja_JP">
+<meta property="og:locale:alternate" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="つみき（Tsumiki） — 業務の“ちょっと困った”を、専用アプリで解く">
 <meta name="twitter:description" content="いまの業務のやり方を変えずに解ける専用アプリを、ヒアリングから納品までお作りします。">
@@ -206,42 +207,42 @@
       <!-- 親①：サービス -->
       <div class="menu-group" data-group="service">
         <button class="menu-item is-parent" type="button" data-acc="service" aria-expanded="false">
-          <span class="mi-jp"><span class="ja-only">サービス</span><span class="en-only">Service</span></span><span class="mi-en"><span class="ja-only">SERVICE</span><span class="en-only">サービス</span></span><span class="mi-ar">→</span>
+          <span class="mi-jp"><span class="ja-only">サービス</span><span class="en-only">Service</span></span><span class="mi-en"><span class="ja-only">SERVICE</span><span class="en-only" lang="ja">サービス</span></span><span class="mi-ar">→</span>
         </button>
         <div class="submenu">
           <!-- 2026-08-30：6項目→4項目に集約。お客様が知りたい順（困りごと→中身→進め方→料金）。
                旧「提供価値」「他社との比較」は「つみきの特長」に合流（#value / #compare は自動転送）。 -->
-          <a class="sub-item" data-go="issues" href="#"><span class="su-jp"><span class="ja-only">こんな課題ありませんか？</span><span class="en-only">Common Challenges</span></span><span class="su-en"><span class="ja-only">ISSUES</span><span class="en-only">こんな課題ありませんか？</span></span><span class="su-ar">→</span></a>
-          <a class="sub-item" data-go="features" href="#"><span class="su-jp"><span class="ja-only">つみきの特長</span><span class="en-only">Why Tsumiki</span></span><span class="su-en"><span class="ja-only">FEATURES</span><span class="en-only">つみきの特長</span></span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="issues" href="#"><span class="su-jp"><span class="ja-only">こんな課題ありませんか？</span><span class="en-only">Common Challenges</span></span><span class="su-en"><span class="ja-only">ISSUES</span><span class="en-only" lang="ja">こんな課題ありませんか？</span></span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="features" href="#"><span class="su-jp"><span class="ja-only">つみきの特長</span><span class="en-only">Why Tsumiki</span></span><span class="su-en"><span class="ja-only">FEATURES</span><span class="en-only" lang="ja">つみきの特長</span></span><span class="su-ar">→</span></a>
           <span class="su-break" aria-hidden="true"></span><!-- PC幅のみ：ここで意図的に改行（課題・特長／進め方・料金 の2行組に） -->
-          <a class="sub-item" data-go="process" href="#"><span class="su-jp"><span class="ja-only">進め方／制作フロー</span><span class="en-only">How We Work</span></span><span class="su-en"><span class="ja-only">PROCESS</span><span class="en-only">進め方／制作フロー</span></span><span class="su-ar">→</span></a>
-          <a class="sub-item" data-go="pricing" href="#"><span class="su-jp"><span class="ja-only">料金</span><span class="en-only">Pricing</span></span><span class="su-en"><span class="ja-only">PRICING</span><span class="en-only">料金</span></span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="process" href="#"><span class="su-jp"><span class="ja-only">進め方／制作フロー</span><span class="en-only">How We Work</span></span><span class="su-en"><span class="ja-only">PROCESS</span><span class="en-only" lang="ja">進め方／制作フロー</span></span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="pricing" href="#"><span class="su-jp"><span class="ja-only">料金</span><span class="en-only">Pricing</span></span><span class="su-en"><span class="ja-only">PRICING</span><span class="en-only" lang="ja">料金</span></span><span class="su-ar">→</span></a>
         </div>
       </div>
 
       <!-- 親②：実績 -->
       <div class="menu-group" data-group="works">
         <button class="menu-item is-parent" type="button" data-acc="works" aria-expanded="false">
-          <span class="mi-jp"><span class="ja-only">実績</span><span class="en-only">Work</span></span><span class="mi-en"><span class="ja-only">WORKS</span><span class="en-only">実績</span></span><span class="mi-ar">→</span>
+          <span class="mi-jp"><span class="ja-only">実績</span><span class="en-only">Work</span></span><span class="mi-en"><span class="ja-only">WORKS</span><span class="en-only" lang="ja">実績</span></span><span class="mi-ar">→</span>
         </button>
         <div class="submenu">
-          <a class="sub-item" data-go="collection" href="#"><span class="su-jp"><span class="ja-only">つみきアプリたち</span><span class="en-only">Tsumiki Apps</span></span><span class="su-en"><span class="ja-only">TSUMIKI APPS</span><span class="en-only">つみきアプリたち</span></span><span class="su-ar">→</span></a>
-          <a class="sub-item" data-go="flagship" href="#"><span class="su-jp"><span class="ja-only">趣味で制作したアプリたち</span><span class="en-only">Side Projects</span></span><span class="su-en"><span class="ja-only">SIDE PROJECTS</span><span class="en-only">趣味で制作したアプリたち</span></span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="collection" href="#"><span class="su-jp"><span class="ja-only">つみきアプリたち</span><span class="en-only">Tsumiki Apps</span></span><span class="su-en"><span class="ja-only">TSUMIKI APPS</span><span class="en-only" lang="ja">つみきアプリたち</span></span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="flagship" href="#"><span class="su-jp"><span class="ja-only">趣味で制作したアプリたち</span><span class="en-only">Side Projects</span></span><span class="su-en"><span class="ja-only">SIDE PROJECTS</span><span class="en-only" lang="ja">趣味で制作したアプリたち</span></span><span class="su-ar">→</span></a>
           <!-- 「お客様の声」2026-08-22 に1件目が入ったので公開（それまでは実績待ちで非表示にしていた） -->
-          <a class="sub-item" data-go="voice" href="#"><span class="su-jp"><span class="ja-only">お客様の声</span><span class="en-only">Client Stories</span></span><span class="su-en"><span class="ja-only">VOICE</span><span class="en-only">お客様の声</span></span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="voice" href="#"><span class="su-jp"><span class="ja-only">お客様の声</span><span class="en-only">Client Stories</span></span><span class="su-en"><span class="ja-only">VOICE</span><span class="en-only" lang="ja">お客様の声</span></span><span class="su-ar">→</span></a>
         </div>
       </div>
 
       <!-- 親③：お問い合わせ -->
       <div class="menu-group" data-group="contact">
         <button class="menu-item is-parent" type="button" data-acc="contact" aria-expanded="false">
-          <span class="mi-jp"><span class="ja-only">お問い合わせ</span><span class="en-only">Contact</span></span><span class="mi-en"><span class="ja-only">CONTACT</span><span class="en-only">お問い合わせ</span></span><span class="mi-ar">→</span>
+          <span class="mi-jp"><span class="ja-only">お問い合わせ</span><span class="en-only">Contact</span></span><span class="mi-en"><span class="ja-only">CONTACT</span><span class="en-only" lang="ja">お問い合わせ</span></span><span class="mi-ar">→</span>
         </button>
         <div class="submenu">
-          <a class="sub-item" data-go="profile" href="#"><span class="su-jp"><span class="ja-only">プロフィール</span><span class="en-only">Profile</span></span><span class="su-en"><span class="ja-only">PROFILE</span><span class="en-only">プロフィール</span></span><span class="su-ar">→</span></a>
-          <a class="sub-item" data-go="company" href="#"><span class="su-jp"><span class="ja-only">事業者概要</span><span class="en-only">Business Info</span></span><span class="su-en"><span class="ja-only">BUSINESS</span><span class="en-only">事業者概要</span></span><span class="su-ar">→</span></a>
-          <a class="sub-item" data-go="hearing" href="#"><span class="su-jp"><span class="ja-only">無料ヒアリング申込</span><span class="en-only">Free Consultation</span></span><span class="su-en"><span class="ja-only">CONTACT</span><span class="en-only">無料ヒアリング申込</span></span><span class="su-ar">→</span></a>
-          <a class="sub-item" data-go="privacy" href="#"><span class="su-jp"><span class="ja-only">プライバシーポリシー</span><span class="en-only">Privacy Policy</span></span><span class="su-en"><span class="ja-only">PRIVACY</span><span class="en-only">プライバシーポリシー</span></span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="profile" href="#"><span class="su-jp"><span class="ja-only">プロフィール</span><span class="en-only">Profile</span></span><span class="su-en"><span class="ja-only">PROFILE</span><span class="en-only" lang="ja">プロフィール</span></span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="company" href="#"><span class="su-jp"><span class="ja-only">事業者概要</span><span class="en-only">Business Info</span></span><span class="su-en"><span class="ja-only">BUSINESS</span><span class="en-only" lang="ja">事業者概要</span></span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="hearing" href="#"><span class="su-jp"><span class="ja-only">無料ヒアリング申込</span><span class="en-only">Free Consultation</span></span><span class="su-en"><span class="ja-only">CONTACT</span><span class="en-only" lang="ja">無料ヒアリング申込</span></span><span class="su-ar">→</span></a>
+          <a class="sub-item" data-go="privacy" href="#"><span class="su-jp"><span class="ja-only">プライバシーポリシー</span><span class="en-only">Privacy Policy</span></span><span class="su-en"><span class="ja-only">PRIVACY</span><span class="en-only" lang="ja">プライバシーポリシー</span></span><span class="su-ar">→</span></a>
         </div>
       </div>
 
@@ -261,7 +262,7 @@
   <!-- かんばん（索引：2枚のカードから各詳細へ） -->
   <section class="screen sheet" id="s-flagship" data-screen="flagship">
     <div class="sheet-inner">
-      <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">趣味で制作したアプリたち</span><span class="en-only">Side Projects</span></span><span class="sl-en"><span class="ja-only">SIDE PROJECTS</span><span class="en-only">趣味で制作したアプリたち</span></span></h2>
+      <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">趣味で制作したアプリたち</span><span class="en-only">Side Projects</span></span><span class="sl-en"><span class="ja-only">SIDE PROJECTS</span><span class="en-only" lang="ja">趣味で制作したアプリたち</span></span></h2>
       <p class="sheet-lead"><span class="ja-only">仕事とは別に、自分が本当に欲しくてつくった2つのiOSアプリ。ゼロから設計・デザイン・実装まで手がけました。カードをタップすると、それぞれの詳しい紹介が開きます。</span><span class="en-only">Two iOS apps I built on my own time, simply because I wanted them myself. I handled everything from concept and design to development. Tap a card to see the full story behind each one.</span></p>
       <div class="flagship">
         <a class="flag-card" data-go="flagship-itsutsu" href="#">
@@ -309,7 +310,7 @@
         <div class="as-metric"><span class="am-k"><span class="ja-only">開発</span><span class="en-only">Developer</span></span><span class="am-v"><span class="ja-only">つみき</span><span class="en-only">Tsumiki</span></span><span class="am-cap"><span class="ja-only">自社</span><span class="en-only">In-house</span></span></div>
       </div>
 
-      <p class="as-h"><span class="ja-only">プレビュー<span class="as-h-en">PREVIEW</span></span><span class="en-only">Preview<span class="as-h-en">プレビュー</span></span></p>
+      <p class="as-h"><span class="ja-only">プレビュー<span class="as-h-en">PREVIEW</span></span><span class="en-only">Preview<span class="as-h-en" lang="ja">プレビュー</span></span></p>
       <figure class="as-video">
         <div class="pv pv-photo pv-lg">
           <video class="pv-vid" src="assets/itsutsu-preview.mp4" poster="assets/itsutsu-video-poster.jpg"
@@ -346,17 +347,17 @@
       </div>
       <p class="note"><span class="ja-only">実際に「いつつ」で撮影・書き出しした動画の一場面です。映像は色そのまま、時刻だけが中央に静かに残ります。</span><span class="en-only">Stills from videos actually shot and exported with Itsutsu. The footage keeps its true colors; only the time remains, quietly, in the center.</span></p>
 
-      <p class="as-h"><span class="ja-only">紹介<span class="as-h-en">ABOUT</span></span><span class="en-only">About<span class="as-h-en">紹介</span></span></p>
+      <p class="as-h"><span class="ja-only">紹介<span class="as-h-en">ABOUT</span></span><span class="en-only">About<span class="as-h-en" lang="ja">紹介</span></span></p>
       <p class="as-about"><span class="ja-only">長く撮ると「ちゃんと撮ろう」になる。2秒なら、生活の一瞬をそっと拾うだけ。1本でも今日になり、5つで満ちる。ノルマではなく、今日を入れるための小さな器です。<br><br>夜、撮った分が時刻順に自動で1本（最大10秒）につながります。編集はいりません。できあがった“今日”は写真アプリに保存して、手元に残せます。</span><span class="en-only">Film for longer and you start trying to get the perfect shot. Two seconds lets you simply pick up a moment of everyday life. One clip already makes a day; five fill it. It isn't a quota — just a small vessel to hold today.<br><br>At night, your clips are automatically joined in order into one video (up to 10 seconds). No editing needed. Save the finished “today” to Photos and keep it with you.</span></p>
 
-      <p class="as-h"><span class="ja-only">つかいかた<span class="as-h-en">HOW IT WORKS</span></span><span class="en-only">How It Works<span class="as-h-en">つかいかた</span></span></p>
+      <p class="as-h"><span class="ja-only">つかいかた<span class="as-h-en">HOW IT WORKS</span></span><span class="en-only">How It Works<span class="as-h-en" lang="ja">つかいかた</span></span></p>
       <ol class="as-how">
         <li><span class="ah-no">01</span><div><p class="ah-t"><span class="ja-only">撮る</span><span class="en-only">Capture</span></p><p class="ah-d"><span class="ja-only">開くとすぐカメラ。丸をタップして、今を2秒だけ。</span><span class="en-only">Open the app and the camera is ready. Tap the circle and keep this moment — just two seconds of it.</span></p></div></li>
         <li><span class="ah-no">02</span><div><p class="ah-t"><span class="ja-only">つながる</span><span class="en-only">Connect</span></p><p class="ah-d"><span class="ja-only">撮った分が、時間の順に自動で1本に。編集はいりません。</span><span class="en-only">Your clips are joined in order, automatically. No editing needed.</span></p></div></li>
         <li><span class="ah-no">03</span><div><p class="ah-t"><span class="ja-only">受け取る</span><span class="en-only">Keep</span></p><p class="ah-d"><span class="ja-only">夜、今日を10秒で振り返る。写真アプリに保存して手元に。</span><span class="en-only">At night, look back on your day in ten seconds. Save it to Photos and keep it.</span></p></div></li>
       </ol>
 
-      <p class="as-h"><span class="ja-only">静けさの設計<span class="as-h-en">QUIET BY DESIGN</span></span><span class="en-only">Quiet by Design<span class="as-h-en">静けさの設計</span></span></p>
+      <p class="as-h"><span class="ja-only">静けさの設計<span class="as-h-en">QUIET BY DESIGN</span></span><span class="en-only">Quiet by Design<span class="as-h-en" lang="ja">静けさの設計</span></span></p>
       <div class="as-feats">
         <div class="as-feat"><p class="af-t"><span class="ja-only">あなただけのもの</span><span class="en-only">Just for you</span></p><p class="af-d"><span class="ja-only">SNSも共有機能もありません。動画は端末の中だけ。誰にも見せなくていい。</span><span class="en-only">No social feed and no sharing features. Your videos stay on your device. You never have to show anyone.</span></p></div>
         <div class="as-feat"><p class="af-t"><span class="ja-only">文字のいらない操作</span><span class="en-only">No words needed</span></p><p class="af-d"><span class="ja-only">点とリングと余白で伝える。説明を読まなくても、触れば分かる。</span><span class="en-only">Dots, rings and empty space do the talking. There are no instructions to read — you'll understand the moment you touch it.</span></p></div>
@@ -364,7 +365,7 @@
         <div class="as-feat"><p class="af-t"><span class="ja-only">記録は、本来の色で</span><span class="en-only">Memories in true color</span></p><p class="af-d"><span class="ja-only">UIはモノクロでも、残る動画はそのままの色。今日の記憶を均しません。</span><span class="en-only">The interface is monochrome, but your videos keep their real colors. Today's memories are never flattened.</span></p></div>
       </div>
 
-      <p class="as-h"><span class="ja-only">情報<span class="as-h-en">INFORMATION</span></span><span class="en-only">Information<span class="as-h-en">情報</span></span></p>
+      <p class="as-h"><span class="ja-only">情報<span class="as-h-en">INFORMATION</span></span><span class="en-only">Information<span class="as-h-en" lang="ja">情報</span></span></p>
       <div class="panel">
         <div class="dl">
           <div class="dl-row"><div class="dl-k"><span class="ja-only">開発</span><span class="en-only">Developer</span></div><div class="dl-v"><span class="ja-only">つみき ／ 自社プロダクト</span><span class="en-only">Tsumiki / In-house product</span></div></div>
@@ -403,7 +404,7 @@
         <div class="as-metric"><span class="am-k"><span class="ja-only">開発</span><span class="en-only">Developer</span></span><span class="am-v"><span class="ja-only">つみき</span><span class="en-only">Tsumiki</span></span><span class="am-cap"><span class="ja-only">自社</span><span class="en-only">In-house</span></span></div>
       </div>
 
-      <p class="as-h"><span class="ja-only">プレビュー<span class="as-h-en">PREVIEW</span></span><span class="en-only">Preview<span class="as-h-en">プレビュー</span></span></p>
+      <p class="as-h"><span class="ja-only">プレビュー<span class="as-h-en">PREVIEW</span></span><span class="en-only">Preview<span class="as-h-en" lang="ja">プレビュー</span></span></p>
       <div class="as-shots">
         <figure class="as-shot">
           <div class="pv pv-kb" aria-hidden="true">
@@ -459,17 +460,17 @@
       </div>
       <p class="note"><span class="ja-only">キーボードはモノクロのまま、使うアプリの中で活きます。開発コードの配色・レイアウトに合わせた再現イメージです（実機スクリーンショットは公開時に差し替え）。</span><span class="en-only">The keyboard stays monochrome and blends into whatever app you're using. These images recreate the app's actual colors and layout (they will be replaced with real screenshots at launch).</span></p>
 
-      <p class="as-h"><span class="ja-only">紹介<span class="as-h-en">ABOUT</span></span><span class="en-only">About<span class="as-h-en">紹介</span></span></p>
+      <p class="as-h"><span class="ja-only">紹介<span class="as-h-en">ABOUT</span></span><span class="en-only">About<span class="as-h-en" lang="ja">紹介</span></span></p>
       <p class="as-about"><span class="ja-only">どのアプリでも、キーボードのマイクをタップして話すだけ。AIが「えー」「あのー」を消し、句読点を整えて、そのまま使える文章をカーソルの位置に挿しこみます。<br><br>音声も、AIの整形も、ネットワークには一切出ません。機内モードでも動きます。アカウントも、月額も、いりません。あなたの声は、あなたのiPhoneから出ていかない。</span><span class="en-only">In any app, just tap the keyboard's mic and speak. AI removes the “ums” and “uhs,” fixes the punctuation, and inserts ready-to-use text right at your cursor.<br><br>Neither your voice nor the AI processing ever touches the network. It works even in Airplane Mode. No account, no subscription. Your voice never leaves your iPhone.</span></p>
 
-      <p class="as-h"><span class="ja-only">つかいかた<span class="as-h-en">HOW IT WORKS</span></span><span class="en-only">How It Works<span class="as-h-en">つかいかた</span></span></p>
+      <p class="as-h"><span class="ja-only">つかいかた<span class="as-h-en">HOW IT WORKS</span></span><span class="en-only">How It Works<span class="as-h-en" lang="ja">つかいかた</span></span></p>
       <ol class="as-how">
         <li><span class="ah-no">01</span><div><p class="ah-t"><span class="ja-only">話す</span><span class="en-only">Speak</span></p><p class="ah-d"><span class="ja-only">マイクをタップして、いつもの調子で。言い直しても大丈夫。黙れば、自動で止まります。</span><span class="en-only">Tap the mic and talk the way you normally do. It's fine to rephrase. When you stop talking, it stops on its own.</span></p></div></li>
         <li><span class="ah-no">02</span><div><p class="ah-t"><span class="ja-only">整う</span><span class="en-only">Tidy</span></p><p class="ah-d"><span class="ja-only">「えー」「あのー」が消え、句読点が整う。「渋谷、いや新宿」は、ちゃんと「新宿」に。</span><span class="en-only">The “ums” and “uhs” disappear and the punctuation falls into place. “Shibuya — no, Shinjuku” becomes simply “Shinjuku.”</span></p></div></li>
         <li><span class="ah-no">03</span><div><p class="ah-t"><span class="ja-only">挿しこまれる</span><span class="en-only">Insert</span></p><p class="ah-d"><span class="ja-only">元のアプリに戻ると、きれいな文章がカーソルの位置に。トン、という小さな手応えつき。</span><span class="en-only">Switch back to your app and clean text is waiting at the cursor, with a small, satisfying tap.</span></p></div></li>
       </ol>
 
-      <p class="as-h"><span class="ja-only">静けさの設計<span class="as-h-en">QUIET BY DESIGN</span></span><span class="en-only">Quiet by Design<span class="as-h-en">静けさの設計</span></span></p>
+      <p class="as-h"><span class="ja-only">静けさの設計<span class="as-h-en">QUIET BY DESIGN</span></span><span class="en-only">Quiet by Design<span class="as-h-en" lang="ja">静けさの設計</span></span></p>
       <div class="as-feats">
         <div class="as-feat"><p class="af-t"><span class="ja-only">完全オンデバイス</span><span class="en-only">Fully on-device</span></p><p class="af-d"><span class="ja-only">文字起こしも整形も、端末の中のAIだけで。オフラインでも動きます。</span><span class="en-only">Transcription and cleanup both run on the AI inside your device. It works offline, too.</span></p></div>
         <div class="as-feat"><p class="af-t"><span class="ja-only">話し言葉のまま</span><span class="en-only">Your own way of speaking</span></p><p class="af-d"><span class="ja-only">言い回しは変えません。消すのはフィラーだけ。「なんですけど」はそのまま残る。</span><span class="en-only">Your phrasing stays as it is. Only the filler words go; the casual turns of phrase you actually use remain.</span></p></div>
@@ -477,7 +478,7 @@
         <div class="as-feat"><p class="af-t"><span class="ja-only">優しいモノクロ</span><span class="en-only">Gentle monochrome</span></p><p class="af-d"><span class="ja-only">紙と墨のキーボード。真ん中にマイクがひとつ。それだけ。</span><span class="en-only">A keyboard of paper and ink. A single mic in the middle. That's all.</span></p></div>
       </div>
 
-      <p class="as-h"><span class="ja-only">情報<span class="as-h-en">INFORMATION</span></span><span class="en-only">Information<span class="as-h-en">情報</span></span></p>
+      <p class="as-h"><span class="ja-only">情報<span class="as-h-en">INFORMATION</span></span><span class="en-only">Information<span class="as-h-en" lang="ja">情報</span></span></p>
       <div class="panel">
         <div class="dl">
           <div class="dl-row"><div class="dl-k"><span class="ja-only">開発</span><span class="en-only">Developer</span></div><div class="dl-v"><span class="ja-only">つみき ／ 自社プロダクト</span><span class="en-only">Tsumiki / In-house product</span></div></div>
@@ -496,7 +497,7 @@
   <!-- どうぐばこ（この画面だけ縦スクロール） -->
   <section class="screen sheet" id="s-collection" data-screen="collection">
     <div class="sheet-inner">
-      <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">つみきアプリたち</span><span class="en-only">Tsumiki Apps</span></span><span class="sl-en"><span class="ja-only">TSUMIKI APPS</span><span class="en-only">つみきアプリたち</span></span></h2>
+      <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">つみきアプリたち</span><span class="en-only">Tsumiki Apps</span></span><span class="sl-en"><span class="ja-only">TSUMIKI APPS</span><span class="en-only" lang="ja">つみきアプリたち</span></span></h2>
       <p class="sheet-lead"><span class="ja-only">現場の“ちょっと困った”に合わせてつくった、つみきのアプリ。カードをタップすると、それぞれの詳しい紹介ページが開きます。</span><span class="en-only">Apps built around the small, everyday snags people run into at work. Tap a card to open its full product page.</span></p>
 
       <div class="app-feature">
@@ -531,7 +532,7 @@
 
       <!-- 勤怠管理セット：対で使う2つ（打刻＝労働者用／打刻管理＝管理者用） -->
       <div class="app-group">
-        <p class="app-group-k"><span class="ja-only">勤怠管理セット<span class="app-group-en">FOR TEAMS</span></span><span class="en-only">Attendance Set<span class="app-group-en">勤怠管理セット</span></span></p>
+        <p class="app-group-k"><span class="ja-only">勤怠管理セット<span class="app-group-en">FOR TEAMS</span></span><span class="en-only">Attendance Set<span class="app-group-en" lang="ja">勤怠管理セット</span></span></p>
         <p class="app-group-note"><span class="ja-only">労働者と管理者、<strong>対で使う2つ</strong>。現場で打刻し、会社側はそのまま集計。データはクラウドで共有されます。</span><span class="en-only">One for workers, one for managers — <strong>two apps designed to work as a pair</strong>. Staff clock in on site, and the office gets the totals without re-entering anything. Data is shared through the cloud.</span></p>
         <div class="app-group-cards">
           <a class="app-card" data-go="app-dakoku" href="#">
@@ -584,12 +585,12 @@
       <p class="as-about"><span class="ja-only">出られない日と、その日の出入り（◯時入り／◯時出し）を入れておくと、<strong>その時間にできる場面だけ</strong>を香盤表からすっと抜き出す道具。「あと1人そろえばできる場面」まで出るので、交渉の当たりどころも分かります。限られた稽古時間を、段取りで悩まずに使い切るためのアプリです。</span><span class="en-only">Enter the days people can't attend, along with any late arrivals or early departures, and it <strong>pulls out only the scenes you can rehearse in that time</strong> from your scene breakdown. It even shows scenes that are just one person short, so you know exactly whose schedule is worth asking about. An app for making the most of limited rehearsal time, without the scheduling headaches.</span></p>
 
       <!-- 制作の背景 -->
-      <p class="as-h"><span class="ja-only">制作の背景<span class="as-h-en">BACKGROUND</span></span><span class="en-only">Background<span class="as-h-en">制作の背景</span></span></p>
+      <p class="as-h"><span class="ja-only">制作の背景<span class="as-h-en">BACKGROUND</span></span><span class="en-only">Background<span class="as-h-en" lang="ja">制作の背景</span></span></p>
       <p class="as-bg"><span class="ja-only">もともと、稽古の現場では「今日は誰が来られないか」が分かるたびに、香盤表とにらめっこして『じゃあ今日はどの場面をやろう』と組み直していました。この照合が毎回じわじわ時間を食い、稽古の頭出しでもたついてしまう。<br><br>その<strong>“段取りのストレス”をなくすために、香盤メーカーは生まれました。</strong>欠席者を選ぶだけで「今日できる場面」が出るなら、迷っていた時間はまるごと稽古に回せる——そう考えて形にした一本です。<br><br>そのあと実際の稽古場でお使いいただくうちに、分かったことがありました。<strong>休みは終日だけではない</strong>——「◯時入り」「◯時出し」がある。そして<strong>稽古時間を前半・後半で区切ると、できる場面が変わる</strong>。いまの香盤メーカーは、その現場の声をそのまま入れた<strong>2代目</strong>です。出られない日の表（てっぱり表）をアプリの中に持ち、時間帯ごとに判定し、稽古全体の進み具合まで見えるようにしました。</span><span class="en-only">In rehearsal rooms, every time it became clear who couldn't come that day, the team would pore over the scene breakdown and rebuild the plan: “So which scenes can we do today?” That cross-checking quietly ate up time again and again, and rehearsals were slow to get started.<br><br><strong>Kouban Maker was created to take that scheduling stress away.</strong> If simply selecting the absent cast members showed which scenes were possible, all the time spent deliberating could go straight back into rehearsal — that was the idea behind it.<br><br>Once it was in use in an actual rehearsal room, a few things became clear. <strong>Absences aren't always for the whole day</strong> — people arrive late or leave early. And <strong>dividing rehearsal time into first and second halves changes which scenes are possible</strong>. Today's Kouban Maker is the <strong>second version</strong>, built directly on that feedback from the rehearsal room. It keeps the conflict chart (who can't attend when) inside the app, checks each time slot, and even shows how far the whole rehearsal process has progressed.</span></p>
 
       <!-- ② プレビュー（スマホ5＋PC5） -->
-      <p class="as-h"><span class="ja-only">プレビュー<span class="as-h-en">PREVIEW</span></span><span class="en-only">Preview<span class="as-h-en">プレビュー</span></span></p>
-      <p class="pv-group-k"><span class="ja-only">スマホ版<span class="pv-group-en">iPhone</span></span><span class="en-only">Mobile<span class="pv-group-en">スマホ版</span></span></p>
+      <p class="as-h"><span class="ja-only">プレビュー<span class="as-h-en">PREVIEW</span></span><span class="en-only">Preview<span class="as-h-en" lang="ja">プレビュー</span></span></p>
+      <p class="pv-group-k"><span class="ja-only">スマホ版<span class="pv-group-en">iPhone</span></span><span class="en-only">Mobile<span class="pv-group-en" lang="ja">スマホ版</span></span></p>
       <div class="as-shots">
         <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/kouban-ph-cast.png?v=2" alt="香盤メーカーのキャスト（役）の登録画面" loading="lazy" width="600" height="1298" data-en-alt="Kouban Maker: registering the cast (roles)"></div><figcaption><span class="ja-only">キャストを登録</span><span class="en-only">Register the cast</span></figcaption></figure>
         <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/kouban-ph-scene.png?v=2" alt="香盤メーカーの台本の場面の登録画面" loading="lazy" width="600" height="1298" data-en-alt="Kouban Maker: registering the scenes from the script"></div><figcaption><span class="ja-only">台本の場面を登録</span><span class="en-only">Add the scenes from the script</span></figcaption></figure>
@@ -597,7 +598,7 @@
         <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/kouban-ph-kouban.png?v=2" alt="香盤メーカーの香盤表（場面ごとの出番）の画面" loading="lazy" width="600" height="1298" data-en-alt="Kouban Maker: the scene breakdown (who appears in each scene)"></div><figcaption><span class="ja-only">今日できる場面が、色でわかる</span><span class="en-only">See today's possible scenes at a glance, by color</span></figcaption></figure>
         <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/kouban-ph-day.png?v=2" alt="香盤メーカーの時間帯ごとにできる場面を出した画面" loading="lazy" width="600" height="1298" data-en-alt="Kouban Maker: possible scenes shown for each time slot"></div><figcaption><span class="ja-only">時間帯ごとに、できる場面を出す</span><span class="en-only">Show possible scenes for each time slot</span></figcaption></figure>
       </div>
-      <p class="pv-group-k"><span class="ja-only">PC版<span class="pv-group-en">Desktop</span></span><span class="en-only">Desktop<span class="pv-group-en">PC版</span></span></p>
+      <p class="pv-group-k"><span class="ja-only">PC版<span class="pv-group-en">Desktop</span></span><span class="en-only">Desktop<span class="pv-group-en" lang="ja">PC版</span></span></p>
       <div class="as-shots">
         <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/kouban-pc-cast.png?v=2" alt="香盤メーカー PC版のキャスト（役）の登録画面" loading="lazy" width="1200" height="750" data-en-alt="Kouban Maker on desktop: registering the cast (roles)"></div><figcaption><span class="ja-only">キャストを登録</span><span class="en-only">Register the cast</span></figcaption></figure>
         <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/kouban-pc-scene.png?v=2" alt="香盤メーカー PC版の台本の場面の登録画面" loading="lazy" width="1200" height="750" data-en-alt="Kouban Maker on desktop: registering the scenes from the script"></div><figcaption><span class="ja-only">台本の場面を登録</span><span class="en-only">Add the scenes from the script</span></figcaption></figure>
@@ -608,7 +609,7 @@
       <p class="note"><span class="ja-only">実際の「香盤メーカー」の画面です（サンプルは『ロミオとジュリエット』）。</span><span class="en-only">Actual screens from Kouban Maker (the sample is <i>Romeo and Juliet</i>).</span></p>
 
       <!-- 書き出したPDF（実物・サンプルデータ） -->
-      <p class="pv-group-k"><span class="ja-only">書き出したPDF<span class="pv-group-en">OUTPUT</span></span><span class="en-only">Exported PDF<span class="pv-group-en">書き出したPDF</span></span></p>
+      <p class="pv-group-k"><span class="ja-only">書き出したPDF<span class="pv-group-en">OUTPUT</span></span><span class="en-only">Exported PDF<span class="pv-group-en" lang="ja">書き出したPDF</span></span></p>
       <div class="as-shots as-shots-solo">
         <figure class="as-shot as-shot-doc">
           <div class="pv pv-doc pv-doc-kouban"><img class="pv-img" data-src="assets/shots/kouban-doc.png?v=2" alt="香盤メーカーで書き出した「きょう稽古できる場面」（PDF・サンプル）" loading="lazy" width="794" height="878" data-en-alt="“Scenes we can rehearse today,” exported from Kouban Maker (PDF, sample)"></div>
@@ -618,28 +619,28 @@
       <p class="note"><span class="ja-only">「印刷（貼り出し用）」を押すと、その日のぶんがそのまま1枚に。時間帯ごとに、欠席者・できる場面・あと1人でできる場面まで並びます。稽古場に貼っておけば、全員が同じものを見られます。掲載はサンプル『ロミオとジュリエット』です。</span><span class="en-only">Press “Print (for posting)” and the day's plan fits on a single sheet. For each time slot, it lists who's absent, which scenes are possible, and which are just one person short. Post it in the rehearsal room and everyone sees the same plan. The example uses the sample production, <i>Romeo and Juliet</i>.</span></p>
 
       <!-- ③ STAR形式の詳しい紹介 -->
-      <p class="as-h"><span class="ja-only">くわしく<span class="as-h-en">STORY</span></span><span class="en-only">The Story<span class="as-h-en">くわしく</span></span></p>
+      <p class="as-h"><span class="ja-only">くわしく<span class="as-h-en">STORY</span></span><span class="en-only">The Story<span class="as-h-en" lang="ja">くわしく</span></span></p>
       <div class="as-star">
         <div class="star-row">
-          <p class="star-k"><span class="ja-only">こんな場面で<span class="star-en">SITUATION</span></span><span class="en-only">Situation<span class="star-en">こんな場面で</span></span></p>
+          <p class="star-k"><span class="ja-only">こんな場面で<span class="star-en">SITUATION</span></span><span class="en-only">Situation<span class="star-en" lang="ja">こんな場面で</span></span></p>
           <p class="star-v"><span class="ja-only">演劇やダンスの稽古前。出演者それぞれの予定がバラバラで、その日に全員はそろわない。</span><span class="en-only">Before rehearsals for a play or dance production. Everyone's schedules are different, so the full cast is rarely there on the same day.</span></p>
         </div>
         <div class="star-row">
-          <p class="star-k"><span class="ja-only">困っていたこと<span class="star-en">TASK</span></span><span class="en-only">Challenge<span class="star-en">困っていたこと</span></span></p>
+          <p class="star-k"><span class="ja-only">困っていたこと<span class="star-en">TASK</span></span><span class="en-only">Challenge<span class="star-en" lang="ja">困っていたこと</span></span></p>
           <p class="star-v"><span class="ja-only">「誰が休みか」と「その場面に誰が要るか」を毎回つき合わせて、今日どこを稽古できるかを探すのに時間がかかる。稽古場に着いてから慌てて組み直すことも。</span><span class="en-only">Every time, someone had to match “who's absent” against “who's needed in each scene” to figure out what could be rehearsed that day, and it took a long time. Sometimes the plan had to be rebuilt in a rush after arriving at the rehearsal room.</span></p>
         </div>
         <div class="star-row">
-          <p class="star-k"><span class="ja-only">アプリがすること<span class="star-en">ACTION</span></span><span class="en-only">Solution<span class="star-en">アプリがすること</span></span></p>
+          <p class="star-k"><span class="ja-only">アプリがすること<span class="star-en">ACTION</span></span><span class="en-only">Solution<span class="star-en" lang="ja">アプリがすること</span></span></p>
           <p class="star-v"><span class="ja-only">台本の場面と、そこに出る役（香盤）を一度だけ登録。あとは出られない日と「◯時入り／◯時出し」を入れるだけ。稽古時間を時間帯で区切って、<strong>その時間に全員そろう＝できる場面</strong>を自動で並べます。「あと1人そろえばできる場面」も、誰が足りないかと一緒に出ます。</span><span class="en-only">Register the scenes in the script and the roles that appear in each (the scene breakdown) just once. After that, simply enter unavailable days and any late arrivals or early departures. It divides rehearsal time into slots and automatically lists <strong>the scenes where everyone needed is present</strong>. Scenes that are one person short are shown too, along with who is missing.</span></p>
         </div>
         <div class="star-row is-result">
-          <p class="star-k"><span class="ja-only">こう変わる<span class="star-en">RESULT</span></span><span class="en-only">Result<span class="star-en">こう変わる</span></span></p>
+          <p class="star-k"><span class="ja-only">こう変わる<span class="star-en">RESULT</span></span><span class="en-only">Result<span class="star-en" lang="ja">こう変わる</span></span></p>
           <p class="star-v"><span class="ja-only">稽古の段取りが数秒で決まり、限られた時間を「今日できること」に集中できる。先の稽古日まで並ぶので、<strong>その日になってから組み直すのではなく、先に最後まで組んでおける</strong>。全何場面のうち、できた／これからできる／このままだとできない、も一目で分かります。<strong>2026年夏の本多劇場公演で、実際にお使いいただきました。</strong></span><span class="en-only">The rehearsal plan comes together in seconds, so limited time goes into what can actually be done today. Because future rehearsal days are laid out as well, <strong>you can plan all the way to the end in advance instead of reshuffling on the day</strong>. You can also see at a glance which scenes are done, which can still be rehearsed, and which won't be possible as things stand. <strong>It was used in a real production at the Honda Theater in summer 2026.</strong></span></p>
         </div>
       </div>
 
       <!-- 情報 -->
-      <p class="as-h"><span class="ja-only">情報<span class="as-h-en">INFORMATION</span></span><span class="en-only">Information<span class="as-h-en">情報</span></span></p>
+      <p class="as-h"><span class="ja-only">情報<span class="as-h-en">INFORMATION</span></span><span class="en-only">Information<span class="as-h-en" lang="ja">情報</span></span></p>
       <div class="panel">
         <div class="dl">
           <div class="dl-row"><div class="dl-k"><span class="ja-only">制作</span><span class="en-only">Made by</span></div><div class="dl-v"><span class="ja-only">つみき</span><span class="en-only">Tsumiki</span></div></div>
@@ -680,18 +681,18 @@
       <p class="as-about"><span class="ja-only">レシピの<strong>比率と作りたい量を入れるだけ</strong>で、各カラー剤が何グラム必要かを即計算。2剤（オキシ）の倍率にも対応します。混ぜる前の“あの計算”をなくすアプリです。</span><span class="en-only"><strong>Just enter the recipe's ratio and the amount you need</strong>, and it instantly calculates how many grams of each color product to use. It handles developer (oxidant) ratios, too. An app that does away with that familiar math before mixing.</span></p>
 
       <!-- 制作の背景 -->
-      <p class="as-h"><span class="ja-only">制作の背景<span class="as-h-en">BACKGROUND</span></span><span class="en-only">Background<span class="as-h-en">制作の背景</span></span></p>
+      <p class="as-h"><span class="ja-only">制作の背景<span class="as-h-en">BACKGROUND</span></span><span class="en-only">Background<span class="as-h-en" lang="ja">制作の背景</span></span></p>
       <p class="as-bg"><span class="ja-only">美容室の現場では、カラー剤のレシピが「1：1」「1：1.5」のような<strong>比率でしか残っていない</strong>ことが多く、そのたびに『じゃあ何グラムと何グラム』と暗算・計算し直していました。作る量を変えればまた計算、混ぜ間違えれば材料もやり直し。<br><br>その<strong>“毎回の換算ストレス”を消すために、まぜいろをつくりました。</strong>比率と総量さえ入れれば必要なグラムが出るなら、計算に取られていた集中を、施術そのものに戻せる——そう考えて形にしました。</span><span class="en-only">In salons, hair color recipes are often <strong>recorded only as ratios</strong>, such as 1:1 or 1:1.5, so every time, stylists had to work out “how many grams of this and how many of that” in their heads or on a calculator. Change the amount and it's back to the math; mix it wrong and the product is wasted.<br><br><strong>I built Mazeiro to take away the stress of converting every single time.</strong> If entering the ratio and the total amount gave you the grams you need, the focus spent on calculating could go back to the client — that was the idea behind it.</span></p>
 
       <!-- ② プレビュー（スマホ5＋PC5） -->
-      <p class="as-h"><span class="ja-only">プレビュー<span class="as-h-en">PREVIEW</span></span><span class="en-only">Preview<span class="as-h-en">プレビュー</span></span></p>
-      <p class="pv-group-k"><span class="ja-only">スマホ版<span class="pv-group-en">iPhone</span></span><span class="en-only">Mobile<span class="pv-group-en">スマホ版</span></span></p>
+      <p class="as-h"><span class="ja-only">プレビュー<span class="as-h-en">PREVIEW</span></span><span class="en-only">Preview<span class="as-h-en" lang="ja">プレビュー</span></span></p>
+      <p class="pv-group-k"><span class="ja-only">スマホ版<span class="pv-group-en">iPhone</span></span><span class="en-only">Mobile<span class="pv-group-en" lang="ja">スマホ版</span></span></p>
       <div class="as-shots as-shots-solo">
         <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/mazeiro-ph-two.png?v=1" alt="まぜいろの2色配合画面（スマホ）" loading="lazy" width="600" height="1298" data-en-alt="Mazeiro two-color mixing screen (mobile)"></div><figcaption><span class="ja-only">比率と量を入れると、必要グラム</span><span class="en-only">Enter the ratio and amount to get the grams</span></figcaption></figure>
         <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/mazeiro-ph-three.png?v=1" alt="まぜいろの3色ミックス画面（スマホ）" loading="lazy" width="600" height="1298" data-en-alt="Mazeiro three-color mixing screen (mobile)"></div><figcaption><span class="ja-only">何色でも、比率のまま自動計算</span><span class="en-only">Any number of colors, calculated straight from the ratio</span></figcaption></figure>
         <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/mazeiro-ph-mult.png?v=1" alt="まぜいろの2剤倍率調整画面（スマホ）" loading="lazy" width="600" height="1298" data-en-alt="Mazeiro developer ratio screen (mobile)"></div><figcaption><span class="ja-only">2剤は倍率でサッと増減</span><span class="en-only">Adjust the developer quickly with a multiplier</span></figcaption></figure>
       </div>
-      <p class="pv-group-k"><span class="ja-only">PC版<span class="pv-group-en">Desktop</span></span><span class="en-only">Desktop<span class="pv-group-en">PC版</span></span></p>
+      <p class="pv-group-k"><span class="ja-only">PC版<span class="pv-group-en">Desktop</span></span><span class="en-only">Desktop<span class="pv-group-en" lang="ja">PC版</span></span></p>
       <div class="as-shots as-shots-solo">
         <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/mazeiro-pc-two.png?v=1" alt="まぜいろの2色配合画面（PC）" loading="lazy" width="1200" height="750" data-en-alt="Mazeiro two-color mixing screen (desktop)"></div><figcaption><span class="ja-only">比率と量を入れると、必要グラム</span><span class="en-only">Enter the ratio and amount to get the grams</span></figcaption></figure>
         <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/mazeiro-pc-three.png?v=1" alt="まぜいろの3色ミックス画面（PC）" loading="lazy" width="1200" height="750" data-en-alt="Mazeiro three-color mixing screen (desktop)"></div><figcaption><span class="ja-only">何色でも、比率のまま自動計算</span><span class="en-only">Any number of colors, calculated straight from the ratio</span></figcaption></figure>
@@ -700,28 +701,28 @@
       <p class="note"><span class="ja-only">実際の「まぜいろ」の画面です（数値はサンプルの配合例）。</span><span class="en-only">Actual screens from Mazeiro (the numbers are a sample recipe).</span></p>
 
       <!-- ③ STAR形式の詳しい紹介 -->
-      <p class="as-h"><span class="ja-only">くわしく<span class="as-h-en">STORY</span></span><span class="en-only">The Story<span class="as-h-en">くわしく</span></span></p>
+      <p class="as-h"><span class="ja-only">くわしく<span class="as-h-en">STORY</span></span><span class="en-only">The Story<span class="as-h-en" lang="ja">くわしく</span></span></p>
       <div class="as-star">
         <div class="star-row">
-          <p class="star-k"><span class="ja-only">こんな場面で<span class="star-en">SITUATION</span></span><span class="en-only">Situation<span class="star-en">こんな場面で</span></span></p>
+          <p class="star-k"><span class="ja-only">こんな場面で<span class="star-en">SITUATION</span></span><span class="en-only">Situation<span class="star-en" lang="ja">こんな場面で</span></span></p>
           <p class="star-v"><span class="ja-only">美容室でヘアカラーを調合するとき。レシピは比率でしか残っておらず、作る量はお客様ごとに変わる。</span><span class="en-only">Mixing hair color at a salon. Recipes exist only as ratios, and the amount needed changes with every client.</span></p>
         </div>
         <div class="star-row">
-          <p class="star-k"><span class="ja-only">困っていたこと<span class="star-en">TASK</span></span><span class="en-only">Challenge<span class="star-en">困っていたこと</span></span></p>
+          <p class="star-k"><span class="ja-only">困っていたこと<span class="star-en">TASK</span></span><span class="en-only">Challenge<span class="star-en" lang="ja">困っていたこと</span></span></p>
           <p class="star-v"><span class="ja-only">比率からグラムへの換算を毎回手計算。総量を変えるとやり直しになり、混ぜ間違いは材料のロスに直結する。</span><span class="en-only">Converting ratios to grams by hand, every time. Changing the total means starting over, and a mixing mistake means wasted product.</span></p>
         </div>
         <div class="star-row">
-          <p class="star-k"><span class="ja-only">アプリがすること<span class="star-en">ACTION</span></span><span class="en-only">Solution<span class="star-en">アプリがすること</span></span></p>
+          <p class="star-k"><span class="ja-only">アプリがすること<span class="star-en">ACTION</span></span><span class="en-only">Solution<span class="star-en" lang="ja">アプリがすること</span></span></p>
           <p class="star-v"><span class="ja-only">比率と作りたい総量を入れるだけで、<strong>各剤の必要グラムを自動計算</strong>。2剤の倍率にも対応し、総量からの逆算もできる。</span><span class="en-only">Just enter the ratio and the total amount you want, and it <strong>calculates the grams of each product automatically</strong>. It supports developer ratios and can also work backward from the total.</span></p>
         </div>
         <div class="star-row is-result">
-          <p class="star-k"><span class="ja-only">こう変わる<span class="star-en">RESULT</span></span><span class="en-only">Result<span class="star-en">こう変わる</span></span></p>
+          <p class="star-k"><span class="ja-only">こう変わる<span class="star-en">RESULT</span></span><span class="en-only">Result<span class="star-en" lang="ja">こう変わる</span></span></p>
           <p class="star-v"><span class="ja-only">調合前の計算がゼロに。ミスと材料のロスが減り、手を止めずに施術へ集中できる。</span><span class="en-only">No more math before mixing. Fewer mistakes, less waste, and full attention on the client without stopping.</span></p>
         </div>
       </div>
 
       <!-- 情報 -->
-      <p class="as-h"><span class="ja-only">情報<span class="as-h-en">INFORMATION</span></span><span class="en-only">Information<span class="as-h-en">情報</span></span></p>
+      <p class="as-h"><span class="ja-only">情報<span class="as-h-en">INFORMATION</span></span><span class="en-only">Information<span class="as-h-en" lang="ja">情報</span></span></p>
       <div class="panel">
         <div class="dl">
           <div class="dl-row"><div class="dl-k"><span class="ja-only">制作</span><span class="en-only">Made by</span></div><div class="dl-v"><span class="ja-only">つみき</span><span class="en-only">Tsumiki</span></div></div>
@@ -753,12 +754,12 @@
       <p class="as-about"><span class="ja-only">クレジットカードの<strong>明細CSVを読み込むだけ</strong>で、支出をカテゴリ別に自動集計。友人との立て替えや分割払いも切り分けて、<strong>「自分の実質支出」</strong>がひと目で分かります。</span><span class="en-only"><strong>Just import your credit card statement as a CSV</strong>, and spending is grouped by category automatically. It separates out costs you've covered for friends and installment payments, so you can see <strong>what you actually spent</strong> at a glance.</span></p>
 
       <!-- 制作の背景 -->
-      <p class="as-h"><span class="ja-only">制作の背景<span class="as-h-en">BACKGROUND</span></span><span class="en-only">Background<span class="as-h-en">制作の背景</span></span></p>
+      <p class="as-h"><span class="ja-only">制作の背景<span class="as-h-en">BACKGROUND</span></span><span class="en-only">Background<span class="as-h-en" lang="ja">制作の背景</span></span></p>
       <p class="as-bg"><span class="ja-only">毎月クレカの明細が届いても、金額が並んでいるだけで『結局いくら使ったのか』『どれが立て替えで、どれが自分の分か』が分からずモヤモヤしていました。表計算で仕分けるのも長続きしない。<br><br>その<strong>“明細の見えなさ”を解消するために、このアプリをつくりました。</strong>CSVを放り込むだけで、立て替えを差し引いた「自分の実質支出」と前月比まで自動で出る——判断に必要な数字だけが残るように、と考えて形にしました。</span><span class="en-only">Every month the card statement arrived, but it was just a list of amounts. I could never tell how much I had really spent, or which charges were covering for someone else and which were my own, and it always left me uneasy. Sorting them in a spreadsheet never lasted.<br><br><strong>I built this app so that statements would finally make sense.</strong> Just drop in the CSV, and it works out your actual spending, minus what you covered for others, and even the change from last month. The aim was to leave only the numbers you need to make decisions.</span></p>
 
       <!-- ② プレビュー -->
-      <p class="as-h"><span class="ja-only">プレビュー<span class="as-h-en">PREVIEW</span></span><span class="en-only">Preview<span class="as-h-en">プレビュー</span></span></p>
-      <p class="pv-group-k"><span class="ja-only">スマホ版<span class="pv-group-en">iPhone</span></span><span class="en-only">Mobile<span class="pv-group-en">スマホ版</span></span></p>
+      <p class="as-h"><span class="ja-only">プレビュー<span class="as-h-en">PREVIEW</span></span><span class="en-only">Preview<span class="as-h-en" lang="ja">プレビュー</span></span></p>
+      <p class="pv-group-k"><span class="ja-only">スマホ版<span class="pv-group-en">iPhone</span></span><span class="en-only">Mobile<span class="pv-group-en" lang="ja">スマホ版</span></span></p>
       <div class="as-shots as-shots-solo">
         <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/credit-ph-sum.png?v=1" alt="クレカ明細の集計画面（スマホ）" loading="lazy" width="600" height="1298" data-en-alt="Card Statements summary screen (mobile)"></div><figcaption><span class="ja-only">実質支出・前月比がひと目で</span><span class="en-only">Actual spending and month-over-month change at a glance</span></figcaption></figure>
         <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/credit-ph-cat.png?v=1" alt="クレカ明細のカテゴリ内訳画面（スマホ）" loading="lazy" width="600" height="1298" data-en-alt="Card Statements category breakdown screen (mobile)"></div><figcaption><span class="ja-only">カテゴリ別に自動集計</span><span class="en-only">Automatic totals by category</span></figcaption></figure>
@@ -766,7 +767,7 @@
         <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/credit-ph-loan.png?v=1" alt="クレカ明細の立て替え台帳（スマホ）" loading="lazy" width="600" height="1298" data-en-alt="Card Statements shared-cost ledger (mobile)"></div><figcaption><span class="ja-only">立て替えを人ごとに管理</span><span class="en-only">Track shared costs by person</span></figcaption></figure>
         <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/credit-ph-upload.png?v=1" alt="クレカ明細のCSV読み込み画面（スマホ）" loading="lazy" width="600" height="1298" data-en-alt="Card Statements CSV import screen (mobile)"></div><figcaption><span class="ja-only">CSVを放り込むだけ</span><span class="en-only">Just drop in the CSV</span></figcaption></figure>
       </div>
-      <p class="pv-group-k"><span class="ja-only">PC版<span class="pv-group-en">Desktop</span></span><span class="en-only">Desktop<span class="pv-group-en">PC版</span></span></p>
+      <p class="pv-group-k"><span class="ja-only">PC版<span class="pv-group-en">Desktop</span></span><span class="en-only">Desktop<span class="pv-group-en" lang="ja">PC版</span></span></p>
       <div class="as-shots as-shots-solo">
         <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/credit-pc-sum.png?v=1" alt="クレカ明細の集計画面（PC）" loading="lazy" width="1200" height="750" data-en-alt="Card Statements summary screen (desktop)"></div><figcaption><span class="ja-only">実質支出・前月比がひと目で</span><span class="en-only">Actual spending and month-over-month change at a glance</span></figcaption></figure>
         <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/credit-pc-cat.png?v=1" alt="クレカ明細のカテゴリ内訳画面（PC）" loading="lazy" width="1200" height="750" data-en-alt="Card Statements category breakdown screen (desktop)"></div><figcaption><span class="ja-only">カテゴリ別に自動集計</span><span class="en-only">Automatic totals by category</span></figcaption></figure>
@@ -777,28 +778,28 @@
       <p class="note"><span class="ja-only">実際の画面です。掲載しているデータは、動作確認用の<strong>サンプル明細</strong>です（実在の利用明細ではありません）。</span><span class="en-only">Actual screens. The data shown is a <strong>sample statement</strong> created for testing (not a real card statement).</span></p>
 
       <!-- ③ STAR形式の詳しい紹介 -->
-      <p class="as-h"><span class="ja-only">くわしく<span class="as-h-en">STORY</span></span><span class="en-only">The Story<span class="as-h-en">くわしく</span></span></p>
+      <p class="as-h"><span class="ja-only">くわしく<span class="as-h-en">STORY</span></span><span class="en-only">The Story<span class="as-h-en" lang="ja">くわしく</span></span></p>
       <div class="as-star">
         <div class="star-row">
-          <p class="star-k"><span class="ja-only">こんな場面で<span class="star-en">SITUATION</span></span><span class="en-only">Situation<span class="star-en">こんな場面で</span></span></p>
+          <p class="star-k"><span class="ja-only">こんな場面で<span class="star-en">SITUATION</span></span><span class="en-only">Situation<span class="star-en" lang="ja">こんな場面で</span></span></p>
           <p class="star-v"><span class="ja-only">毎月クレジットカードの明細が届くが、金額の羅列でしかない。</span><span class="en-only">A credit card statement arrives every month, but it's nothing more than a list of amounts.</span></p>
         </div>
         <div class="star-row">
-          <p class="star-k"><span class="ja-only">困っていたこと<span class="star-en">TASK</span></span><span class="en-only">Challenge<span class="star-en">困っていたこと</span></span></p>
+          <p class="star-k"><span class="ja-only">困っていたこと<span class="star-en">TASK</span></span><span class="en-only">Challenge<span class="star-en" lang="ja">困っていたこと</span></span></p>
           <p class="star-v"><span class="ja-only">総額は分かっても「自分が実質いくら使ったか」が見えない。立て替えや分割が混ざり、手作業の仕分けは続かない。</span><span class="en-only">You can see the total, but not how much you actually spent yourself. Shared costs and installments are mixed in, and sorting by hand never lasts.</span></p>
         </div>
         <div class="star-row">
-          <p class="star-k"><span class="ja-only">アプリがすること<span class="star-en">ACTION</span></span><span class="en-only">Solution<span class="star-en">アプリがすること</span></span></p>
+          <p class="star-k"><span class="ja-only">アプリがすること<span class="star-en">ACTION</span></span><span class="en-only">Solution<span class="star-en" lang="ja">アプリがすること</span></span></p>
           <p class="star-v"><span class="ja-only">明細CSVを読み込むと、<strong>カテゴリ別に自動集計</strong>。立て替え・分割を切り分け、「自分の実質支出」と前月比まで自動で出す。</span><span class="en-only">Import the statement CSV and it <strong>totals your spending by category automatically</strong>. It separates out shared costs and installments, then shows your actual spending and the change from last month.</span></p>
         </div>
         <div class="star-row is-result">
-          <p class="star-k"><span class="ja-only">こう変わる<span class="star-en">RESULT</span></span><span class="en-only">Result<span class="star-en">こう変わる</span></span></p>
+          <p class="star-k"><span class="ja-only">こう変わる<span class="star-en">RESULT</span></span><span class="en-only">Result<span class="star-en" lang="ja">こう変わる</span></span></p>
           <p class="star-v"><span class="ja-only">「今月いくら使ったか」がひと目で分かり、家計の判断が速くなる。</span><span class="en-only">You can see this month's spending at a glance and make household budget decisions faster.</span></p>
         </div>
       </div>
 
       <!-- 情報 -->
-      <p class="as-h"><span class="ja-only">情報<span class="as-h-en">INFORMATION</span></span><span class="en-only">Information<span class="as-h-en">情報</span></span></p>
+      <p class="as-h"><span class="ja-only">情報<span class="as-h-en">INFORMATION</span></span><span class="en-only">Information<span class="as-h-en" lang="ja">情報</span></span></p>
       <div class="panel">
         <div class="dl">
           <div class="dl-row"><div class="dl-k"><span class="ja-only">制作</span><span class="en-only">Made by</span></div><div class="dl-v"><span class="ja-only">つみき</span><span class="en-only">Tsumiki</span></div></div>
@@ -837,19 +838,19 @@
       </a>
 
       <!-- 制作の背景 -->
-      <p class="as-h"><span class="ja-only">制作の背景<span class="as-h-en">BACKGROUND</span></span><span class="en-only">Background<span class="as-h-en">制作の背景</span></span></p>
+      <p class="as-h"><span class="ja-only">制作の背景<span class="as-h-en">BACKGROUND</span></span><span class="en-only">Background<span class="as-h-en" lang="ja">制作の背景</span></span></p>
       <p class="as-bg"><span class="ja-only">派遣の現場では、紙のタイムシートに手書きして、月末にまとめて提出——という流れになりがちです。書き忘れや、あとから「あの日、何時までだっけ？」の思い出し作業も、地味な負担でした。<br><br>その<strong>「打刻がめんどう」を消すために、打刻は生まれました。</strong>大きな出勤・退勤ボタンをタップするだけ。15分丸めや休憩・残業・休日出勤も自動で計算され、自分の勤務記録がいつでも見られます。交通費や定期も登録でき、会社（管理者）へはクラウドで自動共有。<strong>集計は「打刻管理」側にまるごと引き継がれます。</strong></span><span class="en-only">On staffing assignments, the usual routine is to fill in paper timesheets by hand and hand them all in at the end of the month. Forgetting to write things down, and later trying to remember “What time did I finish that day?”, added up to a quiet but real burden.<br><br><strong>Time Clock was created to take the hassle out of clocking in.</strong> Just tap the big clock-in and clock-out buttons. 15-minute rounding, breaks, overtime and holiday work are all calculated automatically, and you can check your own work history anytime. You can register commuting costs and passes too, and everything is shared automatically with the company (the manager) through the cloud. <strong>All totals carry straight over to Time Clock Admin.</strong></span></p>
 
       <!-- ② プレビュー -->
-      <p class="as-h"><span class="ja-only">プレビュー<span class="as-h-en">PREVIEW</span></span><span class="en-only">Preview<span class="as-h-en">プレビュー</span></span></p>
-      <p class="pv-group-k"><span class="ja-only">スマホ版<span class="pv-group-en">iPhone</span></span><span class="en-only">Mobile<span class="pv-group-en">スマホ版</span></span></p>
+      <p class="as-h"><span class="ja-only">プレビュー<span class="as-h-en">PREVIEW</span></span><span class="en-only">Preview<span class="as-h-en" lang="ja">プレビュー</span></span></p>
+      <p class="pv-group-k"><span class="ja-only">スマホ版<span class="pv-group-en">iPhone</span></span><span class="en-only">Mobile<span class="pv-group-en" lang="ja">スマホ版</span></span></p>
       <div class="as-shots">
         <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/dakoku-ph-punch.png?v=1" alt="打刻アプリの出勤・退勤画面（スマホ）" loading="lazy" width="600" height="1298" data-en-alt="Time Clock clock-in and clock-out screen (mobile)"></div><figcaption><span class="ja-only">出勤・退勤をタップ</span><span class="en-only">Tap to clock in and out</span></figcaption></figure>
         <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/dakoku-ph-record.png?v=1" alt="打刻アプリの勤務記録画面（スマホ）" loading="lazy" width="600" height="1298" data-en-alt="Time Clock work history screen (mobile)"></div><figcaption><span class="ja-only">月の勤務記録を確認</span><span class="en-only">Check your monthly work history</span></figcaption></figure>
         <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/dakoku-ph-edit.png?v=1" alt="打刻アプリの記録修正画面（スマホ）" loading="lazy" width="600" height="1298" data-en-alt="Time Clock record editing screen (mobile)"></div><figcaption><span class="ja-only">打ち忘れも自分で修正</span><span class="en-only">Fix missed punches yourself</span></figcaption></figure>
         <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/dakoku-ph-commute.png?v=1" alt="打刻アプリの交通費・定期設定画面（スマホ）" loading="lazy" width="600" height="1298" data-en-alt="Time Clock commuting cost and pass settings (mobile)"></div><figcaption><span class="ja-only">交通費・定期も登録</span><span class="en-only">Register commuting costs and passes</span></figcaption></figure>
       </div>
-      <p class="pv-group-k"><span class="ja-only">PC版<span class="pv-group-en">Desktop</span></span><span class="en-only">Desktop<span class="pv-group-en">PC版</span></span></p>
+      <p class="pv-group-k"><span class="ja-only">PC版<span class="pv-group-en">Desktop</span></span><span class="en-only">Desktop<span class="pv-group-en" lang="ja">PC版</span></span></p>
       <div class="as-shots">
         <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/dakoku-pc-punch.png?v=1" alt="打刻アプリ PC版の出勤・退勤画面" loading="lazy" width="1200" height="750" data-en-alt="Time Clock on desktop: clock-in and clock-out screen"></div><figcaption><span class="ja-only">出勤・退勤をタップ</span><span class="en-only">Tap to clock in and out</span></figcaption></figure>
         <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/dakoku-pc-record.png?v=1" alt="打刻アプリ PC版の勤務記録画面" loading="lazy" width="1200" height="750" data-en-alt="Time Clock on desktop: work history screen"></div><figcaption><span class="ja-only">月の勤務記録を確認</span><span class="en-only">Check your monthly work history</span></figcaption></figure>
@@ -859,28 +860,28 @@
       <p class="note"><span class="ja-only">実際の「打刻」（労働者用）の画面です。掲載データはサンプルで、実在の従業員・勤怠ではありません。</span><span class="en-only">Actual screens from Time Clock (for workers). The data shown is sample data, not real employees or attendance records.</span></p>
 
       <!-- ③ STAR形式の詳しい紹介 -->
-      <p class="as-h"><span class="ja-only">くわしく<span class="as-h-en">STORY</span></span><span class="en-only">The Story<span class="as-h-en">くわしく</span></span></p>
+      <p class="as-h"><span class="ja-only">くわしく<span class="as-h-en">STORY</span></span><span class="en-only">The Story<span class="as-h-en" lang="ja">くわしく</span></span></p>
       <div class="as-star">
         <div class="star-row">
-          <p class="star-k"><span class="ja-only">こんな場面で<span class="star-en">SITUATION</span></span><span class="en-only">Situation<span class="star-en">こんな場面で</span></span></p>
+          <p class="star-k"><span class="ja-only">こんな場面で<span class="star-en">SITUATION</span></span><span class="en-only">Situation<span class="star-en" lang="ja">こんな場面で</span></span></p>
           <p class="star-v"><span class="ja-only">派遣で複数の現場に入り、日々の出退勤を自分で記録して会社に報告する必要がある。</span><span class="en-only">Working through a staffing agency across several sites, and needing to record your own daily hours and report them to the company.</span></p>
         </div>
         <div class="star-row">
-          <p class="star-k"><span class="ja-only">困っていたこと<span class="star-en">TASK</span></span><span class="en-only">Challenge<span class="star-en">困っていたこと</span></span></p>
+          <p class="star-k"><span class="ja-only">困っていたこと<span class="star-en">TASK</span></span><span class="en-only">Challenge<span class="star-en" lang="ja">困っていたこと</span></span></p>
           <p class="star-v"><span class="ja-only">紙やメモだと書き忘れ・思い出し作業が起きる。休憩や残業の計算もあいまいで、月末の報告がめんどう。</span><span class="en-only">With paper or notes, entries get forgotten and hours have to be pieced together from memory. Break and overtime calculations are fuzzy, and end-of-month reporting is a chore.</span></p>
         </div>
         <div class="star-row">
-          <p class="star-k"><span class="ja-only">アプリがすること<span class="star-en">ACTION</span></span><span class="en-only">Solution<span class="star-en">アプリがすること</span></span></p>
+          <p class="star-k"><span class="ja-only">アプリがすること<span class="star-en">ACTION</span></span><span class="en-only">Solution<span class="star-en" lang="ja">アプリがすること</span></span></p>
           <p class="star-v"><span class="ja-only">出勤・退勤を<strong>タップするだけ</strong>。実働・残業・休日出勤を自動計算し、月の合計も一目で。交通費・定期も登録でき、打刻は<strong>クラウドで会社と共有</strong>されます。</span><span class="en-only">Clocking in and out is <strong>just a tap</strong>. Actual hours, overtime and holiday work are calculated automatically, with monthly totals at a glance. Commuting costs and passes can be registered too, and every punch is <strong>shared with the company through the cloud</strong>.</span></p>
         </div>
         <div class="star-row is-result">
-          <p class="star-k"><span class="ja-only">こう変わる<span class="star-en">RESULT</span></span><span class="en-only">Result<span class="star-en">こう変わる</span></span></p>
+          <p class="star-k"><span class="ja-only">こう変わる<span class="star-en">RESULT</span></span><span class="en-only">Result<span class="star-en" lang="ja">こう変わる</span></span></p>
           <p class="star-v"><span class="ja-only">「打刻がめんどう」がなくなり、報告いらず。自分の勤務も、数字でいつでも確認できる。</span><span class="en-only">No more clock-in hassle, and no reports to write. Your own hours are always there to check, in clear numbers.</span></p>
         </div>
       </div>
 
       <!-- 情報 -->
-      <p class="as-h"><span class="ja-only">情報<span class="as-h-en">INFORMATION</span></span><span class="en-only">Information<span class="as-h-en">情報</span></span></p>
+      <p class="as-h"><span class="ja-only">情報<span class="as-h-en">INFORMATION</span></span><span class="en-only">Information<span class="as-h-en" lang="ja">情報</span></span></p>
       <div class="panel">
         <div class="dl">
           <div class="dl-row"><div class="dl-k"><span class="ja-only">制作</span><span class="en-only">Made by</span></div><div class="dl-v"><span class="ja-only">つみき</span><span class="en-only">Tsumiki</span></div></div>
@@ -926,12 +927,12 @@
       </a>
 
       <!-- 制作の背景 -->
-      <p class="as-h"><span class="ja-only">制作の背景<span class="as-h-en">BACKGROUND</span></span><span class="en-only">Background<span class="as-h-en">制作の背景</span></span></p>
+      <p class="as-h"><span class="ja-only">制作の背景<span class="as-h-en">BACKGROUND</span></span><span class="en-only">Background<span class="as-h-en" lang="ja">制作の背景</span></span></p>
       <p class="as-bg"><span class="ja-only">派遣の勤怠は、スタッフごと・現場ごとにバラバラの紙が集まり、転記して、集計して、提出書類に清書して……と、月末の締めが重い作業でした。数字のずれや計算ミスも起きやすいところです。<br><br>その<strong>「集計と提出書類づくり」をまるごと引き受けるのが、打刻管理です。</strong>従業員に打刻コードを配るだけで、全員の出退勤がクラウドに集約。15分丸め・休憩・残業・休日出勤・深夜まで自動計算し、勤務表から<strong>Excel／PDFの提出書類</strong>と<strong>請求算定</strong>まで一気に書き出せます。確認印欄や派遣元・派遣先の会社名にも対応しています。</span><span class="en-only">Staffing attendance used to mean a pile of separate paper sheets from every staff member and every site — transcribing, totaling, and writing out clean copies for submission. Closing out the month was heavy work, and it was easy for figures to drift or calculations to go wrong.<br><br><strong>Time Clock Admin takes over the totaling and the paperwork entirely.</strong> Just hand out clock-in codes, and everyone's hours are gathered in the cloud. 15-minute rounding, breaks, overtime, holiday work and late-night hours are all calculated automatically, and from the timesheet you can export <strong>Excel / PDF submission documents</strong> and <strong>billing calculations</strong> in one go. It also supports approval-stamp fields and the names of both the staffing agency and the client company.</span></p>
 
       <!-- ② プレビュー -->
-      <p class="as-h"><span class="ja-only">プレビュー<span class="as-h-en">PREVIEW</span></span><span class="en-only">Preview<span class="as-h-en">プレビュー</span></span></p>
-      <p class="pv-group-k"><span class="ja-only">スマホ版<span class="pv-group-en">iPhone</span></span><span class="en-only">Mobile<span class="pv-group-en">スマホ版</span></span></p>
+      <p class="as-h"><span class="ja-only">プレビュー<span class="as-h-en">PREVIEW</span></span><span class="en-only">Preview<span class="as-h-en" lang="ja">プレビュー</span></span></p>
+      <p class="pv-group-k"><span class="ja-only">スマホ版<span class="pv-group-en">iPhone</span></span><span class="en-only">Mobile<span class="pv-group-en" lang="ja">スマホ版</span></span></p>
       <div class="as-shots">
         <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/dakoku-kanri-ph-staff.png?v=1" alt="打刻管理アプリの従業員一覧画面（スマホ）" loading="lazy" width="600" height="1298" data-en-alt="Time Clock Admin employee list (mobile)"></div><figcaption><span class="ja-only">従業員とコードを一覧</span><span class="en-only">List employees and their codes</span></figcaption></figure>
         <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/dakoku-kanri-ph-code.png?v=1" alt="打刻管理アプリの打刻コード発行画面（スマホ）" loading="lazy" width="600" height="1298" data-en-alt="Time Clock Admin clock-in code issuing screen (mobile)"></div><figcaption><span class="ja-only">打刻コードを発行</span><span class="en-only">Issue clock-in codes</span></figcaption></figure>
@@ -939,7 +940,7 @@
         <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/dakoku-kanri-ph-billing.png?v=1" alt="打刻管理アプリのExcel・PDF書き出し／請求算定画面（スマホ）" loading="lazy" width="600" height="1298" data-en-alt="Time Clock Admin Excel / PDF export and billing screen (mobile)"></div><figcaption><span class="ja-only">請求算定・書き出し</span><span class="en-only">Billing and exports</span></figcaption></figure>
         <figure class="as-shot"><div class="pv pv-ph"><img class="pv-img" data-src="assets/shots/dakoku-kanri-ph-settings.png?v=1" alt="打刻管理アプリの会社名・提出先設定画面（スマホ）" loading="lazy" width="600" height="1298" data-en-alt="Time Clock Admin company name and submission settings (mobile)"></div><figcaption><span class="ja-only">提出先・倍率を設定</span><span class="en-only">Set submission details and rates</span></figcaption></figure>
       </div>
-      <p class="pv-group-k"><span class="ja-only">PC版<span class="pv-group-en">Desktop</span></span><span class="en-only">Desktop<span class="pv-group-en">PC版</span></span></p>
+      <p class="pv-group-k"><span class="ja-only">PC版<span class="pv-group-en">Desktop</span></span><span class="en-only">Desktop<span class="pv-group-en" lang="ja">PC版</span></span></p>
       <div class="as-shots">
         <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/dakoku-kanri-pc-staff.png?v=1" alt="打刻管理アプリ PC版の従業員一覧画面" loading="lazy" width="1200" height="750" data-en-alt="Time Clock Admin on desktop: employee list"></div><figcaption><span class="ja-only">従業員とコードを一覧</span><span class="en-only">List employees and their codes</span></figcaption></figure>
         <figure class="as-shot as-shot-pc"><div class="pv pv-pc"><img class="pv-img" data-src="assets/shots/dakoku-kanri-pc-code.png?v=1" alt="打刻管理アプリ PC版の打刻コード発行画面" loading="lazy" width="1200" height="750" data-en-alt="Time Clock Admin on desktop: clock-in code issuing screen"></div><figcaption><span class="ja-only">打刻コードを発行</span><span class="en-only">Issue clock-in codes</span></figcaption></figure>
@@ -950,7 +951,7 @@
       <p class="note"><span class="ja-only">実際の「打刻管理」（管理者用）の画面です。掲載データはサンプルで、実在の従業員・勤怠ではありません。</span><span class="en-only">Actual screens from Time Clock Admin (for managers). The data shown is sample data, not real employees or attendance records.</span></p>
 
       <!-- 書き出したPDF提出書類（実物・サンプルデータ） -->
-      <p class="pv-group-k"><span class="ja-only">書き出したPDF<span class="pv-group-en">OUTPUT</span></span><span class="en-only">Exported PDF<span class="pv-group-en">書き出したPDF</span></span></p>
+      <p class="pv-group-k"><span class="ja-only">書き出したPDF<span class="pv-group-en">OUTPUT</span></span><span class="en-only">Exported PDF<span class="pv-group-en" lang="ja">書き出したPDF</span></span></p>
       <div class="as-shots as-shots-solo">
         <figure class="as-shot as-shot-doc">
           <div class="pv pv-doc"><img class="pv-img" data-src="assets/shots/dakoku-kanri-doc.png?v=1" alt="打刻管理で書き出した派遣の勤怠管理表（PDF・サンプル）" loading="lazy" width="794" height="956" data-en-alt="Staffing attendance report exported from Time Clock Admin (PDF, sample)"></div>
@@ -960,28 +961,28 @@
       <p class="note"><span class="ja-only">「PDFで書き出し」を押すと、この提出書類がそのまま出ます。勤務表・請求算定・確認印（派遣元／派遣先）まで1枚に。掲載はサンプルデータです。</span><span class="en-only">Press “Export PDF” and this submission document is produced as is, with the timesheet, billing calculations and approval stamps (agency / client) all on one page. The example uses sample data.</span></p>
 
       <!-- ③ STAR形式の詳しい紹介 -->
-      <p class="as-h"><span class="ja-only">くわしく<span class="as-h-en">STORY</span></span><span class="en-only">The Story<span class="as-h-en">くわしく</span></span></p>
+      <p class="as-h"><span class="ja-only">くわしく<span class="as-h-en">STORY</span></span><span class="en-only">The Story<span class="as-h-en" lang="ja">くわしく</span></span></p>
       <div class="as-star">
         <div class="star-row">
-          <p class="star-k"><span class="ja-only">こんな場面で<span class="star-en">SITUATION</span></span><span class="en-only">Situation<span class="star-en">こんな場面で</span></span></p>
+          <p class="star-k"><span class="ja-only">こんな場面で<span class="star-en">SITUATION</span></span><span class="en-only">Situation<span class="star-en" lang="ja">こんな場面で</span></span></p>
           <p class="star-v"><span class="ja-only">複数のスタッフを複数の現場に派遣し、毎月それぞれの勤怠をまとめて提出書類にする必要がある。</span><span class="en-only">Dispatching several staff members to several sites, and compiling each person's attendance into submission documents every month.</span></p>
         </div>
         <div class="star-row">
-          <p class="star-k"><span class="ja-only">困っていたこと<span class="star-en">TASK</span></span><span class="en-only">Challenge<span class="star-en">困っていたこと</span></span></p>
+          <p class="star-k"><span class="ja-only">困っていたこと<span class="star-en">TASK</span></span><span class="en-only">Challenge<span class="star-en" lang="ja">困っていたこと</span></span></p>
           <p class="star-v"><span class="ja-only">紙の集計・転記でミスが起きやすく、締めのたびに時間が溶ける。請求のための計算も手作業になりがち。</span><span class="en-only">Totaling and transcribing on paper invites mistakes, and every month-end close swallows hours. Billing calculations tend to be done by hand, too.</span></p>
         </div>
         <div class="star-row">
-          <p class="star-k"><span class="ja-only">アプリがすること<span class="star-en">ACTION</span></span><span class="en-only">Solution<span class="star-en">アプリがすること</span></span></p>
+          <p class="star-k"><span class="ja-only">アプリがすること<span class="star-en">ACTION</span></span><span class="en-only">Solution<span class="star-en" lang="ja">アプリがすること</span></span></p>
           <p class="star-v"><span class="ja-only">従業員に<strong>コードを配るだけ</strong>で打刻がクラウドに集約。勤務表を自動集計し、<strong>提出書類（Excel／PDF）</strong>と請求算定まで書き出せます。確認印・派遣元／派遣先の会社名にも対応。</span><span class="en-only"><strong>Just hand out codes</strong> to employees and every punch is collected in the cloud. Timesheets are totaled automatically and can be exported as <strong>submission documents (Excel / PDF)</strong> along with billing calculations. Approval stamps and agency / client company names are supported.</span></p>
         </div>
         <div class="star-row is-result">
-          <p class="star-k"><span class="ja-only">こう変わる<span class="star-en">RESULT</span></span><span class="en-only">Result<span class="star-en">こう変わる</span></span></p>
+          <p class="star-k"><span class="ja-only">こう変わる<span class="star-en">RESULT</span></span><span class="en-only">Result<span class="star-en" lang="ja">こう変わる</span></span></p>
           <p class="star-v"><span class="ja-only">転記も清書もゼロに。締めが「選んで書き出す」だけになり、提出までの時間が大きく縮む。</span><span class="en-only">No more transcribing or rewriting. Closing the month becomes a matter of “select and export,” greatly shortening the time to submission.</span></p>
         </div>
       </div>
 
       <!-- 情報 -->
-      <p class="as-h"><span class="ja-only">情報<span class="as-h-en">INFORMATION</span></span><span class="en-only">Information<span class="as-h-en">情報</span></span></p>
+      <p class="as-h"><span class="ja-only">情報<span class="as-h-en">INFORMATION</span></span><span class="en-only">Information<span class="as-h-en" lang="ja">情報</span></span></p>
       <div class="panel">
         <div class="dl">
           <div class="dl-row"><div class="dl-k"><span class="ja-only">制作</span><span class="en-only">Made by</span></div><div class="dl-v"><span class="ja-only">つみき</span><span class="en-only">Tsumiki</span></div></div>
@@ -1058,7 +1059,7 @@
     </div>
 
     <div class="sheet-inner">
-      <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">つみきの特長</span><span class="en-only">Why Tsumiki</span></span><span class="sl-en"><span class="ja-only">FEATURES</span><span class="en-only">つみきの特長</span></span></h2>
+      <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">つみきの特長</span><span class="en-only">Why Tsumiki</span></span><span class="sl-en"><span class="ja-only">FEATURES</span><span class="en-only" lang="ja">つみきの特長</span></span></h2>
 
       <p class="vp"><span class="ja-only">あなたの会社の業務を<span class="hl">1〜2時間じっくり伺って</span>、その会社だけの専用アプリを作ります。</span><span class="en-only">I spend <span class="hl">one to two hours listening closely</span> to how your business works, then build an app made just for your company.</span></p>
       <p class="vp-sub"><span class="ja-only">仕事のやり方は、そのまま。道具のほうを合わせます。</span><span class="en-only">Keep the way you work. The tool adapts to you.</span></p>
@@ -1109,7 +1110,7 @@
       </div>
 
 
-      <h3 class="h3"><span class="ja-only">オーダーメイドだからできる、6つのお約束<span class="h3-en">OUR PROMISES</span></span><span class="en-only">Six Promises Only a Custom Build Can Make<span class="h3-en">オーダーメイドだからできる、6つのお約束</span></span></h3>
+      <h3 class="h3"><span class="ja-only">オーダーメイドだからできる、6つのお約束<span class="h3-en">OUR PROMISES</span></span><span class="en-only">Six Promises Only a Custom Build Can Make<span class="h3-en" lang="ja">オーダーメイドだからできる、6つのお約束</span></span></h3>
       <p class="sheet-sub"><span class="ja-only">見出しを押すと、それぞれの詳しい中身とイラストが開きます。</span><span class="en-only">Tap a heading to see the details and an illustration.</span></p>
       <div class="feats">
 
@@ -1303,7 +1304,7 @@
       </div>
 
 
-      <h3 class="h3"><span class="ja-only">あなた専用に、守ってお渡し<span class="h3-en">PROTECTED FOR YOU</span></span><span class="en-only">Made for You, Delivered Securely<span class="h3-en">あなた専用に、守ってお渡し</span></span></h3>
+      <h3 class="h3"><span class="ja-only">あなた専用に、守ってお渡し<span class="h3-en">PROTECTED FOR YOU</span></span><span class="en-only">Made for You, Delivered Securely<span class="h3-en" lang="ja">あなた専用に、守ってお渡し</span></span></h3>
       <div class="chips">
         <span class="chip"><span class="ja-only">あなた専用の鍵つきでお渡し</span><span class="en-only">Delivered with your own key</span></span>
         <span class="chip"><span class="ja-only">無断コピー・横流しを防ぐ</span><span class="en-only">Protected against copying and resale</span></span>
@@ -1315,7 +1316,7 @@
 
 
       <!-- 既製ツールとの違い（旧「他社との比較」＋旧「提供価値」の積み木の対比を、ここに一本化） -->
-      <h3 class="h3"><span class="ja-only">既製ツールとの違い<span class="h3-en">VS SUBSCRIPTION TOOLS</span></span><span class="en-only">How It Compares to Off-the-Shelf Tools<span class="h3-en">既製ツールとの違い</span></span></h3>
+      <h3 class="h3"><span class="ja-only">既製ツールとの違い<span class="h3-en">VS SUBSCRIPTION TOOLS</span></span><span class="en-only">How It Compares to Off-the-Shelf Tools<span class="h3-en" lang="ja">既製ツールとの違い</span></span></h3>
       <div class="fhero cmp-fhero is-inline" aria-hidden="true">
         <svg viewBox="0 0 1200 300" preserveAspectRatio="xMidYMid meet" role="img">
           <!-- 中央の仕切り -->
@@ -1394,7 +1395,7 @@
       <details class="fold">
         <summary class="fold-sum">
           <span class="fold-ttl"><span class="ja-only">3つの違いを、くわしく</span><span class="en-only">The three differences, in detail</span></span>
-          <span class="fold-en"><span class="ja-only">IN DETAIL</span><span class="en-only">3つの違いを、くわしく</span></span>
+          <span class="fold-en"><span class="ja-only">IN DETAIL</span><span class="en-only" lang="ja">3つの違いを、くわしく</span></span>
           <span class="fold-mk" aria-hidden="true"></span>
         </summary>
         <div class="fold-in">
@@ -1426,7 +1427,7 @@
       </div>
 
       <!-- 比較表 -->
-      <p class="as-h"><span class="ja-only">ひと目で<span class="as-h-en">AT A GLANCE</span></span><span class="en-only">At a Glance<span class="as-h-en">ひと目で</span></span></p>
+      <p class="as-h"><span class="ja-only">ひと目で<span class="as-h-en">AT A GLANCE</span></span><span class="en-only">At a Glance<span class="as-h-en" lang="ja">ひと目で</span></span></p>
       <div class="cmp-table">
         <div class="cmp-thead"><span class="cmp-th-k"></span><span class="cmp-th-us"><span class="ja-only">つみき</span><span class="en-only">Tsumiki</span></span><span class="cmp-th-them"><span class="ja-only">一般的なサブスク型</span><span class="en-only">Typical subscription tools</span></span></div>
         <div class="cmp-trow"><span class="cmp-c-k"><span class="ja-only">費用</span><span class="en-only">Cost</span></span><span class="cmp-c-us"><span class="ja-only"><span class="cmp-mk ok">◎</span>買い切り・月額なし</span><span class="en-only"><span class="cmp-mk ok">✓</span>One-time purchase, no monthly fees</span></span><span class="cmp-c-them"><span class="ja-only"><span class="cmp-mk no">△</span>毎月・毎年つづく</span><span class="en-only"><span class="cmp-mk no">–</span>Ongoing monthly or yearly fees</span></span></div>
@@ -1449,7 +1450,7 @@
   <!-- つくりて -->
   <section class="screen sheet" id="s-profile" data-screen="profile">
     <div class="sheet-inner">
-      <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">プロフィール</span><span class="en-only">Profile</span></span><span class="sl-en"><span class="ja-only">PROFILE</span><span class="en-only">プロフィール</span></span></h2>
+      <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">プロフィール</span><span class="en-only">Profile</span></span><span class="sl-en"><span class="ja-only">PROFILE</span><span class="en-only" lang="ja">プロフィール</span></span></h2>
       <p class="sheet-lead"><span class="ja-only">「これ、なんとかならないかな」——その一言がうれしくて、小さなアプリを作っています。作るのは私ひとりなので、先にどんな人間かをお伝えしておきます。</span><span class="en-only">“Isn't there some way to fix this?” — I love hearing those words, and they're why I build small apps. Since I'm the only one doing the building, I'd like you to know a little about who I am first.</span></p>
 
       <div class="profile">
@@ -1465,7 +1466,7 @@
 
       <!-- ごあいさつ：代表・髙橋弘大からの挨拶文（本人の言葉） -->
       <div class="credo">
-        <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">ごあいさつ</span><span class="en-only">Hello</span></span><span class="sl-en"><span class="ja-only">GREETING</span><span class="en-only">ごあいさつ</span></span></h2>
+        <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">ごあいさつ</span><span class="en-only">Hello</span></span><span class="sl-en"><span class="ja-only">GREETING</span><span class="en-only" lang="ja">ごあいさつ</span></span></h2>
 
         <div class="panel">
           <p class="credo-p"><span class="ja-only">はじめまして！<br>私は髙橋弘大（たかはしこうだい）といいます。<br>まずこちらの私のポートフォリオサイトを見てくださり、ありがとうございます。</span><span class="en-only">Nice to meet you!<br>My name is Kodai Takahashi.<br>Thank you for taking the time to visit my portfolio site.</span></p>
@@ -1484,7 +1485,7 @@
 
       <!-- 写真展示室：独立ページにするほどの量ではないため、プロフィールの一部として置く -->
       <div class="g-gallery">
-        <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">写真展示室</span><span class="en-only">Gallery</span></span><span class="sl-en"><span class="ja-only">GALLERY</span><span class="en-only">写真展示室</span></span></h2>
+        <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">写真展示室</span><span class="en-only">Gallery</span></span><span class="sl-en"><span class="ja-only">GALLERY</span><span class="en-only" lang="ja">写真展示室</span></span></h2>
         <p class="sheet-lead"><span class="ja-only">大切にしているカメラで情景を残しておくことが好きです。ぜひご覧になってください。</span><span class="en-only">I love capturing scenes with a camera I treasure. I hope you enjoy them.</span></p>
 
       <div class="g-works">
@@ -1606,7 +1607,7 @@
   <!-- お問い合わせ：事業者概要 -->
   <section class="screen sheet" id="s-company" data-screen="company">
     <div class="sheet-inner">
-      <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">事業者概要</span><span class="en-only">Business Info</span></span><span class="sl-en"><span class="ja-only">BUSINESS</span><span class="en-only">事業者概要</span></span></h2>
+      <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">事業者概要</span><span class="en-only">Business Info</span></span><span class="sl-en"><span class="ja-only">BUSINESS</span><span class="en-only" lang="ja">事業者概要</span></span></h2>
       <p class="sheet-lead"><span class="ja-only">安心してご相談いただけるよう、事業者の情報をひとつにまとめました。</span><span class="en-only">All the key details about the business in one place, so you can reach out with confidence.</span></p>
 
       <div class="panel">
@@ -1622,7 +1623,7 @@
         </div>
       </div>
 
-      <h3 class="h3"><span class="ja-only">料金・お取引について<span class="h3-en">TERMS</span></span><span class="en-only">Pricing &amp; Terms<span class="h3-en">料金・お取引について</span></span></h3>
+      <h3 class="h3"><span class="ja-only">料金・お取引について<span class="h3-en">TERMS</span></span><span class="en-only">Pricing &amp; Terms<span class="h3-en" lang="ja">料金・お取引について</span></span></h3>
       <div class="panel">
         <div class="dl">
           <div class="dl-row"><div class="dl-k"><span class="ja-only">サービス</span><span class="en-only">Service</span></div><div class="dl-v"><span class="ja-only">業務内容を伺ったうえで制作する、オーダーメイドの専用アプリ。</span><span class="en-only">Custom-built apps, designed after learning about your business.</span></div></div>
@@ -1647,7 +1648,7 @@
   <!-- サービス：こんな課題ありませんか？ -->
   <section class="screen sheet" id="s-issues" data-screen="issues">
     <div class="sheet-inner">
-      <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">こんな課題ありませんか？</span><span class="en-only">Common Challenges</span></span><span class="sl-en"><span class="ja-only">ISSUES</span><span class="en-only">こんな課題ありませんか？</span></span></h2>
+      <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">こんな課題ありませんか？</span><span class="en-only">Common Challenges</span></span><span class="sl-en"><span class="ja-only">ISSUES</span><span class="en-only" lang="ja">こんな課題ありませんか？</span></span></h2>
       <p class="sheet-lead"><span class="ja-only">お困りごと、ありますよね。法人のみなさまから、よく伺うのはこんなお話です。</span><span class="en-only">Chances are, some of these sound familiar. These are the challenges businesses tell me about most often.</span></p>
 
       <!-- 挿絵：机に向かう人。頭上の吹き出しが時間差でぽつぽつ浮かぶ。
@@ -1741,10 +1742,10 @@
         </div>
       </div>
 
-      <h3 class="h3"><span class="ja-only">ひとつでも当てはまったら、専用アプリで解決できます<span class="h3-en">WE CAN HELP</span></span><span class="en-only">If Even One Sounds Familiar, a Custom App Can Help<span class="h3-en">ひとつでも当てはまったら、専用アプリで解決できます</span></span></h3>
+      <h3 class="h3"><span class="ja-only">ひとつでも当てはまったら、専用アプリで解決できます<span class="h3-en">WE CAN HELP</span></span><span class="en-only">If Even One Sounds Familiar, a Custom App Can Help<span class="h3-en" lang="ja">ひとつでも当てはまったら、専用アプリで解決できます</span></span></h3>
       <p class="vp-sub"><span class="ja-only">どれも、いまの業務のやり方を変えずに解けるものばかりです。まず何に困っているのかを伺うところから始めます。うまく言葉にできなくても大丈夫です。一緒に整理します。</span><span class="en-only">Every one of these can be solved without changing the way your business works today. I start by listening to what's getting in your way. Don't worry if it's hard to put into words — we'll sort it out together.</span></p>
 
-      <h3 class="h3"><span class="ja-only">導入すると、こう変わります<span class="h3-en">BEFORE → AFTER</span></span><span class="en-only">What Changes After You Start Using It<span class="h3-en">導入すると、こう変わります</span></span></h3>
+      <h3 class="h3"><span class="ja-only">導入すると、こう変わります<span class="h3-en">BEFORE → AFTER</span></span><span class="en-only">What Changes After You Start Using It<span class="h3-en" lang="ja">導入すると、こう変わります</span></span></h3>
       <div class="ba">
         <div class="ba-row">
           <div class="ba-b"><span class="ja-only"><span class="ba-tag">BEFORE</span>毎朝、同じ数字を3つの表に打ち直し。</span><span class="en-only"><span class="ba-tag">BEFORE</span>Every morning, the same numbers re-entered into three spreadsheets.</span></div>
@@ -1774,7 +1775,7 @@
   <!-- サービス：進め方／制作フロー -->
   <section class="screen sheet" id="s-process" data-screen="process">
     <div class="sheet-inner">
-      <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">進め方／制作フロー</span><span class="en-only">How We Work</span></span><span class="sl-en"><span class="ja-only">PROCESS</span><span class="en-only">進め方／制作フロー</span></span></h2>
+      <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">進め方／制作フロー</span><span class="en-only">How We Work</span></span><span class="sl-en"><span class="ja-only">PROCESS</span><span class="en-only" lang="ja">進め方／制作フロー</span></span></h2>
       <p class="sheet-lead"><span class="ja-only">4つのステップで進めます。そちらの手間は、基本的に打合せだけです。残りはお任せください。</span><span class="en-only">The work happens in four steps. On your side, it's basically just a few meetings — you can leave the rest to me.</span></p>
 
       <!-- 挿絵：相談（左）から お渡し（右）へ、線がスッとつながる。
@@ -1853,7 +1854,7 @@
         </li>
       </ol>
 
-      <h3 class="h3"><span class="ja-only">全体でどれくらいかかりますか<span class="h3-en">DURATION</span></span><span class="en-only">How Long Does It Take Overall?<span class="h3-en">全体でどれくらいかかりますか</span></span></h3>
+      <h3 class="h3"><span class="ja-only">全体でどれくらいかかりますか<span class="h3-en">DURATION</span></span><span class="en-only">How Long Does It Take Overall?<span class="h3-en" lang="ja">全体でどれくらいかかりますか</span></span></h3>
       <div class="panel">
         <div class="tl">
           <div class="tl-row">
@@ -1887,10 +1888,10 @@
   <!-- サービス：料金・進行イメージ -->
   <section class="screen sheet" id="s-pricing" data-screen="pricing">
     <div class="sheet-inner">
-      <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">料金</span><span class="en-only">Pricing</span></span><span class="sl-en"><span class="ja-only">PRICING</span><span class="en-only">料金</span></span></h2>
+      <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">料金</span><span class="en-only">Pricing</span></span><span class="sl-en"><span class="ja-only">PRICING</span><span class="en-only" lang="ja">料金</span></span></h2>
       <p class="sheet-lead"><span class="ja-only">下の目安は「これ一式でいくらか」という<strong>総額</strong>です（表示はすべて<strong>消費税別</strong>）。ヒアリングとお見積りは無料です。</span><span class="en-only">The estimates below are <strong>total costs</strong> — what the whole project costs (all prices <strong>exclude consumption tax</strong>). Consultations and quotes are free.</span></p>
 
-      <h3 class="h3"><span class="ja-only">料金の目安（総額）<span class="h3-en">TOTAL COST</span></span><span class="en-only">Estimated Total Cost<span class="h3-en">料金の目安（総額）</span></span></h3>
+      <h3 class="h3"><span class="ja-only">料金の目安（総額）<span class="h3-en">TOTAL COST</span></span><span class="en-only">Estimated Total Cost<span class="h3-en" lang="ja">料金の目安（総額）</span></span></h3>
 
       <p class="price-group"><span class="ja-only">個人のみなさま<span class="pg-en">FOR INDIVIDUALS</span></span><span class="en-only">For Individuals<span class="pg-en">個人のみなさま</span></span></p>
       <div class="price-grid one">
@@ -1928,7 +1929,7 @@
         </div>
       </div>
       <p class="note"><span class="ja-only">幅があるのは、作る画面の数と扱う情報の量で変わるためです。<strong>多くの場合、この幅に収まります。</strong>超えそうなときは、お見積りをお出しする前に、正直にそうお伝えします。</span><span class="en-only">The range reflects the number of screens and the amount of information involved. <strong>Most projects fall within it.</strong> If yours looks likely to go beyond it, I'll tell you honestly before giving you a quote.</span></p>
-      <p class="note"><span class="ja-only">表示している金額は、すべて<strong>消費税別</strong>です。ご請求時に消費税等（10%）を加算し、<strong>適格請求書（インボイス）を発行</strong>しますので、仕入税額控除にそのままお使いいただけます。</span><span class="en-only">All prices shown <strong>exclude consumption tax</strong>. Consumption tax (10%) is added when you're billed, and a <strong>qualified invoice is issued</strong>, so it can be used as is to claim input tax credits. Consumption tax applies to clients in Japan; for clients outside Japan, I'll confirm the correct treatment before issuing a quote.</span></p>
+      <p class="note"><span class="ja-only">表示している金額は、すべて<strong>消費税別</strong>です。ご請求時に消費税等（10%）を加算し、<strong>適格請求書（インボイス）を発行</strong>しますので、仕入税額控除にそのままお使いいただけます。</span><span class="en-only">All prices shown <strong>exclude consumption tax</strong>. Consumption tax (10%) is added when you're billed, and a <strong>qualified invoice is issued</strong>, so it can be used as is to claim input tax credits. Consumption tax applies to clients in Japan; for clients outside Japan, I'll confirm the correct treatment before issuing a quote. This English translation is provided for convenience; if there is any discrepancy, the Japanese version prevails.</span></p>
       <p class="note"><span class="ja-only">つみきは<strong>時間単価では販売していません。</strong>「何時間かかったか」ではなく、はじめにお出しした総額でお約束します。作業が長引いても、追加でいただくことはありません。</span><span class="en-only">Tsumiki <strong>does not charge by the hour.</strong> You pay the total quoted at the start, not for the hours it takes. Even if the work runs long, there are no additional charges.</span></p>
       <p class="sheet-sub"><span class="ja-only">この下は、見出しを押すと開きます。必要なところだけご覧ください。</span><span class="en-only">The sections below open when you tap a heading. Read only what you need.</span></p>
 
@@ -1936,7 +1937,7 @@
       <details class="fold">
         <summary class="fold-sum">
           <span class="fold-ttl"><span class="ja-only">この金額に、含まれるもの</span><span class="en-only">What's included in the price</span></span>
-          <span class="fold-en"><span class="ja-only">WHAT'S INCLUDED</span><span class="en-only">この金額に、含まれるもの</span></span>
+          <span class="fold-en"><span class="ja-only">WHAT'S INCLUDED</span><span class="en-only" lang="ja">この金額に、含まれるもの</span></span>
           <span class="fold-mk" aria-hidden="true"></span>
         </summary>
         <div class="fold-in">
@@ -1959,7 +1960,7 @@
       <details class="fold">
         <summary class="fold-sum">
           <span class="fold-ttl"><span class="ja-only">別途になるもの</span><span class="en-only">Optional extras</span></span>
-          <span class="fold-en"><span class="ja-only">OPTIONS</span><span class="en-only">別途になるもの</span></span>
+          <span class="fold-en"><span class="ja-only">OPTIONS</span><span class="en-only" lang="ja">別途になるもの</span></span>
           <span class="fold-mk" aria-hidden="true"></span>
         </summary>
         <div class="fold-in">
@@ -1982,7 +1983,7 @@
       <details class="fold">
         <summary class="fold-sum">
           <span class="fold-ttl"><span class="ja-only">お見積りを見比べるときは</span><span class="en-only">When comparing quotes</span></span>
-          <span class="fold-en"><span class="ja-only">HOW TO COMPARE</span><span class="en-only">お見積りを見比べるときは</span></span>
+          <span class="fold-en"><span class="ja-only">HOW TO COMPARE</span><span class="en-only" lang="ja">お見積りを見比べるときは</span></span>
           <span class="fold-mk" aria-hidden="true"></span>
         </summary>
         <div class="fold-in">
@@ -2012,7 +2013,7 @@
         </div>
       </details>
 
-      <h3 class="h3"><span class="ja-only">後から増えない仕組み<span class="h3-en">HOW IT'S PRICED</span></span><span class="en-only">Why the Price Won't Grow Later<span class="h3-en">後から増えない仕組み</span></span></h3>
+      <h3 class="h3"><span class="ja-only">後から増えない仕組み<span class="h3-en">HOW IT'S PRICED</span></span><span class="en-only">Why the Price Won't Grow Later<span class="h3-en" lang="ja">後から増えない仕組み</span></span></h3>
       <!-- 決まり方：文章の表をやめ、数式1本＋お金の流れ3歩で見せる -->
       <div class="fx" role="img" aria-label="制作費は、作る機能の数と扱う情報の量で決まります" data-en-aria-label="Development cost is determined by the number of features and the amount of information involved">
         <div class="fx-item"><svg class="ico" aria-hidden="true"><use href="#ico-blocks-good"/></svg><p class="fx-lbl"><span class="ja-only">作る機能の数</span><span class="en-only">Number of features</span></p></div>
@@ -2050,7 +2051,7 @@
       <details class="fold">
         <summary class="fold-sum">
           <span class="fold-ttl"><span class="ja-only">納品したあと（任意）</span><span class="en-only">After delivery (optional)</span></span>
-          <span class="fold-en"><span class="ja-only">AFTER DELIVERY</span><span class="en-only">納品したあと（任意）</span></span>
+          <span class="fold-en"><span class="ja-only">AFTER DELIVERY</span><span class="en-only" lang="ja">納品したあと（任意）</span></span>
           <span class="fold-mk" aria-hidden="true"></span>
         </summary>
         <div class="fold-in">
@@ -2077,7 +2078,7 @@
         </div>
       </details>
 
-      <h3 class="h3"><span class="ja-only">稼働・ご連絡<span class="h3-en">AVAILABILITY</span></span><span class="en-only">Availability &amp; Communication<span class="h3-en">稼働・ご連絡</span></span></h3>
+      <h3 class="h3"><span class="ja-only">稼働・ご連絡<span class="h3-en">AVAILABILITY</span></span><span class="en-only">Availability &amp; Communication<span class="h3-en" lang="ja">稼働・ご連絡</span></span></h3>
       <div class="chips">
         <span class="chip"><span class="ja-only">平日夜・土日が中心</span><span class="en-only">Mainly weekday evenings and weekends</span></span>
         <span class="chip"><span class="ja-only">やりとりはメール</span><span class="en-only">Communication by email</span></span>
@@ -2088,7 +2089,7 @@
       <details class="fold">
         <summary class="fold-sum">
           <span class="fold-ttl"><span class="ja-only">できること／できないこと</span><span class="en-only">What I can and can't do</span></span>
-          <span class="fold-en"><span class="ja-only">SCOPE</span><span class="en-only">できること／できないこと</span></span>
+          <span class="fold-en"><span class="ja-only">SCOPE</span><span class="en-only" lang="ja">できること／できないこと</span></span>
           <span class="fold-mk" aria-hidden="true"></span>
         </summary>
         <div class="fold-in">
@@ -2113,7 +2114,7 @@
       <details class="fold">
         <summary class="fold-sum">
           <span class="fold-ttl"><span class="ja-only">よくあるご質問</span><span class="en-only">Frequently asked questions</span></span>
-          <span class="fold-en"><span class="ja-only">FAQ</span><span class="en-only">よくあるご質問</span></span>
+          <span class="fold-en"><span class="ja-only">FAQ</span><span class="en-only" lang="ja">よくあるご質問</span></span>
           <span class="fold-mk" aria-hidden="true"></span>
         </summary>
         <div class="fold-in">
@@ -2163,7 +2164,7 @@
   <!-- 実績：お客様の声 -->
   <section class="screen sheet" id="s-voice" data-screen="voice">
     <div class="sheet-inner">
-      <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">お客様の声</span><span class="en-only">Client Stories</span></span><span class="sl-en"><span class="ja-only">VOICE</span><span class="en-only">お客様の声</span></span></h2>
+      <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">お客様の声</span><span class="en-only">Client Stories</span></span><span class="sl-en"><span class="ja-only">VOICE</span><span class="en-only" lang="ja">お客様の声</span></span></h2>
       <p class="sheet-lead"><span class="ja-only">実際の現場でお使いいただいた、そのままのお言葉を載せています。</span><span class="en-only">The words of clients who used Tsumiki's apps in their real work, shared just as they were told (translated from Japanese).</span></p>
 
       <!-- 挿絵：お話しくださる人と、左から順に埋まっていく稽古日。
@@ -2219,7 +2220,7 @@
       </div>
 
       <!-- 事例の見出し -->
-      <p class="case-k"><span class="ja-only">導入事例<span class="case-en">CASE 01</span></span><span class="en-only">Case Study 01<span class="case-en">導入事例</span></span></p>
+      <p class="case-k"><span class="ja-only">導入事例<span class="case-en">CASE 01</span></span><span class="en-only">Case Study 01<span class="case-en" lang="ja">導入事例</span></span></p>
       <p class="case-t"><span class="ja-only">夏の本多劇場公演／稽古スケジュールの作成</span><span class="en-only">A summer production at the Honda Theater (Shimokitazawa, Tokyo) / Building the rehearsal schedule</span></p>
       <p class="case-by"><span class="ja-only">演出助手　たかぎひろみち 様　／　お使いのもの：香盤メーカー</span><span class="en-only">Hiromichi Takagi, Assistant Director / App used: Kouban Maker</span></p>
 
@@ -2232,7 +2233,7 @@
       </ul>
       <p class="note"><span class="ja-only">ご本人のご希望により、主催と作品名は伏せております。</span><span class="en-only">At the client's request, the producer and the title of the production are not disclosed.</span></p>
 
-      <p class="as-h"><span class="ja-only">起きていたこと<span class="as-h-en">SITUATION</span></span><span class="en-only">The Situation<span class="as-h-en">起きていたこと</span></span></p>
+      <p class="as-h"><span class="ja-only">起きていたこと<span class="as-h-en">SITUATION</span></span><span class="en-only">The Situation<span class="as-h-en" lang="ja">起きていたこと</span></span></p>
       <!-- 図解：左＝香盤表・右＝てっぱり表。休みが分かるたび、2枚を突き合わせに行く -->
       <div class="scene scene-situ" aria-hidden="true">
         <svg viewBox="0 0 320 124" role="img">
@@ -2276,7 +2277,7 @@
       </div>
       <p class="cap"><span class="ja-only">誰が休むか分かるたび、2枚の表を突き合わせて組み直す。<strong>この照合が、稽古のたびに時間を食っていました。</strong></span><span class="en-only">Every time someone was going to be absent, the two charts had to be cross-checked and the plan rebuilt. <strong>That cross-checking took up time before every rehearsal.</strong></span></p>
 
-      <p class="as-h"><span class="ja-only">お客様のお言葉<span class="as-h-en">VOICE</span></span><span class="en-only">In the Client's Words<span class="as-h-en">お客様のお言葉</span></span></p>
+      <p class="as-h"><span class="ja-only">お客様のお言葉<span class="as-h-en">VOICE</span></span><span class="en-only">In the Client's Words<span class="as-h-en" lang="ja">お客様のお言葉</span></span></p>
       <figure class="voice">
         <blockquote class="voice-q">
           <p><span class="ja-only">はじめから導入していたら、たいへんな時間の節約になっていたと想像できます。とくに、出演者にNGの多い現場では、その効力は絶大だと思います。</span><span class="en-only">I can imagine it would have saved an enormous amount of time if we had used it from the very beginning. Especially on productions where cast members have a lot of scheduling conflicts, I think it would be tremendously effective.</span></p>
@@ -2285,7 +2286,7 @@
         <figcaption class="voice-by"><span class="ja-only">演出助手　たかぎひろみち 様<span class="voice-sub">夏の本多劇場公演／稽古スケジュール作成をご担当</span></span><span class="en-only">Hiromichi Takagi, Assistant Director<span class="voice-sub">Responsible for the rehearsal schedule of a summer production at the Honda Theater (translated from Japanese)</span></span></figcaption>
       </figure>
 
-      <p class="as-h"><span class="ja-only">変わったこと<span class="as-h-en">RESULT</span></span><span class="en-only">What Changed<span class="as-h-en">変わったこと</span></span></p>
+      <p class="as-h"><span class="ja-only">変わったこと<span class="as-h-en">RESULT</span></span><span class="en-only">What Changed<span class="as-h-en" lang="ja">変わったこと</span></span></p>
       <div class="ba">
         <div class="ba-row">
           <div class="ba-b"><span class="ja-only"><span class="ba-tag">BEFORE</span>その日になってから、組み直す。</span><span class="en-only"><span class="ba-tag">BEFORE</span>Rebuilding the plan on the day itself.</span></div>
@@ -2294,7 +2295,7 @@
       </div>
       <p class="cap"><span class="ja-only">変わったのは、かかった時間ではなく<strong>段取りの順番</strong>でした。</span><span class="en-only">What changed wasn't the amount of time it took, but <strong>the order in which things were planned</strong>.</span></p>
 
-      <p class="as-h"><span class="ja-only">お渡しまでの日数<span class="as-h-en">SCHEDULE</span></span><span class="en-only">Days to Delivery<span class="as-h-en">お渡しまでの日数</span></span></p>
+      <p class="as-h"><span class="ja-only">お渡しまでの日数<span class="as-h-en">SCHEDULE</span></span><span class="en-only">Days to Delivery<span class="as-h-en" lang="ja">お渡しまでの日数</span></span></p>
       <!-- 図解：稽古26日の帯に、つみきの動きを重ねたもの。日付は伏せている -->
       <div class="scene scene-sched" aria-hidden="true">
         <svg viewBox="0 0 320 92" role="img">
@@ -2365,7 +2366,7 @@
   <!-- お問い合わせ：無料ヒアリング申込 -->
   <section class="screen sheet" id="s-hearing" data-screen="hearing">
     <div class="sheet-inner">
-      <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">無料ヒアリング申込</span><span class="en-only">Free Consultation</span></span><span class="sl-en"><span class="ja-only">CONTACT</span><span class="en-only">無料ヒアリング申込</span></span></h2>
+      <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">無料ヒアリング申込</span><span class="en-only">Free Consultation</span></span><span class="sl-en"><span class="ja-only">CONTACT</span><span class="en-only" lang="ja">無料ヒアリング申込</span></span></h2>
       <p class="sheet-lead"><span class="ja-only">まずは無料でお話を伺います。現場の困りごとを、そのままお聞かせください。<strong>ご準備は不要です。</strong></span><span class="en-only">To begin, I'll listen, free of charge. Tell me about the snags you face at work, just as they are. <strong>No preparation needed.</strong></span></p>
 
       <!-- 挿絵：向かい合ってお茶を飲みながら話す。人と机は静止、吹き出しだけが時間差で浮かぶ -->
@@ -2406,7 +2407,7 @@
         </g>
       </svg></div>
 
-      <h3 class="h3"><span class="ja-only">お申し込みのあと、こう進みます<span class="h3-en">WHAT HAPPENS NEXT</span></span><span class="en-only">What Happens After You Apply<span class="h3-en">お申し込みのあと、こう進みます</span></span></h3>
+      <h3 class="h3"><span class="ja-only">お申し込みのあと、こう進みます<span class="h3-en">WHAT HAPPENS NEXT</span></span><span class="en-only">What Happens After You Apply<span class="h3-en" lang="ja">お申し込みのあと、こう進みます</span></span></h3>
 
       <!-- 挿絵：申込（封筒）→ヒアリング（会話）→ご提案（書類）。線が伸び、点が進み、最後にチェック -->
       <div class="scene scene-hsteps" aria-hidden="true"><svg viewBox="0 0 320 80" role="img">
@@ -2442,7 +2443,7 @@
         <p class="note"><span class="ja-only">お見積りにご納得いただいてから着手します。後から金額が変わることはありません。</span><span class="en-only">Work begins only after you're satisfied with the quote. The price won't change later.</span></p>
       </div>
 
-      <h3 class="h3"><span class="ja-only">ご安心いただきたいこと<span class="h3-en">OUR PROMISE</span></span><span class="en-only">My Promise to You<span class="h3-en">ご安心いただきたいこと</span></span></h3>
+      <h3 class="h3"><span class="ja-only">ご安心いただきたいこと<span class="h3-en">OUR PROMISE</span></span><span class="en-only">My Promise to You<span class="h3-en" lang="ja">ご安心いただきたいこと</span></span></h3>
       <div class="panel">
         <!-- 挿絵：盾が自分で描かれて、静かに明滅する -->
         <div class="scene scene-guard" aria-hidden="true"><svg viewBox="0 0 44 48" role="img">
@@ -2554,10 +2555,10 @@
   <!-- お問い合わせ：プライバシーポリシー -->
   <section class="screen sheet" id="s-privacy" data-screen="privacy">
     <div class="sheet-inner">
-      <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">プライバシーポリシー</span><span class="en-only">Privacy Policy</span></span><span class="sl-en"><span class="ja-only">PRIVACY</span><span class="en-only">プライバシーポリシー</span></span></h2>
+      <h2 class="sheet-label"><span class="sl-jp"><span class="ja-only">プライバシーポリシー</span><span class="en-only">Privacy Policy</span></span><span class="sl-en"><span class="ja-only">PRIVACY</span><span class="en-only" lang="ja">プライバシーポリシー</span></span></h2>
       <p class="sheet-lead"><span class="ja-only">つみきは、みなさまの業務を深く伺う仕事です。だからこそ、伺った情報をどう扱うかを、はっきりさせておきます。</span><span class="en-only">Tsumiki's work means learning about your business in depth. That's exactly why I want to be clear about how the information you share is handled.</span></p>
 
-      <h3 class="h3"><span class="ja-only">このサイトが集めていないもの<span class="h3-en">WHAT WE DON'T COLLECT</span></span><span class="en-only">What This Site Doesn't Collect<span class="h3-en">このサイトが集めていないもの</span></span></h3>
+      <h3 class="h3"><span class="ja-only">このサイトが集めていないもの<span class="h3-en">WHAT WE DON'T COLLECT</span></span><span class="en-only">What This Site Doesn't Collect<span class="h3-en" lang="ja">このサイトが集めていないもの</span></span></h3>
       <div class="panel">
         <div class="dl">
           <div class="dl-row"><div class="dl-k">Cookie</div><div class="dl-v"><strong><span class="ja-only">使っていません。</span><span class="en-only">Not used.</span></strong></div></div>
@@ -2566,7 +2567,7 @@
         <p class="note"><span class="ja-only">このサイトを見ていただくだけでは、あなたが誰かは分かりません。フォームに入力して送信いただいたときにだけ、内容が私に届きます。</span><span class="en-only">Simply browsing this site doesn't tell me who you are. Your information reaches me only when you fill in and send the form.</span></p>
       </div>
 
-      <h3 class="h3"><span class="ja-only">外部に送られるもの<span class="h3-en">THIRD PARTIES</span></span><span class="en-only">What Is Sent to Outside Services<span class="h3-en">外部に送られるもの</span></span></h3>
+      <h3 class="h3"><span class="ja-only">外部に送られるもの<span class="h3-en">THIRD PARTIES</span></span><span class="en-only">What Is Sent to Outside Services<span class="h3-en" lang="ja">外部に送られるもの</span></span></h3>
       <div class="panel">
         <div class="dl">
           <div class="dl-row"><div class="dl-k">Google Fonts</div><div class="dl-v"><span class="ja-only">文字の表示に Google Fonts（Googleが提供する書体サービス）を使っています。そのためページを開くと、<strong>IPアドレスなどの通信情報がGoogleに送信されます</strong>。取り扱いは <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Googleのプライバシーポリシー</a> に従います。</span><span class="en-only">This site uses Google Fonts (a font service provided by Google) to display text. As a result, when you open a page, <strong>connection information such as your IP address is sent to Google</strong>. It is handled in accordance with <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</span></div></div>
@@ -2575,7 +2576,7 @@
         <p class="note"><span class="ja-only">フォームを使わず、<a href="mailto:support.tsumiki@gmail.com">support.tsumiki@gmail.com</a> へ直接メールをいただくこともできます。外部サービスを通したくない場合は、そちらをご利用ください。</span><span class="en-only">You can also skip the form and email <a href="mailto:support.tsumiki@gmail.com">support.tsumiki@gmail.com</a> directly. If you'd rather not go through an outside service, please use that option.</span></p>
       </div>
 
-      <h3 class="h3"><span class="ja-only">お預かりする情報<span class="h3-en">WHAT WE RECEIVE</span></span><span class="en-only">Information I Receive<span class="h3-en">お預かりする情報</span></span></h3>
+      <h3 class="h3"><span class="ja-only">お預かりする情報<span class="h3-en">WHAT WE RECEIVE</span></span><span class="en-only">Information I Receive<span class="h3-en" lang="ja">お預かりする情報</span></span></h3>
       <div class="panel">
         <ul class="can yes">
           <li><span class="ja-only">お問い合わせフォームに入力された内容、またはお問い合わせメールに書かれた内容（お名前・会社名・メールアドレス・お電話番号・ご相談内容など）</span><span class="en-only">Anything entered in the contact form or written in an inquiry email (such as your name, company name, email address, phone number and the details of your inquiry)</span></li>
@@ -2583,7 +2584,7 @@
         </ul>
       </div>
 
-      <h3 class="h3"><span class="ja-only">何に使うか<span class="h3-en">HOW WE USE IT</span></span><span class="en-only">How It's Used<span class="h3-en">何に使うか</span></span></h3>
+      <h3 class="h3"><span class="ja-only">何に使うか<span class="h3-en">HOW WE USE IT</span></span><span class="en-only">How It's Used<span class="h3-en" lang="ja">何に使うか</span></span></h3>
       <div class="panel">
         <ul class="can yes">
           <li><span class="ja-only">ご相談へのご返信</span><span class="en-only">Replying to your inquiry</span></li>
@@ -2596,12 +2597,12 @@
         </ul>
       </div>
 
-      <h3 class="h3"><span class="ja-only">第三者に渡さないこと<span class="h3-en">NO SHARING</span></span><span class="en-only">No Sharing with Third Parties<span class="h3-en">第三者に渡さないこと</span></span></h3>
+      <h3 class="h3"><span class="ja-only">第三者に渡さないこと<span class="h3-en">NO SHARING</span></span><span class="en-only">No Sharing with Third Parties<span class="h3-en" lang="ja">第三者に渡さないこと</span></span></h3>
       <div class="panel">
         <p class="dl-v"><span class="ja-only">お預かりした情報を第三者に提供することはありません（法令に基づき求められた場合を除きます）。<strong>伺った業務の内容を、他のお客様や第三者に話すこともありません。</strong>ご希望があればNDA（秘密保持契約）を締結します。</span><span class="en-only">Information entrusted to me is never provided to third parties (except where required by law). <strong>What you tell me about your business is never discussed with other clients or third parties either.</strong> I'm happy to sign an NDA (non-disclosure agreement) on request.</span></p>
       </div>
 
-      <h3 class="h3"><span class="ja-only">安全に管理すること<span class="h3-en">SECURITY</span></span><span class="en-only">Keeping It Secure<span class="h3-en">安全に管理すること</span></span></h3>
+      <h3 class="h3"><span class="ja-only">安全に管理すること<span class="h3-en">SECURITY</span></span><span class="en-only">Keeping It Secure<span class="h3-en" lang="ja">安全に管理すること</span></span></h3>
       <div class="panel">
         <div class="dl">
           <div class="dl-row"><div class="dl-k"><span class="ja-only">扱う人</span><span class="en-only">Who handles it</span></div><div class="dl-v"><span class="ja-only"><strong>代表の髙橋ひとりだけです。</strong>従業員も、外注先もいません。お預かりした情報を見る人が、他にいません。</span><span class="en-only"><strong>Only the founder, Takahashi.</strong> There are no employees or subcontractors, so no one else ever sees the information you entrust to me.</span></div></div>
@@ -2609,7 +2610,7 @@
         </div>
       </div>
 
-      <h3 class="h3"><span class="ja-only">保管と削除<span class="h3-en">RETENTION</span></span><span class="en-only">Retention and Deletion<span class="h3-en">保管と削除</span></span></h3>
+      <h3 class="h3"><span class="ja-only">保管と削除<span class="h3-en">RETENTION</span></span><span class="en-only">Retention and Deletion<span class="h3-en" lang="ja">保管と削除</span></span></h3>
       <div class="panel">
         <div class="dl">
           <div class="dl-row"><div class="dl-k"><span class="ja-only">ご相談の情報</span><span class="en-only">Consultation details</span></div><div class="dl-v"><span class="ja-only"><strong>ご依頼に至らなかった場合は、その時点ですみやかに削除します。</strong>伺った業務のお話も、こちらには残しません。</span><span class="en-only"><strong>If you decide not to go ahead, they are promptly deleted at that point.</strong> Nothing you told me about your business is kept on my side.</span></div></div>
@@ -2619,7 +2620,7 @@
         </div>
       </div>
 
-      <h3 class="h3"><span class="ja-only">事業者・お問い合わせ窓口<span class="h3-en">CONTACT</span></span><span class="en-only">Business &amp; Contact<span class="h3-en">事業者・お問い合わせ窓口</span></span></h3>
+      <h3 class="h3"><span class="ja-only">事業者・お問い合わせ窓口<span class="h3-en">CONTACT</span></span><span class="en-only">Business &amp; Contact<span class="h3-en" lang="ja">事業者・お問い合わせ窓口</span></span></h3>
       <div class="panel">
         <div class="dl">
           <div class="dl-row"><div class="dl-k"><span class="ja-only">事業者</span><span class="en-only">Business</span></div><div class="dl-v"><span class="ja-only">つみき（Tsumiki）／ 個人事業主</span><span class="en-only">Tsumiki (つみき) / Sole proprietor</span></div></div>
