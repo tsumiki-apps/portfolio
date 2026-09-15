@@ -1982,6 +1982,20 @@ body.on-sheet .tb-lang{display:none;}
    背景が紙のままなので、紙色の線の地球儀は見えない（実測 1.00:1）。この設定のときだけ墨色に戻す。 */
 @media(prefers-reduced-motion:reduce){
   body.on-dark .tb-lang{color:var(--ink); filter:none;}
+  /* 同じ理由で、メニューの白い文字も紙に埋もれて読めない（実測 1.00:1）。墨側の色に戻す。
+     この設定を使っていない人の見え方（墨に白文字）は変わらない。 */
+  body.on-dark .tb-brand,
+  body.on-dark .menu-item,
+  body.on-dark .sub-item{color:var(--ink);}
+  body.on-dark .menu-foot,
+  body.on-dark .mi-en, body.on-dark .su-en{color:var(--sub);}
+  body.on-dark .mi-ar, body.on-dark .su-ar{color:var(--ghost);}
+  body.on-dark .tb-brand,
+  body.on-dark .menu-item .mi-jp, body.on-dark .menu-item .mi-en, body.on-dark .menu-item .mi-ar,
+  body.on-dark .su-jp, body.on-dark .su-en, body.on-dark .su-ar,
+  body.on-dark .menu-foot{text-shadow:none;}
+  /* 紙の上では、紙色のボタンが沈むので墨地に反転する */
+  body.on-dark .menu-cta{background:var(--ink); color:var(--paper); box-shadow:0 3px 10px rgba(23,20,15,.18);}
 }
 
 /* 入口・画面2ではトップバーを隠しているが、opacity だけだと Tab で押せてしまう（実測で再現）。
