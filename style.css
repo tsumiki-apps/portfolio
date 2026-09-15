@@ -1956,23 +1956,24 @@ html.lang-en .pay-ttl{white-space:normal; line-height:1.35;}
 html.lang-en .pay-step{min-width:0;}
 @media(max-width:599px){ html.lang-en .pay-ttl{font-size:11.5px;} }
 
-/* 右上の言語切り替え（線画の地球儀）。大きさと下地は左上の戻る「‹」とそろえる */
+/* 右上の言語切り替え（線画の地球儀）。
+   下地の丸は置かない（2026-09-16 本人の指示）。読み物ページでは本文が地球儀の下をくぐって
+   重なるため、ボタンはメニュー画面にだけ出す。読み物ページからは左上の「‹」でメニューに戻る。 */
 .tb-lang{
   -webkit-appearance:none; appearance:none; border:none; cursor:pointer; flex:none;
   display:flex; align-items:center; justify-content:center;
   width:44px; height:44px; margin:-9px -12px -9px auto; padding:0;
-  border-radius:50%; background:rgba(244,242,238,.82); color:var(--ink);
-  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  background:none; color:var(--paper);
   -webkit-tap-highlight-color:transparent;
-  transition:transform .12s cubic-bezier(.2,0,0,1), color .5s ease, background-color .5s ease;
+  /* 墨が満ちる前でも白い線が読めるよう、ブランド名と同じにじみを添える */
+  filter:drop-shadow(0 0 8px rgba(23,20,15,.8)) drop-shadow(0 0 18px rgba(23,20,15,.6));
+  transition:transform .12s cubic-bezier(.2,0,0,1);
 }
 .tb-lang svg{width:24px; height:24px; display:block; fill:none; stroke:currentColor; stroke-width:1.6;
   stroke-linecap:round; stroke-linejoin:round; transition:transform .2s cubic-bezier(.2,0,0,1);}
 html.lang-en .tb-lang svg{transform:rotate(180deg);}   /* 押した手応え。形は左右対称なので止まった姿は同じ */
 .tb-lang:active{transform:scale(.92);}
 .tb-lang:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
-/* 墨の画面（メニュー）では、ブランド名と同じ紙色＋にじみ。下地は敷かない */
-body.on-dark .tb-lang{background:transparent; color:var(--paper);
-  -webkit-backdrop-filter:none; backdrop-filter:none;
-  filter:drop-shadow(0 0 6px rgba(23,20,15,.8));}
+/* 読み物ページ（子シート）では出さない＝本文との重なりが起きない */
+body.on-sheet .tb-lang{display:none;}
 @media(prefers-reduced-motion:reduce){ .tb-lang, .tb-lang svg{transition:none;} }
