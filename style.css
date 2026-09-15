@@ -1934,3 +1934,45 @@ footer.foot{
 @media(max-width:1023px){
   .sub-item{display:grid; width:-moz-fit-content; width:fit-content;}
 }
+
+/* ---------- 言語（日本語／英語）の切り替え ----------
+   文は <span class="ja-only"> / <span class="en-only"> の対で持つ。包みの span は display:contents にして、
+   親の flex / grid の並び（見出しと小見出し、メニューの矢印など）を変えない。
+   SVG の <text> には contents を当てない（SVG では none と同じ扱いになり、消えてしまう）。
+   contents でも文字の大きさや色は子に受け継がれるので、`.nums span` `.hf-chip span` のような
+   「span 全体」への指定が包みに当たると、中の文字が小さく・灰色になる（反証役の実測で発見）。
+   包みは親の文字の性質をそのまま受け継ぐ、と打ち消しておく（詳しさは同じで、後に読まれるので勝つ）。 */
+span.ja-only, span.en-only{display:contents; font:inherit; color:inherit; letter-spacing:inherit;}
+html:not(.lang-en) .en-only, html.lang-en .ja-only{display:none !important;}
+
+/* 英語のとき、英字の小見出しの位置には日本語が入る。英字用の広い字間のままだと間延びするので詰める */
+html.lang-en :is(.sl-en, .mi-en, .su-en, .fold-en, .h3-en, .as-h-en, .pg-en, .star-en, .case-en, .app-group-en, .pv-group-en){letter-spacing:.08em;}
+/* 英語の見出しは、和文用の字間だと単語がばらけて見える */
+html.lang-en :is(.mi-jp, .su-jp, .sl-jp){letter-spacing:.01em;}
+
+/* 料金の「ヒアリング → お見積り → 着手」は、英語だと語が長く、幅320〜375で横にはみ出した（実測）。
+   英語のときだけ折り返しを許し、狭い幅では字を一段小さくする */
+html.lang-en .pay-ttl{white-space:normal; line-height:1.35;}
+html.lang-en .pay-step{min-width:0;}
+@media(max-width:599px){ html.lang-en .pay-ttl{font-size:11.5px;} }
+
+/* 右上の言語切り替え（線画の地球儀）。大きさと下地は左上の戻る「‹」とそろえる */
+.tb-lang{
+  -webkit-appearance:none; appearance:none; border:none; cursor:pointer; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  width:44px; height:44px; margin:-9px -12px -9px auto; padding:0;
+  border-radius:50%; background:rgba(244,242,238,.82); color:var(--ink);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .12s cubic-bezier(.2,0,0,1), color .5s ease, background-color .5s ease;
+}
+.tb-lang svg{width:24px; height:24px; display:block; fill:none; stroke:currentColor; stroke-width:1.6;
+  stroke-linecap:round; stroke-linejoin:round; transition:transform .2s cubic-bezier(.2,0,0,1);}
+html.lang-en .tb-lang svg{transform:rotate(180deg);}   /* 押した手応え。形は左右対称なので止まった姿は同じ */
+.tb-lang:active{transform:scale(.92);}
+.tb-lang:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+/* 墨の画面（メニュー）では、ブランド名と同じ紙色＋にじみ。下地は敷かない */
+body.on-dark .tb-lang{background:transparent; color:var(--paper);
+  -webkit-backdrop-filter:none; backdrop-filter:none;
+  filter:drop-shadow(0 0 6px rgba(23,20,15,.8));}
+@media(prefers-reduced-motion:reduce){ .tb-lang, .tb-lang svg{transition:none;} }
